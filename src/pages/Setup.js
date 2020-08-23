@@ -114,10 +114,11 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
   return (
     <>
       <Typography gutterBottom component="h1" variant="h4">
-        Simulator install directory
+        Simulator packages directory
       </Typography>
       <Typography gutterBottom component="p" variant="body1">
-        Please check that the directory below matches your flight simulator install directory. If it doesn't choose the right directory.
+        Please check that the directory below matches your flight simulator packages directory. If it doesn't, choose the right directory with
+        the browse button.
       </Typography>
       <TextField
         error={!!error}
