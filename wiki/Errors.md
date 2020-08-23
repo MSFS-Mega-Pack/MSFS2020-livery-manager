@@ -42,7 +42,6 @@ E004: Source list doesn't have valid `sources` array
 
 - Provided `sourceList` manifest doesn't have a `sources` entry (or isn't an array)
 - Provided `sources` array is empty
-- Provided `sources` array is not a list of strings
 
 ### E005
 
@@ -53,3 +52,13 @@ E005: Malformed manifest (invalid JSON)
 #### Causes
 
 - Provided manifest is invalid JSON (maybe was served an interstitial page, e.g. from Cloudflare)
+
+### E006
+
+```
+E006: `sources` array contains types other than strings
+```
+
+#### Causes
+
+- Provided `sources` array does **not** contain only strings
