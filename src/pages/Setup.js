@@ -4,7 +4,8 @@ import Path from 'path';
 
 import Config from 'electron-json-config';
 
-import { GetPackagesDirectory, ValidateFSDirectory } from '../helpers/MSFS';
+import { GetPackagesDirectory, ValidateFSDirectory, parseCFGFile } from '../helpers/MSFS';
+const CFGParser = require('../helpers/MSFS/parseCFGFile');
 
 import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton, makeStyles } from '@material-ui/core';
 import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
@@ -13,6 +14,7 @@ import Electron from 'electron';
 import GetLiverySources from '../helpers/Manifest/GetLiverySources';
 
 export default function Setup() {
+  parseCFGFile();
   const [page, setPage] = useState(1);
   const [nextButtonEnabled, setNextButtonEnabled] = useState(true);
   const [data, setDataReal] = useState({ packageDir: undefined, liverySources: undefined });
