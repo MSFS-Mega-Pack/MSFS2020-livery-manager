@@ -4,16 +4,17 @@ import Path from 'path';
 
 import Config from 'electron-json-config';
 
-import GetPackagesDirectory from '../helpers/GetPackagesDirectory';
+import { GetPackagesDirectory, ValidateFSDirectory } from '../helpers/MSFS';
 
-import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton } from '@material-ui/core';
+import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton, makeStyles } from '@material-ui/core';
 import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
 
 import Electron from 'electron';
-import ValidateFSDirectory from '../helpers/ValidateFSDirectory';
+import GetLiverySources from '../helpers/Manifest/GetLiverySources';
 
 export default function Setup() {
   const [page, setPage] = useState(1);
+  const [nextButtonEnabled, setNextButtonEnabled] = useState(true);
   const [data, setDataReal] = useState({ packageDir: undefined, liverySources: undefined });
 
   function setData(d) {
@@ -22,7 +23,6 @@ export default function Setup() {
 
   if (data.packageDir === undefined) {
     GetPackagesDirectory().then(p => {
-      console.log(p);
       setData({ packageDir: p });
     });
   }
@@ -34,13 +34,14 @@ export default function Setup() {
   return (
     <Box display="flex" flexDirection="column" height="100%">
       <Box flex="1" padding={theme.spacing()} paddingTop={theme.spacing(0.5)}>
-        <CurrentPage key={page} data={data} setData={setData} />
+        <CurrentPage key={page} data={data} setData={setData} setNextButtonEnabled={setNextButtonEnabled} />
       </Box>
       <Box display="flex" padding={theme.spacing()} paddingBottom={theme.spacing(0.5)}>
         {
           <Button
             onClick={() => {
               setPage(page - 1);
+              setNextButtonEnabled(true);
             }}
             disabled={page === 1}
           >
@@ -56,6 +57,7 @@ export default function Setup() {
               Navigate();
             }
           }}
+          disabled={!nextButtonEnabled}
         >
           {page === Pages.length ? 'Finish' : 'Next'}
         </Button>
@@ -64,9 +66,9 @@ export default function Setup() {
   );
 }
 
-const Pages = [Page1, Page2, SetupCompletePage];
+const Pages = [WelcomePage, SimInstallDirectoryPage, ChooseLiverySourcesPage, SetupCompletePage];
 
-function Page1() {
+function WelcomePage() {
   return (
     <>
       <Typography gutterBottom component="h1" variant="h4">
@@ -79,14 +81,27 @@ function Page1() {
   );
 }
 
-function Page2({ data, setData }) {
+function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
   const [error, setError] = useState(null);
 
   function openBrowseDialog() {
     const d = Electron.remote.dialog.showOpenDialogSync(null, { properties: ['openDirectory'] });
-    const [isValid, errorMsg] = ValidateFSDirectory(d);
+    console.log(d);
 
-    isValid && setData({ packageDir: d });
+    if (typeof d === 'undefined') {
+      // Dialog cancelled
+      return;
+    }
+
+    setData({ packageDir: d[0] });
+    const [isValid, errorMsg] = ValidateFSDirectory(d[0]);
+
+    if (isValid) {
+      setError(null);
+    } else {
+      setError(errorMsg);
+      setNextButtonEnabled(false);
+    }
   }
 
   return (
@@ -97,34 +112,54 @@ function Page2({ data, setData }) {
       <Typography gutterBottom component="p" variant="body1">
         Please check that the directory below matches your flight simulator install directory. If it doesn't choose the right directory.
       </Typography>
-      {data.packageDir !== null && (
-        <TextField
-          InputLabelProps={{ shrink: true }}
-          style={{ marginTop: 32 }}
-          InputProps={{
-            style: { fontFamily: 'IBM Plex Mono', letterSpacing: -0.2 },
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton aria-label="toggle password visibility" onClick={openBrowseDialog}>
-                  <FolderSearchOutlineIcon />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-          variant="filled"
-          label="Install path"
-          value={data.packageDir}
-          onChange={e => {
-            setData({ packageDir: e.target.value });
-          }}
-          fullWidth
-        />
-      )}
+      <TextField
+        error={!!error}
+        helperText={error}
+        InputLabelProps={{ shrink: true }}
+        style={{ marginTop: 32 }}
+        InputProps={{
+          style: { fontFamily: 'IBM Plex Mono', letterSpacing: -0.2 },
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton aria-label="toggle password visibility" onClick={openBrowseDialog}>
+                <FolderSearchOutlineIcon />
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
+        variant="filled"
+        label="Install path"
+        value={data.packageDir}
+        onChange={e => {
+          setData({ packageDir: e.target.value });
+        }}
+        fullWidth
+      />
     </>
   );
 }
 
-function Page3({ data, setData }) {}
+function ChooseLiverySourcesPage({ data, setData }) {
+  if (typeof data.liverySources === 'undefined') {
+    GetLiverySources().then(sources => {
+      let sourceList = [];
+      
+      sources.map(source => {
+        sourceList.push({ url: source, enabled: true });
+      });
+
+      setData({ liverySources: sourceList });
+    });
+  }
+
+  return (
+    <>
+      <Typography gutterBottom component="h1" variant="h4">
+        Choose livery sources
+      </Typography>
+    </>
+  );
+}
 
 function SetupCompletePage() {
   return (
