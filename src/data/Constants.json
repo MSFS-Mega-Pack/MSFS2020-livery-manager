@@ -1,6 +1,6 @@
 {
   "urls": {
-    "managerRepo": "https://github.com/davwheat/MSFS2020-livery-manager/",
+    "managerRepo": "https://github.com/davwheat/MSFS2020-livery-manager",
     "officialSourceList": "https://raw.githubusercontent.com/davwheat/MSFS2020-livery-sources/master/sources.json"
   }
 }
