@@ -17,6 +17,12 @@ export default function Setup() {
   const [nextButtonEnabled, setNextButtonEnabled] = useState(true);
   const [data, setDataReal] = useState({ packageDir: undefined, liverySources: undefined });
 
+  if (page === 2) {
+    if (!data.packageDir || data.packageDir.trim() === '') {
+      nextButtonEnabled !== false && setNextButtonEnabled(false);
+    }
+  }
+
   function setData(d) {
     setDataReal({ ...data, ...d });
   }
@@ -86,7 +92,6 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
 
   function openBrowseDialog() {
     const d = Electron.remote.dialog.showOpenDialogSync(null, { properties: ['openDirectory'] });
-    console.log(d);
 
     if (typeof d === 'undefined') {
       // Dialog cancelled
@@ -94,10 +99,12 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
     }
 
     setData({ packageDir: d[0] });
+
     const [isValid, errorMsg] = ValidateFSDirectory(d[0]);
 
     if (isValid) {
       setError(null);
+      setNextButtonEnabled(true);
     } else {
       setError(errorMsg);
       setNextButtonEnabled(false);
@@ -116,7 +123,7 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
         error={!!error}
         helperText={error}
         InputLabelProps={{ shrink: true }}
-        style={{ marginTop: 32 }}
+        margin="normal"
         InputProps={{
           style: { fontFamily: 'IBM Plex Mono', letterSpacing: -0.2 },
           endAdornment: (
@@ -143,7 +150,7 @@ function ChooseLiverySourcesPage({ data, setData }) {
   if (typeof data.liverySources === 'undefined') {
     GetLiverySources().then(sources => {
       let sourceList = [];
-      
+
       sources.map(source => {
         sourceList.push({ url: source, enabled: true });
       });
