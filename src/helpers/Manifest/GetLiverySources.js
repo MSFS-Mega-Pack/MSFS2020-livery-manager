@@ -20,14 +20,13 @@ export default async function GetLiverySources() {
     throw 'E002: Source list fetch failed';
   }
 
-  if (!response.ok) {
+  if (!response.clone().ok) {
     throw 'E003: Source list fetch response not OK\n\nAttempted to fetch ' + url;
   }
 
   let sourceList;
   try {
-    console.log(response.text());
-    sourceList = response.clone().json();
+    sourceList = await response.clone().json();
   } catch {
     ThrowError('E005', 'Malformed manifest (invalid JSON)');
   }
@@ -42,9 +41,9 @@ export default async function GetLiverySources() {
     ThrowError('E004', "Source list doesn't have valid `sources` array");
   }
 
-  if (sourceList.sources.every(s => typeof s === 'string')) {
+  if (!sourceList.sources.every(s => typeof s === 'string')) {
     // Sources array not all strings
-    ThrowError('E004', "Source list doesn't have valid `sources` array");
+    ThrowError('E006', '`sources` array contains types other than strings');
   }
 
   return sourceList.sources;
