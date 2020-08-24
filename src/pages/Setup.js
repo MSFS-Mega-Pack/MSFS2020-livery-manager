@@ -137,7 +137,7 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
         }}
         variant="filled"
         label="Install path"
-        value={data.packageDir}
+        value={data.packageDir || ''}
         onChange={e => {
           setData({ packageDir: e.target.value });
         }}
@@ -149,21 +149,13 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
 
 function ChooseLiverySourcesPage({ data, setData }) {
   if (typeof data.liverySources === 'undefined') {
-    GetLiverySources().then(sources => {
-      let sourceList = [];
-
-      sources.map(source => {
-        sourceList.push({ url: source, enabled: true });
-      });
-
-      setData({ liverySources: sourceList });
-    });
+    GetLiverySources().then(liverySources => setData({ liverySources: liverySources }));
   }
 
   return (
     <>
       <Typography gutterBottom component="h1" variant="h4">
-        Choose livery sources
+        Review livery sources
       </Typography>
     </>
   );
