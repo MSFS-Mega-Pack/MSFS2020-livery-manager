@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Setup from '../pages/setup';
+import Setup from '../pages/Setup';
 import LiveryManager from '../pages/LiveryManager';
 import SplashScreen from '../pages/SplashScreen';
 
