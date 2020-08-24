@@ -157,7 +157,6 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
 }
 
 function ChooseLiverySourcesPage({ data, setData }) {
-  console.log(data.liverySources)
   return (
     <>
       <Typography gutterBottom component="h1" variant="h4">
