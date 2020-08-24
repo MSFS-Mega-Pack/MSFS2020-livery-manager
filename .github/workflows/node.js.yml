@@ -5,30 +5,52 @@ name: Smoketest
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     name: "Linting"
-    
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          # Make sure the actual branch is checked out when running on pull requests
-          ref: ${{ github.head_ref }}
 
-      - name: Prettier Action
-        uses: creyD/prettier_action@v3.0
+      - name: Set up Node
+        uses: actions/setup-node@v1
         with:
-          prettier_options: --write **/*.{js,json,less,css}
-          # Don't actually modify any files, just fail the action if it's not prettified! :P
-          dry: true
+          node-version: ${{ matrix.node-version }}
 
-     
+      # Install yarn
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      # Get yarn cache path
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      # Restore package cache (speeds up dependency install)
+      - uses: actions/cache@v1
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Prettier format
+        run: yarn format-no-write
+
   build:
     runs-on: ubuntu-latest
     name: "Build"
@@ -38,34 +60,34 @@ jobs:
         node-version: [12.x]
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node 
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    # Install yarn
-    - name: Install Yarn
-      run: npm install -g yarn
-    
-    # Get yarn cache path
-    - name: Get yarn cache directory path
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
+      # Install yarn
+      - name: Install Yarn
+        run: npm install -g yarn
 
-    # Restore package cache (speeds up dependency install)
-    - uses: actions/cache@v1
-      id: yarn-cache
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
+      # Get yarn cache path
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
 
-    - name: Install dependencies
-      run: yarn install
-    
-    - name: Build app
-      run: yarn build
+      # Restore package cache (speeds up dependency install)
+      - uses: actions/cache@v1
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build app
+        run: yarn build
