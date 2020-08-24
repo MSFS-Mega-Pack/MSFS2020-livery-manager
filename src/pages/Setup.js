@@ -13,6 +13,7 @@ import Electron from 'electron';
 import GetLiverySources from '../helpers/Manifest/GetLiverySources';
 import LiverySourcesTable from '../components/LiveryManager/SourceListTable';
 import LiverySource from '../models/LiverySource';
+import Navigate from '../helpers/Navigate';
 
 export default function Setup() {
   const [page, setPage] = useState(1);
@@ -156,6 +157,7 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
 }
 
 function ChooseLiverySourcesPage({ data, setData }) {
+  console.log(data.liverySources)
   return (
     <>
       <Typography gutterBottom component="h1" variant="h4">
