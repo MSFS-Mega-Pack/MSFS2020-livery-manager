@@ -1,17 +1,19 @@
 ### E001
 
 ```
-E001: Invalid source list manifest format
+E001: Invalid manifest format
 ```
 
 #### Causes
 
-- Received a manifest type other than `sourceList` when that is what was needed
+- Received a manifest type which doesn't match what was expected
 
 ### E002
 
 ```
-E002: Source list fetch failed
+E002: Manifest fetch failed
+
+Attempted to fetch URL <url>
 ```
 
 #### Causes
@@ -22,9 +24,9 @@ E002: Source list fetch failed
 ### E003
 
 ```
-E003: Source list fetch response not OK
+E003: Manifest fetch response not OK
 
-Attempted to fetch [url]
+Attempted to fetch <url>
 ```
 
 #### Causes
@@ -35,33 +37,12 @@ Attempted to fetch [url]
 ### E004
 
 ```
-E004: Source list doesn't have valid `sources` array
-```
-
-#### Causes
-
-- Provided `sourceList` manifest doesn't have a `sources` entry (or isn't an array)
-- Provided `sources` array is empty
-
-### E005
-
-```
-E005: Malformed manifest (invalid JSON)
+E004: Malformed manifest (invalid JSON)
 ```
 
 #### Causes
 
 - Provided manifest is invalid JSON (maybe was served an interstitial page, e.g. from Cloudflare)
-
-### E006
-
-```
-E006: `sources` array contains types other than strings
-```
-
-#### Causes
-
-- Provided `sources` array does **not** contain only strings
 
 ### E007
 

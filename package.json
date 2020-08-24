@@ -31,11 +31,13 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-hot-loader": "^4.12.21",
     "react-router-dom": "^5.2.0",
     "react-router-transition": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
