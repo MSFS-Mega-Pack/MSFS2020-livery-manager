@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 
 import Path from 'path';
 
@@ -6,11 +6,13 @@ import Config from 'electron-json-config';
 
 import { GetPackagesDirectory, ValidateFSDirectory, parseCFGFile, loadCFG } from '../helpers/MSFS';
 
-import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton, makeStyles } from '@material-ui/core';
+import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton, makeStyles, CircularProgress } from '@material-ui/core';
 import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
 
 import Electron from 'electron';
 import GetLiverySources from '../helpers/Manifest/GetLiverySources';
+import LiverySourcesTable from '../components/LiveryManager/SourceListTable';
+import LiverySource from '../models/LiverySource';
 
 export default function Setup() {
   const [page, setPage] = useState(1);
@@ -27,9 +29,15 @@ export default function Setup() {
     setDataReal({ ...data, ...d });
   }
 
-  if (data.packageDir === undefined) {
+  if (typeof data.packageDir === 'undefined') {
     GetPackagesDirectory().then(p => {
       setData({ packageDir: p });
+    });
+  }
+
+  if (typeof data.liverySources === 'undefined') {
+    GetLiverySources().then(ls => {
+      setData({ liverySources: ls });
     });
   }
 
@@ -114,10 +122,11 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
   return (
     <>
       <Typography gutterBottom component="h1" variant="h4">
-        Simulator install directory
+        Simulator packages directory
       </Typography>
       <Typography gutterBottom component="p" variant="body1">
-        Please check that the directory below matches your flight simulator install directory. If it doesn't choose the right directory.
+        Please check that the directory below matches your flight simulator packages directory. If it doesn't, choose the right directory with
+        the browse button.
       </Typography>
       <TextField
         error={!!error}
@@ -136,7 +145,7 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
         }}
         variant="filled"
         label="Install path"
-        value={data.packageDir}
+        value={data.packageDir || ''}
         onChange={e => {
           setData({ packageDir: e.target.value });
         }}
@@ -147,22 +156,11 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
 }
 
 function ChooseLiverySourcesPage({ data, setData }) {
-  if (typeof data.liverySources === 'undefined') {
-    GetLiverySources().then(sources => {
-      let sourceList = [];
-
-      sources.map(source => {
-        sourceList.push({ url: source, enabled: true });
-      });
-
-      setData({ liverySources: sourceList });
-    });
-  }
-
   return (
     <>
       <Typography gutterBottom component="h1" variant="h4">
-        Choose livery sources
+        Review livery sources
+        {data.liverySources ? <LiverySourcesTable sourceList={data.liverySources} /> : <CircularProgress style={{ margin: 'auto', marginTop: 32 }} />}
       </Typography>
     </>
   );
