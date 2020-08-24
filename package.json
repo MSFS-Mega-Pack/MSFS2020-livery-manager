@@ -17,8 +17,9 @@
     "prod": "cross-env NODE_ENV=production webpack --mode production --config webpack.build.config.js && electron --noDevServer .",
     "start": "cross-env NODE_ENV=development webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js --mode development",
     "build": "cross-env NODE_ENV=production webpack --config webpack.build.config.js --mode production",
-    "package": "npm run build",
-    "postpackage": "electron-packager ./ --out=./release-builds"
+    "package": "yarn build",
+    "postpackage": "electron-packager ./ --out=./release-builds",
+    "format": "prettier --write \"**/*.{js,json,less,css}\""
   },
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
@@ -51,6 +52,7 @@
     "html-webpack-plugin": "^4.3.0",
     "less-loader": "^6.2.0",
     "mini-css-extract-plugin": "^0.10.0",
+    "prettier": "^2.1.0",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
