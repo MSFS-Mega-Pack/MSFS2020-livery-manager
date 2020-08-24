@@ -1,5 +1,7 @@
-import FS from 'fs';
-let CFGpath = "E:/Games/Flight Simulator/Community/liveries_template/SimObjects/Airplanes/Asobo_A320_NEO";
+import fs from 'fs';
+import ini from 'ini';
+
+let CFGpath = "E:/Games/Flight Simulator/Community/liveries_template/SimObjects/Airplanes/Asobo_A320_NEO/aircraft.cfg";
 
 function loadCFG(path) {
     CFGpath = path;
@@ -13,7 +15,7 @@ function loadCFG(path) {
 
 export default function parseCFGFile() {
     if (CFGpath == "") return;
-    const data = fs.readFileSync(CFGpath, 'utf8');
+    const data = ini.parse(fs.readFileSync(CFGpath, 'utf8'));
     console.log(data);
     return data
 }
