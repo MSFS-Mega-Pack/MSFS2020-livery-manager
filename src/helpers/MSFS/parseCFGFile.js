@@ -1,5 +1,5 @@
 import fs from 'fs';
-import ini from 'ini';
+import ini from '../Manifest/CFGFileParser.js';
 
 let CFGpath = "E:/Games/Flight Simulator/Community/liveries_template/SimObjects/Airplanes/Asobo_A320_NEO/aircraft.cfg";
 
@@ -14,7 +14,7 @@ export function loadCFG(path) {
  * @return {String} [0]: is path valid, [1]: error message
  */
 
-export default function parseCFGFile() {
+export function parseCFGFile() {
     if (CFGpath == "") return;
     const data = ini.parse(fs.readFileSync(CFGpath, 'utf8'));
     console.log(data);

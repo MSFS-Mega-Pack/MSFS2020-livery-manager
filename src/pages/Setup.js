@@ -4,7 +4,7 @@ import Path from 'path';
 
 import Config from 'electron-json-config';
 
-import { GetPackagesDirectory, ValidateFSDirectory, parseCFGFile } from '../helpers/MSFS';
+import { GetPackagesDirectory, ValidateFSDirectory, parseCFGFile, loadCFG } from '../helpers/MSFS';
 
 import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton, makeStyles } from '@material-ui/core';
 import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
