@@ -62,3 +62,13 @@ E006: `sources` array contains types other than strings
 #### Causes
 
 - Provided `sources` array does **not** contain only strings
+
+### E007
+
+```
+E007: CFG File path undefined
+```
+
+#### Causes
+
+- Path to a CFG File has not been set
