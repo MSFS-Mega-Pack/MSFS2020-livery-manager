@@ -15,11 +15,11 @@ export default class Contributor {
    *
    * @param {Object} params
    *
-   * @param {string} params.name User's name or nickname
-   * @param {string} params.twitter User's twitter handle (with the '@')
-   * @param {string} params.discord User's Discord handle (with the '#xxxx')
-   * @param {string} params.github User's GitHub username
-   * @param {string} params.msfsforums User's MSFS Forums username
+   * @param {string} params.name User name or nickname
+   * @param {string} params.twitter User twitter handle (with the '@')
+   * @param {string} params.discord User Discord handle (with the '#xxxx')
+   * @param {string} params.github User GitHub username
+   * @param {string} params.msfsforums User MSFS Forums username
    *
    * @memberof Contributor
    */

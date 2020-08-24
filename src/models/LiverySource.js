@@ -1,11 +1,11 @@
 import Contributor from './Contributor';
 import Manifest from './Manifest';
 
-export default class SourceList extends Manifest {
+export default class LiverySource extends Manifest {
   #name;
   #description;
   #contributors;
-  #sources;
+  #aircraftManifests;
 
   /**
    * Creates a new SourceList.
@@ -17,47 +17,47 @@ export default class SourceList extends Manifest {
    * @param {string} params.humanVersion A humanised version string showed to users. Don't use any comparisons with this as it could be anything (semver, big chungus, a base64 PNG of your mother).
    * @param {number} params.versionCode A numeric version code that should be incremented upon every update of a manifest.
    *
-   * @param {string} params.name The name of the source list shown to users.
-   * @param {string} params.description The description of the source list shown to users.
+   * @param {string} params.name The name of the livery source shown to users.
+   * @param {string} params.description The description of the livery source shown to users.
    * @param {Contributor[]} params.contributors A list of all contributors.
    * @param {string[]} params.sources A list of all livery set URLs
    *
    * @readonly
    *
-   * @memberof SourceList
+   * @memberof LiverySource
    */
   constructor(params) {
     const { formatVersion, formatType, humanVersion, versionCode, name, description, contributors, sources } = params;
 
-    if (formatType !== 'sourceList') throw "You can't create a source list with a type different to sourceList... that's just stupid!";
+    if (formatType !== 'sourceList') throw "You can't create a livery source with a type different to sourceList... that's just stupid!";
 
     super(formatVersion, 'sourceList', humanVersion, versionCode);
 
     this.#name = name;
     this.#description = description;
     this.#contributors = contributors;
-    this.#sources = sources;
+    this.#aircraftManifests = sources;
   }
 
   /**
-   * The name of the source list shown to users.
+   * The name of the livery source shown to users.
    *
    * @type {string}
    *
    * @readonly
-   * @memberof SourceList
+   * @memberof LiverySource
    */
   get name() {
     return this.#name;
   }
 
   /**
-   * The description of the source list shown to users.
+   * The description of the livery source shown to users.
    *
    * @type {string}
    *
    * @readonly
-   * @memberof SourceList
+   * @memberof LiverySource
    */
   get description() {
     return this.#description;
@@ -69,21 +69,21 @@ export default class SourceList extends Manifest {
    * @type {Contributor[]}
    *
    * @readonly
-   * @memberof SourceList
+   * @memberof LiverySource
    */
   get contributors() {
     return this.#contributors;
   }
 
   /**
-   * A list of all the LiverySources in the SourceList
+   * A list of all aircraft manifests in the livery source
    *
    * @type {string[]}
    *
    * @readonly
-   * @memberof SourceList
+   * @memberof LiverySource
    */
-  get sources() {
-    return this.#sources;
+  get aircraftManifests() {
+    return this.#aircraftManifests;
   }
 }

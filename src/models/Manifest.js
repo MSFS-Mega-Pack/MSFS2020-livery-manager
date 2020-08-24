@@ -1,8 +1,6 @@
 /**
  * The base class of all manifests.
  *
- *
- *
  * @class Manifest
  */
 export default class Manifest {
