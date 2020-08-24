@@ -3,8 +3,9 @@ import ini from 'ini';
 
 let CFGpath = "E:/Games/Flight Simulator/Community/liveries_template/SimObjects/Airplanes/Asobo_A320_NEO/aircraft.cfg";
 
-function loadCFG(path) {
+export function loadCFG(path) {
     CFGpath = path;
+    console.log(path)
 }
 /**
  * Check if a chosen path is a valid FS2020 installation path
