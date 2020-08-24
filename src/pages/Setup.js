@@ -13,8 +13,6 @@ import Electron from 'electron';
 import GetLiverySources from '../helpers/Manifest/GetLiverySources';
 
 export default function Setup() {
-  parseCFGFile();
-  loadCFG("lol")
   const [page, setPage] = useState(1);
   const [nextButtonEnabled, setNextButtonEnabled] = useState(true);
   const [data, setDataReal] = useState({ packageDir: undefined, liverySources: undefined });
