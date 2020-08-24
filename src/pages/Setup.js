@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 
 import Path from 'path';
 
@@ -6,11 +6,13 @@ import Config from 'electron-json-config';
 
 import { GetPackagesDirectory, ValidateFSDirectory } from '../helpers/MSFS';
 
-import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton, makeStyles } from '@material-ui/core';
+import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton, makeStyles, CircularProgress } from '@material-ui/core';
 import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
 
 import Electron from 'electron';
 import GetLiverySources from '../helpers/Manifest/GetLiverySources';
+import LiverySourcesTable from '../components/LiveryManager/SourceListTable';
+import LiverySource from '../models/LiverySource';
 
 export default function Setup() {
   const [page, setPage] = useState(1);
@@ -27,9 +29,15 @@ export default function Setup() {
     setDataReal({ ...data, ...d });
   }
 
-  if (data.packageDir === undefined) {
+  if (typeof data.packageDir === 'undefined') {
     GetPackagesDirectory().then(p => {
       setData({ packageDir: p });
+    });
+  }
+
+  if (typeof data.liverySources === 'undefined') {
+    GetLiverySources().then(ls => {
+      setData({ liverySources: ls });
     });
   }
 
@@ -148,14 +156,11 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
 }
 
 function ChooseLiverySourcesPage({ data, setData }) {
-  if (typeof data.liverySources === 'undefined') {
-    GetLiverySources().then(liverySources => setData({ liverySources: liverySources }));
-  }
-
   return (
     <>
       <Typography gutterBottom component="h1" variant="h4">
         Review livery sources
+        {data.liverySources ? <LiverySourcesTable sourceList={data.liverySources} /> : <CircularProgress style={{ margin: 'auto', marginTop: 32 }} />}
       </Typography>
     </>
   );

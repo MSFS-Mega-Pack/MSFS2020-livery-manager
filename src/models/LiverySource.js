@@ -29,9 +29,9 @@ export default class LiverySource extends Manifest {
   constructor(params) {
     const { formatVersion, formatType, humanVersion, versionCode, name, description, contributors, sources } = params;
 
-    if (formatType !== 'sourceList') throw "You can't create a livery source with a type different to sourceList... that's just stupid!";
+    if (formatType !== 'liverySource') throw "You can't create a livery source with a type different to liverySource... that's just stupid!";
 
-    super(formatVersion, 'sourceList', humanVersion, versionCode);
+    super(formatVersion, 'liverySource', humanVersion, versionCode);
 
     this.#name = name;
     this.#description = description;

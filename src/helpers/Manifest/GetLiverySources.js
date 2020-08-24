@@ -19,14 +19,12 @@ export default async function GetLiverySources(sourcesList) {
     _sourcesList = [await GetSourceList()];
   }
 
-  console.log(_sourcesList);
-
   /** @type {LiverySource[]} */
   let liverySources = [];
 
-  _sourcesList.forEach(sourceList => {
-    sourceList.sources.forEach(liverySourceURL => {
-      let liverySourceManifest = FetchAndParseJsonManifest(liverySourceURL, 'liverySource');
+  await _sourcesList.forEach(async sourceList => {
+    await sourceList.sources.forEach(async liverySourceURL => {
+      let liverySourceManifest = await FetchAndParseJsonManifest(liverySourceURL, 'liverySource');
 
       /** @type {Contributor[]} */
       let contributors = [];
