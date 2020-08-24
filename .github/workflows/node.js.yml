@@ -24,7 +24,7 @@ jobs:
       - name: Prettier Action
         uses: creyD/prettier_action@v3.0
         with:
-          prettier_options: "--write \"**/*.{js,json,less,css}\""
+          prettier_options: --write **/*.{js,json,less,css}
           # Don't actually modify any files, just fail the action if it's not prettified! :P
           dry: true
 
