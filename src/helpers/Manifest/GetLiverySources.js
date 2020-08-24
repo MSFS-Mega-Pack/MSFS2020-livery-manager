@@ -1,50 +1,62 @@
-import Constants from '../../data/Constants.json';
-import ThrowError from '../ThrowError';
+import GetSourceList from './GetSourceList';
+import FetchAndParseJsonManifest from './FetchAndParseManifest';
+import LiverySource from '../../models/LiverySource';
+import Contributor from '../../models/Contributor';
 
 /**
- * Get an array of all `liverySource` manifest URLs
+ * Convert an array of SourceLists into LiverySource classes.
  *
- * This doesn't check if each URL is valid, but does fetch the master source list and check there aren't issues with it.
+ * @return {LiverySource[]} Array of SourceLists
  *
  * @export
- * @return {string[]} `liverySource` manifest URLs
+ * @param {Object[]=} sourcesList List of sources (if pre-fetched)
  */
-export default async function GetLiverySources() {
-  const url = Constants.urls.officialSourceList;
+export default async function GetLiverySources(sourcesList) {
+  /** @type {SourceList[]} */
+  let _sourcesList = sourcesList;
 
-  let response;
-
-  try {
-    response = await fetch(url);
-  } catch {
-    throw 'E002: Source list fetch failed';
+  if (typeof sourcesList === 'undefined') {
+    _sourcesList = [await GetSourceList()];
   }
 
-  if (!response.clone().ok) {
-    throw 'E003: Source list fetch response not OK\n\nAttempted to fetch ' + url;
-  }
+  console.log(_sourcesList);
 
-  let sourceList;
-  try {
-    sourceList = await response.clone().json();
-  } catch {
-    ThrowError('E005', 'Malformed manifest (invalid JSON)');
-  }
+  /** @type {LiverySource[]} */
+  let liverySources = [];
 
-  if (sourceList.formatType !== 'sourceList') {
-    // Invalid manifest format
-    ThrowError('E001', 'Invalid source list manifest format');
-  }
+  _sourcesList.forEach(sourceList => {
+    sourceList.sources.forEach(liverySourceURL => {
+      let liverySourceManifest = FetchAndParseJsonManifest(liverySourceURL, 'liverySource');
 
-  if (!Array.isArray(sourceList.sources) || sourceList.sources.length < 1) {
-    // No valid sources array
-    ThrowError('E004', "Source list doesn't have valid `sources` array");
-  }
+      /** @type {Contributor[]} */
+      let contributors = [];
 
-  if (!sourceList.sources.every(s => typeof s === 'string')) {
-    // Sources array not all strings
-    ThrowError('E006', '`sources` array contains types other than strings');
-  }
+      liverySourceManifest.contributors.forEach(contributor => {
+        contributors.push(
+          new Contributor({
+            name: contributor.name,
+            discord: contributor.discord,
+            github: contributor.github,
+            twitter: contributor.twitter,
+            msfsforums: contributor.msfsforums,
+          })
+        );
+      });
 
-  return sourceList.sources;
+      liverySources.push(
+        new LiverySource({
+          formatVersion: liverySourceManifest.formatVersion,
+          formatType: liverySourceManifest.formatType,
+          humanVersion: liverySourceManifest.humanVersion,
+          versionCode: liverySourceManifest.versionCode,
+          name: liverySourceManifest.name,
+          description: liverySourceManifest.description,
+          contributors: contributors,
+          aircraftManifests: liverySourceManifest.aircraftManifests,
+        })
+      );
+    });
+  });
+
+  return liverySources;
 }
