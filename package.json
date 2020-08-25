@@ -19,8 +19,8 @@
     "build": "cross-env NODE_ENV=production webpack --config webpack.build.config.js --mode production",
     "package": "yarn build",
     "postpackage": "electron-packager ./ --out=./release-builds",
-    "format": "prettier --write \"**/*.{js,json,less,css}\"",
-    "format:check": "prettier --check \"**/*.{js,json,less,css}\""
+    "format": "prettier --write \"**/*.{js,json,less,css,md}\"",
+    "format:check": "prettier --check \"**/*.{js,json,less,css,md}\""
   },
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
