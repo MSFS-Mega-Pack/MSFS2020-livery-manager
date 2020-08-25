@@ -3,7 +3,9 @@ exports.parse = exports.decode = decode
 exports.stringify = exports.encode = encode
 
 exports.safe = safe
-exports.unsafe = unsafe
+exports.unsafe = unsafe;
+
+const encodeExclusions = ["atc_flight_number", "performance", "major", "minor", "editable", "wip_indicator", "icao_engine_count", "FUELTRUCK", "BAGGAGE_LOADER", "CATERING_TRUCK", "BOARDING_RAMP", "GROUND_POWER_UNIT", "PUSHBACK", "SMALL_PUSHBACK", "MARSHALLER", "JETWAY", "wake", "water", "dirt", "concrete", "touchdown", "contrail", "effect.0", "effect.1", "ImageName", "Tips0", "Tips1", "Tips2", "Tips3", "stall_protection", "off_limit", "off_yoke_limit", "on_limit", "on_goal", "timer_trigger"]
 
 var eol = typeof process !== 'undefined' &&
   process.platform === 'win32' ? '\r\n' : '\n'
@@ -21,11 +23,10 @@ function encode(obj, opt) {
     opt = opt || {}
     opt.whitespace = opt.whitespace === true
   }
-
   var separator = opt.whitespace ? ' = ' : '='
 
   Object.keys(obj).forEach(k => {
-    var val = obj[k]
+    var val = obj[k];
     if (val && Array.isArray(val)) {
       val.forEach(item => {
         out += safe(k + '[]') + separator + safe(item) + '\n'
@@ -33,14 +34,18 @@ function encode(obj, opt) {
     } else if (val && typeof val === 'object') {
       children.push(k)
     } else {
-      out += safe(k) + separator + safe(val) + eol
+      if ((parseInt(val) || parseInt(val) == 0) && k == "atc_flight_number" || encodeExclusions.includes(k)) {
+        
+        out += safe(k) + separator + safe(val) + eol;
+      } else {
+        out += safe(k) + separator + '"' + safe(val) + '"' + eol;
+      }
     }
   })
 
   if (opt.section && out.length) {
     out = '[' + safe(opt.section) + ']' + eol + out
   }
-
   children.forEach(function (k, _, __) {
     var nk = dotSplit(k).join('\\.')
     var section = (opt.section ? opt.section + '.' : '') + nk
