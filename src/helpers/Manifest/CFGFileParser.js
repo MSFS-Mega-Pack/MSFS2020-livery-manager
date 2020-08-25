@@ -1,4 +1,4 @@
-var eol = typeof process !== 'undefined' && process.platform === 'win32' ? '\r\n' : '\n';
+const eol = typeof process !== 'undefined' && process.platform === 'win32' ? '\r\n' : '\n';
 
 function encode(obj, opt) {
   var children = [];
