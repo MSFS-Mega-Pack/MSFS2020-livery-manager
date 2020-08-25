@@ -32,7 +32,7 @@ const useTableStyles = makeStyles({
   },
   tableBodyStyle: {
     '& th:hover': {
-      cursor: 'pointer'
+      cursor: 'pointer',
     },
     '& tr:last-child': {
       '& td': {
