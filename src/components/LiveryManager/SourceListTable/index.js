@@ -15,12 +15,10 @@ import {
   Box,
 } from '@material-ui/core';
 
-import SourceList from '../../../models/SourceList';
 import LiverySource from '../../../models/LiverySource';
 
 import UpArrowIcon from 'mdi-react/ChevronUpIcon';
 import DownArrowIcon from 'mdi-react/ChevronDownIcon';
-import Contributor from '../../../models/Contributor';
 import ContributorBadge from '../../ContributorBadge';
 
 const useTableStyles = makeStyles({
@@ -49,11 +47,12 @@ const useTableStyles = makeStyles({
  *
  * @param {Object} props
  * @param {LiverySource[]} props.sourceList List of livery sources
+ * @param {boolean=} props.showHeader Should show the table header
  *
  * @return {import('react').ReactNode}
  */
 export default function LiverySourcesTable(props) {
-  const { sourceList } = props;
+  const { sourceList, showHeader } = props;
 
   /** @type {LiverySource[]} */
   const Sources = sourceList.sort((a, b) => (a.name > b.name ? 1 : -1));
@@ -63,13 +62,15 @@ export default function LiverySourcesTable(props) {
     <>
       <TableContainer component={Paper} className={styles.tableContainerStyle}>
         <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>
-                <strong>Livery pack</strong>
-              </TableCell>
-            </TableRow>
-          </TableHead>
+          {showHeader && (
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  <strong>Livery pack</strong>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+          )}
           <TableBody className={styles.tableBodyStyle}>
             {Sources.map(source => {
               return <ExpandableRow key={source.name + source.description + source.versionCode} source={source} />;
