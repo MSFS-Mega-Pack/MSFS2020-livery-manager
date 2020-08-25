@@ -1,11 +1,4 @@
-exports.parse = exports.decode = decode;
-
-exports.stringify = exports.encode = encode;
-
-exports.safe = safe;
-exports.unsafe = unsafe;
-
-var eol = typeof process !== 'undefined' && process.platform === 'win32' ? '\r\n' : '\n';
+const eol = typeof process !== 'undefined' && process.platform === 'win32' ? '\r\n' : '\n';
 
 function encode(obj, opt) {
   var children = [];
@@ -196,3 +189,5 @@ function unsafe(val, doUnesc) {
   }
   return val;
 }
+
+export { safe, unsafe, decode, decode as parse, encode, encode as stringify };

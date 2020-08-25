@@ -31,6 +31,9 @@ const useTableStyles = makeStyles({
     background: '#020202',
   },
   tableBodyStyle: {
+    '& th:hover': {
+      cursor: 'pointer'
+    },
     '& tr:last-child': {
       '& td': {
         borderBottom: 0,

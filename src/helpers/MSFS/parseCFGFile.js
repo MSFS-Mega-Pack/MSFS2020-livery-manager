@@ -1,5 +1,5 @@
 import fs from 'fs';
-import ini from '../Manifest/CFGFileParser.js';
+import * as ini from '../Manifest/CFGFileParser.js';
 import ThrowError from '../ThrowError';
 
 let CFGpath = '';
