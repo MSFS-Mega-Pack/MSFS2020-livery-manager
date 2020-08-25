@@ -160,12 +160,12 @@ function ChooseLiverySourcesPage({ data, setData }) {
     <>
       <Typography gutterBottom component="h1" variant="h4">
         Review livery sources
-        {data.liverySources ? (
-          <LiverySourcesTable sourceList={data.liverySources} />
-        ) : (
-          <CircularProgress style={{ margin: 'auto', marginTop: 32 }} />
-        )}
       </Typography>
+      {data.liverySources ? (
+        <LiverySourcesTable sourceList={data.liverySources} />
+      ) : (
+        <CircularProgress style={{ margin: 'auto', marginTop: 32 }} />
+      )}
     </>
   );
 }
