@@ -1,18 +1,15 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState } from 'react';
 
-import Path from 'path';
-
-import { GetPackagesDirectory, ValidateFSDirectory, parseCFGFile, loadCFG } from '../helpers/MSFS';
+import { GetPackagesDirectory, ValidateFSDirectory } from '../helpers/MSFS';
 
 import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton, makeStyles, CircularProgress } from '@material-ui/core';
 import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
-
-import Electron from 'electron';
-import GetLiverySources from '../helpers/Manifest/GetLiverySources';
 import LiverySourcesTable from '../components/LiveryManager/SourceListTable';
-import LiverySource from '../models/LiverySource';
+
+import GetLiverySources from '../helpers/Manifest/GetLiverySources';
 import Navigate from '../helpers/Navigate';
 
+import Electron from 'electron';
 import Config from 'electron-json-config';
 import ConfigKeys from '../data/config-keys.json';
 

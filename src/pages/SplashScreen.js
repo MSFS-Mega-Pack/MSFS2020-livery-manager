@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Box, CircularProgress, Typography, makeStyles } from '@material-ui/core';
 
+import Navigate from '../helpers/Navigate';
+
 import Config from 'electron-json-config';
 import ConfigKeys from '../data/config-keys.json';
-
-import Navigate from '../helpers/Navigate';
 
 const useStyles = makeStyles(theme => ({ loadingHeading: { marginTop: 48 } }));
 
