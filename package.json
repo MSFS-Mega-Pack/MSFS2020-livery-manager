@@ -20,7 +20,7 @@
     "package": "yarn build",
     "postpackage": "electron-packager ./ --out=./release-builds",
     "format": "prettier --write \"**/*.{js,json,less,css,md}\"",
-    "format:check": "prettier --check \"**/*.{js,json,less,css,md}\""
+    "format:check": "prettier --loglevel debug --check \"**/*.{js,json,less,css,md}\""
   },
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
