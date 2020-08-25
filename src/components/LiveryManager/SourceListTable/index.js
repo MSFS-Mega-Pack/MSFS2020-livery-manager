@@ -23,6 +23,22 @@ import DownArrowIcon from 'mdi-react/ChevronDownIcon';
 import Contributor from '../../../models/Contributor';
 import ContributorBadge from '../../ContributorBadge';
 
+const useTableStyles = makeStyles({
+  tableContainerStyle: {
+    marginTop: 32
+  },
+  tableHeadStyle: {
+    background: '#020202'
+  },
+  tableBodyStyle: {
+    '& tr:last-child': {
+      '& td': {
+        borderBottom: 0,
+      }
+    }
+  }
+});
+
 /**
  * Provides a nice and clean table of Livery Sources from an input of data
  *
@@ -39,10 +55,11 @@ export default function LiverySourcesTable(props) {
 
   /** @type {LiverySource[]} */
   const Sources = sourceList.sort((a, b) => (a.name > b.name ? 1 : -1));
+  const styles = useTableStyles();
 
   return (
     <>
-      <TableContainer style={{ marginTop: 32, ...style }} component={Paper}>
+      <TableContainer component={Paper} className={styles.tableContainerStyle}>
         <Table>
           <TableHead>
             <TableRow>
@@ -51,7 +68,7 @@ export default function LiverySourcesTable(props) {
               </TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody className={styles.tableBodyStyle}>
             {Sources.map(source => {
               return <ExpandableRow key={source.name + source.description + source.versionCode} source={source} />;
             })}
