@@ -117,7 +117,7 @@ function decode(str) {
 
   // {a:{y:1},"a.b":{x:2}} --> {a:{y:1,b:{x:2}}}
   // use a filter to return the keys that have to be deleted.
-  Object.keys(out).filter(function (k, _, __) {
+  Object.keys(out).filter(k => {
     if (!out[k] ||
       typeof out[k] !== 'object' ||
       Array.isArray(out[k])) {
