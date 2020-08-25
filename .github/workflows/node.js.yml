@@ -48,8 +48,8 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Prettier format
-        run: yarn format-no-write
+      - name: Check formatting
+        run: yarn format:check
 
   build:
     runs-on: ubuntu-latest
