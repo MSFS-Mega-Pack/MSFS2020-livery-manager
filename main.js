@@ -43,15 +43,15 @@ function createMainWindow() {
     });
   }
 
-  // Add CSP headers
-  session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
-    callback({
-      responseHeaders: {
-        ...details.responseHeaders,
-        'Content-Security-Policy': ["default-src 'none'"],
-      },
-    });
-  });
+  // // Add CSP headers
+  // session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+  //   callback({
+  //     responseHeaders: {
+  //       ...details.responseHeaders,
+  //       'Content-Security-Policy': ["default-src 'self' 'unsafe-inline' devtools: webpack:"],
+  //     },
+  //   });
+  // });
 
   // open new window links in the default browser
   mainWindow.webContents.on('new-window', (event, url) => {
