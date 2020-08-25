@@ -31,6 +31,7 @@
     "fontsource-ibm-plex-mono": "^3.0.5",
     "fontsource-poppins": "^3.0.3",
     "mdi-react": "^7.3.0",
+    "open": "^7.2.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

@@ -1,6 +1,7 @@
 const path = require('path');
 const url = require('url');
 const { app, BrowserWindow, session } = require('electron');
+const open = require('open');
 
 let mainWindow;
 
