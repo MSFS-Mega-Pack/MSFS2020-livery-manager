@@ -47,7 +47,7 @@ E004: Malformed manifest (invalid JSON)
 ### E007
 
 ```
-E007: CFG File path undefined
+E007: Invalid path <cfg path>
 ```
 
 #### Causes
