@@ -19,7 +19,6 @@ export default async function GetPackagesDirectory() {
     try {
       cfg = await FS.readFile(Path.join(MSFS_DIRECTORY_STEAM, 'UserCfg.opt'), 'utf-8');
     } catch (error) {
-      console.log(error)
       return null;
     }
   }
