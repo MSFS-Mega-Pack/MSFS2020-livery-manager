@@ -1,6 +1,6 @@
 const path = require('path');
 const url = require('url');
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, session } = require('electron');
 
 let mainWindow;
 
@@ -43,6 +43,15 @@ function createMainWindow() {
     });
   }
 
+  // Add CSP headers
+  session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+    callback({
+      responseHeaders: {
+        ...details.responseHeaders,
+        'Content-Security-Policy': ["default-src 'none'"],
+      },
+    });
+  });
   mainWindow.menuBarVisible = false;
   mainWindow.loadURL(indexPath);
 
