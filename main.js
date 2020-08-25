@@ -1,6 +1,7 @@
 const path = require('path');
 const url = require('url');
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, session } = require('electron');
+const open = require('open');
 
 let mainWindow;
 
@@ -42,6 +43,22 @@ function createMainWindow() {
       slashes: true,
     });
   }
+
+  // // Add CSP headers
+  // session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+  //   callback({
+  //     responseHeaders: {
+  //       ...details.responseHeaders,
+  //       'Content-Security-Policy': ["default-src 'self' 'unsafe-inline' devtools: webpack:"],
+  //     },
+  //   });
+  // });
+
+  // open new window links in the default browser
+  mainWindow.webContents.on('new-window', (event, url) => {
+    event.preventDefault();
+    open(url);
+  });
 
   mainWindow.menuBarVisible = false;
   mainWindow.loadURL(indexPath);
