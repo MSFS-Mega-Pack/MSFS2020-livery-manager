@@ -29,3 +29,13 @@ export function parseCFGFile() {
     console.log(data);
     return data;
 }
+
+export function getHighestPlaneNumber() {
+    let highest = 0;
+    const data = parseCFGFile()
+    Object.keys(data.FLTSIM).forEach(function (key) {
+        if (parseInt(key) > highest) highest = parseInt(key);
+    })
+    console.log(highest);
+    return highest;
+}

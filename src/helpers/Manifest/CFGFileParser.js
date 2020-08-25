@@ -85,6 +85,7 @@ function decode(str) {
     }
     var key = unsafe(match[2]);
     var value = match[3] ? unsafe(match[4]) : true;
+    value = value.toString();
     if (value.includes(' ;')) {
       value = value.split(' ;')[0];
     }
