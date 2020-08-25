@@ -90,11 +90,15 @@ function decode(str) {
       value = value.split(' ;')[0];
     }
     value = value.replace(/\"/g, '');
+
     switch (value) {
       case 'true':
       case 'false':
       case 'null':
         value = JSON.parse(value)
+    }
+    if ((parseInt(value) || parseInt(value) == 0) && key != "atc_flight_number") {
+      value = Number(value);
     }
 
     // Convert keys with '[]' suffix to an array
