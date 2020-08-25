@@ -13,6 +13,7 @@ import Electron from 'electron';
 import GetLiverySources from '../helpers/Manifest/GetLiverySources';
 import LiverySourcesTable from '../components/LiveryManager/SourceListTable';
 import LiverySource from '../models/LiverySource';
+import Navigate from '../helpers/Navigate';
 
 export default function Setup() {
   const [page, setPage] = useState(1);
