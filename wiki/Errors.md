@@ -43,3 +43,14 @@ E004: Malformed manifest (invalid JSON)
 #### Causes
 
 - Provided manifest is invalid JSON (maybe was served an interstitial page, e.g. from Cloudflare)
+
+### E005
+
+```
+E005: Invalid path <cfg path>
+```
+
+#### Causes
+
+- Path to a CFG file has not been set
+- Path to CFG file doesn't match the regex (X:\...\*.cfg)
