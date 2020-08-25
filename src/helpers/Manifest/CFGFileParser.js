@@ -138,7 +138,7 @@ function decode(str) {
     }
     p[nl] = out[k]
     return true
-  }).forEach(function (del, _, __) {
+  }).forEach(del => {
     delete out[del]
   })
 
