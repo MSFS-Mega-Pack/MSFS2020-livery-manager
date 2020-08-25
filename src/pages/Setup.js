@@ -171,12 +171,47 @@ function ChooseLiverySourcesPage({ data, setData }) {
   );
 }
 
-function SetupCompletePage() {
+/**
+ * Generates a section of the [ExpandableRow] from a field name and value.
+ *
+ * @param {Object} props
+ * @param {string} props.fieldName Section title
+ * @param {React.ReactNode} props.value Section value/description
+ *
+ * @return {React.ReactNode}
+ */
+function SetupCompleteSummary(props) {
+  const classes = makeStyles({
+    sectTitle: { textTransform: 'uppercase', marginBottom: 2 },
+  })();
+
+  const { fieldName, value } = props;
+
+  return (
+    <>
+      <Typography className={classes.sectTitle} variant="caption" color="textSecondary" component="h2">
+        {fieldName}
+      </Typography>
+      <Typography variant="body2" gutterBottom component="div">
+        {value}
+      </Typography>
+    </>
+  );
+}
+
+function SetupCompletePage({ data }) {
   return (
     <>
       <Typography gutterBottom component="h1" variant="h4">
         Setup complete
       </Typography>
+      <Typography gutterBottom component="p" variant="body1">
+        You're ready to take off! Here's a quick overview of what you've chosen.
+      </Typography>
+      <Box marginTop={4} margin={1}>
+        <SetupCompleteSummary fieldName="Packages directory" value={data.packageDir} />
+        <SetupCompleteSummary fieldName="Livery sources loaded" value={data.liverySources.length} />
+      </Box>
     </>
   );
 }
