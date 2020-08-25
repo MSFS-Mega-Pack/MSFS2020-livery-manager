@@ -24,7 +24,7 @@ export function loadCFG(path) {
  */
 
 export function parseCFGFile() {
-    if (!pathRegEx.test(CFGpath) || !fs.lstatSync(CFGpath).isFile()) return ThrowError('E007', `Invalid path ${CFGpath}`);
+    if (!pathRegEx.test(CFGpath) || !fs.lstatSync(CFGpath).isFile()) ThrowError('E007', `Invalid path ${CFGpath}`);
     const data = ini.parse(fs.readFileSync(CFGpath, 'utf8'));
     console.log(data);
     return data;
