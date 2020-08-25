@@ -32,10 +32,11 @@ export function parseCFGFile() {
 
 export function getHighestPlaneNumber() {
     let highest = 0;
-    const data = parseCFGFile()
+    const data = parseCFGFile();
     Object.keys(data.FLTSIM).forEach(function (key) {
-        if (parseInt(key) > highest) highest = parseInt(key);
-    })
+        key = parseInt(key);
+        if (key > highest) highest = key;
+    });
     console.log(highest);
     return highest;
 }
