@@ -27,7 +27,7 @@ function encode(obj, opt) {
   Object.keys(obj).forEach(k => {
     var val = obj[k]
     if (val && Array.isArray(val)) {
-      val.forEach(function (item) {
+      val.forEach(item => {
         out += safe(k + '[]') + separator + safe(item) + '\n'
       })
     } else if (val && typeof val === 'object') {
