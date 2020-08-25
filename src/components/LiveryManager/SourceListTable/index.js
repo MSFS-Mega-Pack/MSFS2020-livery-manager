@@ -25,18 +25,18 @@ import ContributorBadge from '../../ContributorBadge';
 
 const useTableStyles = makeStyles({
   tableContainerStyle: {
-    marginTop: 32
+    marginTop: 32,
   },
   tableHeadStyle: {
-    background: '#020202'
+    background: '#020202',
   },
   tableBodyStyle: {
     '& tr:last-child': {
       '& td': {
         borderBottom: 0,
-      }
-    }
-  }
+      },
+    },
+  },
 });
 
 /**
@@ -46,12 +46,11 @@ const useTableStyles = makeStyles({
  *
  * @param {Object} props
  * @param {LiverySource[]} props.sourceList List of livery sources
- * @param {React.CSSProperties} props.style Styles to give to the root table container
  *
  * @return {import('react').ReactNode}
  */
 export default function LiverySourcesTable(props) {
-  const { sourceList, style } = props;
+  const { sourceList } = props;
 
   /** @type {LiverySource[]} */
   const Sources = sourceList.sort((a, b) => (a.name > b.name ? 1 : -1));
