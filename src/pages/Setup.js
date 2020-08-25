@@ -159,7 +159,10 @@ function ChooseLiverySourcesPage({ data, setData }) {
   return (
     <>
       <Typography gutterBottom component="h1" variant="h4">
-        Review livery sources
+        Loaded livery sources
+      </Typography>
+      <Typography gutterBottom component="p" variant="body1">
+        You can add 3rd party livery pack sources after setup is complete.
       </Typography>
       {data.liverySources ? (
         <LiverySourcesTable sourceList={data.liverySources} />
