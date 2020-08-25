@@ -18,7 +18,9 @@ import 'electron-react-titlebar/assets/style.css';
 
 import planeIcon from '../images/plane-takeoff.png';
 
-export default function App() {
+import { hot } from 'react-hot-loader/root';
+
+function App() {
   return [
     <TitleBar icon={planeIcon} disableMaximize>
       <p
@@ -52,3 +54,5 @@ export default function App() {
     </main>,
   ];
 }
+
+export default hot(App);

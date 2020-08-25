@@ -14,6 +14,9 @@ export default createMuiTheme({
     background: '',
     primary: colors.amber,
     secondary: colors.grey,
+    text: {
+      secondary: colors.grey[500],
+    },
   },
   props: {
     MuiButton: {
