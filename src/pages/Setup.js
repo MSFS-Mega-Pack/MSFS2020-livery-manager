@@ -2,8 +2,6 @@ import React, { useState, useReducer } from 'react';
 
 import Path from 'path';
 
-import Config from 'electron-json-config';
-
 import { GetPackagesDirectory, ValidateFSDirectory, parseCFGFile, loadCFG } from '../helpers/MSFS';
 
 import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton, makeStyles, CircularProgress } from '@material-ui/core';
@@ -14,6 +12,9 @@ import GetLiverySources from '../helpers/Manifest/GetLiverySources';
 import LiverySourcesTable from '../components/LiveryManager/SourceListTable';
 import LiverySource from '../models/LiverySource';
 import Navigate from '../helpers/Navigate';
+
+import Config from 'electron-json-config';
+import ConfigKeys from '../data/config-keys.json';
 
 export default function Setup() {
   const [page, setPage] = useState(1);
@@ -69,7 +70,8 @@ export default function Setup() {
             if (page !== Pages.length) {
               setPage(page + 1);
             } else {
-              Navigate();
+              Config.set(ConfigKeys.state.setup_completed, true);
+              Navigate('/manager');
             }
           }}
           disabled={!nextButtonEnabled}

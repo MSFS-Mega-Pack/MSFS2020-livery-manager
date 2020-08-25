@@ -3,6 +3,7 @@ import React from 'react';
 import { Box, CircularProgress, Typography, makeStyles } from '@material-ui/core';
 
 import Config from 'electron-json-config';
+import ConfigKeys from '../data/config-keys.json';
 
 import Navigate from '../helpers/Navigate';
 
@@ -11,7 +12,7 @@ const useStyles = makeStyles(theme => ({ loadingHeading: { marginTop: 48 } }));
 export default function SplashScreen() {
   const styles = useStyles();
 
-  if (Config.get('setup-completed', false)) {
+  if (Config.get(ConfigKeys.state.setup_completed, false)) {
     console.log('Setup complete');
     setTimeout(() => {
       Navigate('/manager');
