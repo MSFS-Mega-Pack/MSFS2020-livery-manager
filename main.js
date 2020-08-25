@@ -52,6 +52,13 @@ function createMainWindow() {
       },
     });
   });
+
+  // open new window links in the default browser
+  mainWindow.webContents.on('new-window', (event, url) => {
+    event.preventDefault();
+    open(url);
+  });
+
   mainWindow.menuBarVisible = false;
   mainWindow.loadURL(indexPath);
 
