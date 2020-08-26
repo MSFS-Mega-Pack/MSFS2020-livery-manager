@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import {
   Table,
   TableBody,
@@ -14,12 +16,11 @@ import {
   Typography,
   Box,
 } from '@material-ui/core';
-
+import ContributorBadge from '../../ContributorBadge';
 import LiverySource from '../../../models/LiverySource';
 
 import UpArrowIcon from 'mdi-react/ChevronUpIcon';
 import DownArrowIcon from 'mdi-react/ChevronDownIcon';
-import ContributorBadge from '../../ContributorBadge';
 
 const useTableStyles = makeStyles({
   tableContainerStyle: {
@@ -82,6 +83,11 @@ export default function LiverySourcesTable(props) {
   );
 }
 
+LiverySourcesTable.propTypes = {
+  sourceList: PropTypes.arrayOf(PropTypes.instanceOf(LiverySource)).isRequired,
+  showHeader: PropTypes.bool,
+};
+
 const useRowStyles = makeStyles({
   root: {
     '& > *': {
@@ -143,6 +149,10 @@ function ExpandableRow(props) {
   );
 }
 
+ExpandableRow.propTypes = {
+  source: PropTypes.instanceOf(LiverySource).isRequired,
+};
+
 const useDetailsSectionStyles = makeStyles({
   sectTitle: { textTransform: 'uppercase', marginBottom: 2 },
 });
@@ -172,3 +182,8 @@ function LiveryPackDetailsSection(props) {
     </>
   );
 }
+
+LiveryPackDetailsSection.propTypes = {
+  fieldName: PropTypes.string.isRequired,
+  value: PropTypes.node.isRequired,
+};

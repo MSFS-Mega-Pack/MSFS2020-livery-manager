@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, Typography, CardHeader } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 export default function LiveryManager() {
   return (

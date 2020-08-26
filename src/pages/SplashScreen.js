@@ -7,7 +7,7 @@ import Navigate from '../helpers/Navigate';
 import Config from 'electron-json-config';
 import ConfigKeys from '../data/config-keys.json';
 
-const useStyles = makeStyles(theme => ({ loadingHeading: { marginTop: 48 } }));
+const useStyles = makeStyles(theme => ({ loadingHeading: { marginTop: theme.spacing(3) } }));
 
 export default function SplashScreen() {
   const styles = useStyles();
