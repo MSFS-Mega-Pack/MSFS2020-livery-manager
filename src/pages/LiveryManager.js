@@ -25,6 +25,7 @@ import HomeIcon from 'mdi-react/HomeIcon';
 import CloudDownloadIcon from 'mdi-react/CloudDownloadIcon';
 import LibraryAddIcon from 'mdi-react/LibraryAddIcon';
 import SettingsIcon from 'mdi-react/SettingsIcon';
+import { ROUTES } from '../data/Routes';
 
 const drawerWidth = 235;
 const TitleBarHeight = 28;
@@ -81,6 +82,7 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: -drawerWidth,
+    marginTop: 4,
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -152,14 +154,14 @@ export default function LiveryManager() {
         </div>
         <Divider />
         <List className={styles.listStyle}>
-          <ListItem button selected={isCurrentPath('/manager')}>
+          <ListItem button selected={isCurrentPath(ROUTES.DASHBOARD)}>
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
             <ListItemText className={styles.listItemText} primary="Dashboard" />
           </ListItem>
 
-          <ListItem button>
+          <ListItem button selected={isCurrentPath(ROUTES.LIVERY_MANAGER)}>
             <ListItemIcon>
               <CloudDownloadIcon />
             </ListItemIcon>
@@ -188,9 +190,7 @@ export default function LiveryManager() {
           [styles.contentShift]: open,
         })}
       >
-        <div className={styles.drawerHeader}>
-          <Typography paragraph>This is a test</Typography>
-        </div>
+        <Typography paragraph>This is the Home page.</Typography>
       </main>
     </div>
   );
