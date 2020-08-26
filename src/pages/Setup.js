@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { GetPackagesDirectory, ValidateFSDirectory } from '../helpers/MSFS';
 
@@ -12,6 +13,7 @@ import Navigate from '../helpers/Navigate';
 import Electron from 'electron';
 import Config from 'electron-json-config';
 import ConfigKeys from '../data/config-keys.json';
+import LiverySource from '../models/LiverySource';
 
 export default function Setup() {
   const [page, setPage] = useState(1);
@@ -125,8 +127,8 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
         Simulator packages directory
       </Typography>
       <Typography gutterBottom component="p" variant="body1">
-        Please check that the directory below matches your flight simulator packages directory. If it doesn't, choose the right directory with
-        the browse button.
+        Please check that the directory below matches your flight simulator packages directory. If it doesn&apos;t, choose the right directory
+        with the browse button.
       </Typography>
       <TextField
         error={!!error}
@@ -155,7 +157,7 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
   );
 }
 
-function ChooseLiverySourcesPage({ data, setData }) {
+function ChooseLiverySourcesPage({ data }) {
   return (
     <>
       <Typography gutterBottom component="h1" variant="h4">
@@ -201,6 +203,11 @@ function SetupCompleteSummary(props) {
   );
 }
 
+SetupCompleteSummary.propTypes = {
+  fieldName: PropTypes.string.isRequired,
+  value: PropTypes.node.isRequired,
+};
+
 function SetupCompletePage({ data }) {
   return (
     <>
@@ -208,7 +215,7 @@ function SetupCompletePage({ data }) {
         Setup complete
       </Typography>
       <Typography gutterBottom component="p" variant="body1">
-        You're ready to take off! Here's a quick overview of what you've chosen.
+        You&apos;re ready to take off! Here&apos;s a quick overview of what you&apos;ve chosen.
       </Typography>
       <Box marginTop={4} margin={1}>
         <SetupCompleteSummary fieldName="Packages directory" value={data.packageDir} />
@@ -217,3 +224,36 @@ function SetupCompletePage({ data }) {
     </>
   );
 }
+
+const PagePropTypes = {
+  data: PropTypes.shape.isRequired({
+    packageDir: PropTypes.string.isRequired,
+    liverySources: PropTypes.arrayOf.isRequired(PropTypes.instanceOf(LiverySource)),
+  }),
+  setData: PropTypes.func.isRequired({
+    data: PropTypes.object.isRequired,
+  }),
+  setNextButtonEnabled: PropTypes.func.isRequired({
+    isEnabled: PropTypes.bool.isRequired,
+  }),
+};
+
+SimInstallDirectoryPage.propTypes = {
+  ...PagePropTypes,
+};
+
+ChooseLiverySourcesPage.propTypes = {
+  ...PagePropTypes,
+};
+
+SetupCompletePage.propTypes = {
+  ...PagePropTypes,
+};
+
+WelcomePage.propTypes = {
+  ...PagePropTypes,
+};
+
+SetupCompletePage.propTypes = {
+  ...PagePropTypes,
+};
