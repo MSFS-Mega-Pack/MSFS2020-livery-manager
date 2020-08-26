@@ -1,7 +1,7 @@
 import fs from 'fs';
 import ThrowError from '../ThrowError';
 
-let FILE_PATH = "E:\\Games\\Flight Simulator\\Community\\liveries-a320\\layout.json";
+let FILE_PATH = '';
 const pathRegEx = /^[a-z]:((\\|\/)[a-z0-9\s_@\-^!#$%&+={}\[\]]+)+\.json$/i;
 
 /**
@@ -11,9 +11,8 @@ const pathRegEx = /^[a-z]:((\\|\/)[a-z0-9\s_@\-^!#$%&+={}\[\]]+)+\.json$/i;
  * @argument {String} path  Set path to JSON file
  */
 export function loadJSON(path) {
-    if (!pathRegEx.test(path) || !fs.lstatSync(path).isFile()) ThrowError('E005', `Invalid path ${path}`);
-    FILE_PATH = path;
-    console.log(FILE_PATH);
+  if (!pathRegEx.test(path) || !fs.lstatSync(path).isFile()) ThrowError('E005', `Invalid path ${path}`);
+  FILE_PATH = path;
 }
 
 /**
@@ -23,7 +22,7 @@ export function loadJSON(path) {
  * @argument {String} path  Set path to JSON file
  */
 export function getJSONData() {
-    return JSON.parse(fs.readFileSync(FILE_PATH, 'utf8'));
+  return JSON.parse(fs.readFileSync(FILE_PATH, 'utf8'));
 }
 
 /**
@@ -38,12 +37,12 @@ export function getJSONData() {
 })
  */
 export function doesPlaneInfoExist(jsonObject) {
-    const data = getJSONData();
-    let found = false;
-    data.content.forEach(object => {
-        if (object.path == jsonObject.path) found = true;
-    });
-    return found;
+  const data = getJSONData();
+  let found = false;
+  data.content.forEach(object => {
+    if (object.path == jsonObject.path) found = true;
+  });
+  return found;
 }
 
 /**
@@ -58,13 +57,13 @@ export function doesPlaneInfoExist(jsonObject) {
 })
  */
 export function addPlaneInfo(jsonObject) {
-    let data = getJSONData();
-    if (jsonObject.path == undefined || typeof jsonObject.path != 'string') ThrowError('E006', `Missing JSON data: path`);
-    if (jsonObject.size == undefined || typeof jsonObject.size != 'number') jsonObject.size = 2796344;
-    if (jsonObject.date == undefined || typeof jsonObject.date != 'number') jsonObject.date = 132270122080000000;
+  let data = getJSONData();
+  if (jsonObject.path == undefined || typeof jsonObject.path != 'string') ThrowError('E006', `Missing JSON data: path`);
+  if (jsonObject.size == undefined || typeof jsonObject.size != 'number') jsonObject.size = 2796344;
+  if (jsonObject.date == undefined || typeof jsonObject.date != 'number') jsonObject.date = 132270122080000000;
 
-    data.push(jsonObject);
-    fs.writeFileSync(FILE_PATH, JSON.stringify(data, null, 4));
+  data.push(jsonObject);
+  fs.writeFileSync(FILE_PATH, JSON.stringify(data, null, 4));
 }
 
 /**
@@ -75,13 +74,13 @@ export function addPlaneInfo(jsonObject) {
  * @example deletePlaneInfo("SimObjects/Airplanes/Asobo_A320_NEO/TEXTURE.AERLINGUS/A320NEO_AIRFRAME_FUSELAGE_ALBD.PNG.DDS.json")
  */
 export function deletePlaneInfo(texturePath) {
-    let data = getJSONData();
-    for (let i = 0; i < data.content.length; i++) {
-        if (data.content[i].path == texturePath) {
-            data.content.splice(i, 1);
-            break;
-        }
+  let data = getJSONData();
+  for (let i = 0; i < data.content.length; i++) {
+    if (data.content[i].path == texturePath) {
+      data.content.splice(i, 1);
+      break;
     }
+  }
 
-    fs.writeFileSync(FILE_PATH, JSON.stringify(data, null, 4));
+  fs.writeFileSync(FILE_PATH, JSON.stringify(data, null, 4));
 }
