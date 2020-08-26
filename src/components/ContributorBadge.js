@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
+import { Dialog, DialogTitle, DialogContent, Chip, Typography, DialogActions, Button, makeStyles, Link, useTheme } from '@material-ui/core';
+
 import Contributor from '../models/Contributor';
 
 import MoreInfoIcon from 'mdi-react/InfoCircleOutlineIcon';
-import { Dialog, DialogTitle, DialogContent, Chip, Typography, DialogActions, Button, makeStyles, Link, useTheme } from '@material-ui/core';
-
 import TwitterIcon from 'mdi-react/TwitterIcon';
 import GithubIcon from 'mdi-react/GithubIcon';
 import DiscordIcon from 'mdi-react/DiscordIcon';
@@ -31,6 +33,11 @@ export default function ContributorBadge(props) {
     </>
   );
 }
+
+ContributorBadge.propTypes = {
+  contributor: PropTypes.instanceOf(Contributor).isRequired,
+  className: PropTypes.string.isRequired,
+};
 
 /**
  * Displays a contributor's info in a dialog
@@ -110,6 +117,12 @@ function ContributorDialog(props) {
   );
 }
 
+ContributorDialog.propTypes = {
+  contributor: PropTypes.instanceOf(Contributor).isRequired,
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+};
+
 const useDialogSectionStyles = makeStyles({
   sectTitle: { textTransform: 'uppercase', marginBottom: 2 },
 });
@@ -139,3 +152,8 @@ function ContributorDialogSection(props) {
     </>
   );
 }
+
+ContributorDialogSection.propTypes = {
+  fieldName: PropTypes.node.isRequired,
+  value: PropTypes.node.isRequired,
+};

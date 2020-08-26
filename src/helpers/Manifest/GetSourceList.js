@@ -1,7 +1,6 @@
 import Constants from '../../data/Constants.json';
 import Contributor from '../../models/Contributor';
 import SourceList from '../../models/SourceList';
-import ThrowError from '../ThrowError';
 import FetchAndParseJsonManifest from './FetchAndParseManifest';
 
 /**
@@ -17,7 +16,7 @@ export default async function GetSourceList() {
 
   const sourceList = await FetchAndParseJsonManifest(url, 'sourceList');
 
-  /** @type {Contributor[]} */
+  /** @type {import('../../models/Contributor').default[]} */
   let contributors = [];
 
   sourceList.contributors.forEach(contributor => {

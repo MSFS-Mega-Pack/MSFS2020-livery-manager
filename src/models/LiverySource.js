@@ -1,4 +1,3 @@
-import Contributor from './Contributor';
 import Manifest from './Manifest';
 
 export default class LiverySource extends Manifest {
@@ -19,7 +18,7 @@ export default class LiverySource extends Manifest {
    *
    * @param {string} params.name The name of the livery source shown to users.
    * @param {string} params.description The description of the livery source shown to users.
-   * @param {Contributor[]} params.contributors A list of all contributors.
+   * @param {import('./Contributor').default[]} params.contributors A list of all contributors.
    * @param {string[]} params.sources A list of all livery set URLs
    *
    * @readonly
@@ -66,7 +65,7 @@ export default class LiverySource extends Manifest {
   /**
    * A list of all contributors
    *
-   * @type {Contributor[]}
+   * @type {import('./Contributor').default[]}
    *
    * @readonly
    * @memberof LiverySource
