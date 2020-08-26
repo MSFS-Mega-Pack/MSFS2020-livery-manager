@@ -2,7 +2,7 @@ import fs from 'fs';
 import ini from '../Manifest/CFGFileParser.js';
 import ThrowError from '../ThrowError';
 
-let CFGpath = "C:/Users/31627/Desktop/aircraft.cfg";
+let CFGpath = "";
 const pathRegEx = /^[a-z]:((\\|\/)[a-z0-9\s_@\-^!#$%&+={}\[\]]+)+\.cfg$/i;
 
 /**
@@ -49,7 +49,7 @@ export function getHighestPlaneNumber() {
 }
 
 /**
- * Get the highest plane number in the set .CFG file
+ * Add airplane objec to CFG FIle
  *
  * @export
  * @argument {Object} airplaneObject Pass the airplane json object to add it to the .CFG file
@@ -66,12 +66,29 @@ export function addAirplane(airplaneObject, planeNumber) {
     return;
 }
 
+/**
+ * Check if plane number exists in CFG File
+ *
+ * @export
+ * @argument {Number} planeNumber Plane number to check FLTSIM.number
+ * @returns {Boolean} true:false
+ * @example doesPlaneNumberExist(64)
+ */
 export function doesPlaneNumberExist(planeNumber) {
     const data = parseCFGFile();
     return (data.FLTSIM[planeNumber] != undefined);
 }
 
-function checkAirplaneObject(airplaneObject) {
+
+/**
+ * Check if the airplane object is valid, and change when needed
+ *
+ * @export
+ * @argument {Object} airplaneObject Airplane object to validate
+ * @returns {Object} Validated airplaneObject
+ * @example  checkAirplaneObject({"title": "Airbus A320", "model": ""})
+ */
+export function checkAirplaneObject(airplaneObject) {
     //Check and set values when needed
     if (airplaneObject.title == undefined || typeof airplaneObject.title != 'string') airplaneObject.title = "Airbus A320 Neo Asobo";
     if (airplaneObject.model == undefined || typeof airplaneObject.model != 'string') airplaneObject.model = "";

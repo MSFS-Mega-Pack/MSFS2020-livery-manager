@@ -5,7 +5,8 @@ exports.stringify = exports.encode = encode
 exports.safe = safe
 exports.unsafe = unsafe;
 
-const encodeExclusions = ["atc_flight_number", "performance", "major", "minor", "editable", "wip_indicator", "icao_engine_count", "FUELTRUCK", "BAGGAGE_LOADER", "CATERING_TRUCK", "BOARDING_RAMP", "GROUND_POWER_UNIT", "PUSHBACK", "SMALL_PUSHBACK", "MARSHALLER", "JETWAY", "wake", "water", "dirt", "concrete", "touchdown", "contrail", "effect.0", "effect.1", "ImageName", "Tips0", "Tips1", "Tips2", "Tips3", "stall_protection", "off_limit", "off_yoke_limit", "on_limit", "on_goal", "timer_trigger"]
+const encodeExclusions = ["ui_certified_ceiling", "ui_max_range", "ui_autonomy", "ui_fuel_burn_rate", "atc_id_enable", "atc_heavy", "isAirTraffic", "isUserSelectable", "performance", "major", "minor", "editable", "wip_indicator", "icao_engine_count", "FUELTRUCK", "BAGGAGE_LOADER", "CATERING_TRUCK", "BOARDING_RAMP", "GROUND_POWER_UNIT", "PUSHBACK", "SMALL_PUSHBACK", "MARSHALLER", "JETWAY", "wake", "water", "dirt", "concrete", "touchdown", "contrail", "effect.0", "effect.1", "ImageName", "Tips0", "Tips1", "Tips2", "Tips3", "stall_protection", "off_limit", "off_yoke_limit", "on_limit", "on_goal", "timer_trigger"];
+const decodeExclusions = ["effect.0", "effect.1"];
 
 var eol = typeof process !== 'undefined' &&
   process.platform === 'win32' ? '\r\n' : '\n'
@@ -34,11 +35,11 @@ function encode(obj, opt) {
     } else if (val && typeof val === 'object') {
       children.push(k)
     } else {
-      if ((parseInt(val) || parseInt(val) == 0) && k == "atc_flight_number" || encodeExclusions.includes(k)) {
-        
-        out += safe(k) + separator + safe(val) + eol;
+      if (typeof (parseInt(val) == 'number' || parseInt(val) == 0) && encodeExclusions.includes(k)) {
+
+        out += `${safe(k)} ${separator} ${safe(val)}${eol}`;
       } else {
-        out += safe(k) + separator + '"' + safe(val) + '"' + eol;
+        out += `${safe(k)} ${separator} "${safe(val)}"${eol}`;
       }
     }
   })
@@ -90,6 +91,9 @@ function decode(str) {
     }
     var key = unsafe(match[2]);
     var value = match[3] ? unsafe(match[4]) : true;
+    if (decodeExclusions.includes(key)) {
+      value = match[4].slice(1, match[4].length);
+    }
     value = value.toString();
     if (value.includes(' ;')) {
       value = value.split(' ;')[0];
@@ -104,8 +108,8 @@ function decode(str) {
     }
     if ((parseInt(value) || parseInt(value) == 0) && key != "atc_flight_number") {
       value = Number(value);
+      console.log(value)
     }
-
     // Convert keys with '[]' suffix to an array
     if (key.length > 2 && key.slice(-2) === '[]') {
       key = key.substring(0, key.length - 2)
