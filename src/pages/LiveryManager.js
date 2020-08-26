@@ -26,6 +26,7 @@ import CloudDownloadIcon from 'mdi-react/CloudDownloadIcon';
 import LibraryAddIcon from 'mdi-react/LibraryAddIcon';
 import SettingsIcon from 'mdi-react/SettingsIcon';
 import { ROUTES } from '../data/Routes';
+import MainPage from '../components/MainPage';
 
 const drawerWidth = 235;
 const TitleBarHeight = 28;
@@ -115,83 +116,9 @@ export default function LiveryManager() {
 
   return (
     <div className={styles.root}>
-      <AppBar
-        position="fixed"
-        className={clsx(styles.AppBar, {
-          [styles.appBarShift]: open,
-        })}
-        style={{ top: TitleBarHeight }}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(styles.menuButton, open && styles.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Livery Manager
-          </Typography>
-        </Toolbar>
-      </AppBar>
-
-      <Drawer
-        className={styles.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: styles.drawerPaper,
-        }}
-      >
-        <div className={styles.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronRightIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List className={styles.listStyle}>
-          <ListItem button selected={isCurrentPath(ROUTES.DASHBOARD)}>
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText className={styles.listItemText} primary="Dashboard" />
-          </ListItem>
-
-          <ListItem button selected={isCurrentPath(ROUTES.LIVERY_MANAGER)}>
-            <ListItemIcon>
-              <CloudDownloadIcon />
-            </ListItemIcon>
-            <ListItemText className={styles.listItemText} primary="Download Liveries" />
-          </ListItem>
-
-          <ListItem button>
-            <ListItemIcon>
-              <LibraryAddIcon />
-            </ListItemIcon>
-            <ListItemText className={styles.listItemText} primary="Installed Liveries" />
-          </ListItem>
-
-          <Divider />
-
-          <ListItem button>
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText className={styles.listItemText} primary="Settings" />
-          </ListItem>
-        </List>
-      </Drawer>
-      <main
-        className={clsx(styles.content, {
-          [styles.contentShift]: open,
-        })}
-      >
+      <MainPage>
         <Typography paragraph>This is the Home page.</Typography>
-      </main>
+      </MainPage>
     </div>
   );
 }
