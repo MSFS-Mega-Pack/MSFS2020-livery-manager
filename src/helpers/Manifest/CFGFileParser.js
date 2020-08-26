@@ -150,7 +150,6 @@ function decode(str) {
     }
     if ((parseInt(value) || parseInt(value) == 0) && key != 'atc_flight_number') {
       value = Number(value);
-      console.log(value);
     }
     // Convert keys with '[]' suffix to an array
     if (key.length > 2 && key.slice(-2) === '[]') {

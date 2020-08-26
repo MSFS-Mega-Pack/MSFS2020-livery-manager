@@ -14,7 +14,6 @@ const pathRegEx = /^[a-z]:((\\|\/)[a-z0-9\s_@\-^!#$%&+={}\[\]]+)+\.cfg$/i;
 
 export function loadCFG(path) {
   CFGpath = path;
-  console.log(path);
 }
 /**
  * Parse chosen CFG file and return it
@@ -26,7 +25,6 @@ export function loadCFG(path) {
 export function parseCFGFile() {
   if (!pathRegEx.test(CFGpath) || !fs.lstatSync(CFGpath).isFile()) ThrowError('E005', `Invalid path ${CFGpath}`);
   const data = ini.parse(fs.readFileSync(CFGpath, 'utf8'));
-  console.log(data);
   return data;
 }
 
@@ -49,7 +47,7 @@ export function getHighestPlaneNumber() {
 }
 
 /**
- * Add airplane objec to CFG FIle
+ * Add airplane object to CFG FIle
  *
  * @export
  * @argument {Object} airplaneObject Pass the airplane json object to add it to the .CFG file
@@ -62,6 +60,20 @@ export function addAirplane(airplaneObject, planeNumber) {
   airplaneObject = checkAirplaneObject(airplaneObject);
   let airplaneCFG = parseCFGFile();
   airplaneCFG.FLTSIM[planeNumber] = airplaneObject;
+  fs.writeFileSync(CFGpath, ini.stringify(airplaneCFG));
+  return;
+}
+
+/**
+ * Remove airplane object from the CFG file by FLTSIM number
+ *
+ * @export
+ * @argument {Number} planeNumber Plane number for in the aircraft.cfg
+ * @example removeAirplane(63)
+ */
+export function removeAirplane(planeNumber) {
+  let airplaneCFG = parseCFGFile();
+  delete airplaneCFG.FLTSIM[planeNumber];
   fs.writeFileSync(CFGpath, ini.stringify(airplaneCFG));
   return;
 }
