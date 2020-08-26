@@ -77,7 +77,8 @@ function decode(str) {
       return;
     }
     var key = unsafe(match[2]);
-    var value = match[3] ? unsafe(match[4]) : true;
+    /** @type {string} */
+    var value = match[3] ? unsafe(match[4]) : 'true';
     if (value.includes(' ;')) {
       value = value.split(' ;')[0];
     }
