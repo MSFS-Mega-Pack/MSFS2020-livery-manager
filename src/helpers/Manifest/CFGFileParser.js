@@ -1,9 +1,4 @@
-exports.parse = exports.decode = decode;
-
-exports.stringify = exports.encode = encode;
-
-exports.safe = safe;
-exports.unsafe = unsafe;
+export { safe, unsafe, decode, decode as parse, encode, encode as stringify };
 
 const encodeExclusions = [
   'ui_certified_ceiling',
