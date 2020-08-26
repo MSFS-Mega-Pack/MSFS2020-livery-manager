@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Contributor from '../models/Contributor';
 
 import MoreInfoIcon from 'mdi-react/InfoCircleOutlineIcon';
 import { Dialog, DialogTitle, DialogContent, Chip, Typography, DialogActions, Button, makeStyles, Link, useTheme } from '@material-ui/core';
@@ -15,7 +14,7 @@ import ForumsIcon from 'mdi-react/FlightTakeoffIcon';
  * @export
  *
  * @param {Object} props
- * @param {Contributor} props.contributor
+ * @param {import('../models/contributor').default} props.contributor
  * @param {string} props.className
  *
  * @return {*}
@@ -36,7 +35,7 @@ export default function ContributorBadge(props) {
  * Displays a contributor's info in a dialog
  *
  * @param {Object} props
- * @param {Contributor} props.contributor instance of contributor whose info is to be displayed
+ * @param {import('../models/contributor').default} props.contributor instance of contributor whose info is to be displayed
  * @param {Function} props.onClose callback fired when dialog is to be closed
  * @param {Boolean} props.open isDialogOpen
  */
