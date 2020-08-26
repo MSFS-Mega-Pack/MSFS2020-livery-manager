@@ -18,7 +18,7 @@ import {
   ListItemText,
 } from '@material-ui/core';
 
-import Devider from '@material-ui/core/Divider';
+import Divider from '@material-ui/core/Divider';
 import MenuIcon from 'mdi-react/MenuIcon';
 import ChevronRightIcon from 'mdi-react/ChevronLeftIcon';
 import HomeIcon from 'mdi-react/HomeIcon';
@@ -152,7 +152,7 @@ export default function LiveryManager() {
             <ChevronRightIcon />
           </IconButton>
         </div>
-        <Devider />
+        <Divider />
         <List className={styles.listStyle}>
           <ListItem button selected={isCurrentPath('/manager')}>
             <ListItemIcon>
@@ -175,7 +175,7 @@ export default function LiveryManager() {
             <ListItemText className={styles.listItemText} primary="Installed Liveries" />
           </ListItem>
 
-          <Devider />
+          <Divider />
 
           <ListItem button>
             <ListItemIcon>
