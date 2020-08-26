@@ -3,7 +3,7 @@ import * as ini from '../Manifest/CFGFileParser.js';
 import ThrowError from '../ThrowError';
 
 let CFGpath = '';
-const pathRegEx = /^[a-z]:((\\|\/)[a-z0-9\s_@\-^!#$%&+={}\[\]]+)+\.cfg$/i;
+const pathRegEx = /^[a-z]:((\\|\/)[a-z0-9\s_@\-^!#$%&+={}[\]]+)+\.cfg$/i;
 
 /**
  * Set path to a CFG file

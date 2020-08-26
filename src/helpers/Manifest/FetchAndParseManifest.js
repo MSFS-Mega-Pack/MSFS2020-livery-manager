@@ -1,3 +1,5 @@
+import ThrowError from "../ThrowError";
+
 /**
  * Fetches a manifest URL, parses it as JSON and throws errors if something isn't right.
  *

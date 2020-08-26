@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import MoreInfoIcon from 'mdi-react/InfoCircleOutlineIcon';
 import { Dialog, DialogTitle, DialogContent, Chip, Typography, DialogActions, Button, makeStyles, Link, useTheme } from '@material-ui/core';
@@ -7,6 +8,7 @@ import TwitterIcon from 'mdi-react/TwitterIcon';
 import GithubIcon from 'mdi-react/GithubIcon';
 import DiscordIcon from 'mdi-react/DiscordIcon';
 import ForumsIcon from 'mdi-react/FlightTakeoffIcon';
+import Contributor from '../models/contributor';
 
 /**
  * Nicely displays a contributor's info
@@ -14,7 +16,7 @@ import ForumsIcon from 'mdi-react/FlightTakeoffIcon';
  * @export
  *
  * @param {Object} props
- * @param {import('../models/contributor').default} props.contributor
+ * @param {Contributor} props.contributor
  * @param {string} props.className
  *
  * @return {*}
@@ -31,11 +33,16 @@ export default function ContributorBadge(props) {
   );
 }
 
+ContributorBadge.propTypes = {
+  contributor: PropTypes.instanceOf(Contributor).isRequired,
+  className: PropTypes.string.isRequired,
+};
+
 /**
  * Displays a contributor's info in a dialog
  *
  * @param {Object} props
- * @param {import('../models/contributor').default} props.contributor instance of contributor whose info is to be displayed
+ * @param {Contributor} props.contributor instance of contributor whose info is to be displayed
  * @param {Function} props.onClose callback fired when dialog is to be closed
  * @param {Boolean} props.open isDialogOpen
  */
@@ -109,6 +116,12 @@ function ContributorDialog(props) {
   );
 }
 
+ContributorDialog.propTypes = {
+  contributor: PropTypes.instanceOf(Contributor).isRequired,
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+};
+
 const useDialogSectionStyles = makeStyles({
   sectTitle: { textTransform: 'uppercase', marginBottom: 2 },
 });
@@ -138,3 +151,8 @@ function ContributorDialogSection(props) {
     </>
   );
 }
+
+ContributorDialogSection.propTypes = {
+  fieldName: PropTypes.node.isRequired,
+  value: PropTypes.node.isRequired,
+};

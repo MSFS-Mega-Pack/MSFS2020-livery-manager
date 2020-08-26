@@ -33,7 +33,7 @@ function encode(obj, opt) {
     out = '[' + safe(opt.section) + ']' + eol + out;
   }
 
-  children.forEach(function (k, _, __) {
+  children.forEach(k => {
     var nk = dotSplit(k).join('\\.');
     var section = (opt.section ? opt.section + '.' : '') + nk;
     var child = encode(obj[k], {
@@ -67,7 +67,7 @@ function decode(str) {
   var re = /^\[([^\]]*)\]$|^([^=]+)(=(.*))?$/i;
   var lines = str.split(/[\r\n]+/g);
 
-  lines.forEach(function (line, _, __) {
+  lines.forEach(line => {
     if (!line || line.match(/^\s*[;#]/)) return;
     var match = line.match(re);
     if (!match) return;
@@ -81,7 +81,7 @@ function decode(str) {
     if (value.includes(' ;')) {
       value = value.split(' ;')[0];
     }
-    value = value.replace(/\"/g, '');
+    value = value.replace(/"/g, '');
     switch (value) {
       case 'true':
       case 'false':
@@ -151,7 +151,7 @@ function safe(val) {
     : val.replace(/;/g, '\\;').replace(/#/g, '\\#');
 }
 
-function unsafe(val, doUnesc) {
+function unsafe(val) {
   val = (val || '').trim();
   if (isQuoted(val)) {
     // remove the single quotes before calling JSON.parse
@@ -160,7 +160,9 @@ function unsafe(val, doUnesc) {
     }
     try {
       val = JSON.parse(val);
-    } catch (_) {}
+    } catch {
+      // empty
+    }
   } else {
     // walk the val to find the first not-escaped ; character
     var esc = false;
