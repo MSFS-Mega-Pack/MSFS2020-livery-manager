@@ -47,10 +47,20 @@ E004: Malformed manifest (invalid JSON)
 ### E005
 
 ```
-E005: Invalid path <cfg path>
+E005: Invalid path <cfg/json path>
 ```
 
 #### Causes
 
-- Path to a CFG file has not been set
-- Path to CFG file doesn't match the regex (X:\...\*.cfg)
+- Path to a CFG/JSON file has not been set
+- Path to CFG/JSON file doesn't match the regex (X:\...\*.cfg)/(X:\...\*.JSON)
+
+### E006
+
+```
+E006: Missing JSON Data <value missing>
+```
+
+#### Causes
+
+- A JSON object is missing values.
