@@ -77,7 +77,7 @@ function encode(obj, opt) {
     } else if (val && typeof val === 'object') {
       children.push(k);
     } else {
-      if (typeof (parseInt(val) == 'number' || parseInt(val) == 0) && encodeExclusions.includes(k)) {
+      if ((typeof parseInt(val) === 'number' || parseInt(val) == 0) && encodeExclusions.includes(k)) {
         out += `${safe(k)} ${separator} ${safe(val)}${eol}`;
       } else {
         out += `${safe(k)} ${separator} "${safe(val)}"${eol}`;
