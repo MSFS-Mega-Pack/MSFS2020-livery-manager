@@ -20,7 +20,10 @@
     "package": "yarn build",
     "postpackage": "electron-packager ./ --out=./release-builds",
     "format": "prettier --write \"**/*.{js,json,less,css,md}\"",
-    "format:check": "prettier --loglevel debug --check \"**/*.{js,json,less,css,md}\""
+    "format:check": "prettier --loglevel debug --check \"**/*.{js,json,less,css,md}\"",
+    "eslint": "yarn eslint:check",
+    "eslint:check": "npx eslint .",
+    "eslint:fix": "npx eslint . --fix"
   },
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
@@ -41,6 +44,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
+    "@babel/eslint-parser": "^7.11.4",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
@@ -52,6 +56,7 @@
     "electron-devtools-installer": "^3.1.1",
     "electron-packager": "^15.1.0",
     "eslint": "^7.7.0",
+    "eslint-plugin-jsdoc": "^30.3.0",
     "eslint-plugin-react": "^7.20.6",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
