@@ -21,38 +21,40 @@ import planeIcon from '../images/plane-takeoff.png';
 import { hot } from 'react-hot-loader/root';
 
 function App() {
-  return [
-    <TitleBar icon={planeIcon} disableMaximize>
-      <p
-        style={{
-          fontFamily: 'Poppins',
-          lineHeight: '27px',
-          color: 'white',
-          zIndex: 99999999999,
-          margin: 0,
-          fontSize: 13,
-          fontWeight: 300,
-          marginLeft: 4,
-        }}
-      >
-        Flight Simulator Livery Manager
-      </p>
-    </TitleBar>,
-    <main>
-      <ThemeProvider theme={Theme}>
-        <CssBaseline />
-        <HashRouter hashType="slash">
-          <AnimatedSwitch atEnter={{ opacity: 0 }} atLeave={{ opacity: 0 }} atActive={{ opacity: 1 }} className="switch-wrapper">
-            {Routes.map(route => (
-              <Route key={route.path} path={route.path}>
-                {route.component}
-              </Route>
-            ))}
-          </AnimatedSwitch>
-        </HashRouter>
-      </ThemeProvider>
-    </main>,
-  ];
+  return (
+    <>
+      <TitleBar icon={planeIcon} disableMaximize>
+        <p
+          style={{
+            fontFamily: 'Poppins',
+            lineHeight: '27px',
+            color: 'white',
+            zIndex: 99999999999,
+            margin: 0,
+            fontSize: 13,
+            fontWeight: 300,
+            marginLeft: 4,
+          }}
+        >
+          Flight Simulator Livery Manager
+        </p>
+      </TitleBar>
+      <main>
+        <ThemeProvider theme={Theme}>
+          <CssBaseline />
+          <HashRouter hashType="slash">
+            <AnimatedSwitch atEnter={{ opacity: 0 }} atLeave={{ opacity: 0 }} atActive={{ opacity: 1 }} className="switch-wrapper">
+              {Routes.map(route => (
+                <Route key={route.path} path={route.path}>
+                  {route.component}
+                </Route>
+              ))}
+            </AnimatedSwitch>
+          </HashRouter>
+        </ThemeProvider>
+      </main>
+    </>
+  );
 }
 
 export default hot(App);
