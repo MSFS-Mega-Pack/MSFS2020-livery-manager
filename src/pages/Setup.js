@@ -1,19 +1,17 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState } from 'react';
 
-import Path from 'path';
-
-import Config from 'electron-json-config';
-
-import { GetPackagesDirectory, ValidateFSDirectory, parseCFGFile, loadCFG, getHighestPlaneNumber, addAirplane } from '../helpers/MSFS';
+import { GetPackagesDirectory, ValidateFSDirectory } from '../helpers/MSFS';
 
 import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton, makeStyles, CircularProgress } from '@material-ui/core';
 import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
+import LiverySourcesTable from '../components/LiveryManager/SourceListTable';
+
+import GetLiverySources from '../helpers/Manifest/GetLiverySources';
+import Navigate from '../helpers/Navigate';
 
 import Electron from 'electron';
-import GetLiverySources from '../helpers/Manifest/GetLiverySources';
-import LiverySourcesTable from '../components/LiveryManager/SourceListTable';
-import LiverySource from '../models/LiverySource';
-import Navigate from '../helpers/Navigate';
+import Config from 'electron-json-config';
+import ConfigKeys from '../data/config-keys.json';
 
 export default function Setup() {
   const [page, setPage] = useState(1);
@@ -69,7 +67,8 @@ export default function Setup() {
             if (page !== Pages.length) {
               setPage(page + 1);
             } else {
-              Navigate();
+              Config.set(ConfigKeys.state.setup_completed, true);
+              Navigate('/manager');
             }
           }}
           disabled={!nextButtonEnabled}
@@ -160,7 +159,10 @@ function ChooseLiverySourcesPage({ data, setData }) {
   return (
     <>
       <Typography gutterBottom component="h1" variant="h4">
-        Review livery sources
+        Loaded livery sources
+      </Typography>
+      <Typography gutterBottom component="p" variant="body1">
+        You can add 3rd party livery pack sources after setup is complete.
       </Typography>
       {data.liverySources ? (
         <LiverySourcesTable sourceList={data.liverySources} />
@@ -171,12 +173,47 @@ function ChooseLiverySourcesPage({ data, setData }) {
   );
 }
 
-function SetupCompletePage() {
+/**
+ * Generates a section of the [ExpandableRow] from a field name and value.
+ *
+ * @param {Object} props
+ * @param {string} props.fieldName Section title
+ * @param {React.ReactNode} props.value Section value/description
+ *
+ * @return {React.ReactNode}
+ */
+function SetupCompleteSummary(props) {
+  const classes = makeStyles({
+    sectTitle: { textTransform: 'uppercase', marginBottom: 2 },
+  })();
+
+  const { fieldName, value } = props;
+
+  return (
+    <>
+      <Typography className={classes.sectTitle} variant="caption" color="textSecondary" component="h2">
+        {fieldName}
+      </Typography>
+      <Typography variant="body2" gutterBottom component="div">
+        {value}
+      </Typography>
+    </>
+  );
+}
+
+function SetupCompletePage({ data }) {
   return (
     <>
       <Typography gutterBottom component="h1" variant="h4">
         Setup complete
       </Typography>
+      <Typography gutterBottom component="p" variant="body1">
+        You're ready to take off! Here's a quick overview of what you've chosen.
+      </Typography>
+      <Box marginTop={4} margin={1}>
+        <SetupCompleteSummary fieldName="Packages directory" value={data.packageDir} />
+        <SetupCompleteSummary fieldName="Livery sources loaded" value={data.liverySources.length} />
+      </Box>
     </>
   );
 }
