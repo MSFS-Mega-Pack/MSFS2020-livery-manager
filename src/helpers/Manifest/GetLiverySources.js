@@ -26,7 +26,7 @@ export default async function GetLiverySources(sourcesList) {
     await sourceList.sources.forEach(async liverySourceURL => {
       let liverySourceManifest = await FetchAndParseJsonManifest(liverySourceURL, 'liverySource');
 
-      /** @type {import('../../models/contributor').default[]} */
+      /** @type {import('../../models/Contributor').default[]} */
       let contributors = [];
 
       liverySourceManifest.contributors.forEach(contributor => {

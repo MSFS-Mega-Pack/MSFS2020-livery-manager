@@ -18,7 +18,7 @@ export default class SourceList extends Manifest {
    *
    * @param {string} params.name The name of the source list shown to users.
    * @param {string} params.description The description of the source list shown to users.
-   * @param {import('./contributor').default[]} params.contributors A list of all contributors.
+   * @param {import('./Contributor').default[]} params.contributors A list of all contributors.
    * @param {string[]} params.sources A list of all livery set URLs
    *
    * @readonly
@@ -65,7 +65,7 @@ export default class SourceList extends Manifest {
   /**
    * A list of all contributors
    *
-   * @type {import('./contributor').default[]}
+   * @type {import('./Contributor').default[]}
    *
    * @readonly
    * @memberof SourceList

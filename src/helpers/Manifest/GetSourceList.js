@@ -16,7 +16,7 @@ export default async function GetSourceList() {
 
   const sourceList = await FetchAndParseJsonManifest(url, 'sourceList');
 
-  /** @type {import('../../models/contributor').default[]} */
+  /** @type {import('../../models/Contributor').default[]} */
   let contributors = [];
 
   sourceList.contributors.forEach(contributor => {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Dialog, DialogTitle, DialogContent, Chip, Typography, DialogActions, Button, makeStyles, Link, useTheme } from '@material-ui/core';
 
-import Contributor from '../models/contributor';
+import Contributor from '../models/Contributor';
 
 import MoreInfoIcon from 'mdi-react/InfoCircleOutlineIcon';
 import TwitterIcon from 'mdi-react/TwitterIcon';
