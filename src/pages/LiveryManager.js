@@ -1,24 +1,24 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
 import clsx from 'clsx';
-import { 
-  Card, 
-  CardContent, 
-  Typography, 
-  CardHeader, 
-  AppBar, 
-  Toolbar, 
-  List, 
-  Drawer, 
+import {
+  Card,
+  CardContent,
+  Typography,
+  CardHeader,
+  AppBar,
+  Toolbar,
+  List,
+  Drawer,
   makeStyles,
   IconButton,
   useTheme,
   ListItem,
   ListItemIcon,
-  ListItemText
+  ListItemText,
 } from '@material-ui/core';
 
-import Devider from '@material-ui/core/Divider'
+import Devider from '@material-ui/core/Divider';
 import MenuIcon from 'mdi-react/MenuIcon';
 import ChevronRightIcon from 'mdi-react/ChevronLeftIcon';
 import HomeIcon from 'mdi-react/HomeIcon';
@@ -28,13 +28,13 @@ import SettingsIcon from 'mdi-react/SettingsIcon';
 
 const drawerWidth = 235;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     marginTop: '28px !important',
     '& *': {
       zIndex: 1,
-    }
+    },
   },
   appBar: {
     marginTop: '28px !important',
@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
   listItemText: {
     '& span': {
       fontSize: '1em',
-    }
+    },
   },
   listStyle: {
     paddingTop: 0,
@@ -116,16 +116,19 @@ export default function LiveryManager() {
 
   return (
     <div className={styles.root}>
-      <AppBar position="fixed" className={clsx(styles.AppBar, {
-        [styles.appBarShift]: open,
-      })}>
+      <AppBar
+        position="fixed"
+        className={clsx(styles.AppBar, {
+          [styles.appBarShift]: open,
+        })}
+      >
         <Toolbar className={styles.toolbar}>
-          <IconButton  
-          color="inherit" 
-          aria-label="open drawer" 
-          onClick={handleDrawerOpen}
-          edge="start"
-          className={clsx(styles.menuButton, open && styles.hide)}
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            className={clsx(styles.menuButton, open && styles.hide)}
           >
             <MenuIcon />
           </IconButton>
@@ -146,42 +149,49 @@ export default function LiveryManager() {
       >
         <div className={styles.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
-            <ChevronRightIcon/>
+            <ChevronRightIcon />
           </IconButton>
         </div>
         <Devider />
         <List className={styles.listStyle}>
-            <ListItem button selected={isCurrentPath('/manager')}>
-              <ListItemIcon><HomeIcon /></ListItemIcon>
-              <ListItemText className={styles.listItemText} primary="Dashboard" />
-            </ListItem>
+          <ListItem button selected={isCurrentPath('/manager')}>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText className={styles.listItemText} primary="Dashboard" />
+          </ListItem>
 
-            <ListItem button>
-              <ListItemIcon><CloudDownloadIcon /></ListItemIcon>
-              <ListItemText className={styles.listItemText} primary="Download Liveries"/>
-            </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <CloudDownloadIcon />
+            </ListItemIcon>
+            <ListItemText className={styles.listItemText} primary="Download Liveries" />
+          </ListItem>
 
-            <ListItem button>
-              <ListItemIcon><LibraryAddIcon /></ListItemIcon>
-              <ListItemText className={styles.listItemText} primary="Installed Liveries"/>
-            </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <LibraryAddIcon />
+            </ListItemIcon>
+            <ListItemText className={styles.listItemText} primary="Installed Liveries" />
+          </ListItem>
 
-            <Devider />
+          <Devider />
 
-            <ListItem button>
-              <ListItemIcon><SettingsIcon /></ListItemIcon>
-              <ListItemText className={styles.listItemText} primary="Settings"/>
-            </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+            <ListItemText className={styles.listItemText} primary="Settings" />
+          </ListItem>
         </List>
       </Drawer>
-      <main className={clsx(styles.content, {
-        [styles.contentShift]: open,
-      })}
+      <main
+        className={clsx(styles.content, {
+          [styles.contentShift]: open,
+        })}
       >
         <div className={styles.drawerHeader}>
-          <Typography paragraph>
-            This is a test
-          </Typography>
+          <Typography paragraph>This is a test</Typography>
         </div>
       </main>
     </div>
@@ -190,7 +200,7 @@ export default function LiveryManager() {
 
 function isCurrentPath(path) {
   let location = useLocation();
-  if(path === location.pathname) {
+  if (path === location.pathname) {
     return true;
   }
   return false;
