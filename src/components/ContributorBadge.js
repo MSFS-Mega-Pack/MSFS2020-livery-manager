@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import MoreInfoIcon from 'mdi-react/InfoCircleOutlineIcon';
 import { Dialog, DialogTitle, DialogContent, Chip, Typography, DialogActions, Button, makeStyles, Link, useTheme } from '@material-ui/core';
 
+import Contributor from '../models/contributor';
+
+import MoreInfoIcon from 'mdi-react/InfoCircleOutlineIcon';
 import TwitterIcon from 'mdi-react/TwitterIcon';
 import GithubIcon from 'mdi-react/GithubIcon';
 import DiscordIcon from 'mdi-react/DiscordIcon';
 import ForumsIcon from 'mdi-react/FlightTakeoffIcon';
-import Contributor from '../models/contributor';
 
 /**
  * Nicely displays a contributor's info
