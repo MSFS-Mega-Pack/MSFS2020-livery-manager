@@ -1,37 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Paper, Tabs, Tab, makeStyles } from '@material-ui/core';
 
 import HomeIcon from 'mdi-react/HomeIcon';
 import SettingsIcon from 'mdi-react/SettingsIcon';
 
-import { ROUTES } from '../data/Routes';
+import { AllRoutes } from '../data/Routes';
 import Navigate from '../helpers/Navigate';
-
-const TABS = [
-  {
-    label: 'Dashboard',
-    icon: <HomeIcon />,
-    iconOnly: true,
-    path: ROUTES.DASHBOARD,
-  },
-  {
-    label: 'Available liveries',
-    iconOnly: false,
-    path: ROUTES.LIVERY_MANAGER,
-  },
-  {
-    label: 'Installed liveries',
-    iconOnly: false,
-    path: ROUTES.LIVERY_MANAGER,
-  },
-  {
-    label: 'Settings',
-    icon: <SettingsIcon />,
-    iconOnly: false,
-    path: ROUTES.SETTINGS,
-  },
-];
 
 const useStyles = makeStyles({
   root: {
@@ -40,45 +16,53 @@ const useStyles = makeStyles({
 });
 
 export default function MainPage(props) {
+  const TABS = [
+    {
+      label: 'Dashboard',
+      icon: <HomeIcon />,
+      iconOnly: true,
+    },
+    {
+      label: 'Available liveries',
+      iconOnly: false,
+    },
+    {
+      label: 'Installed liveries',
+      iconOnly: false,
+    },
+    {
+      label: 'Settings',
+      // icon: <SettingsIcon />,
+      iconOnly: false,
+    },
+  ];
+
   const [selectedTab, setSelectedTab] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setSelectedTab(newValue);
+    onTabChange(TABS[newValue].label);
   };
 
   const classes = useStyles();
 
-  const { children } = props;
+  const { children, onTabChange } = props;
 
   return (
     <>
       <Paper className={classes.root}>
         <Tabs value={selectedTab} onChange={handleChange} indicatorColor="primary" textColor="primary" centered>
           {TABS.map(tab => (
-            <LinkTab
-              key={tab.label + tab.path}
-              route={tab.path}
-              icon={tab.icon}
-              label={tab.iconOnly ? null : tab.label}
-              aria-label={tab.label}
-            />
+            <Tab key={tab.label + tab.path} icon={tab.icon} label={tab.iconOnly ? null : tab.label} aria-label={tab.label} />
           ))}
         </Tabs>
       </Paper>
-      <main>{children}</main>
+      <main style={{ padding: 16, marginTop: 16 }}>{children}</main>
     </>
   );
 }
 
-function LinkTab({ route, ...props }) {
-  return (
-    <Tab
-      component="a"
-      onClick={event => {
-        event.preventDefault();
-        Navigate(route);
-      }}
-      {...props}
-    />
-  );
-}
+MainPage.propTypes = {
+  children: PropTypes.node.isRequired,
+  onTabChange: PropTypes.func.isRequired,
+};

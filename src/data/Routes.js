@@ -1,21 +1,20 @@
 import React from 'react';
 
 import Setup from '../pages/Setup';
-import LiveryManager from '../pages/LiveryManager';
+import HomePage from '../pages/HomePage';
 import SplashScreen from '../pages/SplashScreen';
 
-const ROUTES = {
+const AllRoutes = Object.freeze({
   SPLASH_SCREEN: '/',
   SETUP: '/setup',
-  LIVERY_MANAGER: '/manager',
-  DASHBOARD: '/dashboard',
+  MULTI_PAGE_HOME: '/home',
   SETTINGS: '/settings',
-};
+});
 
 export default Object.freeze([
-  { path: ROUTES.SETUP, component: <Setup /> },
-  { path: ROUTES.LIVERY_MANAGER, component: <LiveryManager /> },
-  { path: ROUTES.SPLASH_SCREEN, component: <SplashScreen /> },
+  { path: AllRoutes.SETUP, component: <Setup /> },
+  { path: AllRoutes.MULTI_PAGE_HOME, component: <HomePage /> },
+  { path: AllRoutes.SPLASH_SCREEN, component: <SplashScreen /> },
 ]);
 
-export { ROUTES };
+export { AllRoutes };
