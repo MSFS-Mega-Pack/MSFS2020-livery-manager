@@ -148,7 +148,7 @@ function decode(str) {
       case 'null':
         value = JSON.parse(value);
     }
-    if ((parseInt(value) || parseInt(value) == 0) && key != 'atc_flight_number') {
+    if ((parseInt(value) || parseInt(value) === 0) && key !== 'atc_flight_number') {
       value = Number(value);
     }
     // Convert keys with '[]' suffix to an array
