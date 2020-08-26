@@ -230,12 +230,8 @@ const PagePropTypes = {
     packageDir: PropTypes.string.isRequired,
     liverySources: PropTypes.arrayOf(PropTypes.instanceOf(LiverySource)).isRequired,
   }).isRequired,
-  setData: PropTypes.func({
-    data: PropTypes.object.isRequired,
-  }).isRequired,
-  setNextButtonEnabled: PropTypes.func({
-    isEnabled: PropTypes.bool.isRequired,
-  }).isRequired,
+  setData: PropTypes.func.isRequired,
+  setNextButtonEnabled: PropTypes.func.isRequired,
 };
 
 SimInstallDirectoryPage.propTypes = {
