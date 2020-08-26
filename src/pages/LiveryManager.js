@@ -27,6 +27,7 @@ import LibraryAddIcon from 'mdi-react/LibraryAddIcon';
 import SettingsIcon from 'mdi-react/SettingsIcon';
 
 const drawerWidth = 235;
+const TitleBarHeight = 28;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,7 +38,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
   appBar: {
-    marginTop: '28px !important',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -89,9 +89,6 @@ const useStyles = makeStyles(theme => ({
     }),
     marginLeft: 0,
   },
-  toolbar: {
-    marginTop: 32,
-  },
   listItemText: {
     '& span': {
       fontSize: '1em',
@@ -121,8 +118,9 @@ export default function LiveryManager() {
         className={clsx(styles.AppBar, {
           [styles.appBarShift]: open,
         })}
+        style={{ top: TitleBarHeight }}
       >
-        <Toolbar className={styles.toolbar}>
+        <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
