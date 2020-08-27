@@ -5,9 +5,6 @@ import { Paper, Typography, TextField, IconButton, InputAdornment, Box, Button, 
 import { GetPackagesDirectory, ValidateFSDirectory } from '../../helpers/MSFS';
 import Electron from 'electron';
 import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
-import Config from 'electron-json-config';
-import ConfigKeys from '../../data/config-keys.json';
-
 const useStyles = makeStyles({
   settingsRoot: {
     flexGrow: 1,
