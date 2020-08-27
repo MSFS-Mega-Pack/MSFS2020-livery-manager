@@ -38,11 +38,10 @@ export function getJSONData() {
  */
 export function doesPlaneInfoExist(jsonObject) {
   const data = getJSONData();
-  let found = false;
-  data.content.forEach(object => {
-    if (object.path == jsonObject.path) found = true;
-  });
-  return found;
+  for (let i = 0; i < data.content.length; i++) {
+    if (data.content[i].path == jsonObject.path) return true;
+  }
+  return false;
 }
 
 /**
