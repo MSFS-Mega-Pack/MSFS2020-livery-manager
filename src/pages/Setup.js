@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { GetPackagesDirectory, ValidateFSDirectory } from '../helpers/MSFS';
+import { AllRoutes } from '../data/Routes';
 
 import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton, makeStyles, CircularProgress } from '@material-ui/core';
 import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
@@ -70,7 +71,7 @@ export default function Setup() {
               setPage(page + 1);
             } else {
               Config.set(ConfigKeys.state.setup_completed, true);
-              Navigate('/manager');
+              Navigate(AllRoutes.MULTI_PAGE_HOME);
             }
           }}
           disabled={!nextButtonEnabled}

@@ -15,7 +15,7 @@ export default function SplashScreen() {
   if (Config.get(ConfigKeys.state.setup_completed, false)) {
     console.log('Setup complete');
     setTimeout(() => {
-      Navigate('/manager');
+      Navigate('/home');
     }, 2000);
   } else {
     console.log('Setup not complete');
