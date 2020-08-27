@@ -1,16 +1,6 @@
 import React, { useState } from 'react';
 
-import { 
-  Paper, 
-  Typography, 
-  TextField,
-  IconButton,
-  InputAdornment,
-  Box,
-  Button,
-  useTheme,
-  makeStyles
-} from '@material-ui/core';
+import { Paper, Typography, TextField, IconButton, InputAdornment, Box, Button, useTheme, makeStyles } from '@material-ui/core';
 
 import { GetPackagesDirectory, ValidateFSDirectory } from '../../helpers/MSFS';
 import Electron from 'electron';
@@ -21,13 +11,13 @@ import ConfigKeys from '../../data/config-keys.json';
 const useStyles = makeStyles({
   settingsRoot: {
     flexGrow: 1,
-    padding: 28
+    padding: 28,
   },
   pageDescription: {
     fontSize: 14,
-    opacity: .75
-  }
-})
+    opacity: 0.75,
+  },
+});
 
 export default function Settings() {
   const theme = useTheme();
@@ -67,44 +57,46 @@ export default function Settings() {
   }
 
   function setSaveButtonEnabled(value) {
-    console.log(data.SaveButtonEnabled)
-    data.SaveButtonEnabled = value
-    console.log(data.SaveButtonEnabled)
+    console.log(data.SaveButtonEnabled);
+    data.SaveButtonEnabled = value;
+    console.log(data.SaveButtonEnabled);
   }
 
   return (
     <>
       <Paper className={classes.settingsRoot}>
-        <Typography paragraph className={classes.pageDescription}>Change Simulator Package Directory</Typography>
+        <Typography paragraph className={classes.pageDescription}>
+          Change Simulator Package Directory
+        </Typography>
         <TextField
-        error={!!error}
-        helperText={error}
-        InputLabelProps={{ shrink: true }}
-        margin="normal"
-        InputProps={{
-          style: { fontFamily: 'IBM Plex Mono', letterSpacing: -0.2 },
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton aria-label="toggle password visibility" onClick={openBrowseDialog}>
-                <FolderSearchOutlineIcon />
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-        variant="filled"
-        label="Install path"
-        value={data.packageDir || ''}
-        onChange={e => {
-          setData({ packageDir: e.target.value });
-        }}
-        fullWidth
-      />
+          error={!!error}
+          helperText={error}
+          InputLabelProps={{ shrink: true }}
+          margin="normal"
+          InputProps={{
+            style: { fontFamily: 'IBM Plex Mono', letterSpacing: -0.2 },
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton aria-label="toggle password visibility" onClick={openBrowseDialog}>
+                  <FolderSearchOutlineIcon />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+          variant="filled"
+          label="Install path"
+          value={data.packageDir || ''}
+          onChange={e => {
+            setData({ packageDir: e.target.value });
+          }}
+          fullWidth
+        />
 
         <Box display="flex" padding={theme.spacing()} paddingBottom={theme.spacing(0.5)}>
           <Box flex="1" />
           <Button
             onClick={() => {
-              console.log("saved")
+              console.log('saved');
             }}
             disabled={data.SaveButtonEnabled}
           >
