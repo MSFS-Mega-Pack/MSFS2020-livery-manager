@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 import { Paper, Tabs, Tab, makeStyles } from '@material-ui/core';
 
 import HomeIcon from 'mdi-react/HomeIcon';
-import SettingsIcon from 'mdi-react/SettingsIcon';
-
-import { AllRoutes } from '../data/Routes';
-import Navigate from '../helpers/Navigate';
 
 const useStyles = makeStyles({
   root: {
@@ -32,7 +28,6 @@ export default function MainPage(props) {
     },
     {
       label: 'Settings',
-      // icon: <SettingsIcon />,
       iconOnly: false,
     },
   ];
@@ -46,7 +41,7 @@ export default function MainPage(props) {
 
   const classes = useStyles();
 
-  const { children, onTabChange, onBeforeTabChange } = props;
+  const { children, onTabChange } = props;
 
   return (
     <>
@@ -65,5 +60,4 @@ export default function MainPage(props) {
 MainPage.propTypes = {
   children: PropTypes.node.isRequired,
   onTabChange: PropTypes.func.isRequired,
-  onBeforeTabChange: PropTypes.func,
 };
