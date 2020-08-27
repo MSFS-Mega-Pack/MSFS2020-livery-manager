@@ -10,9 +10,9 @@ on:
   pull_request:
 
 jobs:
-  lint:
+  format:
     runs-on: ubuntu-latest
-    name: "Linting"
+    name: "Check formatting"
 
     strategy:
       matrix:
@@ -33,6 +33,47 @@ jobs:
 
       - name: Check formatting
         run: yarn format:check
+
+  lint:
+    runs-on: ubuntu-latest
+    name: "ESLint"
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # Install yarn
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      # Get yarn cache path
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      # Restore package cache (speeds up dependency install)
+      - uses: actions/cache@v1
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Check formatting
+        run: yarn eslint
 
   build:
     runs-on: ubuntu-latest

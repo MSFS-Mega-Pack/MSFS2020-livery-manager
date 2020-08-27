@@ -1,8 +1,7 @@
 {
   "env": {
     "browser": true,
-    "node": true,
-    "es6": true
+    "node": true
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "parser": "@babel/eslint-parser",
@@ -10,11 +9,10 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 11,
+    "ecmaVersion": 2020,
     "sourceType": "module"
   },
   "plugins": ["react", "jsdoc"],
-  "ignorePatterns": ["node_modules", "dist", "webpack.*.config.js", "main.js"],
   "rules": {
     "semi": "error"
   },
