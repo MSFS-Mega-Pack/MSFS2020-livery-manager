@@ -1,5 +1,9 @@
 {
   "state": {
     "setup_completed": "APP_IS_SETUP_PHASE_COMPLETED"
+  },
+  "settings": {
+    "package_directory": "SETTINGS_PACKAGE_DIRECTORY",
+    "third_party_sources": "SETTINGS_THIRD_PARTY_SOURCES"
   }
 }
