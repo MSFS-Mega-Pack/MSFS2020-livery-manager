@@ -72,7 +72,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Check formatting
+      - name: Lint code
         run: yarn eslint
 
   build:
