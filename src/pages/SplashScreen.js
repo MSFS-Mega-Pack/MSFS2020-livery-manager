@@ -6,10 +6,23 @@ import Navigate from '../helpers/Navigate';
 
 import Config from 'electron-json-config';
 import ConfigKeys from '../data/config-keys.json';
+import defaultConfig from '../data/default-config';
 
 const useStyles = makeStyles(theme => ({ loadingHeading: { marginTop: theme.spacing(3) } }));
 
+function CheckConfig() {
+  const CurrentKeys = Config.keys();
+
+  Object.keys(defaultConfig).forEach(key => {
+    if (!CurrentKeys.includes(key)) {
+      Config.set(key, defaultConfig[key]);
+    }
+  });
+}
+
 export default function SplashScreen() {
+  CheckConfig();
+
   const styles = useStyles();
 
   if (Config.get(ConfigKeys.state.setup_completed, false)) {
@@ -30,6 +43,8 @@ export default function SplashScreen() {
       <Typography className={styles.loadingHeading} component="h1" variant="h4">
         Loading
       </Typography>
+      {/* Loads font on first start */}
+      <p style={{ position: 'absolute', height: 1, width: 1, top: 0, left: 0, opacity: 0, fontFamily: 'IBM Plex Mono' }}>a</p>
     </Box>
   );
 }
