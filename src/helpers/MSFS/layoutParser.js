@@ -58,9 +58,9 @@ export function doesPlaneInfoExist(jsonObject) {
  */
 export function addPlaneInfo(jsonObject) {
   let data = getJSONData();
-  if (jsonObject.path == undefined || typeof jsonObject.path != 'string') ThrowError('E006', `Missing JSON data: path`);
-  if (jsonObject.size == undefined || typeof jsonObject.size != 'number') jsonObject.size = 2796344;
-  if (jsonObject.date == undefined || typeof jsonObject.date != 'number') jsonObject.date = 132270122080000000;
+  if (typeof jsonObject.path != 'string') ThrowError('E006', `Missing JSON data: path`);
+  if (typeof jsonObject.size != 'number') jsonObject.size = 2796344;
+  if (typeof jsonObject.date != 'number') jsonObject.date = 132270122080000000;
 
   data.push(jsonObject);
   fs.writeFileSync(FILE_PATH, JSON.stringify(data, null, 4));
