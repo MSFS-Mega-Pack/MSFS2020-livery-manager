@@ -20,6 +20,7 @@ export function loadJSON(path) {
  *
  * @export
  * @argument {String} path  Set path to JSON file
+ * @returns JSONObject
  */
 export function getJSONData() {
   return JSON.parse(fs.readFileSync(FILE_PATH, 'utf8'));
@@ -30,6 +31,7 @@ export function getJSONData() {
  *
  * @export
  * @argument {Object} jsonObject
+ * @returns Boolean
  * @example doesPathExist({
   "path": "SimObjects/Airplanes/Asobo_A320_NEO/TEXTURE.AERLINGUS/A320NEO_AIRFRAME_FUSELAGE_ALBD.PNG.DDS.json",
   "size": 102,
