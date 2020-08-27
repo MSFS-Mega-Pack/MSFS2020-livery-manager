@@ -1,106 +1,159 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
-import { Paper, Typography, TextField, IconButton, InputAdornment, Box, Button, useTheme, makeStyles } from '@material-ui/core';
+import { Paper, Typography, TextField, IconButton, InputAdornment, Box, Button, makeStyles, Link } from '@material-ui/core';
 
-import { GetPackagesDirectory, ValidateFSDirectory } from '../../helpers/MSFS';
+import { ValidateFSDirectory } from '../../helpers/MSFS';
+
+import Config from 'electron-json-config';
+import CONFIG_KEYS from '../../data/config-keys.json';
+
 import Electron from 'electron';
+
 import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
-const useStyles = makeStyles({
+
+const useStyles = makeStyles(theme => ({
   settingsRoot: {
-    flexGrow: 1,
-    padding: 28,
+    flex: '1',
   },
-  pageDescription: {
+  settingsItem: {
+    flex: 1,
+    overflowY: 'auto',
+    padding: theme.spacing(3),
+  },
+  resetLink: {
     fontSize: 14,
-    opacity: 0.75,
+    color: theme.palette.text.secondary,
+    cursor: 'pointer',
+    float: 'right',
   },
-});
+  sectTitle: {
+    textTransform: 'uppercase',
+    marginBottom: 2,
+  },
+  saveButtonContainer: {
+    marginTop: theme.spacing(),
+  },
+}));
 
 export default function Settings() {
-  const theme = useTheme();
   const classes = useStyles();
+
   const [error, setError] = useState(null);
-  const [data, setDataReal] = useState({ packageDir: undefined, SaveButtonEnabled: false });
+  const [saveButtonEnabled, setSaveButtonEnabled] = useState(false);
 
-  function setData(d) {
-    setDataReal({ ...data, ...d });
-  }
-
-  if (typeof data.packageDir === 'undefined') {
-    GetPackagesDirectory().then(p => {
-      setData({ packageDir: p });
-    });
-  }
+  const PackagesDirTB = useRef('');
 
   function openBrowseDialog() {
     const d = Electron.remote.dialog.showOpenDialogSync(null, { properties: ['openDirectory'] });
 
     if (typeof d === 'undefined') {
-      // Dialog cancelled
       return;
     }
-
-    setData({ packageDir: d[0] });
 
     const [isValid, errorMsg] = ValidateFSDirectory(d[0]);
 
     if (isValid) {
       setError(null);
-      setSaveButtonEnabled(true);
+      if (d[0] !== Config.get(CONFIG_KEYS.settings.package_directory)) {
+        setSaveButtonEnabled(true);
+      }
     } else {
       setError(errorMsg);
       setSaveButtonEnabled(false);
     }
-  }
 
-  function setSaveButtonEnabled(value) {
-    console.log(data.SaveButtonEnabled);
-    data.SaveButtonEnabled = value;
-    console.log(data.SaveButtonEnabled);
+    PackagesDirTB.current.value = d[0];
   }
 
   return (
-    <>
-      <Paper className={classes.settingsRoot}>
-        <Typography paragraph className={classes.pageDescription}>
-          Change Simulator Package Directory
-        </Typography>
-        <TextField
-          error={!!error}
-          helperText={error}
-          InputLabelProps={{ shrink: true }}
-          margin="normal"
-          InputProps={{
-            style: { fontFamily: 'IBM Plex Mono', letterSpacing: -0.2 },
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton aria-label="toggle password visibility" onClick={openBrowseDialog}>
-                  <FolderSearchOutlineIcon />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-          variant="filled"
-          label="Install path"
-          value={data.packageDir || ''}
-          onChange={e => {
-            setData({ packageDir: e.target.value });
-          }}
-          fullWidth
-        />
+    <div style={{ display: 'flex', flexDirection: 'column', flex: '1' }}>
+      <section className={classes.settingsRoot}>
+        <Paper className={classes.settingsItem}>
+          <Typography className={classes.sectTitle} variant="caption" color="textSecondary" component="h2">
+            Simulator packages directory
+          </Typography>
+          <TextField
+            error={!!error}
+            helperText={error}
+            InputLabelProps={{ shrink: true }}
+            margin="normal"
+            InputProps={{
+              style: { fontFamily: 'IBM Plex Mono', letterSpacing: -0.2 },
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton aria-label="toggle password visibility" onClick={openBrowseDialog}>
+                    <FolderSearchOutlineIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+            inputRef={PackagesDirTB}
+            variant="filled"
+            label="Install path"
+            defaultValue={Config.get(CONFIG_KEYS.settings.package_directory)}
+            onChange={e => {
+              const [isValid, errorMsg] = ValidateFSDirectory(e.currentTarget.value);
 
-        <Box display="flex" padding={theme.spacing()} paddingBottom={theme.spacing(0.5)}>
-          <Box flex="1" />
+              if (isValid) {
+                setError(null);
+                if (e.currentTarget.value !== Config.get(CONFIG_KEYS.settings.package_directory)) {
+                  setSaveButtonEnabled(true);
+                }
+              } else {
+                setError(errorMsg);
+                setSaveButtonEnabled(false);
+              }
+            }}
+            fullWidth
+          />
+          <Link
+            color="textSecondary"
+            className={classes.resetLink}
+            onClick={() => {
+              PackagesDirTB.current.value = Config.get(CONFIG_KEYS.settings.package_directory);
+
+              const [isValid, errorMsg] = ValidateFSDirectory(PackagesDirTB.current.value);
+
+              if (isValid) {
+                setError(null);
+              } else {
+                setError(errorMsg);
+              }
+            }}
+          >
+            Reset to previous value
+          </Link>
+        </Paper>
+      </section>
+      <Box className={classes.saveButtonContainer}>
+        <Paper className={classes.settingsItem} style={{ display: 'flex' }}>
+          <Box flex="1">
+            <Typography color="textSecondary" variant="body2" style={{ lineHeight: '33px' }}>
+              {error
+                ? 'Please fix the error(s) above before saving.'
+                : saveButtonEnabled
+                ? "Click 'Save' to save changes."
+                : 'All changes saved.'}
+            </Typography>
+          </Box>
           <Button
             onClick={() => {
-              console.log('saved');
+              setSaveButtonEnabled(false);
+
+              console.log('Saving');
+              console.log(PackagesDirTB);
+              console.log(PackagesDirTB.current.value);
+
+              Config.setBulk({
+                [CONFIG_KEYS.settings.package_directory]: PackagesDirTB.current.value,
+              });
             }}
-            disabled={data.SaveButtonEnabled}
+            disabled={!saveButtonEnabled}
           >
             Save
           </Button>
-        </Box>
-      </Paper>
-    </>
+        </Paper>
+      </Box>
+    </div>
   );
 }

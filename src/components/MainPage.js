@@ -11,7 +11,7 @@ import Navigate from '../helpers/Navigate';
 
 const useStyles = makeStyles({
   root: {
-    flexGrow: 1,
+    // flexGrow: 1,
   },
 });
 
@@ -46,7 +46,7 @@ export default function MainPage(props) {
 
   const classes = useStyles();
 
-  const { children, onTabChange } = props;
+  const { children, onTabChange, onBeforeTabChange } = props;
 
   return (
     <>
@@ -57,7 +57,7 @@ export default function MainPage(props) {
           ))}
         </Tabs>
       </Paper>
-      <main style={{ padding: 16, marginTop: 16 }}>{children}</main>
+      <main style={{ padding: 16, marginTop: 16, flex: '1' }}>{children}</main>
     </>
   );
 }
@@ -65,4 +65,5 @@ export default function MainPage(props) {
 MainPage.propTypes = {
   children: PropTypes.node.isRequired,
   onTabChange: PropTypes.func.isRequired,
+  onBeforeTabChange: PropTypes.func,
 };
