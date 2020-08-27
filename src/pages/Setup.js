@@ -70,7 +70,10 @@ export default function Setup() {
             if (page !== Pages.length) {
               setPage(page + 1);
             } else {
-              Config.set(ConfigKeys.state.setup_completed, true);
+              Config.setBulk({
+                [ConfigKeys.state.setup_completed]: true,
+                [ConfigKeys.settings.package_directory]: data.packageDir,
+              });
               Navigate(AllRoutes.MULTI_PAGE_HOME);
             }
           }}
