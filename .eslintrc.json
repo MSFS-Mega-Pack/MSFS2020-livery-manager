@@ -14,7 +14,6 @@
     "sourceType": "module"
   },
   "plugins": ["react", "jsdoc"],
-  "ignorePatterns": ["node_modules", "dist", "webpack.*.config.js", "main.js"],
   "rules": {
     "semi": "error"
   },
