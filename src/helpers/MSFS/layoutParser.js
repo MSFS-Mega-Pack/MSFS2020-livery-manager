@@ -2,7 +2,7 @@ import fs from 'fs';
 import ThrowError from '../ThrowError';
 
 let FILE_PATH = '';
-const pathRegEx = /^[a-z]:((\\|\/)[a-z0-9\s_@\-^!#$%&+={}\[\]]+)+\.json$/i;
+const pathRegEx = /^[a-z]:((\\|\/)[a-z0-9\s_@\-^!#$%&+={}[\]]+)+\.json$/i;
 
 /**
  * Set path to a JSON file
