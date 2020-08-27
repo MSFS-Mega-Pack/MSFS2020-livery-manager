@@ -16,7 +16,7 @@ export function loadCFG(path) {
   CFGpath = path;
 }
 /**
- * Parse chosen CFG file and return it
+ * Parse the chosen CFG file and return it
  *
  * @export
  * @return {Object} JSON object with the CFG file data
