@@ -8,6 +8,8 @@ import Navigate from './helpers/Navigate';
 import Routes from './data/Routes';
 import Config from 'electron-json-config';
 
+import 'overlayscrollbars/css/OverlayScrollbars.css';
+
 // Since we are using HtmlWebpackPlugin WITHOUT a template, we should create our own root node in the body element before rendering into it
 let root = document.createElement('div');
 

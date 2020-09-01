@@ -5,6 +5,8 @@ import { Paper, Tabs, Tab, makeStyles } from '@material-ui/core';
 
 import HomeIcon from 'mdi-react/HomeIcon';
 
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+
 const useStyles = makeStyles({
   root: {
     // flexGrow: 1,
@@ -34,7 +36,7 @@ export default function MainPage(props) {
 
   const [selectedTab, setSelectedTab] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (_, newValue) => {
     setSelectedTab(newValue);
     onTabChange(TABS[newValue].label);
   };
@@ -52,7 +54,17 @@ export default function MainPage(props) {
           ))}
         </Tabs>
       </Paper>
-      <main style={{ padding: 16, marginTop: 16, flex: '1' }}>{children}</main>
+      <main style={{ padding: 16, paddingBottom: 0, maxHeight: 'calc(100vh - 124px)', marginTop: 16, flex: '1', display: 'flex' }}>
+        <OverlayScrollbarsComponent
+          options={{ scrollbars: { visibility: 'hidden' } }}
+          style={{
+            flex: '1',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)',
+          }}
+        >
+          {children}
+        </OverlayScrollbarsComponent>
+      </main>
     </>
   );
 }

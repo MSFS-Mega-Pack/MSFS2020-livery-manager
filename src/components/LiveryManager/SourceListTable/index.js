@@ -132,7 +132,7 @@ function ExpandableRow(props) {
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box margin={1} paddingBottom={0.5}>
+            <Box margin={1} paddingTop={1} paddingBottom={0.5}>
               <LiveryPackDetailsSection fieldName="Description" value={source.description} />
               <LiveryPackDetailsSection fieldName="Version" value={source.humanVersion} />
               <LiveryPackDetailsSection

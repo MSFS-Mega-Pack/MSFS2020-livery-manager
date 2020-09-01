@@ -64,3 +64,13 @@ E006: Missing JSON Data <value missing>
 #### Causes
 
 - A JSON object is missing values.
+
+### E007
+
+```
+E007: Article content not specified
+```
+
+#### Causes
+
+- Article class attempted to be created, but the article content was not specified
