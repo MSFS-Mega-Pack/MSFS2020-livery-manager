@@ -38,7 +38,7 @@ function createMainWindow() {
     titleBarStyle: 'hidden',
     resizable: false,
     show: false,
-    icon: `${__dirname}/assets/icon.png`,
+    icon: `${__dirname}/assets/icon.ico`,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
