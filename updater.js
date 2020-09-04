@@ -32,7 +32,7 @@ function initDarwinWin32(window) {
   electron.autoUpdater.on('update-not-available', () => console.log('No update available'));
 
   // Ask the user if he wants to update if update is available
-  electron.autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+  electron.autoUpdater.on('update-downloaded', () => {
     electron.autoUpdater.quitAndInstall();
   });
 
