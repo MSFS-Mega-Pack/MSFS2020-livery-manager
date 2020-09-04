@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 
 import { Paper, Typography, TextField, IconButton, InputAdornment, Box, Button, makeStyles, Link } from '@material-ui/core';
 
-import { ValidateFSDirectory } from '../../helpers/MSFS';
+import { ValidateFSDirectory } from '../../helpers/MSFS/Directories';
 
 import Config from 'electron-json-config';
 import CONFIG_KEYS from '../../data/config-keys.json';

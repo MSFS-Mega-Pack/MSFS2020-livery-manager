@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { GetPackagesDirectory, ValidateFSDirectory } from '../helpers/MSFS';
+import { GetPackagesDirectory, ValidateFSDirectory } from '../helpers/MSFS/Directories';
 import { AllRoutes } from '../data/Routes';
 
 import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton, makeStyles, CircularProgress } from '@material-ui/core';
