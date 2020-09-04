@@ -17,10 +17,11 @@
   "scripts": {
     "prod": "cross-env NODE_ENV=production webpack --mode production --config webpack.build.config.js && electron --noDevServer .",
     "start": "cross-env NODE_ENV=development webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js --mode development",
-    "build": "yarn clean && echo 'Starting build' && cross-env NODE_ENV=production webpack --config webpack.build.config.js --mode production",
+    "prebuild": "yarn clean",
+    "build": "echo 'Starting build' && cross-env NODE_ENV=production webpack --config webpack.build.config.js --mode production",
     "clean": "rm -r ./dist/ ./publish/ || true",
     "prepackage": "yarn build",
-    "package": "electron-packager ./ --out=./publish --asar",
+    "package": "electron-packager ./ --out=./publish --asar --icon=\"./assets/icon.ico\"",
     "postpackage": "electron-installer-windows --config installer.config.json",
     "format": "prettier --write \"**/*.{js,json,less,css,md}\"",
     "format:check": "prettier --loglevel debug --check \"**/*.{js,json,less,css,md}\"",
