@@ -1,14 +1,32 @@
 const path = require('path');
 const url = require('url');
-const { app, BrowserWindow, session } = require('electron');
+const { app, BrowserWindow } = require('electron');
 const open = require('open');
+const { checkForUpdates } = require('./updater');
 
+/** @type {BrowserWindow} */
 let mainWindow;
 
 let isDev = false;
 
 if (process.env.NODE_ENV !== undefined && process.env.NODE_ENV === 'development') {
   isDev = true;
+}
+
+if (!isDev) {
+  if (require('electron-squirrel-startup')) {
+    app.quit();
+    process.exit(0);
+  }
+
+  //! Uncomment to prevent program running after install
+  // if (process.platform === 'win32') {
+  //   var cmd = process.argv[1];
+  //   if (cmd === '--squirrel-firstrun') {
+  //     app.quit();
+  //     process.exit(0);
+  //   }
+  // }
 }
 
 function createMainWindow() {
@@ -44,16 +62,6 @@ function createMainWindow() {
     });
   }
 
-  // // Add CSP headers
-  // session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
-  //   callback({
-  //     responseHeaders: {
-  //       ...details.responseHeaders,
-  //       'Content-Security-Policy': ["default-src 'self' 'unsafe-inline' devtools: webpack:"],
-  //     },
-  //   });
-  // });
-
   // open new window links in the default browser
   mainWindow.webContents.on('new-window', (event, url) => {
     event.preventDefault();
@@ -62,6 +70,10 @@ function createMainWindow() {
 
   mainWindow.menuBarVisible = false;
   mainWindow.loadURL(indexPath);
+
+  if (!isDev) {
+    checkForUpdates(mainWindow);
+  }
 
   // Don't show until we are ready and loaded
   mainWindow.once('ready-to-show', () => {
@@ -79,7 +91,9 @@ function createMainWindow() {
   mainWindow.on('closed', () => (mainWindow = null));
 }
 
-app.on('ready', createMainWindow);
+app.on('ready', () => {
+  createMainWindow();
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

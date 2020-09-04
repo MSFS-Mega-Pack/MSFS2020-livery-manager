@@ -1,0 +1,11 @@
+{
+  "src": "publish/Flight Simulator Livery Manager-win32-x64/",
+  "dest": "publish/win-setup/",
+  "icon": "assets/icon.ico",
+  "authors": ["David Wheatley"],
+  "exe": "Flight Simulator Livery Manager.exe",
+  "productName": "Flight Simulator Livery Manager",
+  "name": "msfs2020-livery-manager",
+  "copyright": "Copyright 2020 David Wheatley",
+  "homepage": "https://davwheat.dev/msfs-megapack"
+}
