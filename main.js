@@ -4,6 +4,8 @@ const { app, BrowserWindow } = require('electron');
 const open = require('open');
 const { checkForUpdates } = require('./updater');
 
+app.commandLine.appendSwitch('disable-http-cache');
+
 /** @type {BrowserWindow} */
 let mainWindow;
 
