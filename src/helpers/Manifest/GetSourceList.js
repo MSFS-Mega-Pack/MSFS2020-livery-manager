@@ -1,7 +1,7 @@
 import Constants from '../../data/Constants.json';
 import Contributor from '../../models/Contributor';
 import SourceList from '../../models/SourceList';
-import FetchAndParseJsonManifest from './FetchAndParseManifest';
+import ActiveApiEndpoint from '../../data/ActiveApiEndpoint';
 
 /**
  * Get the latest up-to-date master source list
@@ -12,14 +12,17 @@ import FetchAndParseJsonManifest from './FetchAndParseManifest';
  * @return {SourceList}
  */
 export default async function GetSourceList() {
-  const url = Constants.urls.officialSourceList;
+  console.log("Fetching SourceList");
 
-  const sourceList = await FetchAndParseJsonManifest(url, 'sourceList');
+  const sourceList = await (await fetch(`${ActiveApiEndpoint}${Constants.api.get.sourceList}`)).json();
+  
+  console.log("Was cached: " + sourceList.cached);
+  console.log("Cached at: " + sourceList.cachedAt);
 
   /** @type {import('../../models/Contributor').default[]} */
   let contributors = [];
 
-  sourceList.contributors.forEach(contributor => {
+  sourceList.data.contributors.forEach(contributor => {
     contributors.push(
       new Contributor({
         name: contributor.name,
@@ -32,13 +35,13 @@ export default async function GetSourceList() {
   });
 
   return new SourceList({
-    formatVersion: sourceList.formatVersion,
-    formatType: sourceList.formatType,
-    humanVersion: sourceList.humanVersion,
-    versionCode: sourceList.versionCode,
-    name: sourceList.name,
-    description: sourceList.description,
+    formatVersion: sourceList.data.formatVersion,
+    formatType: sourceList.data.formatType,
+    humanVersion: sourceList.data.humanVersion,
+    versionCode: sourceList.data.versionCode,
+    name: sourceList.data.name,
+    description: sourceList.data.description,
     contributors: contributors,
-    sources: sourceList.sources,
+    sources: sourceList.data.sources,
   });
 }

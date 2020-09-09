@@ -17,7 +17,6 @@ import {
   Box,
 } from '@material-ui/core';
 import ContributorBadge from '../../ContributorBadge';
-import LiverySource from '../../../models/LiverySource';
 
 import UpArrowIcon from 'mdi-react/ChevronUpIcon';
 import DownArrowIcon from 'mdi-react/ChevronDownIcon';

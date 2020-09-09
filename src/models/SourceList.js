@@ -4,12 +4,12 @@ export default class SourceList extends Manifest {
   #name;
   #description;
   #contributors;
-  #sources;
+  #mods;
 
   /**
    * Creates a new SourceList.
    *
-   * @param {Object} params
+   * @param {object} params
    *
    * @param {number} params.formatVersion For internal use. Used to dictate the manifest version used for backwards-compatibility.
    * @param {"sourceList"|"liverySource"|"aircraftManifest"|"liveryManifest"} params.formatType Declares the type of Manifest.
@@ -19,14 +19,19 @@ export default class SourceList extends Manifest {
    * @param {string} params.name The name of the source list shown to users.
    * @param {string} params.description The description of the source list shown to users.
    * @param {import('./Contributor').default[]} params.contributors A list of all contributors.
-   * @param {string[]} params.sources A list of all livery set URLs
+   *
+   * @param {object[]} params.mods A list of all mods in the source list
+   * @param {object} params.mods.name Mod name
+   * @param {object} params.mods.description Mod name
+   * @param {import('./Contributor').default[]} params.mods.contributors Mod contributors
+   * @param {string} params.mods.modManifestUrl Mod manifest URL
    *
    * @readonly
    *
    * @memberof SourceList
    */
   constructor(params) {
-    const { formatVersion, formatType, humanVersion, versionCode, name, description, contributors, sources } = params;
+    const { formatVersion, formatType, humanVersion, versionCode, name, description, contributors, mods } = params;
 
     if (formatType !== 'sourceList') throw "You can't create a source list with a type different to sourceList... that's just stupid!";
 
@@ -35,7 +40,7 @@ export default class SourceList extends Manifest {
     this.#name = name;
     this.#description = description;
     this.#contributors = contributors;
-    this.#sources = sources;
+    this.#mods = mods;
   }
 
   /**
@@ -75,14 +80,14 @@ export default class SourceList extends Manifest {
   }
 
   /**
-   * A list of all the LiverySources in the SourceList
+   * A list of all the mods in the SourceList
    *
-   * @type {string[]}
+   * @type {object[]}
    *
    * @readonly
    * @memberof SourceList
    */
-  get sources() {
-    return this.#sources;
+  get mods() {
+    return this.#mods;
   }
 }
