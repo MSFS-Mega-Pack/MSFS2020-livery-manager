@@ -140,10 +140,6 @@ export default function Settings() {
             onClick={() => {
               setSaveButtonEnabled(false);
 
-              console.log('Saving');
-              console.log(PackagesDirTB);
-              console.log(PackagesDirTB.current.value);
-
               Config.setBulk({
                 [CONFIG_KEYS.settings.package_directory]: PackagesDirTB.current.value,
               });

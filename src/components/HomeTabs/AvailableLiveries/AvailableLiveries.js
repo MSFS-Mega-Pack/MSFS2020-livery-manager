@@ -3,11 +3,12 @@ import React from 'react';
 import { Box, Button, CircularProgress, Paper, Typography } from '@material-ui/core';
 import FullTable from './FullTable';
 
+import dayjs from 'dayjs';
 import FetchAndParseManifest from '../../../helpers/Manifest/FetchAndParseManifest';
 
 import ActiveApiEndpoint from '../../../data/ActiveApiEndpoint';
 import Constants from '../../../data/Constants.json';
-import dayjs from 'dayjs';
+import PlaneNameTable from '../../../data/PlaneNameTable.json';
 
 export default function AvailableLiveries(props) {
   const { fileListing, setFileListing } = props;
@@ -34,12 +35,20 @@ export default function AvailableLiveries(props) {
     for (const item of fileListing.data.fileList) {
       if (!m.has(item.airplane)) {
         m.set(item.airplane, true);
+
+        let thumb = fileListing.data.fileList.filter(a => a.airplane.toLowerCase() === item.airplane.toLowerCase()).find(a => a.image);
+        thumb = thumb.image;
+
         aircraft.push({
           name: item.airplane.toLowerCase(),
-          thumbnail: item.image || item.smallImage ? `${fileListing.data.cdnBaseUrl}/${item.image || item.smallImage}` : null,
+          thumbnail: `${fileListing.data.cdnBaseUrl}/${thumb}`,
         });
       }
     }
+
+    aircraft = aircraft.sort((a, b) =>
+      (PlaneNameTable[a.name] || a.name).toLowerCase().localeCompare((PlaneNameTable[b.name] || b.name).toLowerCase())
+    );
 
     let temp = {};
 
@@ -50,6 +59,15 @@ export default function AvailableLiveries(props) {
     fileListing.data.fileList.forEach(livery => {
       temp[livery.airplane.toLowerCase()].push(livery);
     });
+
+    for (const key in temp) {
+      if (Object.prototype.hasOwnProperty.call(temp, key)) {
+        /** @type {object[]} */
+        const liverySet = temp[key];
+
+        temp[key] = liverySet.sort((a, b) => a.fileName.toLowerCase().localeCompare(b.fileName.toLowerCase()));
+      }
+    }
 
     sortedLiveries = temp;
   }

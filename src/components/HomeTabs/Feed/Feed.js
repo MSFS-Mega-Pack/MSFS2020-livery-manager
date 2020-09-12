@@ -24,8 +24,6 @@ export default function Feed(props) {
       .then(f => setFeed(f))
       .catch(() => setFeed(null));
 
-    console.log(feed);
-
     return (
       <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }}>
         <CircularProgress size={48} />

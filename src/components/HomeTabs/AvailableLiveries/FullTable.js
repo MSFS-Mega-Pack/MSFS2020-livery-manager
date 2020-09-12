@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Accordion, AccordionSummary, Box, IconButton, makeStyles, Tooltip, Typography } from '@material-ui/core';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Divider, makeStyles, Typography } from '@material-ui/core';
 
 import ExpandIcon from 'mdi-react/ExpandMoreIcon';
-import ThumbnailIcon from 'mdi-react/ImageOutlineIcon';
 
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
 
@@ -49,25 +48,26 @@ export default function FullTable(props) {
               <AccordionSummary expandIcon={<ExpandIcon />}>
                 <Typography className={classes.heading}>{PlaneNameTable[ac.name] || ac.name}</Typography>
                 <Typography className={classes.secondaryHeading}>{sortedLiveries[ac.name].length} liveries available</Typography>
-                <Box flex={1} />
-                {ac.thumbnail && (
-                  <Tooltip
-                    PopperProps={{
-                      keepMounted: true,
-                      modifiers: { preventOverflow: { enabled: true, boundariesElement: 'viewport' } },
-                      style: { width: 350, height: 180 },
-                    }}
-                    placement="left"
-                    title={<img src={ac.thumbnail} style={{ display: 'block', objectFit: 'contain', width: '100%' }} />}
-                  >
-                    <span>
-                      <IconButton size="small">
-                        <ThumbnailIcon />
-                      </IconButton>
-                    </span>
-                  </Tooltip>
-                )}
               </AccordionSummary>
+              <AccordionDetails style={{ display: 'block', paddingLeft: 32, paddingRight: 32 }}>
+                <Box display="flex" mb={1}>
+                  <Box component="figure" mr={2}>
+                    <img style={{ display: 'block', maxWidth: 350, objectFit: 'contain' }} src={ac.thumbnail} alt="No image available" />
+                  </Box>
+                  <Box flex={1}>
+                    <FieldValueDisplay fieldName="Aircraft" value={PlaneNameTable[ac.name] || ac.name} />
+                    <FieldValueDisplay fieldName="Total liveries" value={`${sortedLiveries[ac.name].length} available`} />
+                  </Box>
+                </Box>
+                <Box mt={3} mb={3}>
+                  <Divider />
+                </Box>
+                <Box>
+                  <Typography variant="h6" gutterBottom>
+                    Liveries
+                  </Typography>
+                </Box>
+              </AccordionDetails>
             </Accordion>
           );
         })}
@@ -75,6 +75,37 @@ export default function FullTable(props) {
     </Box>
   );
 }
+
+/**
+ * @param {Object} props
+ * @param {string} props.fieldName Section title
+ * @param {React.ReactNode} props.value Section value/description
+ *
+ * @return {React.ReactNode}
+ */
+function FieldValueDisplay(props) {
+  const classes = makeStyles({
+    sectTitle: { textTransform: 'uppercase', marginBottom: 2 },
+  })();
+
+  const { fieldName, value } = props;
+
+  return (
+    <>
+      <Typography className={classes.sectTitle} variant="caption" color="textSecondary" component="h2">
+        {fieldName}
+      </Typography>
+      <Typography variant="body2" gutterBottom component="div">
+        {value}
+      </Typography>
+    </>
+  );
+}
+
+FieldValueDisplay.propTypes = {
+  fieldName: PropTypes.string.isRequired,
+  value: PropTypes.node.isRequired,
+};
 
 FullTable.propTypes = {
   sortedLiveries: PropTypes.objectOf(
