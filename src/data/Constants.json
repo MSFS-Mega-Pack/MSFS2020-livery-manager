@@ -1,10 +1,11 @@
 {
   "urls": {
     "managerRepo": "https://github.com/davwheat/MSFS2020-livery-manager",
-    "apiEndpoint": "https://msfs-liverypack-api.mrproper.dev/preview",
-    "devApiEndpoint": "http://localhost:2678/preview"
+    "apiEndpoint": "https://msfs-liverypack-api.mrproper.dev",
+    "devApiEndpoint": "http://localhost:2678"
   },
   "api": {
+    "version": "preview",
     "forceProdApi": true,
     "get": {
       "sourceList": "/get/sourcelist",
