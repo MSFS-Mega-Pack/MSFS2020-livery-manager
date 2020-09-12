@@ -10,11 +10,11 @@ import Article from './Article';
 
 export default function Feed() {
   /**
-   * @type {[import("../../../models/Feed/Feed").default, Function]}
+   * @type {[import("../../../models/Feed").default, Function]}
    */
   const [feed, setFeed] = useState(undefined);
   /**
-   * @type {[import("../../../models/Feed/Feed").default, Function]}
+   * @type {[import("../../../models/Feed").default, Function]}
    */
   const [fullHistory, setFullHistory] = useState(null);
 

@@ -8,7 +8,6 @@ const AllRoutes = Object.freeze({
   SPLASH_SCREEN: '/',
   SETUP: '/setup',
   MULTI_PAGE_HOME: '/home',
-  SETTINGS: '/settings',
 });
 
 export default Object.freeze([

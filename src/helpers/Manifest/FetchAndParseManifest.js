@@ -8,7 +8,7 @@ import ThrowError from '../ThrowError';
  * @export
  *
  * @param {string} url
- * @param {("sourceList"|"liverySource"|"aircraftManifest"|"liveryManifest"|"feed")=} manifestType
+ * @param {("feed")=} manifestType
  *
  * @return {Object} manifest JSON
  */

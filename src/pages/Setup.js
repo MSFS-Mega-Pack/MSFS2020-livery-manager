@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import { GetPackagesDirectory, ValidateFSDirectory } from '../helpers/MSFS/Directories';
 import { AllRoutes } from '../data/Routes';
 
-import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton, makeStyles, CircularProgress } from '@material-ui/core';
+import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton, makeStyles } from '@material-ui/core';
 import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
-// import LiverySourcesTable from '../components/LiveryManager/SourceListTable';
 
 import Navigate from '../helpers/Navigate';
 
@@ -17,7 +16,7 @@ import ConfigKeys from '../data/config-keys.json';
 export default function Setup() {
   const [page, setPage] = useState(1);
   const [nextButtonEnabled, setNextButtonEnabled] = useState(true);
-  const [data, setDataReal] = useState({ packageDir: undefined, liverySources: undefined });
+  const [data, setDataReal] = useState({ packageDir: undefined });
 
   if (page === 2) {
     if (!data.packageDir || data.packageDir.trim() === '') {
@@ -153,24 +152,6 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
   );
 }
 
-// function ChooseLiverySourcesPage({ data }) {
-//   return (
-//     <>
-//       <Typography gutterBottom component="h1" variant="h4">
-//         Loaded livery sources
-//       </Typography>
-//       <Typography gutterBottom component="p" variant="body1">
-//         You can add 3rd party livery pack sources after setup is complete.
-//       </Typography>
-//       {data.liverySources ? (
-//         <LiverySourcesTable sourceList={data.liverySources} />
-//       ) : (
-//         <CircularProgress style={{ margin: 'auto', marginTop: 32 }} />
-//       )}
-//     </>
-//   );
-// }
-
 /**
  * Generates a section of the [ExpandableRow] from a field name and value.
  *
@@ -204,19 +185,15 @@ SetupCompleteSummary.propTypes = {
   value: PropTypes.node.isRequired,
 };
 
-function SetupCompletePage({ data }) {
+function SetupCompletePage() {
   return (
     <>
       <Typography gutterBottom component="h1" variant="h4">
         Setup complete
       </Typography>
       <Typography gutterBottom component="p" variant="body1">
-        You&apos;re ready to take off! Here&apos;s a quick overview of what you&apos;ve chosen.
+        You&apos;re ready to take off!
       </Typography>
-      <Box marginTop={4} margin={1}>
-        <SetupCompleteSummary fieldName="Packages directory" value={data.packageDir} />
-        {/* <SetupCompleteSummary fieldName="Livery sources loaded" value={data.liverySources.length} /> */}
-      </Box>
     </>
   );
 }
@@ -224,7 +201,6 @@ function SetupCompletePage({ data }) {
 const PagePropTypes = {
   data: PropTypes.shape({
     packageDir: PropTypes.string.isRequired,
-    // liverySources: PropTypes.arrayOf(PropTypes.instanceOf(LiverySource)).isRequired,
   }).isRequired,
   setData: PropTypes.func.isRequired,
   setNextButtonEnabled: PropTypes.func.isRequired,
@@ -233,10 +209,6 @@ const PagePropTypes = {
 SimInstallDirectoryPage.propTypes = {
   ...PagePropTypes,
 };
-
-// ChooseLiverySourcesPage.propTypes = {
-//   ...PagePropTypes,
-// };
 
 SetupCompletePage.propTypes = {
   ...PagePropTypes,

@@ -44,7 +44,7 @@ E004: Malformed manifest (invalid JSON)
 
 - Provided manifest is invalid JSON (maybe was served an interstitial page, e.g. from Cloudflare)
 
-### E005
+### E005 - Deprecated
 
 ```
 E005: Invalid path <cfg/json path>
