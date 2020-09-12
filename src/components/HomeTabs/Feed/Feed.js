@@ -13,7 +13,7 @@ export default function Feed(props) {
    * @type {[FeedClass, Function]}
    */
   const [feed, setFeed] = [props.feed, props.setFeed];
-  
+
   /**
    * @type {[FeedClass, Function]}
    */
