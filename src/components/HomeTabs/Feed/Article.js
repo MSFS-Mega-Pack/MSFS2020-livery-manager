@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ArticleClass from '../../../models/Feed/Article';
+import ArticleClass from '../../../models/Article';
 import { Typography, makeStyles, Divider, Paper, Box } from '@material-ui/core';
 import MarkdownRenderer from '../../MarkdownRenderer';
 

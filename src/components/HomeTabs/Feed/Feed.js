@@ -5,7 +5,7 @@ import { Typography, CircularProgress, Link, Box, Button } from '@material-ui/co
 import GetActiveFeed from '../../../helpers/Feed/GetActiveFeed';
 import FetchAndParseJsonManifest from '../../../helpers/Manifest/FetchAndParseManifest';
 
-import ArticleClass from '../../../models/Feed/Article';
+import ArticleClass from '../../../models/Article';
 import Article from './Article';
 
 export default function Feed() {

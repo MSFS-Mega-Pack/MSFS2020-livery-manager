@@ -1,6 +1,6 @@
 import FetchAndParseJsonManifest from '../Manifest/FetchAndParseManifest';
 
-import Article from '../../models/Feed/Article';
+import Article from '../../models/Article';
 import Feed from '../../models/Feed';
 
 import Constants from '../../data/Constants.json';

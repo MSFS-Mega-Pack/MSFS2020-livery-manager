@@ -1,4 +1,4 @@
-import ThrowError from '../../helpers/ThrowError';
+import ThrowError from '../helpers/ThrowError';
 import dayjs from 'dayjs';
 
 /**
