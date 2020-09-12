@@ -1,14 +1,14 @@
 {
   "urls": {
     "managerRepo": "https://github.com/davwheat/MSFS2020-livery-manager",
-    "officialSourceList": "https://raw.githubusercontent.com/davwheat/MSFS2020-livery-sources/master/sources.json",
-    "feedUrl": "https://raw.githubusercontent.com/MSFS-Mega-Pack/MSFS2020-livery-sources/master/home-feed/feed.json",
-    "apiEndpoint": "https://megapack-api.davwheat.dev/preview",
+    "apiEndpoint": "https://msfs-liverypack-api.mrproper.dev/preview",
     "devApiEndpoint": "http://localhost:2678/preview"
   },
   "api": {
+    "forceProdApi": true,
     "get": {
-      "sourceList": "/get/sourcelist"
+      "sourceList": "/get/sourcelist",
+      "cdnFileListing": "/get/allfiles"
     }
   }
 }
