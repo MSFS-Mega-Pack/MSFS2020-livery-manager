@@ -8,25 +8,26 @@ import GetFeedHistory from '../../../helpers/Feed/GetFeedHistory';
 import FeedClass from '../../../models/Feed';
 import Article from './Article';
 
-export default function Feed() {
+export default function Feed(props) {
   /**
    * @type {[FeedClass, Function]}
    */
-  const [feed, setFeed] = useState(undefined);
+  const [feed, setFeed] = [props.feed, props.setFeed];
+  
   /**
    * @type {[FeedClass, Function]}
    */
-  const [fullHistory, setFullHistory] = useState(null);
+  const [fullHistory, setFullHistory] = [props.fullHistory, props.setFullHistory];
 
   if (typeof feed === 'undefined') {
     GetActiveFeed()
       .then(f => setFeed(f))
       .catch(() => setFeed(null));
-  }
 
-  if (typeof feed === 'undefined') {
+    console.log(feed);
+
     return (
-      <div style={{ display: 'flex', flex: '1', alignItems: 'center', justifyContent: 'center', marginTop: -64 }}>
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }}>
         <CircularProgress size={48} />
       </div>
     );

@@ -43,7 +43,7 @@ export default function MainPage(props) {
 
   const classes = useStyles();
 
-  const { children, onTabChange } = props;
+  const { children, onTabChange, scrollInnerStyle } = props;
 
   return (
     <>
@@ -59,7 +59,8 @@ export default function MainPage(props) {
           options={{ scrollbars: { visibility: 'hidden' } }}
           style={{
             flex: '1',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)',
+            maxWidth: '100%',
+            ...scrollInnerStyle,
           }}
         >
           {children}
@@ -72,4 +73,5 @@ export default function MainPage(props) {
 MainPage.propTypes = {
   children: PropTypes.node.isRequired,
   onTabChange: PropTypes.func.isRequired,
+  scrollInnerStyle: PropTypes.object,
 };
