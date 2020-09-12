@@ -3,27 +3,25 @@ import React, { useState } from 'react';
 import { Typography, CircularProgress, Link, Box, Button } from '@material-ui/core';
 
 import GetActiveFeed from '../../../helpers/Feed/GetActiveFeed';
-import FetchAndParseJsonManifest from '../../../helpers/Manifest/FetchAndParseManifest';
+import GetFeedHistory from '../../../helpers/Feed/GetFeedHistory';
 
-import ArticleClass from '../../../models/Article';
+import FeedClass from '../../../models/Feed';
 import Article from './Article';
 
 export default function Feed() {
   /**
-   * @type {[import("../../../models/Feed").default, Function]}
+   * @type {[FeedClass, Function]}
    */
   const [feed, setFeed] = useState(undefined);
   /**
-   * @type {[import("../../../models/Feed").default, Function]}
+   * @type {[FeedClass, Function]}
    */
   const [fullHistory, setFullHistory] = useState(null);
 
   if (typeof feed === 'undefined') {
     GetActiveFeed()
       .then(f => setFeed(f))
-      .catch(() => {
-        setFeed(null);
-      });
+      .catch(() => setFeed(null));
   }
 
   if (typeof feed === 'undefined') {
@@ -34,14 +32,25 @@ export default function Feed() {
     );
   }
 
-  if (feed === null) {
+  if (!(feed instanceof FeedClass)) {
     return (
       <div style={{ position: 'absolute', left: '50%', top: '50%', width: 'max-content', transform: 'translate(-50%,-50%)' }}>
         <Typography variant="h5" component="p">
           An error occurred while loading the news feed.
         </Typography>
         <Typography variant="caption" component="p" style={{ position: 'absolute', bottom: -24, right: 0, cursor: 'pointer' }}>
-          <Link onClick={() => alert("Feed was of value 'null'.")}>More info</Link>
+          <Link
+            onClick={() => {
+              let error = 'Unknown error';
+
+              if (typeof feed === 'string') error = feed;
+              else if (feed === null) error = 'Feed === null';
+
+              alert(error);
+            }}
+          >
+            More info
+          </Link>
         </Typography>
       </div>
     );
@@ -68,31 +77,8 @@ export default function Feed() {
               variant="outlined"
               onClick={async () => {
                 setFullHistory(false);
-
-                await FetchAndParseJsonManifest(feed.rootUrl + feed.historyUrl).then(async history => {
-                  let x = [];
-
-                  await Promise.all(
-                    history.fullHistory.map(async article => {
-                      let text;
-
-                      if (article.contentUrl) {
-                        text = await (await fetch(feed.rootUrl + article.contentUrl)).text();
-                      }
-
-                      const a = new ArticleClass({
-                        date: article.date,
-                        title: article.title,
-                        author: article.author,
-                        content: article.content || text,
-                      });
-
-                      x.push(a);
-                    })
-                  );
-
-                  setFullHistory(x);
-                });
+                const feed = await GetFeedHistory();
+                setFullHistory(feed);
               }}
               disabled={fullHistory === false}
             >

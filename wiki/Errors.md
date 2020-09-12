@@ -1,4 +1,4 @@
-### E001
+### E001 - Deprecated
 
 ```
 E001: Invalid manifest format
@@ -37,12 +37,12 @@ Attempted to fetch <url>
 ### E004
 
 ```
-E004: Malformed manifest (invalid JSON)
+E004: Malformed response (invalid JSON)
 ```
 
 #### Causes
 
-- Provided manifest is invalid JSON (maybe was served an interstitial page, e.g. from Cloudflare)
+- Response is invalid JSON (maybe was served an interstitial page, e.g. from Cloudflare)
 
 ### E005 - Deprecated
 

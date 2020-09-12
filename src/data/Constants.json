@@ -8,8 +8,10 @@
     "version": "preview",
     "forceProdApi": true,
     "get": {
-      "sourceList": "/get/sourcelist",
-      "cdnFileListing": "/get/allfiles"
+      "cdnFileListing": "get/allfiles",
+      "feed": "get/feed/current",
+      "feedHistory": "get/feed/history",
+      "article": "get/feed/article"
     }
   }
 }

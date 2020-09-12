@@ -6,12 +6,12 @@ import Feed from '../../models/Feed';
 import Constants from '../../data/Constants.json';
 import ActiveApiEndpoint from '../../data/ActiveApiEndpoint';
 
-export default async function GetActiveFeed() {
+export default async function GetFeedHistory() {
   let feed;
   try {
-    feed = (await FetchAndParseJsonManifest(`${ActiveApiEndpoint}/${Constants.api.get.feed}`)).data;
+    feed = (await FetchAndParseJsonManifest(`${ActiveApiEndpoint}/${Constants.api.get.feedHistory}`)).data;
   } catch {
-    return 'Failed to fetch current feed from API.';
+    return 'Failed to fetch feed history from API.';
   }
 
   /** @type {Article[]} */
@@ -45,5 +45,5 @@ export default async function GetActiveFeed() {
 
   feedArticles = feedArticles.sort((a, b) => b.date - a.date);
 
-  return new Feed(feed.formatVersion, feed.formatType, feedArticles, feed.isMoreHistoryAvailable);
+  return new Feed(feed.formatVersion, feed.formatType, feedArticles);
 }

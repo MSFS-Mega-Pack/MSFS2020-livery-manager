@@ -1,8 +1,6 @@
 export default class Feed {
   #formatVersion;
   #formatType;
-  #rootUrl;
-  #history;
   #feed;
   #isMoreHistoryAvailable;
 
@@ -11,16 +9,12 @@ export default class Feed {
    *
    * @param {Number} formatVersion
    * @param {String} formatType
-   * @param {String} rootUrl
-   * @param {String} history
-   * @param {Boolean} isMoreHistoryAvailable
+   * @param {Boolean=false} isMoreHistoryAvailable
    * @param {import('./Article').default[]} feed
    */
-  constructor(formatVersion, formatType, rootUrl, history, isMoreHistoryAvailable, feed) {
+  constructor(formatVersion, formatType, feed, isMoreHistoryAvailable = false) {
     this.#formatVersion = formatVersion;
     this.#formatType = formatType;
-    this.#rootUrl = rootUrl;
-    this.#history = history;
     this.#feed = feed;
     this.#isMoreHistoryAvailable = isMoreHistoryAvailable;
   }
@@ -43,26 +37,6 @@ export default class Feed {
    */
   get formatType() {
     return this.#formatType;
-  }
-
-  /**
-   * @type {String}
-   *
-   * @readonly
-   * @memberof Feed
-   */
-  get rootUrl() {
-    return this.#rootUrl;
-  }
-
-  /**
-   * @type {String}
-   *
-   * @readonly
-   * @memberof Feed
-   */
-  get historyUrl() {
-    return this.#history;
   }
 
   /**
