@@ -67,7 +67,7 @@
     "electron-installer-windows": "^3.0.0",
     "electron-packager": "^15.1.0",
     "eslint": "^7.8.1",
-    "eslint-plugin-jsdoc": "^30.4.0",
+    "eslint-plugin-jsdoc": "^30.4.2",
     "eslint-plugin-react": "^7.20.6",
     "file-loader": "^6.1.0",
     "html-webpack-plugin": "^4.4.1",
