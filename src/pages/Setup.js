@@ -152,39 +152,6 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
   );
 }
 
-/**
- * Generates a section of the [ExpandableRow] from a field name and value.
- *
- * @param {Object} props
- * @param {string} props.fieldName Section title
- * @param {React.ReactNode} props.value Section value/description
- *
- * @return {React.ReactNode}
- */
-function SetupCompleteSummary(props) {
-  const classes = makeStyles({
-    sectTitle: { textTransform: 'uppercase', marginBottom: 2 },
-  })();
-
-  const { fieldName, value } = props;
-
-  return (
-    <>
-      <Typography className={classes.sectTitle} variant="caption" color="textSecondary" component="h2">
-        {fieldName}
-      </Typography>
-      <Typography variant="body2" gutterBottom component="div">
-        {value}
-      </Typography>
-    </>
-  );
-}
-
-SetupCompleteSummary.propTypes = {
-  fieldName: PropTypes.string.isRequired,
-  value: PropTypes.node.isRequired,
-};
-
 function SetupCompletePage() {
   return (
     <>
@@ -215,9 +182,5 @@ SetupCompletePage.propTypes = {
 };
 
 WelcomePage.propTypes = {
-  ...PagePropTypes,
-};
-
-SetupCompletePage.propTypes = {
   ...PagePropTypes,
 };
