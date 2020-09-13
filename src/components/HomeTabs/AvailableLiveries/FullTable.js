@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Accordion, AccordionDetails, AccordionSummary, Box, Divider, makeStyles, Typography } from '@material-ui/core';
@@ -6,6 +6,8 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Divider, makeStyles
 import ExpandIcon from 'mdi-react/ExpandMoreIcon';
 
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
+import LiveryList from './LiveryList';
+import FieldValueDisplay from './FieldValueDisplay';
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -29,8 +31,38 @@ const useStyles = makeStyles(theme => ({
  * @return {React.ReactNode}
  */
 export default function FullTable(props) {
-  const { sortedLiveries, allAircraft } = props;
+  const { sortedLiveries, allAircraft, selectedLiveriesUpdated } = props;
   const classes = useStyles();
+
+  const [selectedLiveries, setSelectedLiveries] = useState([]);
+
+  /**
+   * Checks if an object is in the selected livs array. This only works with objects only containing JSON types.
+   *
+   * @param {object} obj
+   * @return {boolean}
+   */
+  function GetIndexOfObjectInArray(obj) {
+    return selectedLiveries.findIndex(o => JSON.stringify(o) === JSON.stringify(obj));
+  }
+
+  function AddSelectedLivery(liv) {
+    if (GetIndexOfObjectInArray(liv) === -1) {
+      let x = [...selectedLiveries, liv];
+      setSelectedLiveries(x);
+      selectedLiveriesUpdated(x);
+    }
+  }
+
+  function RemoveSelectedLivery(liv) {
+    const index = GetIndexOfObjectInArray(liv);
+    if (index !== -1) {
+      let x = [...selectedLiveries];
+      x.splice(index, 1);
+      setSelectedLiveries(x);
+      selectedLiveriesUpdated(x);
+    }
+  }
 
   return (
     <Box>
@@ -44,7 +76,7 @@ export default function FullTable(props) {
       <Box>
         {allAircraft.map(ac => {
           return (
-            <Accordion key={ac.name}>
+            <Accordion TransitionProps={{ unmountOnExit: true }} key={ac.name}>
               <AccordionSummary expandIcon={<ExpandIcon />}>
                 <Typography className={classes.heading}>{PlaneNameTable[ac.name] || ac.name}</Typography>
                 <Typography className={classes.secondaryHeading}>{sortedLiveries[ac.name].length} liveries available</Typography>
@@ -66,6 +98,12 @@ export default function FullTable(props) {
                   <Typography variant="h6" gutterBottom>
                     Liveries
                   </Typography>
+                  <LiveryList
+                    liveries={sortedLiveries[ac.name]}
+                    GetIndexOfObjectInArray={GetIndexOfObjectInArray}
+                    AddSelectedLivery={AddSelectedLivery}
+                    RemoveSelectedLivery={RemoveSelectedLivery}
+                  />
                 </Box>
               </AccordionDetails>
             </Accordion>
@@ -75,37 +113,6 @@ export default function FullTable(props) {
     </Box>
   );
 }
-
-/**
- * @param {Object} props
- * @param {string} props.fieldName Section title
- * @param {React.ReactNode} props.value Section value/description
- *
- * @return {React.ReactNode}
- */
-function FieldValueDisplay(props) {
-  const classes = makeStyles({
-    sectTitle: { textTransform: 'uppercase', marginBottom: 2 },
-  })();
-
-  const { fieldName, value } = props;
-
-  return (
-    <>
-      <Typography className={classes.sectTitle} variant="caption" color="textSecondary" component="h2">
-        {fieldName}
-      </Typography>
-      <Typography variant="body2" gutterBottom component="div">
-        {value}
-      </Typography>
-    </>
-  );
-}
-
-FieldValueDisplay.propTypes = {
-  fieldName: PropTypes.string.isRequired,
-  value: PropTypes.node.isRequired,
-};
 
 FullTable.propTypes = {
   sortedLiveries: PropTypes.objectOf(
@@ -125,4 +132,5 @@ FullTable.propTypes = {
     )
   ),
   allAircraft: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string.isRequired, thumbnail: PropTypes.string })),
+  selectedLiveriesUpdated: PropTypes.func.isRequired,
 };
