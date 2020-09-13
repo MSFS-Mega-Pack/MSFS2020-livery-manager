@@ -63,7 +63,7 @@ function ListRow(props) {
           fieldName="Version"
           value={
             <Tooltip title="The version is a single unique string that represents the contents of all files in the livery">
-              {livery.checkSum.substr(0, 8)}
+              <span style={{ borderBottom: '#aaaa dotted 2px', cursor: 'help' }}>{livery.checkSum.substr(0, 8)}</span>
             </Tooltip>
           }
         />
