@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Paper, Tabs, Tab, makeStyles } from '@material-ui/core';
+import { Paper, Tabs, Tab } from '@material-ui/core';
 
 import HomeIcon from 'mdi-react/HomeIcon';
 
