@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 
-import { Box, Button, CircularProgress, Paper, Typography } from '@material-ui/core';
+import { Box, Button, CircularProgress, Paper, Tooltip, Typography } from '@material-ui/core';
 import FullTable from './FullTable';
 
 import dayjs from 'dayjs';
@@ -10,25 +11,71 @@ import ActiveApiEndpoint from '../../../data/ActiveApiEndpoint';
 import Constants from '../../../data/Constants.json';
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
 
+const RefreshInterval = 10 * 1000;
+
 export default function AvailableLiveries(props) {
   const { fileListing, setFileListing } = props;
   let aircraft = [],
     sortedLiveries = {};
 
-  function UpdateFileList() {
+  const [refreshing, setRefreshing] = useState(false);
+  const [justRefreshed, setJustRefreshed] = useState(false);
+
+  const refreshBtnRef = useRef(null);
+
+  useEffect(() => {
+    let key;
+
+    if (justRefreshed) {
+      key = setInterval(() => {
+        let now = new Date().getTime();
+
+        if (now > justRefreshed + RefreshInterval) {
+          setJustRefreshed(false);
+          refreshBtnRef.current.innerText = `Refresh`;
+          clearInterval(key);
+        } else {
+          const msLeft = justRefreshed + RefreshInterval - now;
+          const sLeft = msLeft / 1000;
+
+          refreshBtnRef.current.innerHTML = `Wait <span style="text-align: right; display: inline-block; width: 4ch; padding-left: 4px;">${
+            Math.ceil(sLeft * 10) / 10
+          }s</span>`;
+        }
+      }, 100);
+    }
+
+    return () => {
+      clearInterval(key);
+    };
+  }, [justRefreshed, setJustRefreshed]);
+
+  function UpdateFileList(callback) {
     FetchAndParseManifest(`${ActiveApiEndpoint}/${Constants.api.get.cdnFileListing}`)
-      .then(d => setFileListing({ checkedAt: new Date().getTime(), ...d }))
+      .then(d => {
+        setFileListing({ checkedAt: new Date().getTime(), ...d });
+        typeof callback === 'function' && callback();
+      })
       .catch(() => setFileListing(null));
   }
 
+  const loading = (
+    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', textAlign: 'center' }}>
+      <CircularProgress style={{ margin: 'auto', marginBottom: 24 }} size={64} />
+      <Typography variant="body1" style={{ paddingBottom: 2 }}>
+        Loading...
+      </Typography>
+      <Typography variant="body2" color="textSecondary">
+        This can take up to a minute
+      </Typography>
+    </div>
+  );
+
   if (typeof fileListing === 'undefined') {
     UpdateFileList();
-
-    return (
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }}>
-        <CircularProgress size={48} />
-      </div>
-    );
+    return loading;
+  } else if (refreshing) {
+    return loading;
   } else if (fileListing && fileListing.data && fileListing.data.fileList) {
     // Create array of all aircraft with liveries, along with a thumbnail image
     const m = new Map();
@@ -81,7 +128,23 @@ export default function AvailableLiveries(props) {
           </Typography>
           <Box flex={1} />
           <Box>
-            <Button>Refresh</Button>
+            <Tooltip title={justRefreshed ? `Rate limiting is in effect: you need to wait ${RefreshInterval / 1000}s between refreshes` : ''}>
+              <span>
+                <Button
+                  disabled={refreshing || justRefreshed}
+                  onClick={() => {
+                    setRefreshing(true);
+                    UpdateFileList(() => {
+                      setRefreshing(false);
+                      setJustRefreshed(new Date().getTime());
+                    });
+                  }}
+                  ref={refreshBtnRef}
+                >
+                  Refresh
+                </Button>
+              </span>
+            </Tooltip>
           </Box>
         </Box>
       </Paper>
@@ -89,3 +152,27 @@ export default function AvailableLiveries(props) {
     </div>
   );
 }
+
+AvailableLiveries.propTypes = {
+  setFileListing: PropTypes.func.isRequired,
+  fileListing: PropTypes.shape({
+    checkedAt: PropTypes.number.isRequired,
+    data: PropTypes.shape({
+      cdnBaseUrl: PropTypes.string.isRequired,
+      fileList: PropTypes.arrayOf(
+        PropTypes.shape({
+          airplane: PropTypes.string.isRequired,
+          fileName: PropTypes.string.isRequired,
+          generation: PropTypes.string.isRequired,
+          metaGeneration: PropTypes.string.isRequired,
+          lastModified: PropTypes.string.isRequired,
+          ETag: PropTypes.string.isRequired,
+          size: PropTypes.string.isRequired,
+          checkSum: PropTypes.string.isRequired,
+          image: PropTypes.string,
+          smallImage: PropTypes.string,
+        }).isRequired
+      ),
+    }),
+  }),
+};

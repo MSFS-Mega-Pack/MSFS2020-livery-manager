@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Typography, CircularProgress, Link, Box, Button } from '@material-ui/core';
 
@@ -92,3 +93,27 @@ export default function Feed(props) {
     </div>
   );
 }
+
+Feed.propTypes = {
+  fullHistory: PropTypes.arrayOf(
+    PropTypes.shape({
+      date: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      author: PropTypes.string.isRequired,
+      article: PropTypes.string.isRequired,
+    }).isRequired
+  ),
+  setFullHistory: PropTypes.func.isRequired,
+  feed: PropTypes.shape({
+    isMoreHistoryAvailable: PropTypes.bool.isRequired,
+    feed: PropTypes.arrayOf(
+      PropTypes.shape({
+        date: PropTypes.instanceOf(Date).isRequired,
+        title: PropTypes.string.isRequired,
+        author: PropTypes.string.isRequired,
+        article: PropTypes.string,
+      }).isRequired
+    ).isRequired,
+  }),
+  setFeed: PropTypes.func.isRequired,
+};

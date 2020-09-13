@@ -7,12 +7,6 @@ import HomeIcon from 'mdi-react/HomeIcon';
 
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 
-const useStyles = makeStyles({
-  root: {
-    // flexGrow: 1,
-  },
-});
-
 export default function MainPage(props) {
   const TABS = [
     {
@@ -41,25 +35,25 @@ export default function MainPage(props) {
     onTabChange(TABS[newValue].label);
   };
 
-  const classes = useStyles();
-
   const { children, onTabChange, scrollInnerStyle } = props;
 
   return (
     <>
-      <Paper className={classes.root}>
+      <Paper>
         <Tabs value={selectedTab} onChange={handleChange} indicatorColor="primary" textColor="primary" centered>
           {TABS.map(tab => (
             <Tab key={tab.label + tab.path} icon={tab.icon} label={tab.iconOnly ? null : tab.label} aria-label={tab.label} />
           ))}
         </Tabs>
       </Paper>
-      <main style={{ padding: 16, paddingBottom: 0, maxHeight: 'calc(100vh - 124px)', marginTop: 16, flex: '1', display: 'flex' }}>
+      <main style={{ maxHeight: 'calc(100vh - 124px)', marginTop: 16, flex: '1', display: 'flex' }}>
         <OverlayScrollbarsComponent
           options={{ scrollbars: { visibility: 'hidden' } }}
           style={{
             flex: '1',
             maxWidth: '100%',
+            padding: 16,
+            paddingBottom: 0,
             ...scrollInnerStyle,
           }}
         >

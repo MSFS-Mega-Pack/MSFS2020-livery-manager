@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { GetPackagesDirectory, ValidateFSDirectory } from '../helpers/MSFS/Directories';
 import { AllRoutes } from '../data/Routes';
 
-import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton, makeStyles } from '@material-ui/core';
+import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton } from '@material-ui/core';
 import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
 
 import Navigate from '../helpers/Navigate';
