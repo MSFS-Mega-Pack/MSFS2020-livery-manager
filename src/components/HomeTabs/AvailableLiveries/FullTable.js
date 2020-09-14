@@ -13,7 +13,7 @@ import AircraftAccordion from './AircraftAccordion';
  * @return {React.ReactNode}
  */
 export default function FullTable(props) {
-  const { sortedLiveries, allAircraft, selectedLiveriesUpdated } = props;
+  const { sortedLiveries, allAircraft, selectedLiveriesUpdated, disabled } = props;
 
   const [selectedLiveries, setSelectedLiveries] = useState([]);
 
@@ -28,6 +28,9 @@ export default function FullTable(props) {
   }
 
   function AddSelectedLivery(liv) {
+    // Don't edit the list if it's disabled! (Duh!!)
+    if (disabled) return;
+
     if (Array.isArray(liv)) {
       setSelectedLiveries(selectedLiveries => {
         let x = [...selectedLiveries];
@@ -39,7 +42,6 @@ export default function FullTable(props) {
         });
 
         selectedLiveriesUpdated(x);
-        console.log(x);
         return x;
       });
     } else {
@@ -49,12 +51,16 @@ export default function FullTable(props) {
           selectedLiveriesUpdated(x);
           return x;
         }
+
         return selectedLiveries;
       });
     }
   }
 
   function RemoveSelectedLivery(liv) {
+    // Don't edit the list if it's disabled! (Duh!!)
+    if (disabled) return;
+
     setSelectedLiveries(selectedLiveries => {
       const index = GetIndexOfObjectInArray(liv, selectedLiveries);
 
@@ -82,6 +88,7 @@ export default function FullTable(props) {
       <Box>
         {allAircraft.map(ac => (
           <AircraftAccordion
+            disabled={disabled}
             key={ac.name}
             aircraft={ac}
             sortedLiveries={sortedLiveries}
@@ -114,8 +121,10 @@ FullTable.propTypes = {
   ),
   allAircraft: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string.isRequired, thumbnail: PropTypes.string })),
   selectedLiveriesUpdated: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 FullTable.defaultProps = {
   selectedLiveriesUpdated: () => {},
+  disabled: false,
 };

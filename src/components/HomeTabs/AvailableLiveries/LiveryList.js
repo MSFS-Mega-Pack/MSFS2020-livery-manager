@@ -10,7 +10,7 @@ import FieldValueDisplay from './FieldValueDisplay';
 import Constants from '../../../data/Constants.json';
 
 export default function LiveryList(props) {
-  const { liveries, GetIndexOfObjectInArray, AddSelectedLivery, RemoveSelectedLivery } = props;
+  const { liveries, GetIndexOfObjectInArray, AddSelectedLivery, RemoveSelectedLivery, disabled } = props;
 
   return (
     <List dense>
@@ -27,6 +27,7 @@ export default function LiveryList(props) {
               GetIndexOfObjectInArray={GetIndexOfObjectInArray}
               AddSelectedLivery={AddSelectedLivery}
               RemoveSelectedLivery={RemoveSelectedLivery}
+              disabled={disabled}
             />
           );
         }}
@@ -36,13 +37,16 @@ export default function LiveryList(props) {
 }
 
 function ListRow(props) {
-  const { livery, GetIndexOfObjectInArray, AddSelectedLivery, RemoveSelectedLivery } = props;
+  const { livery, GetIndexOfObjectInArray, AddSelectedLivery, RemoveSelectedLivery, disabled } = props;
 
   const [isExpanded, setIsExpanded] = useState(false);
 
   const Checked = GetIndexOfObjectInArray(livery) !== -1;
 
   async function ToggleCheckbox(e) {
+    // Don't edit the list if it's disabled! (Duh!!)
+    if (disabled) return;
+
     e.stopPropagation();
     e.preventDefault();
 
@@ -61,7 +65,7 @@ function ListRow(props) {
     <>
       <ListItem button disableRipple onClick={ToggleCheckbox}>
         <ListItemIcon>
-          <Checkbox color="primary" edge="start" checked={Checked} onChange={ToggleCheckbox} />
+          <Checkbox disabled={disabled} color="primary" edge="start" checked={Checked} onChange={ToggleCheckbox} />
         </ListItemIcon>
         <ListItemText primary={livery.fileName.substr(livery.fileName.indexOf('/') + 1).split('.zip')[0]} />
         <Tooltip title={!isExpanded ? 'Show livery info' : 'Hide livery info'}>
@@ -124,6 +128,7 @@ LiveryList.propTypes = {
   GetIndexOfObjectInArray: PropTypes.func.isRequired,
   AddSelectedLivery: PropTypes.func.isRequired,
   RemoveSelectedLivery: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 ListRow.propTypes = {
@@ -142,4 +147,5 @@ ListRow.propTypes = {
   GetIndexOfObjectInArray: PropTypes.func.isRequired,
   AddSelectedLivery: PropTypes.func.isRequired,
   RemoveSelectedLivery: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };

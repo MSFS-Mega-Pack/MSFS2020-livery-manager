@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function AircraftAccordion(props) {
-  const { aircraft, sortedLiveries, GetIndexOfObjectInArray, AddSelectedLivery, RemoveSelectedLivery } = props;
+  const { aircraft, sortedLiveries, GetIndexOfObjectInArray, AddSelectedLivery, RemoveSelectedLivery, disabled } = props;
   const classes = useStyles();
 
   return (
@@ -54,6 +54,7 @@ export default function AircraftAccordion(props) {
             Liveries
           </Typography>
           <LiveryList
+            disabled={disabled}
             liveries={sortedLiveries[aircraft.name]}
             GetIndexOfObjectInArray={GetIndexOfObjectInArray}
             AddSelectedLivery={AddSelectedLivery}
@@ -89,4 +90,5 @@ AircraftAccordion.propTypes = {
   GetIndexOfObjectInArray: PropTypes.func.isRequired,
   AddSelectedLivery: PropTypes.func.isRequired,
   RemoveSelectedLivery: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
