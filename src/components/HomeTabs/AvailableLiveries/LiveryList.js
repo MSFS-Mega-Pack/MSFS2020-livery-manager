@@ -7,6 +7,7 @@ import { Box, Checkbox, Collapse, Divider, IconButton, List, ListItem, ListItemI
 import ExpandIcon from 'mdi-react/ExpandMoreIcon';
 
 import FieldValueDisplay from './FieldValueDisplay';
+import Constants from '../../../data/Constants.json';
 
 export default function LiveryList(props) {
   const { liveries, GetIndexOfObjectInArray, AddSelectedLivery, RemoveSelectedLivery } = props;
@@ -91,7 +92,7 @@ function ListRow(props) {
               <Box component="figure" p={1}>
                 <img
                   style={{ display: 'block', maxWidth: 350, objectFit: 'contain', margin: 'auto' }}
-                  src={livery.image || livery.smallImage}
+                  src={`${Constants.urls.cdnEndpoint}/${livery.image}` || `${Constants.urls.cdnEndpoint}/${livery.smallImage}`}
                   alt="No image available"
                 />
               </Box>
