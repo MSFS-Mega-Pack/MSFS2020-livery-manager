@@ -87,12 +87,12 @@ function ListRow(props) {
             }
           />
           <FieldValueDisplay
-            fieldName="Version"
+            fieldName="Thumbnail"
             value={
               <Box component="figure" p={1}>
                 <img
-                  style={{ display: 'block', maxWidth: 350, objectFit: 'contain', margin: 'auto' }}
-                  src={`${Constants.urls.cdnEndpoint}/${livery.image}` || `${Constants.urls.cdnEndpoint}/${livery.smallImage}`}
+                  style={{ display: 'block', maxWidth: 450, maxHeight: 400, objectFit: 'contain' }}
+                  src={`${Constants.urls.cdnEndpoint}/${livery.image || livery.smallImage}`}
                   alt="No image available"
                 />
               </Box>
