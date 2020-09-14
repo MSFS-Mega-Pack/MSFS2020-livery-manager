@@ -39,6 +39,7 @@ export default function FullTable(props) {
         });
 
         selectedLiveriesUpdated(x);
+        console.log(x);
         return x;
       });
     } else {
@@ -54,15 +55,19 @@ export default function FullTable(props) {
   }
 
   function RemoveSelectedLivery(liv) {
-    const index = GetIndexOfObjectInArray(liv);
-    if (index !== -1) {
-      setSelectedLiveries(selectedLiveries => {
-        let x = [...selectedLiveries, liv];
-        x.splice(index, 1);
-        selectedLiveriesUpdated(x);
-        return x;
-      });
-    }
+    setSelectedLiveries(selectedLiveries => {
+      const index = GetIndexOfObjectInArray(liv, selectedLiveries);
+
+      if (index === -1) {
+        // Livery already isn't in the array
+        return selectedLiveries;
+      }
+
+      let x = [...selectedLiveries];
+      x.splice(index, 1);
+      selectedLiveriesUpdated(x);
+      return x;
+    });
   }
 
   return (

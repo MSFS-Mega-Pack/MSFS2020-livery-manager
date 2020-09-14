@@ -44,17 +44,18 @@ function ListRow(props) {
 
   async function ToggleCheckbox(e) {
     e.stopPropagation();
+    e.preventDefault();
 
     console.log(Checked);
 
     if (!Checked) {
-      GetIndexOfObjectInArray(livery) === -1 && AddSelectedLivery(livery);
+      console.log('Adding livery ', livery.fileName);
+      AddSelectedLivery(livery);
     } else {
-      GetIndexOfObjectInArray(livery) !== -1 && RemoveSelectedLivery(livery);
+      console.log('Removing livery ', livery.fileName);
+      RemoveSelectedLivery(livery);
     }
   }
-
-  console.log(livery);
 
   return (
     <>
@@ -99,7 +100,6 @@ function ListRow(props) {
             }
           />
         </Box>
-
         <Divider />
       </Collapse>
     </>
