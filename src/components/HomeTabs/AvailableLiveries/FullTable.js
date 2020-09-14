@@ -62,17 +62,35 @@ export default function FullTable(props) {
     if (disabled) return;
 
     setSelectedLiveries(selectedLiveries => {
-      const index = GetIndexOfObjectInArray(liv, selectedLiveries);
+      if (Array.isArray(liv)) {
+        let x = [...selectedLiveries];
 
-      if (index === -1) {
-        // Livery already isn't in the array
-        return selectedLiveries;
+        liv.forEach(l => {
+          const index = GetIndexOfObjectInArray(l, x);
+
+          if (index === -1) {
+            // Livery already isn't in the array
+            return;
+          }
+
+          x.splice(index, 1);
+        });
+
+        selectedLiveriesUpdated(x);
+        return x;
+      } else {
+        const index = GetIndexOfObjectInArray(liv, selectedLiveries);
+
+        if (index === -1) {
+          // Livery already isn't in the array
+          return selectedLiveries;
+        }
+
+        let x = [...selectedLiveries];
+        x.splice(index, 1);
+        selectedLiveriesUpdated(x);
+        return x;
       }
-
-      let x = [...selectedLiveries];
-      x.splice(index, 1);
-      selectedLiveriesUpdated(x);
-      return x;
     });
   }
 
