@@ -112,8 +112,8 @@ export default function AvailableLiveries(props) {
 
   return (
     <div>
-      <Paper style={{ marginBottom: 16 }}>
-        <Box p={2} display="flex" flexDirection="row">
+      <Paper style={{ marginBottom: 16, marginTop: -8 }} variant="outlined">
+        <Box px={2} py={1} display="flex" flexDirection="row">
           <Typography color="textSecondary" variant="body2" style={{ lineHeight: '33px' }}>
             Last updated: {dayjs(fileListing && fileListing.checkedAt).format('D MMM YYYY, h:mm A') || 'unknown'}
           </Typography>
