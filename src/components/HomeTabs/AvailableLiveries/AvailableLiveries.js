@@ -155,9 +155,9 @@ export default function AvailableLiveries(props) {
             if (isInstalling) return;
 
             setIsInstalling(true);
-            selectedLiveries.forEach(livery =>{
+            selectedLiveries.forEach(livery => {
               InstallAddon(livery);
-            })
+            });
           }}
           style={{ position: 'fixed', bottom: 24, right: 24 }}
           color="primary"
