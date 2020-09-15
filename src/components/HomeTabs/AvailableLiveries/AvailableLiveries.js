@@ -131,7 +131,7 @@ export default function AvailableLiveries(props) {
             <Tooltip title={justRefreshed ? `Rate limiting is in effect: you need to wait ${RefreshInterval / 1000}s between refreshes` : ''}>
               <span>
                 <Button
-                  disabled={refreshing || justRefreshed}
+                  disabled={justRefreshed}
                   onClick={() => {
                     setRefreshing(true);
                     UpdateFileList(() => {
