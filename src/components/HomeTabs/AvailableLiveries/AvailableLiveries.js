@@ -124,7 +124,7 @@ export default function AvailableLiveries(props) {
       <Paper style={{ marginBottom: 16 }}>
         <Box p={2} display="flex" flexDirection="row">
           <Typography color="textSecondary" variant="body2" style={{ lineHeight: '33px' }}>
-            Last updated: {dayjs(fileListing.checkedAt).format('D MMM YYYY, h:mm A') || 'unknown'}
+            Last updated: {dayjs(fileListing && fileListing.checkedAt).format('D MMM YYYY, h:mm A') || 'unknown'}
           </Typography>
           <Box flex={1} />
           <Box>
