@@ -96,7 +96,7 @@ function ListRow(props) {
             value={
               <Box component="figure" p={1}>
                 <img
-                  style={{ display: 'block', maxWidth: 450, maxHeight: 400, objectFit: 'contain' }}
+                  style={{ display: 'block', maxWidth: '100%', maxHeight: 400, objectFit: 'contain' }}
                   src={`${Constants.urls.cdnEndpoint}/${livery.image || livery.smallImage}`}
                   alt="No image available"
                 />
