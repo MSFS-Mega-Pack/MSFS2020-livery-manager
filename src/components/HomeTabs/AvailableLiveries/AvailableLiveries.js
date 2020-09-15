@@ -64,9 +64,19 @@ export default function AvailableLiveries(props) {
 
   if (typeof fileListing === 'undefined') {
     UpdateFileList();
-    return loading;
+    return (
+      <>
+        <RefreshBox justRefreshed={true} lastCheckedTime={'checking now...'} />
+        {loading}
+      </>
+    );
   } else if (refreshing) {
-    return loading;
+    return (
+      <>
+        <RefreshBox justRefreshed={true} lastCheckedTime={'refreshing...'} />
+        {loading}
+      </>
+    );
   } else if (fileListing && fileListing.data && fileListing.data.fileList) {
     // Create array of all aircraft with liveries, along with a thumbnail image
     const m = new Map();
@@ -112,34 +122,17 @@ export default function AvailableLiveries(props) {
 
   return (
     <div>
-      <Paper style={{ marginBottom: 16, marginTop: -8 }} variant="outlined">
-        <Box px={2} py={1} display="flex" flexDirection="row">
-          <Typography color="textSecondary" variant="body2" style={{ lineHeight: '33px' }}>
-            Last updated: {dayjs(fileListing && fileListing.checkedAt).format('D MMM YYYY, h:mm A') || 'unknown'}
-          </Typography>
-          <Box flex={1} />
-          <Box>
-            <Tooltip title={justRefreshed ? `Rate limiting is in effect: you need to wait ${RefreshInterval / 1000}s between refreshes` : ''}>
-              <span>
-                <IconButton
-                  color="primary"
-                  size="small"
-                  disabled={justRefreshed}
-                  onClick={() => {
-                    setRefreshing(true);
-                    UpdateFileList(() => {
-                      setRefreshing(false);
-                      setJustRefreshed(new Date().getTime());
-                    });
-                  }}
-                >
-                  <RefreshIcon />
-                </IconButton>
-              </span>
-            </Tooltip>
-          </Box>
-        </Box>
-      </Paper>
+      <RefreshBox
+        justRefreshed={justRefreshed}
+        lastCheckedTime={fileListing && fileListing.checkedAt}
+        onRefresh={() => {
+          setRefreshing(true);
+          UpdateFileList(() => {
+            setRefreshing(false);
+            setJustRefreshed(new Date().getTime());
+          });
+        }}
+      />
       {fileListing && <FullTable sortedLiveries={sortedLiveries} allAircraft={aircraft} />}
     </div>
   );
@@ -167,4 +160,37 @@ AvailableLiveries.propTypes = {
       ),
     }),
   }),
+};
+
+function RefreshBox(props) {
+  const { lastCheckedTime, justRefreshed, onRefresh } = props;
+
+  return (
+    <Paper style={{ marginBottom: 16, marginTop: -8 }} variant="outlined">
+      <Box px={2} py={1} display="flex" flexDirection="row">
+        <Typography color="textSecondary" variant="body2" style={{ lineHeight: '33px' }}>
+          Last updated:{' '}
+          {typeof lastCheckedTime === 'string' ? lastCheckedTime : dayjs(lastCheckedTime).format('D MMM YYYY, h:mm A') || 'unknown'}
+        </Typography>
+        <Box flex={1} />
+        <Box>
+          <Tooltip
+            title={justRefreshed ? `Rate limiting is in effect: you need to wait at least ${RefreshInterval / 1000}s between refreshes` : ''}
+          >
+            <span>
+              <IconButton color="primary" size="small" disabled={justRefreshed} onClick={onRefresh}>
+                <RefreshIcon />
+              </IconButton>
+            </span>
+          </Tooltip>
+        </Box>
+      </Box>
+    </Paper>
+  );
+}
+
+RefreshBox.propTypes = {
+  lastCheckedTime: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
+  justRefreshed: PropTypes.bool,
+  onRefresh: PropTypes.func,
 };
