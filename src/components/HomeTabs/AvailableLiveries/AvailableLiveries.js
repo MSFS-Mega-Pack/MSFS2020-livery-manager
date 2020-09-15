@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Box, CircularProgress, IconButton, Paper, Tooltip, Typography } from '@material-ui/core';
