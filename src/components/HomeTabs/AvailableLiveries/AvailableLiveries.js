@@ -190,7 +190,7 @@ function RefreshBox(props) {
 }
 
 RefreshBox.propTypes = {
-  lastCheckedTime: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
+  lastCheckedTime: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   justRefreshed: PropTypes.bool,
   onRefresh: PropTypes.func,
 };
