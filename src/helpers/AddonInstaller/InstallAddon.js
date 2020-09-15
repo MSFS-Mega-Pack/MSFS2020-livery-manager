@@ -1,22 +1,26 @@
 import fs from 'fs';
+import Path from 'path';
+
 import admzip from 'adm-zip';
 import request from 'request';
+import Config from 'electron-json-config';
+
 import ThrowError from '../ThrowError';
-import GetPackagesDirectory from '../MSFS/Directories/GetPackagesDirectory';
-import constants from '../../data/Constants.json';
+
+import Constants from '../../data/Constants.json';
+import ConfigKeys from '../../data/config-keys.json';
 
 /**
- * Set path to a CFG file
+ * Download and install an addon
  *
  * @export
  * @argument {Object} PlaneObject  Pass the PlaneObject from the API
  */
-export default async function installAddon(PlaneObject) {
-  const Directory = 'E:\\Games\\Flight Simulator';
-  console.log(PlaneObject);
-  const downloadURL = `${constants.urls.cdnEndpoint}/${PlaneObject.fileName}`;
+export default async function InstallAddon(PlaneObject) {
+  const Directory = Config.get(ConfigKeys.settings.package_directory);
+  const downloadURL = `${Constants.urls.cdnEndpoint}/${PlaneObject.fileName}`;
   const zipName = PlaneObject.fileName.substr(PlaneObject.fileName.lastIndexOf('/') + 1);
-  const downloadDir = `${Directory}\\Community\\${zipName}`;
+  const downloadDir = Path.join(Directory, `Community\\${zipName}`);
 
   request
     .get(downloadURL)
@@ -27,7 +31,7 @@ export default async function installAddon(PlaneObject) {
     .on('finish', async function () {
       console.log(`Finished downloading: ${zipName}`);
       const zip = new admzip(downloadDir);
-      const extractDir = `${Directory}\\Community\\${zipName.split('.zip')[0]}`;
+      const extractDir = Path.join(Directory, `Community\\${zipName.split('.zip')[0]}`);
       fs.mkdir(
         extractDir,
         err =>
@@ -42,7 +46,7 @@ export default async function installAddon(PlaneObject) {
       zip.extractAllToAsync(`${extractDir}`, /*overwrite*/ true, function () {
         try {
           fs.unlinkSync(downloadDir);
-          fs.writeFileSync(`${extractDir}\\do-not-touch.json`, JSON.stringify(PlaneObject, null, 2));
+          fs.writeFileSync(Path.join(extractDir, `do-not-touch.json`), JSON.stringify(PlaneObject, null, 2));
           console.log(`Installed: ${zipName}`);
         } catch (error) {
           console.log(error);
