@@ -74,3 +74,15 @@ E007: Article content not specified
 #### Causes
 
 - Article class attempted to be created, but the article content was not specified
+
+### E008
+
+```
+E008: Failed to fetch .zip <url>
+```
+
+#### Causes
+
+- CloudFlare might have blocked your request
+- No internet connection
+- Invalid url

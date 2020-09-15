@@ -12,6 +12,7 @@ import FetchAndParseManifest from '../../../helpers/Manifest/FetchAndParseManife
 import ActiveApiEndpoint from '../../../data/ActiveApiEndpoint';
 import Constants from '../../../data/Constants.json';
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
+import InstallAddon from '../../../helpers/AddonInstaller/InstallAddon';
 
 const RefreshInterval = 30 * 1000;
 
@@ -154,6 +155,9 @@ export default function AvailableLiveries(props) {
             if (isInstalling) return;
 
             setIsInstalling(true);
+            selectedLiveries.forEach(livery =>{
+              InstallAddon(livery);
+            })
           }}
           style={{ position: 'fixed', bottom: 24, right: 24 }}
           color="primary"
