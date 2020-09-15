@@ -17,26 +17,7 @@ export default function LiveryManager() {
     setOpenPage(newPage);
   }
 
-  let Page = <></>;
-
-  switch (openPage.toLowerCase()) {
-    case 'available liveries':
-      Page = <AvailableLiveries fileListing={fileListing} setFileListing={setFileListing} />;
-      break;
-
-    case 'installed liveries':
-      Page = <InstalledLiveries />;
-      break;
-
-    case 'settings':
-      Page = <Settings />;
-      break;
-
-    case 'dashboard':
-    default:
-      Page = <Feed feed={feed} setFeed={setFeed} fullHistory={fullHistory} setFullHistory={setFullHistory} />;
-      break;
-  }
+  const pg = openPage.toLowerCase();
 
   return (
     <MainPage
@@ -49,7 +30,18 @@ export default function LiveryManager() {
           : null
       }
     >
-      {Page}
+      <div style={{ display: pg !== 'dashboard' && 'none' }}>
+        <Feed feed={feed} setFeed={setFeed} fullHistory={fullHistory} setFullHistory={setFullHistory} />
+      </div>
+      <div style={{ display: pg !== 'available liveries' && 'none' }}>
+        <AvailableLiveries fileListing={fileListing} setFileListing={setFileListing} />
+      </div>
+      <div style={{ display: pg !== 'installed liveries' && 'none' }}>
+        <InstalledLiveries />
+      </div>
+      <div style={{ display: pg !== 'settings' && 'none' }}>
+        <Settings />
+      </div>
     </MainPage>
   );
 }

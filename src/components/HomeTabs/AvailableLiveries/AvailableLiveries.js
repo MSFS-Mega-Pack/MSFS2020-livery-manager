@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, CircularProgress, IconButton, Paper, Tooltip, Typography } from '@material-ui/core';
+import { Box, CircularProgress, Fab, IconButton, Paper, Tooltip, Typography, Zoom } from '@material-ui/core';
 import FullTable from './FullTable';
 import RefreshIcon from 'mdi-react/RefreshIcon';
+import DownloadIcon from 'mdi-react/DownloadOutlineIcon';
 
 import dayjs from 'dayjs';
 import FetchAndParseManifest from '../../../helpers/Manifest/FetchAndParseManifest';
@@ -21,6 +22,9 @@ export default function AvailableLiveries(props) {
 
   const [refreshing, setRefreshing] = useState(false);
   const [justRefreshed, setJustRefreshed] = useState(false);
+  const [isInstalling, setIsInstalling] = useState(false);
+  /** @type {[object[], Function]} */
+  const [selectedLiveries, setSelectedLiveries] = useState(null);
 
   useEffect(() => {
     let key;
@@ -66,14 +70,14 @@ export default function AvailableLiveries(props) {
     UpdateFileList();
     return (
       <>
-        <RefreshBox justRefreshed={true} lastCheckedTime={'checking now...'} />
+        <RefreshBox justRefreshed={true} lastCheckedTime={'checking now...'} disabled={isInstalling} />
         {loading}
       </>
     );
   } else if (refreshing) {
     return (
       <>
-        <RefreshBox justRefreshed={true} lastCheckedTime={'refreshing...'} />
+        <RefreshBox justRefreshed={true} lastCheckedTime={'refreshing...'} disabled={isInstalling} />
         {loading}
       </>
     );
@@ -132,8 +136,33 @@ export default function AvailableLiveries(props) {
             setJustRefreshed(new Date().getTime());
           });
         }}
+        disabled={isInstalling}
       />
-      {fileListing && <FullTable sortedLiveries={sortedLiveries} allAircraft={aircraft} />}
+      {fileListing && (
+        <FullTable
+          sortedLiveries={sortedLiveries}
+          allAircraft={aircraft}
+          disabled={isInstalling}
+          selectedLiveriesUpdated={livs => setSelectedLiveries(livs)}
+        />
+      )}
+      <Box p={2} />
+
+      <Zoom in={selectedLiveries && selectedLiveries.length > 0}>
+        <Fab
+          onClick={() => {
+            if (isInstalling) return;
+
+            setIsInstalling(true);
+          }}
+          style={{ position: 'fixed', bottom: 24, right: 24 }}
+          color="primary"
+          variant="extended"
+        >
+          <DownloadIcon style={{ marginRight: 8 }} /> {isInstalling ? 'Installing' : 'Install'}{' '}
+          {(selectedLiveries && selectedLiveries.length) || '??'} liveries
+        </Fab>
+      </Zoom>
     </div>
   );
 }
@@ -163,7 +192,12 @@ AvailableLiveries.propTypes = {
 };
 
 function RefreshBox(props) {
-  const { lastCheckedTime, justRefreshed, onRefresh } = props;
+  const { lastCheckedTime, justRefreshed, onRefresh, disabled } = props;
+
+  let toolTipContent = '';
+
+  if (justRefreshed) toolTipContent = `Rate limiting is in effect: you need to wait at least ${RefreshInterval / 1000}s between refreshes`;
+  else if (disabled) toolTipContent = `You need to wait until your liveries are installed before refreshing.`;
 
   return (
     <Paper style={{ marginBottom: 16, marginTop: -8 }} variant="outlined">
@@ -174,11 +208,9 @@ function RefreshBox(props) {
         </Typography>
         <Box flex={1} />
         <Box>
-          <Tooltip
-            title={justRefreshed ? `Rate limiting is in effect: you need to wait at least ${RefreshInterval / 1000}s between refreshes` : ''}
-          >
+          <Tooltip title={toolTipContent}>
             <span>
-              <IconButton color="primary" size="small" disabled={justRefreshed} onClick={onRefresh}>
+              <IconButton color="primary" size="small" disabled={justRefreshed || disabled} onClick={onRefresh}>
                 <RefreshIcon />
               </IconButton>
             </span>
@@ -193,4 +225,5 @@ RefreshBox.propTypes = {
   lastCheckedTime: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   justRefreshed: PropTypes.bool,
   onRefresh: PropTypes.func,
+  disabled: PropTypes.bool,
 };
