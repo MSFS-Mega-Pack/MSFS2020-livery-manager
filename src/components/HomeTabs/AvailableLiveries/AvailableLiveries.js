@@ -194,8 +194,7 @@ AvailableLiveries.propTypes = {
 function RefreshBox(props) {
   const { lastCheckedTime, justRefreshed, onRefresh, disabled } = props;
 
-  let toolTipContent = '';
-
+  let toolTipContent = 'Refresh available liveries';
   if (justRefreshed) toolTipContent = `Rate limiting is in effect: you need to wait at least ${RefreshInterval / 1000}s between refreshes`;
   else if (disabled) toolTipContent = `You need to wait until your liveries are installed before refreshing.`;
 
