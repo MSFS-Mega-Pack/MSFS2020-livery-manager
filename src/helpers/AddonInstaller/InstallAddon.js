@@ -46,6 +46,7 @@ export default async function installAddon(PlaneObject) {
           console.log(`Installed: ${zipName}`);
         } catch (error) {
           console.log(error);
+          fs.unlinkSync(downloadDir);
         }
       });
     });
