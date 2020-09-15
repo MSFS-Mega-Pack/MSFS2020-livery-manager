@@ -151,13 +151,13 @@ export default function AvailableLiveries(props) {
 
       <Zoom in={selectedLiveries && selectedLiveries.length > 0}>
         <Fab
-          onClick={() => {
+          onClick={async () => {
             if (isInstalling) return;
 
             setIsInstalling(true);
-            selectedLiveries.forEach(livery => {
-              InstallAddon(livery);
-            });
+            for (let i = 0; i < selectedLiveries.length; i++) {
+              await InstallAddon(selectedLiveries[i]);
+            }
           }}
           style={{ position: 'fixed', bottom: 24, right: 24 }}
           color="primary"
