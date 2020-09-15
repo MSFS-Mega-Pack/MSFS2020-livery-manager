@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Button, CircularProgress, Paper, Tooltip, Typography } from '@material-ui/core';
+import { Box, CircularProgress, IconButton, Paper, Tooltip, Typography } from '@material-ui/core';
 import FullTable from './FullTable';
+import RefreshIcon from 'mdi-react/RefreshIcon';
 
 import dayjs from 'dayjs';
 import FetchAndParseManifest from '../../../helpers/Manifest/FetchAndParseManifest';
@@ -21,8 +22,6 @@ export default function AvailableLiveries(props) {
   const [refreshing, setRefreshing] = useState(false);
   const [justRefreshed, setJustRefreshed] = useState(false);
 
-  const refreshBtnRef = useRef(null);
-
   useEffect(() => {
     let key;
 
@@ -32,17 +31,9 @@ export default function AvailableLiveries(props) {
 
         if (now > justRefreshed + RefreshInterval) {
           setJustRefreshed(false);
-          refreshBtnRef.current.innerText = `Refresh`;
           clearInterval(key);
-        } else {
-          const msLeft = justRefreshed + RefreshInterval - now;
-          const sLeft = msLeft / 1000;
-
-          refreshBtnRef.current.innerHTML = `Wait <span style="text-align: right; display: inline-block; width: 4ch; padding-left: 4px;">${
-            Math.ceil(sLeft * 10) / 10
-          }s</span>`;
         }
-      }, 100);
+      }, 500);
     }
 
     return () => {
@@ -130,7 +121,9 @@ export default function AvailableLiveries(props) {
           <Box>
             <Tooltip title={justRefreshed ? `Rate limiting is in effect: you need to wait ${RefreshInterval / 1000}s between refreshes` : ''}>
               <span>
-                <Button
+                <IconButton
+                  color="primary"
+                  size="small"
                   disabled={justRefreshed}
                   onClick={() => {
                     setRefreshing(true);
@@ -139,10 +132,9 @@ export default function AvailableLiveries(props) {
                       setJustRefreshed(new Date().getTime());
                     });
                   }}
-                  ref={refreshBtnRef}
                 >
-                  Refresh
-                </Button>
+                  <RefreshIcon />
+                </IconButton>
               </span>
             </Tooltip>
           </Box>
