@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Divider, makeStyles, Typography } from '@material-ui/core';
 import ExpandIcon from 'mdi-react/ExpandMoreIcon';
+import CheckboxTickIcon from 'mdi-react/CheckboxMarkedOutlineIcon';
+import CheckboxOffIcon from 'mdi-react/CheckboxBlankOffOutlineIcon';
 
 import FieldValueDisplay from './FieldValueDisplay';
 import LiveryList from './LiveryList';
@@ -41,9 +43,27 @@ export default function AircraftAccordion(props) {
           <Box flex={1}>
             <FieldValueDisplay fieldName="Aircraft" value={PlaneNameTable[aircraft.name] || aircraft.name} />
             <FieldValueDisplay fieldName="Total liveries" value={`${sortedLiveries[aircraft.name].length} available`} />
-            <Button variant="outlined" color="primary" onClick={() => AddSelectedLivery(sortedLiveries[aircraft.name])}>
-              Select all
-            </Button>
+            <Box mt={1} display="flex" justifyContent="center">
+              <Button
+                disabled={disabled}
+                variant="outlined"
+                color="primary"
+                onClick={() => AddSelectedLivery(sortedLiveries[aircraft.name])}
+                startIcon={<CheckboxTickIcon />}
+              >
+                Select all
+              </Button>
+              <Box p={1} />
+              <Button
+                disabled={disabled}
+                variant="outlined"
+                color="primary"
+                onClick={() => RemoveSelectedLivery(sortedLiveries[aircraft.name])}
+                startIcon={<CheckboxOffIcon />}
+              >
+                Deselect all
+              </Button>
+            </Box>
           </Box>
         </Box>
         <Box mt={3} mb={3}>
