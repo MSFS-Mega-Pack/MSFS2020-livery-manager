@@ -19,6 +19,7 @@ import 'electron-react-titlebar/assets/style.css';
 import planeIcon from '../images/plane-takeoff.png';
 
 import { hot } from 'react-hot-loader/root';
+import { SnackbarProvider } from 'notistack';
 
 function App() {
   return (
@@ -41,16 +42,18 @@ function App() {
       </TitleBar>
       <main>
         <ThemeProvider theme={Theme}>
-          <CssBaseline />
-          <HashRouter hashType="slash">
-            <AnimatedSwitch atEnter={{ opacity: 0 }} atLeave={{ opacity: 0 }} atActive={{ opacity: 1 }} className="switch-wrapper">
-              {Routes.map(route => (
-                <Route key={route.path} path={route.path}>
-                  {route.component}
-                </Route>
-              ))}
-            </AnimatedSwitch>
-          </HashRouter>
+          <SnackbarProvider preventDuplicate maxSnack={3}>
+            <CssBaseline />
+            <HashRouter hashType="slash">
+              <AnimatedSwitch atEnter={{ opacity: 0 }} atLeave={{ opacity: 0 }} atActive={{ opacity: 1 }} className="switch-wrapper">
+                {Routes.map(route => (
+                  <Route key={route.path} path={route.path}>
+                    {route.component}
+                  </Route>
+                ))}
+              </AnimatedSwitch>
+            </HashRouter>
+          </SnackbarProvider>
         </ThemeProvider>
       </main>
     </>

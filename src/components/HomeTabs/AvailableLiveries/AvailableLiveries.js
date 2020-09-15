@@ -13,10 +13,13 @@ import ActiveApiEndpoint from '../../../data/ActiveApiEndpoint';
 import Constants from '../../../data/Constants.json';
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
 import InstallAddon from '../../../helpers/AddonInstaller/InstallAddon';
+import { useSnackbar } from 'notistack';
 
 const RefreshInterval = 30 * 1000;
 
 export default function AvailableLiveries(props) {
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
   const { fileListing, setFileListing } = props;
   let aircraft = [],
     sortedLiveries = {};
@@ -128,7 +131,7 @@ export default function AvailableLiveries(props) {
   return (
     <div>
       <RefreshBox
-        justRefreshed={justRefreshed}
+        justRefreshed={!!justRefreshed}
         lastCheckedTime={fileListing && fileListing.checkedAt}
         onRefresh={() => {
           setRefreshing(true);
@@ -149,13 +152,24 @@ export default function AvailableLiveries(props) {
       )}
       <Box p={2} />
 
-      <Zoom in={selectedLiveries && selectedLiveries.length > 0}>
+      <Zoom in={selectedLiveries && selectedLiveries.length > 0 && !isInstalling}>
         <Fab
           onClick={async () => {
             if (isInstalling) return;
 
             setIsInstalling(true);
+
+            let s = enqueueSnackbar('Installing liveries...', {
+              variant: 'success',
+              persist: true,
+            });
+
             for (let i = 0; i < selectedLiveries.length; i++) {
+              closeSnackbar(s);
+              s = enqueueSnackbar(`Installing liveries: ${i + 1} of ${selectedLiveries.length}`, {
+                variant: 'success',
+                persist: true,
+              });
               await InstallAddon(selectedLiveries[i]);
             }
           }}
@@ -213,7 +227,7 @@ function RefreshBox(props) {
         <Box>
           <Tooltip title={toolTipContent}>
             <span>
-              <IconButton color="primary" size="small" disabled={justRefreshed || disabled} onClick={onRefresh}>
+              <IconButton color="primary" size="small" disabled={!!justRefreshed || disabled} onClick={onRefresh}>
                 <RefreshIcon />
               </IconButton>
             </span>
