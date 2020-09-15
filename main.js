@@ -37,6 +37,7 @@ function createMainWindow() {
     height: 750,
     frame: false,
     darkTheme: true,
+    backgroundColor: '#1b1b31',
     titleBarStyle: 'hidden',
     resizable: false,
     show: false,
@@ -44,7 +45,7 @@ function createMainWindow() {
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
-      'web-security': false,
+      webSecurity: false,
     },
   });
 
