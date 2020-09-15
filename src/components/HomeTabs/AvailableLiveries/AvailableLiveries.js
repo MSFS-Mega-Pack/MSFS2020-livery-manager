@@ -12,7 +12,7 @@ import ActiveApiEndpoint from '../../../data/ActiveApiEndpoint';
 import Constants from '../../../data/Constants.json';
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
 
-const RefreshInterval = 10 * 1000;
+const RefreshInterval = 30 * 1000;
 
 export default function AvailableLiveries(props) {
   const { fileListing, setFileListing } = props;
