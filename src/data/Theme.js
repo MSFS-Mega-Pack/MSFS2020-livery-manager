@@ -11,7 +11,6 @@ export default createMuiTheme({
   },
   palette: {
     type: 'dark',
-    background: colors.black,
     primary: colors.amber,
     secondary: colors.grey,
     text: {
@@ -35,11 +34,11 @@ export default createMuiTheme({
         borderRadius: 8,
       },
       root: {
-        background: 'rgba(0, 0, 0, 0.6)',
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
         borderColor: 'black',
       },
       outlined: {
-        background: 'rgba(0, 0, 0, 0.35)',
+        backgroundColor: 'rgba(0, 0, 0, 0.35)',
         borderColor: 'rgba(0, 0, 0, 0.8)',
       },
     },
