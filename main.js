@@ -21,6 +21,15 @@ if (!isDev) {
     process.exit(0);
   }
 
+  app.whenReady().then(() => {
+    globalShortcut.register('CommandOrControl+R', () => {
+      console.log('CommandOrControl+R is pressed: Shortcut Disabled');
+    });
+    globalShortcut.register('F5', () => {
+      console.log('F5 is pressed: Shortcut Disabled');
+    });
+  });
+
   //! Uncomment to prevent program running after install
   // if (process.platform === 'win32') {
   //   var cmd = process.argv[1];
