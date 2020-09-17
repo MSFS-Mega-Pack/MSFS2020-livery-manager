@@ -43,7 +43,7 @@ export default async function InstallAddon(PlaneObject) {
           }
       );
       console.log(`Created folder \n${extractDir}`);
-      zip.extractAllToAsync(`${extractDir}`, /*overwrite*/ true, function () {
+      zip.extractAllToAsync(`${extractDir}`, /*overwrite*/ true, async function () {
         try {
           fs.unlinkSync(downloadDir);
           fs.writeFileSync(Path.join(extractDir, `do-not-touch.json`), JSON.stringify(PlaneObject, null, 2));

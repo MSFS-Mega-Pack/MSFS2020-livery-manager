@@ -172,6 +172,7 @@ export default function AvailableLiveries(props) {
               });
               await InstallAddon(selectedLiveries[i]);
             }
+            setIsInstalling(false);
           }}
           style={{ position: 'fixed', bottom: 24, right: 24 }}
           color="primary"
