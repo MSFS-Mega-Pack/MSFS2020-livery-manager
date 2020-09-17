@@ -160,18 +160,24 @@ export default function AvailableLiveries(props) {
             setIsInstalling(true);
 
             let s = enqueueSnackbar('Installing liveries...', {
-              variant: 'success',
+              variant: 'info',
               persist: true,
             });
 
             for (let i = 0; i < selectedLiveries.length; i++) {
               closeSnackbar(s);
+              console.log(`Start Install ${i}`);
               s = enqueueSnackbar(`Installing liveries: ${i + 1} of ${selectedLiveries.length}`, {
-                variant: 'success',
+                variant: 'info',
                 persist: true,
               });
               await InstallAddon(selectedLiveries[i]);
             }
+
+            setIsInstalling(false);
+            
+            closeSnackbar(s);
+            enqueueSnackbar('Installation complete', { variant: 'success' });
           }}
           style={{ position: 'fixed', bottom: 24, right: 24 }}
           color="primary"
