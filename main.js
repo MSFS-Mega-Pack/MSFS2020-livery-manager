@@ -1,13 +1,8 @@
 const path = require('path');
 const url = require('url');
-const {
-  app,
-  BrowserWindow
-} = require('electron');
+const { app, BrowserWindow } = require('electron');
 const open = require('open');
-const {
-  checkForUpdates
-} = require('./updater');
+const { checkForUpdates } = require('./updater');
 const Sentry = require('@sentry/electron');
 
 app.commandLine.appendSwitch('disable-http-cache');
@@ -44,15 +39,15 @@ if (!isDev) {
   //     process.exit(0);
   //   }
   // }
+
+  Sentry.init({
+    dsn: 'https://ac6e425a093744a0a72e061986c2f138@o252778.ingest.sentry.io/5431856',
+    environment: process.env.NODE_ENV,
+    enableNative: true,
+    debug: true,
+    attachStacktrace: true,
+  });
 }
-
-
-Sentry.init({
-  dsn: "https://ac6e425a093744a0a72e061986c2f138@o252778.ingest.sentry.io/5431856",
-  environment: process.env.NODE_ENV,
-  enableNative: true,
-  debug: true,
-});
 
 function createMainWindow() {
   mainWindow = new BrowserWindow({
@@ -69,7 +64,7 @@ function createMainWindow() {
       nodeIntegration: true,
       enableRemoteModule: true,
       webSecurity: false,
-      preload: path.join(__dirname, 'src', 'helpers', 'Sentry', 'sentry.js')
+      preload: path.join(__dirname, 'src', 'helpers', 'Sentry', 'sentry.js'),
     },
   });
 
@@ -109,10 +104,7 @@ function createMainWindow() {
 
     // Open devtools if dev
     if (isDev) {
-      const {
-        default: installExtension,
-        REACT_DEVELOPER_TOOLS
-      } = require('electron-devtools-installer');
+      const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
 
       installExtension(REACT_DEVELOPER_TOOLS).catch(err => console.log('Error loading React DevTools: ', err));
       mainWindow.webContents.openDevTools();
