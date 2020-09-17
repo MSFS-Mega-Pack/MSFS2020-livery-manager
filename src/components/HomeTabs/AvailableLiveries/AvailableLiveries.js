@@ -175,7 +175,7 @@ export default function AvailableLiveries(props) {
             }
 
             setIsInstalling(false);
-            
+
             closeSnackbar(s);
             enqueueSnackbar('Installation complete', { variant: 'success' });
           }}
