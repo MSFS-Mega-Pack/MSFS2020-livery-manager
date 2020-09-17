@@ -10,6 +10,7 @@ import ThrowError from '../ThrowError';
 import Constants from '../../data/Constants.json';
 import ConfigKeys from '../../data/config-keys.json';
 
+import { remote } from 'electron';
 /**
  * Download and install an addon
  *
@@ -18,9 +19,9 @@ import ConfigKeys from '../../data/config-keys.json';
  */
 export default async function InstallAddon(PlaneObject) {
   const Directory = Config.get(ConfigKeys.settings.package_directory);
-  const downloadURL = `${Constants.urls.cdnEndpoint}/${PlaneObject.fileName}`;
+  const downloadURL = `${Constants.urls.cdnEndpoint}/${PlaneObject.fileName}?hash=${PlaneObject.checkSum}`;
   const zipName = PlaneObject.fileName.substr(PlaneObject.fileName.lastIndexOf('/') + 1);
-  const downloadDir = Path.join(Directory, `Community\\${zipName}`);
+  const tempPath = Path.join(remote.app.getPath('temp'), Constants.appName, Constants.dirs.downloadCache);
 
   request
     .get(downloadURL)
