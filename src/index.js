@@ -10,6 +10,7 @@ import Routes from './data/Routes';
 import Config from 'electron-json-config';
 import IsDev from './data/IsDev';
 import defaultConfig from './data/default-config';
+import getInstalledAddons from './helpers/AddonInstaller/getInstalledAddons';
 
 // Since we are using HtmlWebpackPlugin WITHOUT a template, we should create our own root node in the body element before rendering into it
 let root = document.createElement('div');
@@ -30,4 +31,5 @@ function InitialiseDeveloperFunctions() {
     Config.purge();
     Config.setBulk(defaultConfig);
   };
+  window.__getInstalledAddons = getInstalledAddons;
 }

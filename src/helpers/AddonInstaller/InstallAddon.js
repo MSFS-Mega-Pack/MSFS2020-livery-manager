@@ -1,4 +1,4 @@
-import fs from 'fs';
+import { default as fs, promises as fsPromises } from 'fs';
 import Path from 'path';
 
 import admzip from 'adm-zip';
@@ -22,38 +22,48 @@ export default async function InstallAddon(PlaneObject) {
   const downloadURL = `${Constants.urls.cdnEndpoint}/${PlaneObject.fileName}?hash=${PlaneObject.checkSum}`;
   const zipName = PlaneObject.fileName.substr(PlaneObject.fileName.lastIndexOf('/') + 1);
   const tempPath = Path.join(remote.app.getPath('temp'), Constants.appName, Constants.dirs.downloadCache);
+  const zipPath = Path.join(tempPath, zipName);
   const extractDir = Path.join(Directory, `Community\\${zipName.split('.zip')[0]}`);
 
+  console.log(zipPath);
+
+  console.log(`mk temp path`);
+  if (!fs.existsSync(tempPath)) {
+    await fsPromises.mkdir(tempPath, { recursive: true });
+  }
+
+  console.log(`check zip exists`);
+  if (fs.existsSync(zipPath)) {
+    await fsPromises.unlink(zipPath);
+  }
+
   await new Promise((resolve, reject) => {
+    console.log(`Making stream`);
+    const stream = fs.createWriteStream(zipPath);
+
+    console.log(`Starting DL`);
     request
       .get(downloadURL)
-      .on('error', function (err) {
+      .pipe(stream)
+      .on('error', async err => {
+        console.log(`Error`);
         ThrowError('E008', `${err} URL: ${downloadURL}`);
         reject(err);
       })
-      .pipe(fs.createWriteStream(tempPath))
-      .on('finish', async function () {
+      .on('finish', async () => {
         console.log(`Finished downloading: ${zipName}`);
-        const zip = new admzip(tempPath);
-        fs.mkdir(
-          extractDir,
-          err =>
-            async function () {
-              if (err) {
-                fs.unlinkSync(tempPath);
-                reject(err);
-              }
-            }
-        );
+        const zip = new admzip(zipPath);
+
         console.log(`Created folder \n${extractDir}`);
-        zip.extractAllToAsync(`${extractDir}`, /*overwrite*/ true, function () {
+
+        zip.extractAllToAsync(`${extractDir}`, /*overwrite*/ true, () => {
           try {
-            fs.unlinkSync(tempPath);
-            fs.writeFileSync(Path.join(extractDir, `do-not-touch.json`), JSON.stringify(PlaneObject, null, 2));
+            fs.unlinkSync(zipPath);
+            fs.writeFileSync(Path.join(extractDir, Constants.modLockFileName), JSON.stringify(PlaneObject, null, 2));
             console.log(`Installed: ${zipName}`);
             resolve();
           } catch (err) {
-            fs.unlinkSync(tempPath);
+            fs.unlinkSync(zipPath);
             reject(err);
           }
         });
