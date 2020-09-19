@@ -1,6 +1,6 @@
 const path = require('path');
 const url = require('url');
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, globalShortcut } = require('electron');
 const open = require('open');
 const { checkForUpdates } = require('./updater');
 const Sentry = require('@sentry/electron');
