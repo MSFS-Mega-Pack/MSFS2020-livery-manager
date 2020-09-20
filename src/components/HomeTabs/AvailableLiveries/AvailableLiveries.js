@@ -186,7 +186,7 @@ export default function AvailableLiveries(props) {
 
             setIsInstalling(false);
             setSelectedLiveries([]);
-            setInstalledLiveries(GetInstalledAddons());
+            GetInstalledAddons().then(l => setInstalledLiveries(l));
 
             closeSnackbar(s);
             enqueueSnackbar('Installation complete', { variant: 'success', persist: false });
