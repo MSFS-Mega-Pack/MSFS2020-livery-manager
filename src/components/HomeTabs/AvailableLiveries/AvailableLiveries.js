@@ -7,12 +7,14 @@ import RefreshIcon from 'mdi-react/RefreshIcon';
 import DownloadIcon from 'mdi-react/DownloadOutlineIcon';
 
 import dayjs from 'dayjs';
-import FetchAndParseManifest from '../../../helpers/Manifest/FetchAndParseManifest';
 
+import FetchAndParseManifest from '../../../helpers/Manifest/FetchAndParseManifest';
 import ActiveApiEndpoint from '../../../data/ActiveApiEndpoint';
 import Constants from '../../../data/Constants.json';
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
 import InstallAddon from '../../../helpers/AddonInstaller/InstallAddon';
+import GetInstalledAddons from '../../../helpers/AddonInstaller/GetInstalledAddons';
+
 import { useSnackbar } from 'notistack';
 
 const RefreshInterval = 30 * 1000;
@@ -29,6 +31,13 @@ export default function AvailableLiveries(props) {
   const [isInstalling, setIsInstalling] = useState(false);
   /** @type {[object[], Function]} */
   const [selectedLiveries, setSelectedLiveries] = useState(null);
+  /** @type {[object[], Function]} */
+  const [installedLiveries, setInstalledLiveries] = useState(undefined);
+
+  if (typeof installedLiveries === 'undefined') {
+    setInstalledLiveries(null);
+    GetInstalledAddons().then(livs => setInstalledLiveries(livs));
+  }
 
   useEffect(() => {
     let key;
@@ -148,6 +157,7 @@ export default function AvailableLiveries(props) {
           allAircraft={aircraft}
           disabled={isInstalling}
           selectedLiveriesUpdated={livs => setSelectedLiveries(livs)}
+          installedLiveries={installedLiveries}
         />
       )}
       <Box p={2} />
@@ -175,16 +185,19 @@ export default function AvailableLiveries(props) {
             }
 
             setIsInstalling(false);
+            setSelectedLiveries([]);
+            setInstalledLiveries(GetInstalledAddons());
 
             closeSnackbar(s);
-            enqueueSnackbar('Installation complete', { variant: 'success' });
+            enqueueSnackbar('Installation complete', { variant: 'success', persist: false });
           }}
           style={{ position: 'fixed', bottom: 24, right: 24 }}
           color="primary"
           variant="extended"
         >
           <DownloadIcon style={{ marginRight: 8 }} /> {isInstalling ? 'Installing' : 'Install'}{' '}
-          {(selectedLiveries && selectedLiveries.length) || '??'} liveries
+          {(selectedLiveries && selectedLiveries.length) || '??'} liveries (
+          {selectedLiveries && Math.round(selectedLiveries.reduce((prev, curr) => prev + curr.size / 1000000, 0) * 100) / 100} MB)
         </Fab>
       </Zoom>
     </div>

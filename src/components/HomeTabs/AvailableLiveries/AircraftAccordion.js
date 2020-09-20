@@ -26,14 +26,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function AircraftAccordion(props) {
-  const { aircraft, sortedLiveries, GetIndexOfObjectInArray, AddSelectedLivery, RemoveSelectedLivery, disabled } = props;
+  const { aircraft, sortedLiveries, GetIndexOfObjectInArray, AddSelectedLivery, RemoveSelectedLivery, disabled, installedLiveries } = props;
   const classes = useStyles();
 
   return (
     <Accordion TransitionProps={{ unmountOnExit: true }}>
       <AccordionSummary expandIcon={<ExpandIcon />}>
         <Typography className={classes.heading}>{PlaneNameTable[aircraft.name] || aircraft.name}</Typography>
-        <Typography className={classes.secondaryHeading}>{sortedLiveries[aircraft.name].length} liveries available</Typography>
+        <Typography className={classes.secondaryHeading}>{sortedLiveries.length} liveries available</Typography>
       </AccordionSummary>
       <AccordionDetails style={{ display: 'block', paddingLeft: 32, paddingRight: 32 }}>
         <Box display="flex" mb={1}>
@@ -42,13 +42,17 @@ export default function AircraftAccordion(props) {
           </Box>
           <Box flex={1}>
             <FieldValueDisplay fieldName="Aircraft" value={PlaneNameTable[aircraft.name] || aircraft.name} />
-            <FieldValueDisplay fieldName="Total liveries" value={`${sortedLiveries[aircraft.name].length} available`} />
+            <FieldValueDisplay fieldName="Total liveries" value={`${sortedLiveries.length} available`} />
+            <FieldValueDisplay
+              fieldName="Total liveries installed"
+              value={`${installedLiveries.length} of ${sortedLiveries.length} installed`}
+            />
             <Box mt={1} display="flex" justifyContent="center">
               <Button
                 disabled={disabled}
                 variant="outlined"
                 color="primary"
-                onClick={() => AddSelectedLivery(sortedLiveries[aircraft.name])}
+                onClick={() => AddSelectedLivery(sortedLiveries)}
                 startIcon={<CheckboxTickIcon />}
               >
                 Select all
@@ -58,7 +62,7 @@ export default function AircraftAccordion(props) {
                 disabled={disabled}
                 variant="outlined"
                 color="primary"
-                onClick={() => RemoveSelectedLivery(sortedLiveries[aircraft.name])}
+                onClick={() => RemoveSelectedLivery(sortedLiveries)}
                 startIcon={<CheckboxOffIcon />}
               >
                 Deselect all
@@ -75,10 +79,11 @@ export default function AircraftAccordion(props) {
           </Typography>
           <LiveryList
             disabled={disabled}
-            liveries={sortedLiveries[aircraft.name]}
+            liveries={sortedLiveries}
             GetIndexOfObjectInArray={GetIndexOfObjectInArray}
             AddSelectedLivery={AddSelectedLivery}
             RemoveSelectedLivery={RemoveSelectedLivery}
+            installedLiveries={installedLiveries}
           />
         </Box>
       </AccordionDetails>
@@ -91,21 +96,33 @@ AircraftAccordion.propTypes = {
     name: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
   }).isRequired,
-  sortedLiveries: PropTypes.objectOf(
-    PropTypes.arrayOf(
-      PropTypes.shape({
-        airplane: PropTypes.string.isRequired,
-        fileName: PropTypes.string.isRequired,
-        generation: PropTypes.string.isRequired,
-        metaGeneration: PropTypes.string.isRequired,
-        lastModified: PropTypes.string.isRequired,
-        ETag: PropTypes.string.isRequired,
-        size: PropTypes.string.isRequired,
-        checkSum: PropTypes.string.isRequired,
-        image: PropTypes.string,
-        smallImage: PropTypes.string,
-      })
-    )
+  sortedLiveries: PropTypes.arrayOf(
+    PropTypes.shape({
+      airplane: PropTypes.string.isRequired,
+      fileName: PropTypes.string.isRequired,
+      generation: PropTypes.string.isRequired,
+      metaGeneration: PropTypes.string.isRequired,
+      lastModified: PropTypes.string.isRequired,
+      ETag: PropTypes.string.isRequired,
+      size: PropTypes.string.isRequired,
+      checkSum: PropTypes.string.isRequired,
+      image: PropTypes.string,
+      smallImage: PropTypes.string,
+    })
+  ),
+  installedLiveries: PropTypes.arrayOf(
+    PropTypes.shape({
+      airplane: PropTypes.string.isRequired,
+      fileName: PropTypes.string.isRequired,
+      generation: PropTypes.string.isRequired,
+      metaGeneration: PropTypes.string.isRequired,
+      lastModified: PropTypes.string.isRequired,
+      ETag: PropTypes.string.isRequired,
+      size: PropTypes.string.isRequired,
+      checkSum: PropTypes.string.isRequired,
+      image: PropTypes.string,
+      smallImage: PropTypes.string,
+    })
   ),
   GetIndexOfObjectInArray: PropTypes.func.isRequired,
   AddSelectedLivery: PropTypes.func.isRequired,

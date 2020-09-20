@@ -13,7 +13,7 @@ import AircraftAccordion from './AircraftAccordion';
  * @return {React.ReactNode}
  */
 export default function FullTable(props) {
-  const { sortedLiveries, allAircraft, selectedLiveriesUpdated, disabled } = props;
+  const { sortedLiveries, allAircraft, selectedLiveriesUpdated, disabled, installedLiveries } = props;
 
   const [selectedLiveries, setSelectedLiveries] = useState([]);
 
@@ -109,10 +109,11 @@ export default function FullTable(props) {
             disabled={disabled}
             key={ac.name}
             aircraft={ac}
-            sortedLiveries={sortedLiveries}
+            sortedLiveries={sortedLiveries[ac.name]}
             GetIndexOfObjectInArray={GetIndexOfObjectInArray}
             AddSelectedLivery={AddSelectedLivery}
             RemoveSelectedLivery={RemoveSelectedLivery}
+            installedLiveries={installedLiveries.filter(o => o.airplane.toLowerCase() === ac.name.toLowerCase())}
           />
         ))}
       </Box>
@@ -136,6 +137,20 @@ FullTable.propTypes = {
         smallImage: PropTypes.string,
       })
     )
+  ),
+  installedLiveries: PropTypes.arrayOf(
+    PropTypes.shape({
+      airplane: PropTypes.string.isRequired,
+      fileName: PropTypes.string.isRequired,
+      generation: PropTypes.string.isRequired,
+      metaGeneration: PropTypes.string.isRequired,
+      lastModified: PropTypes.string.isRequired,
+      ETag: PropTypes.string.isRequired,
+      size: PropTypes.string.isRequired,
+      checkSum: PropTypes.string.isRequired,
+      image: PropTypes.string,
+      smallImage: PropTypes.string,
+    })
   ),
   allAircraft: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string.isRequired, thumbnail: PropTypes.string })),
   selectedLiveriesUpdated: PropTypes.func.isRequired,
