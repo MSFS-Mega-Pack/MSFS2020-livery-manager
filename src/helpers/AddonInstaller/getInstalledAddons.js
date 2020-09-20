@@ -13,7 +13,7 @@ import AsyncForEach from '../AsyncForEach';
  * @export
  * @return {Array} PlaneObject  Array of Plane Objects
  */
-export default async function getInstalledAddons() {
+export default async function GetInstalledAddons() {
   let installedAddons = [];
   const Directory = Path.join(Config.get(ConfigKeys.settings.package_directory), 'Community');
 
