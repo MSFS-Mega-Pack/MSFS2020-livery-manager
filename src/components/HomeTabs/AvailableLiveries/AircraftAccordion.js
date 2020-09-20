@@ -52,7 +52,7 @@ export default function AircraftAccordion(props) {
                 disabled={disabled}
                 variant="outlined"
                 color="primary"
-                onClick={() => AddSelectedLivery(sortedLiveries)}
+                onClick={() => AddSelectedLivery(sortedLiveries.filter(l => GetIndexOfObjectInArray(l, installedLiveries) === -1))}
                 startIcon={<CheckboxTickIcon />}
               >
                 Select all
