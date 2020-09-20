@@ -21,12 +21,13 @@ export default async function GetInstalledAddons() {
     const jsonPath = Path.join(Directory, folder, Constants.modLockFileName);
     try {
       if (existsSync(jsonPath) && lstatSync(jsonPath).isFile()) {
-        installedAddons.push(JSON.parse(readFileSync(jsonPath, 'utf8')));
+        let planeJson = JSON.parse(readFileSync(jsonPath, 'utf8'));
+        planeJson.installLocation = Path.join(Directory, folder);
+        installedAddons.push(planeJson);
       }
     } catch (error) {
       console.log(error);
     }
   });
-
   return installedAddons;
 }
