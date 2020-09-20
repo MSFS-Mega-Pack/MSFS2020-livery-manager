@@ -20,6 +20,7 @@ import planeIcon from '../images/plane-takeoff.png';
 
 import { hot } from 'react-hot-loader/root';
 import { SnackbarProvider } from 'notistack';
+import OfflineError from './OfflineError';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <ThemeProvider theme={Theme}>
           <SnackbarProvider preventDuplicate maxSnack={3}>
             <CssBaseline />
+            <OfflineError />
             <HashRouter hashType="slash">
               <AnimatedSwitch atEnter={{ opacity: 0 }} atLeave={{ opacity: 0 }} atActive={{ opacity: 1 }} className="switch-wrapper">
                 {Routes.map(route => (
