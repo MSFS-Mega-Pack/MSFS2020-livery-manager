@@ -59,7 +59,7 @@
     "eslint-plugin-jsdoc": "^30.5.1",
     "eslint-plugin-react": "^7.20.6",
     "file-loader": "^6.1.0",
-    "html-webpack-plugin": "^4.4.1",
+    "html-webpack-plugin": "^4.5.0",
     "less-loader": "^7.0.1",
     "mini-css-extract-plugin": "^0.11.2",
     "prettier": "^2.1.2",
