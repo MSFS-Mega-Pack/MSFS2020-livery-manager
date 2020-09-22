@@ -7,3 +7,5 @@
 The work is under exclusive copyright to David Wheatley and Jaap Rodenburg.
 
 **You cannot** copy, distribute, or modify our work without being at risk of take-downs, shake-downs, or litigation. This includes for non-profit, personal, or commerical reasons.
+
+For more information about repos without a license, see [GitHub's Choose a License website](https://choosealicense.com/no-permission/).
