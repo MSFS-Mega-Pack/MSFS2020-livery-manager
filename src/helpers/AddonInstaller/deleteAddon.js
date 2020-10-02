@@ -1,7 +1,6 @@
 import fs from 'fs';
 import Path from 'path';
 
-
 /**
  * Remove installed addon by Path
  *
@@ -9,13 +8,15 @@ import Path from 'path';
  * @argument {String} Path, remove addon by path.
  * @return {Boolean} Removed the addon true/false
  */
-export default async function(path) {
+export default async function (path) {
   if (fs.existsSync(path)) {
     fs.readdirSync(path).forEach((file, index) => {
       const curPath = Path.join(path, file);
-      if (fs.lstatSync(curPath).isDirectory()) { // recurse
-        await deleteFolderRecursive(curPath);
-      } else { // delete file
+      if (fs.lstatSync(curPath).isDirectory()) {
+        // recurse
+        deleteFolderRecursive(curPath);
+      } else {
+        // delete file
         fs.unlinkSync(curPath);
       }
     });
@@ -23,4 +24,4 @@ export default async function(path) {
     return true;
   }
   return false;
-};
+}
