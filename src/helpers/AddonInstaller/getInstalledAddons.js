@@ -8,10 +8,10 @@ import Constants from '../../data/Constants.json';
 import AsyncForEach from '../AsyncForEach';
 
 /**
- * Download and install an addon
+ * Get Installed Addons
  *
  * @export
- * @return {Array} PlaneObject  Array of Plane Objects
+ * @return {Array} PlaneObject  Array of Plane Objects that are installed with installLocation
  */
 export default async function GetInstalledAddons() {
   let installedAddons = [];
