@@ -1,6 +1,6 @@
 import fs from 'fs';
-import * as ini from '../Manifest/CFGFileParser.js';
-import ThrowError from '../ThrowError';
+import * as ini from './parser';
+import ThrowError from '../../ThrowError';
 
 let CFGpath = '';
 const pathRegEx = /^[a-z]:((\\|\/)[a-z0-9\s_@\-^!#$%&+={}[\]]+)+\.cfg$/i;
@@ -13,7 +13,9 @@ const pathRegEx = /^[a-z]:((\\|\/)[a-z0-9\s_@\-^!#$%&+={}[\]]+)+\.cfg$/i;
  */
 
 export function loadCFG(path) {
+  if (!pathRegEx.test(path) || !fs.lstatSync(path).isFile()) return false;
   CFGpath = path;
+  return true;
 }
 /**
  * Parse the chosen CFG file and return it
