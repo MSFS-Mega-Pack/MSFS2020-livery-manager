@@ -4,9 +4,9 @@ import AllModelData from '../../data/AIModelData.json';
 
 export default async function createAILivery(path) {
   if (!path.includes('SimObjects\\Airplanes')) path += 'SimObjects\\Airplanes';
-  if (!fs.existsSync(dir)) return console.log(dir);
+  if (!fs.existsSync(path)) return console.log(path);
 
-  let directories = await GetDirectories(dir);
+  let directories = await GetDirectories(path);
   let ModelAIPath = path + `\\${directories[0]}`;
   path += `\\${directories[0]}\\aircraft.cfg`;
 
@@ -29,25 +29,28 @@ export default async function createAILivery(path) {
       normalPlaneIndex = -1;
     }
   }
-//   if (normalPlaneIndex == -1) return;
-//   console.log(`Converting: ${AddonObject.FLTSIM[i].title}`);
-//   let AIPlaneObject = AddonObject.FLTSIM[normalPlaneIndex];
-//   AIPlaneObject.title = `${AIPlaneObject.title} AI`;
-//   AIPlaneObject.model = `AI${AIPlaneObject.model}`;
-//   AIPlaneObject.isAirTraffic = 1;
-//   AIPlaneObject.isUserSelectable = 0;
+  if (normalPlaneIndex == -1) return;
+  console.log(`Converting: ${AddonObject.FLTSIM[i].title}`);
+  let AIPlaneObject = AddonObject.FLTSIM[normalPlaneIndex];
+  AIPlaneObject.title = `${AIPlaneObject.title} AI`;
+  AIPlaneObject.model = `AI${AIPlaneObject.model}`;
+  AIPlaneObject.isAirTraffic = 1;
+  AIPlaneObject.isUserSelectable = 0;
 
-//   ModelAIPath += `\\MODEL.${AIPlaneObject.model}`;
-//   console.log(ModelAIPath);
-//   const aircraftModel = AddonObject.VARIATION.base_container.substring(AddonObject.VARIATION.base_container.lastIndexOf('\\') + 1);
-//   if (!AllModelData[aircraftModel]) return console.log(aircraftModel);
-//   if (!fs.existsSync(ModelAIPath)) {
-//     fs.mkdirSync(ModelAIPath);
-//     fs.writeFile(`${ModelAIPath}\\model.cfg`, AllModelData[aircraftModel], function (err) {
-//       if (err) return console.log(err);
-//     });
-//   }
+  ModelAIPath += `\\MODEL.${AIPlaneObject.model}`;
+  console.log(ModelAIPath);
+  const aircraftModel = AddonObject.VARIATION.base_container.substring(AddonObject.VARIATION.base_container.lastIndexOf('\\') + 1);
+  if (!AllModelData[aircraftModel]) return console.log(aircraftModel);
+  if (!fs.existsSync(ModelAIPath)) {
+    fs.mkdirSync(ModelAIPath);
+    fs.writeFile(`${ModelAIPath}\\model.cfg`, AllModelData[aircraftModel], function (err) {
+      if (err) return console.log(err);
+    });
+  }
 }
 
-const GetDirectories = async (path = '.') =>
-  (await stat(path)).isDirectory() ? Promise.all(await readdir(path)).then(results => [].concat(...results)) : [];
+async function GetDirectories(path) {
+    return fs.readdirSync(path).filter(function (file) {
+      return fs.statSync(path+'/'+file).isDirectory();
+    });
+  }

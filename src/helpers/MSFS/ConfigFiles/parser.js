@@ -218,7 +218,7 @@ function unsafe(val) {
     try {
       val = JSON.parse(val);
     } catch (_) {
-      console.log(_);
+      //console.log(_);
     }
   } else {
     // walk the val to find the first not-escaped ; character
