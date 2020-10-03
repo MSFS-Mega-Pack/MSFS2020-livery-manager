@@ -19,6 +19,7 @@ export default async function createAILivery(path) {
 
   let normalPlaneIndex = -1;
   const keys = parseCFG.getPlaneNumberKeys();
+
   for (let i = 0; i < keys.length; i++) {
     if (AddonObject.FLTSIM[keys[i]].isAirTraffic == 0 && AddonObject.FLTSIM[keys[i]].isUserSelectable == 1) {
       console.log(`Found potential AI convert: ${AddonObject.FLTSIM[keys[i]].title}`);
@@ -33,6 +34,7 @@ export default async function createAILivery(path) {
     }
   }
   if (normalPlaneIndex == -1) return;
+
   console.log(`Converting: ${AddonObject.FLTSIM[normalPlaneIndex].title}`);
   let AIPlaneObject = AddonObject.FLTSIM[normalPlaneIndex];
   AIPlaneObject.title = `${AIPlaneObject.title} AI`;
