@@ -1,3 +1,51 @@
+export { safe, unsafe, decode, decode as parse, encode, encode as stringify };
+
+const encodeExclusions = [
+  'ui_certified_ceiling',
+  'ui_max_range',
+  'ui_autonomy',
+  'ui_fuel_burn_rate',
+  'atc_id_enable',
+  'atc_heavy',
+  'isAirTraffic',
+  'isUserSelectable',
+  'performance',
+  'major',
+  'minor',
+  'editable',
+  'wip_indicator',
+  'icao_engine_count',
+  'FUELTRUCK',
+  'BAGGAGE_LOADER',
+  'CATERING_TRUCK',
+  'BOARDING_RAMP',
+  'GROUND_POWER_UNIT',
+  'PUSHBACK',
+  'SMALL_PUSHBACK',
+  'MARSHALLER',
+  'JETWAY',
+  'wake',
+  'water',
+  'dirt',
+  'concrete',
+  'touchdown',
+  'contrail',
+  'effect.0',
+  'effect.1',
+  'ImageName',
+  'Tips0',
+  'Tips1',
+  'Tips2',
+  'Tips3',
+  'stall_protection',
+  'off_limit',
+  'off_yoke_limit',
+  'on_limit',
+  'on_goal',
+  'timer_trigger',
+];
+const decodeExclusions = ['effect.0', 'effect.1'];
+
 const eol = typeof process !== 'undefined' && process.platform === 'win32' ? '\r\n' : '\n';
 
 function encode(obj, opt) {
@@ -13,7 +61,6 @@ function encode(obj, opt) {
     opt = opt || {};
     opt.whitespace = opt.whitespace === true;
   }
-
   var separator = opt.whitespace ? ' = ' : '=';
 
   Object.keys(obj).forEach(k => {
@@ -25,15 +72,18 @@ function encode(obj, opt) {
     } else if (val && typeof val === 'object') {
       children.push(k);
     } else {
-      out += safe(k) + separator + safe(val) + eol;
+      if ((!isNaN(val) || parseInt(val) == 0) && encodeExclusions.includes(k)) {
+        out += `${safe(k)} ${separator} ${safe(val)}${eol}`;
+      } else {
+        out += `${safe(k)} ${separator} "${safe(val)}"${eol}`;
+      }
     }
   });
 
   if (opt.section && out.length) {
     out = '[' + safe(opt.section) + ']' + eol + out;
   }
-
-  children.forEach(k => {
+  children.forEach(function (k) {
     var nk = dotSplit(k).join('\\.');
     var section = (opt.section ? opt.section + '.' : '') + nk;
     var child = encode(obj[k], {
@@ -67,7 +117,7 @@ function decode(str) {
   var re = /^\[([^\]]*)\]$|^([^=]+)(=(.*))?$/i;
   var lines = str.split(/[\r\n]+/g);
 
-  lines.forEach(line => {
+  lines.forEach(function (line) {
     if (!line || line.match(/^\s*[;#]/)) return;
     var match = line.match(re);
     if (!match) return;
@@ -77,19 +127,25 @@ function decode(str) {
       return;
     }
     var key = unsafe(match[2]);
-    /** @type {string} */
-    var value = match[3] ? unsafe(match[4]) : 'true';
+    var value = match[3] ? unsafe(match[4]) : true;
+    if (decodeExclusions.includes(key)) {
+      value = match[4].slice(1, match[4].length);
+    }
+    value = value.toString();
     if (value.includes(' ;')) {
       value = value.split(' ;')[0];
     }
     value = value.replace(/"/g, '');
+
     switch (value) {
       case 'true':
       case 'false':
       case 'null':
         value = JSON.parse(value);
     }
-
+    if ((parseInt(value) || parseInt(value) === 0) && key !== 'atc_flight_number') {
+      value = Number(value);
+    }
     // Convert keys with '[]' suffix to an array
     if (key.length > 2 && key.slice(-2) === '[]') {
       key = key.substring(0, key.length - 2);
@@ -161,8 +217,8 @@ function unsafe(val) {
     }
     try {
       val = JSON.parse(val);
-    } catch {
-      // empty
+    } catch (_) {
+      //console.log(_);
     }
   } else {
     // walk the val to find the first not-escaped ; character
@@ -192,5 +248,3 @@ function unsafe(val) {
   }
   return val;
 }
-
-export { safe, unsafe, decode, decode as parse, encode, encode as stringify };

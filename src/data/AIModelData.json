@@ -1,0 +1,3 @@
+{
+  "Asobo_A320_NEO": "[model.options]\nwithExterior_showInterior=FALSE\nwithExterior_showInterior_hideFirstLod=FALSE\nwithInterior_forceFirstLod=FALSE\nwithInterior_showExterior=FALSE\n\n[models]\nnormal=../../Asobo_A320_NEO/model.AirTraffic/A320_NEO_AIRTRAFFIC.xml"
+}
