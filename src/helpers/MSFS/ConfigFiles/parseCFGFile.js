@@ -48,6 +48,12 @@ export function getHighestPlaneNumber() {
   return highest;
 }
 
+/**
+ * Get an array of planeNumbers to use with FLTSIM.
+ *
+ * @export
+ * @return {IntArray} Array of planeNumbers for FLTSIM
+ */
 export function getPlaneNumberKeys() {
   let keys = [];
   const data = parseCFGFile();
