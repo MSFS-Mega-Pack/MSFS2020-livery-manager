@@ -4,13 +4,12 @@ import AllModelData from '../../data/AIModelData.json';
 import * as Path from 'path';
 
 export default async function createAILivery(path) {
-  
   if (!path.includes('SimObjects\\Airplanes')) path = Path.join(path, 'SimObjects', 'Airplanes');
   if (!fs.existsSync(path)) return console.log(path);
 
   let directories = await GetDirectories(path);
   let ModelAIPath = path + `\\${directories[0]}`;
-  
+
   path = Path.join(path, directories[0], 'aircraft.cfg');
 
   const loaded = parseCFG.loadCFG(path);
@@ -54,7 +53,7 @@ export default async function createAILivery(path) {
 }
 
 async function GetDirectories(path) {
-    return fs.readdirSync(path).filter(function (file) {
-      return fs.statSync(path+'/'+file).isDirectory();
-    });
-  }
+  return fs.readdirSync(path).filter(function (file) {
+    return fs.statSync(path + '/' + file).isDirectory();
+  });
+}
