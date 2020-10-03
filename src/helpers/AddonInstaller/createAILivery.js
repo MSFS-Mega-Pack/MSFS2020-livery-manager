@@ -51,6 +51,7 @@ export default async function createAILivery(path) {
     fs.writeFile(`${ModelAIPath}\\model.cfg`, AllModelData[aircraftModel], function (err) {
       if (err) return console.log(err);
     });
+    parseCFG.addAirplane(AIPlaneObject);
   }
 }
 
