@@ -3,6 +3,8 @@ import * as fs from 'fs';
 import AllModelData from '../../data/AIModelData.json';
 import * as Path from 'path';
 
+const NoAIModelPlanes = ['Asobo_B747_8i'];
+
 export default async function createAILivery(path) {
   if (!path.includes('SimObjects\\Airplanes')) path = Path.join(path, 'SimObjects', 'Airplanes');
   if (!fs.existsSync(path)) return console.log(path);
@@ -37,15 +39,23 @@ export default async function createAILivery(path) {
 
   console.log(`Converting: ${AddonObject.FLTSIM[normalPlaneIndex].title}`);
   let AIPlaneObject = AddonObject.FLTSIM[normalPlaneIndex];
+  const aircraftModel = AddonObject.VARIATION.base_container.substring(AddonObject.VARIATION.base_container.lastIndexOf('\\') + 1);
   AIPlaneObject.title = `${AIPlaneObject.title} AI`;
-  AIPlaneObject.model = `AI${AIPlaneObject.model}`;
+  if (NoAIModelPlanes.includes(aircraftModel) == -1) {
+    AIPlaneObject.model = `AI${AIPlaneObject.model}`;
+  }
   AIPlaneObject.isAirTraffic = 1;
   AIPlaneObject.isUserSelectable = 0;
 
   ModelAIPath += `\\MODEL.${AIPlaneObject.model}`;
   console.log(ModelAIPath);
-  const aircraftModel = AddonObject.VARIATION.base_container.substring(AddonObject.VARIATION.base_container.lastIndexOf('\\') + 1);
   if (!AllModelData[aircraftModel]) return console.log(aircraftModel);
+
+  if (NoAIModelPlanes.includes(aircraftModel) != -1) {
+    parseCFG.addAirplane(AIPlaneObject);
+    return;
+  }
+
   if (!fs.existsSync(ModelAIPath)) {
     fs.mkdirSync(ModelAIPath);
     fs.writeFile(`${ModelAIPath}\\model.cfg`, AllModelData[aircraftModel], function (err) {
