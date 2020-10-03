@@ -48,6 +48,17 @@ export function getHighestPlaneNumber() {
   return highest;
 }
 
+export function getPlaneNumberKeys() {
+  let keys = [];
+  const data = parseCFGFile();
+  Object.keys(data.FLTSIM).forEach(function (key) {
+    key = parseInt(key);
+    keys.push(key);
+  });
+
+  return keys;
+}
+
 /**
  * Add airplane object to CFG FIle
  *
