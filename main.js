@@ -70,6 +70,7 @@ function createMainWindow() {
       enableRemoteModule: true,
       webSecurity: false,
       preload: path.join(__dirname, 'src', 'helpers', 'Sentry', 'sentry.js'),
+      devTools: isDev,
     },
   });
 
