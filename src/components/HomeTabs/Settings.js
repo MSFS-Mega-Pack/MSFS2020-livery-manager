@@ -208,7 +208,7 @@ export default function Settings() {
               <Box mt={1}>
                 <Button
                   onClick={async () => {
-                    let s = enqueueSnackbar('Clearing cache. This might take a few mins.', { variant: 'info', persist: true });
+                    let s = enqueueSnackbar('Clearing cache. This might take a few mins.', { variant: 'info' });
 
                     const x = await ClearCache();
 
