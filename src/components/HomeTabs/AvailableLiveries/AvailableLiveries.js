@@ -174,14 +174,24 @@ export default function AvailableLiveries(props) {
               persist: true,
             });
 
+            let failures = [];
+
             for (let i = 0; i < selectedLiveries.length; i++) {
-              closeSnackbar(s);
               console.log(`Start Install ${i}`);
-              s = enqueueSnackbar(`Installing liveries: ${i + 1} of ${selectedLiveries.length}`, {
-                variant: 'info',
-                persist: true,
-              });
-              await InstallAddon(selectedLiveries[i]);
+
+              try {
+                await InstallAddon(selectedLiveries[i], i, selectedLiveries.length, message => {
+                  closeSnackbar(s);
+                  s = enqueueSnackbar(message, {
+                    variant: 'info',
+                    persist: true,
+                  });
+                });
+              } catch (e) {
+                failures.push(i);
+                console.log('failed!');
+                console.log(e);
+              }
             }
 
             setIsInstalling(false);
@@ -190,6 +200,7 @@ export default function AvailableLiveries(props) {
 
             closeSnackbar(s);
             enqueueSnackbar('Installation complete', { variant: 'success', persist: false });
+            failures.length > 0 && enqueueSnackbar(`${failures.length} liveries failed to install`, { variant: 'error' });
           }}
           style={{ position: 'fixed', bottom: 24, right: 24 }}
           color="primary"
