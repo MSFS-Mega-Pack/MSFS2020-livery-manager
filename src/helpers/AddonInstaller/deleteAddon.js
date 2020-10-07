@@ -5,23 +5,19 @@ import Path from 'path';
  * Remove installed addon by Path
  *
  * @export
- * @argument {String} Path, remove addon by path.
- * @return {Boolean} Removed the addon true/false
+ * @argument {string} Path, remove addon by path.
+ * @return {[boolean, string]} Removed the addon true/false
  */
-export default async function (path) {
+export default async function DeleteAddon(path) {
   if (fs.existsSync(path)) {
-    fs.readdirSync(path).forEach((file, index) => {
-      const curPath = Path.join(path, file);
-      if (fs.lstatSync(curPath).isDirectory()) {
-        // recurse
-        deleteFolderRecursive(curPath);
-      } else {
-        // delete file
-        fs.unlinkSync(curPath);
-      }
-    });
-    fs.rmdirSync(path);
-    return true;
+    try {
+      await fs.promises.rmdir(Path.resolve(path), { recursive: true });
+    } catch (e) {
+      console.error(e);
+      return [false, 'Error while deleting addon path.'];
+    }
+    return [true, 'Addon deleted successfully.'];
   }
-  return false;
+
+  return [false, 'Addon path did not exist.'];
 }
