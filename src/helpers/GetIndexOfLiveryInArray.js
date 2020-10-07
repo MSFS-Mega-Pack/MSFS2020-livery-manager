@@ -32,6 +32,6 @@ export default function GetIndexOfLiveryInArray(livery, arr) {
   if (index !== -1 && arr[index].checkSum !== livery.checkSum) {
     return [index, 'differentHash'];
   } else {
-    return [-1, null];
+    return [index, null];
   }
 }
