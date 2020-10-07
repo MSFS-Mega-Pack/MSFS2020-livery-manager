@@ -6,6 +6,8 @@ import { List } from '@material-ui/core';
 
 import ListRow from './ListRow';
 
+import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
+
 export default function LiveryList(props) {
   const { liveries, GetIndexOfObjectInArray, AddSelectedLivery, RemoveSelectedLivery, disabled, installedLiveries } = props;
 
@@ -17,7 +19,7 @@ export default function LiveryList(props) {
         item={i => {
           const liv = liveries[i];
 
-          const isInstalled = GetIndexOfObjectInArray(liv, installedLiveries) !== -1;
+          const [index, msg] = GetIndexOfLiveryInArray(liv, installedLiveries);
 
           return (
             <ListRow
@@ -27,7 +29,8 @@ export default function LiveryList(props) {
               AddSelectedLivery={AddSelectedLivery}
               RemoveSelectedLivery={RemoveSelectedLivery}
               disabled={disabled}
-              isInstalled={isInstalled}
+              isInstalled={index !== -1}
+              updateAvailable={msg === 'differentHash'}
             />
           );
         }}

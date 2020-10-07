@@ -6,11 +6,12 @@ import ExpandMoreIcon from 'mdi-react/ExpandMoreIcon';
 
 import FieldValueDisplay from './FieldValueDisplay';
 import InstalledBadge from './InstalledBadge';
+import UpdateAvailableBadge from './UpdateAvailableBadge';
 
 import Constants from '../../../data/Constants.json';
 
 export default function ListRow(props) {
-  const { livery, GetIndexOfObjectInArray, AddSelectedLivery, RemoveSelectedLivery, disabled, isInstalled } = props;
+  const { livery, GetIndexOfObjectInArray, AddSelectedLivery, RemoveSelectedLivery, disabled, isInstalled, updateAvailable } = props;
 
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -47,7 +48,7 @@ export default function ListRow(props) {
           />
         </ListItemIcon>
         <ListItemText primary={livery.fileName.substr(livery.fileName.indexOf('/') + 1).split('.zip')[0]} />
-        {isInstalled && <InstalledBadge />}
+        {isInstalled && (updateAvailable ? <UpdateAvailableBadge /> : <InstalledBadge />)}
         <Tooltip title={!isExpanded ? 'Show livery info' : 'Hide livery info'}>
           <IconButton
             centerRipple
@@ -108,4 +109,5 @@ ListRow.propTypes = {
   RemoveSelectedLivery: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   isInstalled: PropTypes.bool,
+  updateAvailable: PropTypes.bool,
 };
