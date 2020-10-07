@@ -206,9 +206,9 @@ export default function AvailableLiveries(props) {
           color="primary"
           variant="extended"
         >
-          <DownloadIcon style={{ marginRight: 8 }} /> {isInstalling ? 'Installing' : 'Install'}{' '}
+          <DownloadIcon style={{ marginRight: 8 }} /> {isInstalling ? 'Installing ' : 'Install '}
           {(selectedLiveries && selectedLiveries.length) || '??'} liveries (
-          {selectedLiveries && Math.round(selectedLiveries.reduce((prev, curr) => prev + curr.size / 1000000, 0) * 100) / 100} MB)
+          {selectedLiveries && Math.round(selectedLiveries.reduce((prev, curr) => prev + curr.size / 1000000, 0) * 10) / 10} MB)
         </Fab>
       </Zoom>
     </div>
