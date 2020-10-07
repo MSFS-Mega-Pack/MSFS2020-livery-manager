@@ -44,7 +44,7 @@ export default async function InstallAddon(PlaneObject, index, total, updateProg
     const stream = fs.createWriteStream(zipPath);
 
     console.log(`Starting DL`);
-    progress(request(downloadURL))
+    progress(request(downloadURL), { throttle: 100 })
       .pipe(stream)
       .on('error', async err => {
         console.log(`Error`);
