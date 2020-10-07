@@ -27,6 +27,11 @@ export default function LiveryManager() {
           ? {
               WebkitMaskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)',
             }
+          : openPage.toLowerCase() === 'settings'
+          ? {
+              paddingBottom: 100,
+              WebkitMaskImage: 'linear-gradient(black calc(90% - 81px), transparent calc(100% - 81px), black calc(100% - 81px), black 100%)',
+            }
           : null
       }
     >
