@@ -1,47 +1,120 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect, useReducer } from 'react';
+import Electron from 'electron';
 
 import { Paper, Typography, TextField, IconButton, InputAdornment, Box, Button, makeStyles, Link } from '@material-ui/core';
+import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
 
 import { ValidateFSDirectory } from '../../helpers/MSFS/Directories';
+import ShowNativeDialog from '../../helpers/ShowNativeDialog';
+import ResetConfig from '../../helpers/ResetConfig';
+import ClearCache from '../../helpers/CleanUp/ClearCache';
+
+import { useSnackbar } from 'notistack';
 
 import Config from 'electron-json-config';
 import CONFIG_KEYS from '../../data/config-keys.json';
+import { AllRoutes } from '../../data/Routes';
+import IsAdvancedUser from '../../data/IsAdvancedUser';
+import IsDev from '../../data/IsDev';
 
-import Electron from 'electron';
-
-import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
+import AdvancedSettingsToggleImage from '../../images/manager_text_advanced_settings.png';
 
 const useStyles = makeStyles(theme => ({
   settingsRoot: {
     flex: '1',
+    position: 'relative',
+    paddingBottom: 90,
   },
   settingsItem: {
     flex: 1,
     overflowY: 'auto',
     padding: theme.spacing(3),
+    marginBottom: theme.spacing(2),
   },
   resetLink: {
-    fontSize: 14,
+    fontSize: theme.typography.pxToRem(14),
     color: theme.palette.text.secondary,
     cursor: 'pointer',
     float: 'right',
   },
+  hintText: {
+    fontSize: theme.typography.pxToRem(14),
+    color: theme.palette.text.secondary,
+    paddingTop: theme.spacing(),
+  },
   sectTitle: {
     textTransform: 'uppercase',
     marginBottom: 2,
+    fontSize: theme.typography.pxToRem(16),
+  },
+  settingsButton: {
+    float: 'right',
+    '&::after': {
+      content: "''",
+      display: 'table',
+      clear: 'both',
+    },
   },
   saveButtonContainer: {
     marginTop: theme.spacing(),
+    position: 'fixed',
+    bottom: 16,
+    left: 32,
+    right: 32,
+    '& > *': {
+      backgroundColor: '#10101d',
+    },
+  },
+  advancedSettingsToggle: {
+    display: 'block',
+    width: '50%',
+    margin: 'auto',
+    padding: theme.spacing(4, 0),
   },
 }));
 
 export default function Settings() {
   const classes = useStyles();
 
+  const advancedSettingsToggleRef = useRef(null);
+  const PackagesDirTB = useRef('');
+
   const [error, setError] = useState(null);
   const [saveButtonEnabled, setSaveButtonEnabled] = useState(false);
 
-  const PackagesDirTB = useRef('');
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+  const [_, forceUpdate] = useReducer(x => x + 1, 0);
+
+  useEffect(() => {
+    function toggleAdvanced(e) {
+      if (e.detail === 5) {
+        if (IsAdvancedUser()) {
+          Config.set(CONFIG_KEYS.settings.show_advanced_settings, false);
+          enqueueSnackbar('Disabled advanced settings', { variant: 'info' });
+          forceUpdate();
+        } else {
+          let d = ShowNativeDialog(
+            'Enable advanced settings?',
+            'Enable advanced settings?',
+            'Only do this if instructed to by a developer. This may have unintended consequences. You have been warned!'
+          );
+
+          if (d === 0) {
+            Config.set(CONFIG_KEYS.settings.show_advanced_settings, true);
+            enqueueSnackbar('Enabled advanced settings', { variant: 'warning' });
+            forceUpdate();
+          }
+        }
+      }
+    }
+
+    advancedSettingsToggleRef.current.addEventListener('click', toggleAdvanced);
+
+    return () => {
+      advancedSettingsToggleRef.current.removeEventListener('click', toggleAdvanced);
+    };
+  });
 
   function openBrowseDialog() {
     const d = Electron.remote.dialog.showOpenDialogSync(null, { properties: ['openDirectory'] });
@@ -81,7 +154,7 @@ export default function Settings() {
               style: { fontFamily: 'IBM Plex Mono', letterSpacing: -0.2 },
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton aria-label="toggle password visibility" onClick={openBrowseDialog}>
+                  <IconButton aria-label="browse to folder" onClick={openBrowseDialog}>
                     <FolderSearchOutlineIcon />
                   </IconButton>
                 </InputAdornment>
@@ -124,7 +197,66 @@ export default function Settings() {
             Reset to previous value
           </Link>
         </Paper>
+
+        {IsAdvancedUser() && (
+          <>
+            <Paper className={classes.settingsItem}>
+              <Typography className={classes.sectTitle} variant="caption" color="textSecondary" component="h2">
+                Caching
+              </Typography>
+              <Box mt={1}>
+                <Button
+                  onClick={async () => {
+                    let s = enqueueSnackbar('Clearing cache. This might take a few mins.', { variant: 'info', persist: true });
+
+                    const x = await ClearCache();
+
+                    if (x === true) {
+                      closeSnackbar(s);
+                      enqueueSnackbar('Cache cleared successfully!', { variant: 'success' });
+                    } else {
+                      closeSnackbar(s);
+                      enqueueSnackbar('Cache cleared with errors', { variant: 'error' });
+                    }
+                  }}
+                >
+                  Purge cache
+                </Button>
+              </Box>
+            </Paper>
+
+            <Paper className={classes.settingsItem}>
+              <Typography className={classes.sectTitle} variant="caption" color="textSecondary" component="h2">
+                Reset manager
+              </Typography>
+              <Box mt={1}>
+                <Button
+                  onClick={() => {
+                    ResetConfig();
+
+                    if (!IsDev()) {
+                      Electron.remote.app.relaunch();
+                      Electron.remote.app.exit();
+                    } else {
+                      // workaround for reset during dev
+                      window.__navigate(AllRoutes.SETUP);
+                    }
+                  }}
+                >
+                  Reset all settings
+                </Button>
+              </Box>
+              <Typography className={classes.hintText}>
+                This will reset all app settings and restart the manager. You won&apos;t lose any installed liveries, and any liveries that are
+                already installed will be automatically re-detected.
+              </Typography>
+            </Paper>
+          </>
+        )}
+
+        <img ref={advancedSettingsToggleRef} className={classes.advancedSettingsToggle} src={AdvancedSettingsToggleImage} />
       </section>
+
       <Box className={classes.saveButtonContainer}>
         <Paper className={classes.settingsItem} style={{ display: 'flex' }}>
           <Box flex="1">
