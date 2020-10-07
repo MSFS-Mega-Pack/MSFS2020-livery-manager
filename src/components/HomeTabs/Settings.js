@@ -84,6 +84,7 @@ export default function Settings() {
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
+  // eslint-disable-next-line
   const [_, forceUpdate] = useReducer(x => x + 1, 0);
 
   useEffect(() => {
