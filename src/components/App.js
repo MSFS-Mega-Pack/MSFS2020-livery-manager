@@ -43,7 +43,7 @@ function App() {
       </TitleBar>
       <main>
         <ThemeProvider theme={Theme}>
-          <SnackbarProvider preventDuplicate maxSnack={3}>
+          <SnackbarProvider maxSnack={3}>
             <CssBaseline />
             <OfflineError />
             <HashRouter hashType="slash">
