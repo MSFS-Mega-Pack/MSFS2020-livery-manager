@@ -235,7 +235,7 @@ export default function Settings() {
                   onClick={() => {
                     ResetConfig();
 
-                    if (!IsDev()) {
+                    if (!IsDev) {
                       Electron.remote.app.relaunch();
                       Electron.remote.app.exit();
                     } else {
