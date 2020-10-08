@@ -16,6 +16,7 @@ import InstallAddon from '../../../helpers/AddonInstaller/InstallAddon';
 import GetInstalledAddons from '../../../helpers/AddonInstaller/GetInstalledAddons';
 
 import { useSnackbar } from 'notistack';
+import NoImage from '../../../images/no-image-available.png';
 
 const RefreshInterval = 30 * 1000;
 
@@ -102,11 +103,16 @@ export default function AvailableLiveries(props) {
         m.set(item.airplane, true);
 
         let thumb = fileListing.data.fileList.filter(a => a.airplane.toLowerCase() === item.airplane.toLowerCase()).find(a => a.image);
-        thumb = thumb.image;
+
+        if (thumb && thumb.image) {
+          thumb = `${fileListing.data.cdnBaseUrl}/${thumb.image}`;
+        } else {
+          thumb = NoImage;
+        }
 
         aircraft.push({
           name: item.airplane.toLowerCase(),
-          thumbnail: `${fileListing.data.cdnBaseUrl}/${thumb}`,
+          thumbnail: thumb,
         });
       }
     }
