@@ -41,7 +41,7 @@ export default async function createAILivery(path) {
   let AIPlaneObject = AddonObject.FLTSIM[normalPlaneIndex];
   const aircraftModel = AddonObject.VARIATION.base_container.substring(AddonObject.VARIATION.base_container.lastIndexOf('\\') + 1);
   AIPlaneObject.title = `${AIPlaneObject.title} AI`;
-  if (NoAIModelPlanes.includes(aircraftModel) == -1) {
+  if (!NoAIModelPlanes.includes(aircraftModel)) {
     AIPlaneObject.model = `AI${AIPlaneObject.model}`;
   }
   AIPlaneObject.isAirTraffic = 1;
@@ -51,7 +51,7 @@ export default async function createAILivery(path) {
   console.log(ModelAIPath);
   if (!AllModelData[aircraftModel]) return console.log(aircraftModel);
 
-  if (NoAIModelPlanes.includes(aircraftModel) != -1) {
+  if (!NoAIModelPlanes.includes(aircraftModel)) {
     parseCFG.addAirplane(AIPlaneObject);
     return;
   }
