@@ -29,14 +29,16 @@ export default function AircraftAccordion(props) {
   const classes = useStyles();
 
   function isLiveryInstalled(name) {
+    var isInstalled = false;
     if(installedLiveries) {
       installedLiveries.forEach(livery => {
         if(livery.airplane === name) {
-          return true;
+          isInstalled = true;
         }
       });
-      return false;
     }
+
+    return isInstalled;
   }
 
   function GetLiveriesNotInstalled(item, installedLiveries) {
@@ -71,7 +73,7 @@ export default function AircraftAccordion(props) {
                 disabled={disabled}
                 variant="outlined"
                 color="primary"
-                onClick={() => AddSelectedLivery(sortedLiveries.filter(l =>GetLiveriesNotInstalled(l, installedLiveries)))}
+                onClick={() => AddSelectedLivery(sortedLiveries.filter(l => GetLiveriesNotInstalled(l, installedLiveries)))}
                 startIcon={<CheckboxTickIcon />}
               >
                 Select all

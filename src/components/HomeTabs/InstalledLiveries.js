@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Typography, Box, Paper } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 import GetInstalledAddons from '../../helpers/AddonInstaller/GetInstalledAddons';
 
 export default function InstalledLiveries() {
