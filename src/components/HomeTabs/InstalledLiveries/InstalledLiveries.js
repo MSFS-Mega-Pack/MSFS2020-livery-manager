@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Typography } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
+import GetInstalledAddons from '../../../helpers/AddonInstaller/GetInstalledAddons';
 
 export default function InstalledLiveries() {
+  const [installedLiveries, setInstalledLiveries] = useState(undefined);
+
+  if (typeof installedLiveries === 'undefined') {
+    setInstalledLiveries(null);
+    GetInstalledAddons().then(livs => setInstalledLiveries(livs));
+  }
+
+  console.log(installedLiveries);
+  
   return (
     <div>
-      <Typography paragraph>This is the Installed Liveries page.</Typography>
+      <Box>
+        <Typography gutterBottom variant="h5">
+          All aircraft
+        </Typography>
+        <Typography paragraph variant="body2">
+          Click any aircraft to see its available liveries. Select the liveries you want, then click Install.
+        </Typography>
+      </Box>
+
+      <Box>
+      </Box>
     </div>
   );
 }
