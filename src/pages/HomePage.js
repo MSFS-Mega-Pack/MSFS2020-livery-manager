@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 
 import MainPage from '../components/MainPage';
 import { InstalledLiveries, AvailableLiveries, Feed, Settings } from '../components/HomeTabs';
+import FetchAndParseJsonManifest from '../helpers/Manifest/FetchAndParseManifest';
+import Constants from '../data/Constants.json';
+import ActiveApiEndpoint from '../data/ActiveApiEndpoint';
 
 export default function LiveryManager() {
   const [openPage, setOpenPage] = useState('dashboard');
@@ -12,12 +15,26 @@ export default function LiveryManager() {
 
   // Avail liveries state
   const [fileListing, setFileListing] = useState(undefined);
+  const [justRefreshed, setJustRefreshed] = useState(false);
 
   function handlePageChange(newPage) {
     setOpenPage(newPage);
   }
 
   const pg = openPage.toLowerCase();
+
+  function UpdateFileList(callback) {
+    FetchAndParseJsonManifest(`${ActiveApiEndpoint}/${Constants.api.get.cdnFileListing}`)
+      .then(d => {
+        setFileListing({ checkedAt: new Date().getTime(), ...d });
+        typeof callback === 'function' && callback();
+      })
+      .catch(() => setFileListing(null));
+  }
+
+  if (typeof fileListing === 'undefined') {
+    UpdateFileList();
+  }
 
   return (
     <MainPage
@@ -39,10 +56,21 @@ export default function LiveryManager() {
         <Feed feed={feed} setFeed={setFeed} fullHistory={fullHistory} setFullHistory={setFullHistory} />
       </div>
       <div style={{ display: pg !== 'available liveries' && 'none' }}>
-        <AvailableLiveries fileListing={fileListing} setFileListing={setFileListing} />
+        <AvailableLiveries
+          justRefreshed={justRefreshed}
+          setJustRefreshed={setJustRefreshed}
+          fileListing={fileListing}
+          setFileListing={setFileListing}
+          UpdateFileList={UpdateFileList}
+        />
       </div>
       <div style={{ display: pg !== 'installed liveries' && 'none' }}>
-        <InstalledLiveries />
+        <InstalledLiveries
+          justRefreshed={justRefreshed}
+          setJustRefreshed={setJustRefreshed}
+          fileListing={fileListing}
+          UpdateFileList={UpdateFileList}
+        />
       </div>
       <div style={{ display: pg !== 'settings' && 'none' }}>
         <Settings />

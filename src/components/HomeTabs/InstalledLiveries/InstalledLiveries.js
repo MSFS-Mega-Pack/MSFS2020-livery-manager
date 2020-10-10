@@ -1,48 +1,83 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-import { Typography, Box } from '@material-ui/core';
+import { Box } from '@material-ui/core';
+
+import { RefreshBox } from '../../RefreshBox';
 
 import GetInstalledAddons from '../../../helpers/AddonInstaller/getInstalledAddons';
+import Constants from '../../../data/Constants.json';
+import Loading from '../../Loading';
 
-export default function InstalledLiveries() {
+export default function InstalledLiveries(props) {
   const [installedLiveries, setInstalledLiveries] = useState(undefined);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const { fileListing, UpdateFileList, justRefreshed, setJustRefreshed } = props;
 
   if (typeof installedLiveries === 'undefined') {
     setInstalledLiveries(null);
     GetInstalledAddons()
-      .then(livs => setInstalledLiveries(livs))
+      .then(liveries => setInstalledLiveries(liveries))
       .catch(e => setInstalledLiveries(e));
   }
 
-  // console.log(installedLiveries);
+  if (typeof fileListing === 'undefined') {
+    return (
+      <>
+        <RefreshBox justRefreshed={true} lastCheckedTime={'checking now...'} />
+        <Loading />
+      </>
+    );
+  } else if (refreshing) {
+    return (
+      <>
+        <RefreshBox justRefreshed={true} lastCheckedTime={'refreshing...'} />
+        <Loading />
+      </>
+    );
+  }
 
   return (
-    <div>
-      <Box>
-        <Typography gutterBottom variant="h5">
-          All aircraft
-        </Typography>
-        <Typography paragraph variant="body2">
-          Click any aircraft to see its available liveries. Select the liveries you want, then click Install.
-        </Typography>
-      </Box>
-
-      {/* {typeof installedLiveries === 'string' && (
-        <ErrorDialog
-          title={"Couldn't load available liveries"}
-          error={
-            <Typography variant="body2" paragraph>
-              We couldn&apos;t fetch the list of installed liveries. Have you moved or deleted your Community folder?
-            </Typography>
-          }
-          suggestions={[
-            `The path you told us is "${Config.get(ConfigKeys.settings.package_directory)}". Is this correct?`,
-            `Update your packages directory in Settings.`,
-          ]}
-        />
-      )} */}
-
-      <Box></Box>
-    </div>
+    <Box>
+      <RefreshBox
+        justRefreshed={!!justRefreshed}
+        lastCheckedTime={fileListing && fileListing.checkedAt}
+        onRefresh={() => {
+          setRefreshing(true);
+          UpdateFileList(() => {
+            setRefreshing(false);
+            setJustRefreshed(new Date().getTime());
+          });
+        }}
+        refreshInterval={Constants.refreshInterval}
+      />
+    </Box>
   );
 }
+
+InstalledLiveries.propTypes = {
+  justRefreshed: PropTypes.any,
+  setJustRefreshed: PropTypes.func,
+  UpdateFileList: PropTypes.func.isRequired,
+  fileListing: PropTypes.shape({
+    checkedAt: PropTypes.number.isRequired,
+    data: PropTypes.shape({
+      cdnBaseUrl: PropTypes.string.isRequired,
+      fileList: PropTypes.arrayOf(
+        PropTypes.shape({
+          airplane: PropTypes.string.isRequired,
+          fileName: PropTypes.string.isRequired,
+          generation: PropTypes.string.isRequired,
+          metaGeneration: PropTypes.string.isRequired,
+          lastModified: PropTypes.string.isRequired,
+          ETag: PropTypes.string.isRequired,
+          size: PropTypes.string.isRequired,
+          checkSum: PropTypes.string.isRequired,
+          image: PropTypes.string,
+          smallImage: PropTypes.string,
+        }).isRequired
+      ),
+    }),
+  }),
+};

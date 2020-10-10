@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Dialog, DialogContent, DialogTitle, Typography } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@material-ui/core';
 
 export default function ErrorDialog(props) {
-  const { title, error, suggestions } = props;
+  const { title, error, suggestions, dismissable } = props;
+  const [shown, setShown] = useState(true);
 
   return (
-    <Dialog open disableBackdropClick disableEscapeKeyDown>
+    <Dialog
+      open={shown}
+      onClose={dismissable ? () => setShown(false) : null}
+      disableBackdropClick={!dismissable}
+      disableEscapeKeyDown={!dismissable}
+    >
       <DialogTitle style={{ paddingBottom: 4 }}>
         <Typography variant="h5">{title}</Typography>
       </DialogTitle>
@@ -21,10 +27,20 @@ export default function ErrorDialog(props) {
             <Typography variant="h6" paragraph>
               Suggestions
             </Typography>
-            {/* {suggestions} */}
+            <ul>
+              {/* {suggestions} */}
+              {suggestions.map((suggestion, i) => (
+                <li key={`${i}__${suggestion}`}>{suggestion}</li>
+              ))}
+            </ul>
           </>
         )}
       </DialogContent>
+      {dismissable && (
+        <DialogActions>
+          <Button onClick={() => setShown(false)}>Close</Button>
+        </DialogActions>
+      )}
     </Dialog>
   );
 }
