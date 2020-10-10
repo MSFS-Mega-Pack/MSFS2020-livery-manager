@@ -45,25 +45,6 @@ export default function AvailableLiveries(props) {
       .catch(e => setInstalledLiveries(e));
   }
 
-  useEffect(() => {
-    let key;
-
-    if (justRefreshed) {
-      key = setInterval(() => {
-        let now = new Date().getTime();
-
-        if (now > justRefreshed + RefreshInterval) {
-          setJustRefreshed(false);
-          clearInterval(key);
-        }
-      }, 500);
-    }
-
-    return () => {
-      clearInterval(key);
-    };
-  }, [justRefreshed, setJustRefreshed]);
-
   if (typeof fileListing === 'undefined') {
     return (
       <>

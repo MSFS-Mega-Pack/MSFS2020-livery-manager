@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import MainPage from '../components/MainPage';
 import { InstalledLiveries, AvailableLiveries, Feed, Settings } from '../components/HomeTabs';
@@ -16,6 +16,25 @@ export default function LiveryManager() {
   // Avail liveries state
   const [fileListing, setFileListing] = useState(undefined);
   const [justRefreshed, setJustRefreshed] = useState(false);
+
+  useEffect(() => {
+    let key;
+
+    if (justRefreshed) {
+      key = setInterval(() => {
+        let now = new Date().getTime();
+
+        if (now > justRefreshed + Constants.refreshInterval) {
+          setJustRefreshed(false);
+          clearInterval(key);
+        }
+      }, 500);
+    }
+
+    return () => {
+      clearInterval(key);
+    };
+  }, [justRefreshed, setJustRefreshed]);
 
   function handlePageChange(newPage) {
     setOpenPage(newPage);
