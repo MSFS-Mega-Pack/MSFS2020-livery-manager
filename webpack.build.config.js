@@ -62,17 +62,19 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     new BabiliPlugin(),
-    new SentryWebpackPlugin({
-      // sentry-cli configuration
-      authToken: process.env.SENTRY_AUTH_TOKEN,
-      org: 'gewoonjaap',
-      project: 'msfs-api',
+    process.env.SENTRY_AUTH_TOKEN
+      ? new SentryWebpackPlugin({
+          // sentry-cli configuration
+          authToken: process.env.SENTRY_AUTH_TOKEN,
+          org: 'gewoonjaap',
+          project: 'msfs-api',
 
-      // webpack specific configuration
-      include: '.',
-      ignore: ['node_modules', 'webpack.build.config.js', 'webpack.dev.config.js'],
-    }),
-  ],
+          // webpack specific configuration
+          include: '.',
+          ignore: ['node_modules', 'webpack.build.config.js', 'webpack.dev.config.js'],
+        })
+      : console.log('WARNING: NOT UPLOADING SOURCE MAPS TO SENTRY!\n\nMISSING API KEY!') && false,
+  ].filter(Boolean),
   stats: {
     colors: true,
     children: false,
