@@ -11,12 +11,9 @@ import FullTable from './FullTable';
 import ErrorDialog from '../../ErrorDialog';
 
 // helpers and data
-import FetchAndParseManifest from '../../../helpers/Manifest/FetchAndParseManifest';
-import ActiveApiEndpoint from '../../../data/ActiveApiEndpoint';
 import InstallAddon from '../../../helpers/AddonInstaller/InstallAddon';
-import GetInstalledAddons from '../../../helpers/AddonInstaller/GetInstalledAddons';
+import GetInstalledAddons from '../../../helpers/AddonInstaller/getInstalledAddons';
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
-import Constants from '../../../data/Constants.json';
 import ConfigKeys from '../../../data/config-keys.json';
 import NoImage from '../../../images/no-image-available.png';
 
@@ -68,15 +65,6 @@ export default function AvailableLiveries(props) {
     };
   }, [justRefreshed, setJustRefreshed]);
 
-  function UpdateFileList(callback) {
-    FetchAndParseManifest(`${ActiveApiEndpoint}/${Constants.api.get.cdnFileListing}`)
-      .then(d => {
-        setFileListing({ checkedAt: new Date().getTime(), ...d });
-        typeof callback === 'function' && callback();
-      })
-      .catch(() => setFileListing(null));
-  }
-
   const loading = (
     <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', textAlign: 'center' }}>
       <CircularProgress style={{ margin: 'auto', marginBottom: 24 }} size={64} />
@@ -90,7 +78,6 @@ export default function AvailableLiveries(props) {
   );
 
   if (typeof fileListing === 'undefined') {
-    UpdateFileList();
     return (
       <>
         <RefreshBox justRefreshed={true} lastCheckedTime={'checking now...'} disabled={isInstalling} />

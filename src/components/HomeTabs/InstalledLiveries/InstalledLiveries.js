@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Typography, Box } from '@material-ui/core';
 
-import GetInstalledAddons from '../../../helpers/AddonInstaller/GetInstalledAddons';
+import GetInstalledAddons from '../../../helpers/AddonInstaller/getInstalledAddons';
 
 export default function InstalledLiveries() {
   const [installedLiveries, setInstalledLiveries] = useState(undefined);
