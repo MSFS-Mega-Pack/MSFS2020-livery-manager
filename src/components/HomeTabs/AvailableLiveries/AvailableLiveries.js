@@ -85,7 +85,7 @@ export default function AvailableLiveries(props) {
       if (!m.has(item.airplane)) {
         m.set(item.airplane, true);
 
-        let thumb = `${fileListing.data.cdnBaseUrl}/img/${item.airplane}/thumbnail.jpg`;
+        let thumb = `${fileListing.data.cdnBaseUrl}/img/${item.airplane}/thumbnail.JPG`;
 
         aircraft.push({
           name: item.airplane.toLowerCase(),
