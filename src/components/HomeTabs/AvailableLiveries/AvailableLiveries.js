@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
+// 3rd party components
 import { Box, CircularProgress, Fab, IconButton, Paper, Tooltip, Typography, Zoom } from '@material-ui/core';
-import FullTable from './FullTable';
 import RefreshIcon from 'mdi-react/RefreshIcon';
 import DownloadIcon from 'mdi-react/DownloadOutlineIcon';
 
-import dayjs from 'dayjs';
+// 1st party components
+import FullTable from './FullTable';
+import ErrorDialog from '../../ErrorDialog';
 
+// helpers and data
 import FetchAndParseManifest from '../../../helpers/Manifest/FetchAndParseManifest';
 import ActiveApiEndpoint from '../../../data/ActiveApiEndpoint';
-import Constants from '../../../data/Constants.json';
-import PlaneNameTable from '../../../data/PlaneNameTable.json';
 import InstallAddon from '../../../helpers/AddonInstaller/InstallAddon';
 import GetInstalledAddons from '../../../helpers/AddonInstaller/GetInstalledAddons';
-
-import { useSnackbar } from 'notistack';
+import PlaneNameTable from '../../../data/PlaneNameTable.json';
+import Constants from '../../../data/Constants.json';
+import ConfigKeys from '../../../data/config-keys.json';
 import NoImage from '../../../images/no-image-available.png';
+
+// support libraries
+import { useSnackbar } from 'notistack';
+import dayjs from 'dayjs';
+import Config from 'electron-json-config';
 
 const RefreshInterval = 30 * 1000;
 
@@ -37,7 +44,9 @@ export default function AvailableLiveries(props) {
 
   if (typeof installedLiveries === 'undefined') {
     setInstalledLiveries(null);
-    GetInstalledAddons().then(livs => setInstalledLiveries(livs));
+    GetInstalledAddons()
+      .then(livs => setInstalledLiveries(livs))
+      .catch(e => setInstalledLiveries(e));
   }
 
   useEffect(() => {
@@ -157,7 +166,23 @@ export default function AvailableLiveries(props) {
         }}
         disabled={isInstalling}
       />
-      {fileListing && (
+
+      {typeof installedLiveries === 'string' && (
+        <ErrorDialog
+          title={"Couldn't load available liveries"}
+          error={
+            <Typography variant="body2" paragraph>
+              We couldn&apos;t fetch the list of installed liveries. Have you moved or deleted your Community folder?
+            </Typography>
+          }
+          suggestions={[
+            `The path you told us is "${Config.get(ConfigKeys.settings.package_directory)}". Is this correct?`,
+            `Update your packages directory in Settings.`,
+          ]}
+        />
+      )}
+
+      {fileListing && installedLiveries && typeof installedLiveries !== 'string' && (
         <FullTable
           sortedLiveries={sortedLiveries}
           allAircraft={aircraft}
@@ -202,7 +227,9 @@ export default function AvailableLiveries(props) {
 
             setIsInstalling(false);
             setSelectedLiveries([]);
-            GetInstalledAddons().then(l => setInstalledLiveries(l));
+            GetInstalledAddons()
+              .then(l => setInstalledLiveries(l))
+              .catch(e => setInstalledLiveries(e));
 
             closeSnackbar(s);
             enqueueSnackbar('Installation complete', { variant: 'success', persist: false });

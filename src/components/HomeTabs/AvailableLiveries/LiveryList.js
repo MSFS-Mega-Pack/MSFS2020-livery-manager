@@ -9,7 +9,7 @@ import ListRow from './ListRow';
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
 
 export default function LiveryList(props) {
-  const { liveries, GetIndexOfObjectInArray, AddSelectedLivery, RemoveSelectedLivery, disabled, installedLiveries } = props;
+  const { liveries, AddSelectedLivery, RemoveSelectedLivery, disabled, installedLiveries, selectedLiveries } = props;
 
   return (
     <List dense>
@@ -17,19 +17,19 @@ export default function LiveryList(props) {
         totalCount={liveries.length}
         style={{ height: 350 }}
         item={i => {
-          const liv = liveries[i];
+          const livery = liveries[i];
 
-          const [index, msg] = GetIndexOfLiveryInArray(liv, installedLiveries);
+          const [index, msg] = GetIndexOfLiveryInArray(livery, installedLiveries);
 
           return (
             <ListRow
-              key={`${liv.fileName}__${liv.checkSum}`}
-              livery={liv}
-              GetIndexOfObjectInArray={GetIndexOfObjectInArray}
+              key={`${livery.fileName}__${livery.checkSum}`}
+              livery={livery}
               AddSelectedLivery={AddSelectedLivery}
               RemoveSelectedLivery={RemoveSelectedLivery}
               disabled={disabled}
               isInstalled={index !== -1}
+              isSelected={GetIndexOfLiveryInArray(livery, selectedLiveries)[0] !== -1}
               updateAvailable={msg === 'differentHash'}
             />
           );
@@ -68,7 +68,20 @@ LiveryList.propTypes = {
       smallImage: PropTypes.string,
     }).isRequired
   ).isRequired,
-  GetIndexOfObjectInArray: PropTypes.func.isRequired,
+  selectedLiveries: PropTypes.arrayOf(
+    PropTypes.shape({
+      airplane: PropTypes.string.isRequired,
+      fileName: PropTypes.string.isRequired,
+      generation: PropTypes.string.isRequired,
+      metaGeneration: PropTypes.string.isRequired,
+      lastModified: PropTypes.string.isRequired,
+      ETag: PropTypes.string.isRequired,
+      size: PropTypes.string.isRequired,
+      checkSum: PropTypes.string.isRequired,
+      image: PropTypes.string,
+      smallImage: PropTypes.string,
+    }).isRequired
+  ).isRequired,
   AddSelectedLivery: PropTypes.func.isRequired,
   RemoveSelectedLivery: PropTypes.func.isRequired,
   disabled: PropTypes.bool,

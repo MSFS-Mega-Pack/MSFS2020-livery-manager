@@ -11,11 +11,9 @@ import UpdateAvailableBadge from './UpdateAvailableBadge';
 import Constants from '../../../data/Constants.json';
 
 export default function ListRow(props) {
-  const { livery, GetIndexOfObjectInArray, AddSelectedLivery, RemoveSelectedLivery, disabled, isInstalled, updateAvailable } = props;
+  const { livery, AddSelectedLivery, RemoveSelectedLivery, disabled, isInstalled, isSelected, updateAvailable } = props;
 
   const [isExpanded, setIsExpanded] = useState(false);
-
-  const Checked = GetIndexOfObjectInArray(livery) !== -1;
 
   async function ToggleCheckbox(e) {
     // Don't edit the list if it's disabled! (Duh!!)
@@ -24,9 +22,7 @@ export default function ListRow(props) {
     e.stopPropagation();
     e.preventDefault();
 
-    console.log(Checked);
-
-    if (!Checked) {
+    if (!isSelected) {
       console.log('Adding livery ', livery.fileName);
       AddSelectedLivery(livery);
     } else {
@@ -43,7 +39,7 @@ export default function ListRow(props) {
             disabled={disabled || isInstalled}
             color="primary"
             edge="start"
-            checked={Checked || isInstalled}
+            checked={isSelected || isInstalled}
             onChange={isInstalled ? null : ToggleCheckbox}
           />
         </ListItemIcon>
@@ -104,10 +100,10 @@ ListRow.propTypes = {
     image: PropTypes.string,
     smallImage: PropTypes.string,
   }).isRequired,
-  GetIndexOfObjectInArray: PropTypes.func.isRequired,
   AddSelectedLivery: PropTypes.func.isRequired,
   RemoveSelectedLivery: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   isInstalled: PropTypes.bool,
   updateAvailable: PropTypes.bool,
+  isSelected: PropTypes.bool,
 };

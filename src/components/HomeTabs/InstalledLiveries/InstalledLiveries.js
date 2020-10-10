@@ -1,18 +1,26 @@
 import React, { useState } from 'react';
 
 import { Typography, Box } from '@material-ui/core';
+
+import ErrorDialog from '../../ErrorDialog';
+
 import GetInstalledAddons from '../../../helpers/AddonInstaller/GetInstalledAddons';
+import ConfigKeys from '../../../data/config-keys.json';
+
+import Config from 'electron-json-config';
 
 export default function InstalledLiveries() {
   const [installedLiveries, setInstalledLiveries] = useState(undefined);
 
   if (typeof installedLiveries === 'undefined') {
     setInstalledLiveries(null);
-    GetInstalledAddons().then(livs => setInstalledLiveries(livs));
+    GetInstalledAddons()
+      .then(livs => setInstalledLiveries(livs))
+      .catch(e => setInstalledLiveries(e));
   }
 
-  console.log(installedLiveries);
-  
+  // console.log(installedLiveries);
+
   return (
     <div>
       <Box>
@@ -24,8 +32,22 @@ export default function InstalledLiveries() {
         </Typography>
       </Box>
 
-      <Box>
-      </Box>
+      {/* {typeof installedLiveries === 'string' && (
+        <ErrorDialog
+          title={"Couldn't load available liveries"}
+          error={
+            <Typography variant="body2" paragraph>
+              We couldn&apos;t fetch the list of installed liveries. Have you moved or deleted your Community folder?
+            </Typography>
+          }
+          suggestions={[
+            `The path you told us is "${Config.get(ConfigKeys.settings.package_directory)}". Is this correct?`,
+            `Update your packages directory in Settings.`,
+          ]}
+        />
+      )} */}
+
+      <Box></Box>
     </div>
   );
 }

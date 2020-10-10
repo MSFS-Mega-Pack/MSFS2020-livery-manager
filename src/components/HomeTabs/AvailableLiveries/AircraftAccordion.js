@@ -10,6 +10,7 @@ import FieldValueDisplay from './FieldValueDisplay';
 import LiveryList from './LiveryList';
 
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
+import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -25,30 +26,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 export default function AircraftAccordion(props) {
-  const { aircraft, sortedLiveries, GetIndexOfObjectInArray, AddSelectedLivery, RemoveSelectedLivery, disabled, installedLiveries } = props;
+  const { aircraft, sortedLiveries, AddSelectedLivery, RemoveSelectedLivery, disabled, installedLiveries, selectedLiveries } = props;
   const classes = useStyles();
-
-  function isLiveryInstalled(name) {
-    var isInstalled = false;
-    if(installedLiveries) {
-      installedLiveries.forEach(livery => {
-        if(livery.airplane === name) {
-          isInstalled = true;
-        }
-      });
-    }
-
-    return isInstalled;
-  }
-
-  function GetLiveriesNotInstalled(item, installedLiveries) {
-    if(!isLiveryInstalled(item.airplane)) {
-      return GetIndexOfObjectInArray(item, installedLiveries) === -1;
-    }
-    console.log(2);
-    return false;
-  }
-  
 
   return (
     <Accordion TransitionProps={{ unmountOnExit: true }}>
@@ -73,7 +52,7 @@ export default function AircraftAccordion(props) {
                 disabled={disabled}
                 variant="outlined"
                 color="primary"
-                onClick={() => AddSelectedLivery(sortedLiveries.filter(l => GetLiveriesNotInstalled(l, installedLiveries)))}
+                onClick={() => AddSelectedLivery(sortedLiveries.filter(l => GetIndexOfLiveryInArray(l, installedLiveries) === -1))}
                 startIcon={<CheckboxTickIcon />}
               >
                 Select all
@@ -101,10 +80,10 @@ export default function AircraftAccordion(props) {
           <LiveryList
             disabled={disabled}
             liveries={sortedLiveries}
-            GetIndexOfObjectInArray={GetIndexOfObjectInArray}
             AddSelectedLivery={AddSelectedLivery}
             RemoveSelectedLivery={RemoveSelectedLivery}
             installedLiveries={installedLiveries}
+            selectedLiveries={selectedLiveries}
           />
         </Box>
       </AccordionDetails>
@@ -145,8 +124,21 @@ AircraftAccordion.propTypes = {
       smallImage: PropTypes.string,
     })
   ),
-  GetIndexOfObjectInArray: PropTypes.func.isRequired,
   AddSelectedLivery: PropTypes.func.isRequired,
   RemoveSelectedLivery: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
+  selectedLiveries: PropTypes.arrayOf(
+    PropTypes.shape({
+      airplane: PropTypes.string.isRequired,
+      fileName: PropTypes.string.isRequired,
+      generation: PropTypes.string.isRequired,
+      metaGeneration: PropTypes.string.isRequired,
+      lastModified: PropTypes.string.isRequired,
+      ETag: PropTypes.string.isRequired,
+      size: PropTypes.string.isRequired,
+      checkSum: PropTypes.string.isRequired,
+      image: PropTypes.string,
+      smallImage: PropTypes.string,
+    }).isRequired
+  ).isRequired,
 };

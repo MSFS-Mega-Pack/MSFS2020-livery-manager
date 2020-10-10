@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Box, Typography } from '@material-ui/core';
 
 import AircraftAccordion from './AircraftAccordion';
+import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
 
 /**
  * Displays a table of all aircraft and their liveries
@@ -17,16 +18,6 @@ export default function FullTable(props) {
 
   const [selectedLiveries, setSelectedLiveries] = useState([]);
 
-  /**
-   * Checks if an object is in the selected livs array. This only works with objects only containing JSON types.
-   *
-   * @param {object} obj
-   * @return {boolean}
-   */
-  function GetIndexOfObjectInArray(obj, arr = selectedLiveries) {
-    return arr.findIndex(o => JSON.stringify(o) === JSON.stringify(obj));
-  }
-
   function AddSelectedLivery(liv) {
     // Don't edit the list if it's disabled! (Duh!!)
     if (disabled) return;
@@ -36,7 +27,7 @@ export default function FullTable(props) {
         let x = [...selectedLiveries];
 
         liv.forEach(l => {
-          if (GetIndexOfObjectInArray(l, selectedLiveries) === -1) {
+          if (GetIndexOfLiveryInArray(l, selectedLiveries) === -1) {
             x.push(l);
           }
         });
@@ -46,7 +37,7 @@ export default function FullTable(props) {
       });
     } else {
       setSelectedLiveries(selectedLiveries => {
-        if (GetIndexOfObjectInArray(liv, selectedLiveries) === -1) {
+        if (GetIndexOfLiveryInArray(liv, selectedLiveries) === -1) {
           let x = [...selectedLiveries, liv];
           selectedLiveriesUpdated(x);
           return x;
@@ -66,7 +57,7 @@ export default function FullTable(props) {
         let x = [...selectedLiveries];
 
         liv.forEach(l => {
-          const index = GetIndexOfObjectInArray(l, x);
+          const index = GetIndexOfLiveryInArray(l, x);
 
           if (index === -1) {
             // Livery already isn't in the array
@@ -79,7 +70,7 @@ export default function FullTable(props) {
         selectedLiveriesUpdated(x);
         return x;
       } else {
-        const index = GetIndexOfObjectInArray(liv, selectedLiveries);
+        const index = GetIndexOfLiveryInArray(liv, selectedLiveries);
 
         if (index === -1) {
           // Livery already isn't in the array
@@ -110,10 +101,10 @@ export default function FullTable(props) {
             key={ac.name}
             aircraft={ac}
             sortedLiveries={sortedLiveries[ac.name]}
-            GetIndexOfObjectInArray={GetIndexOfObjectInArray}
             AddSelectedLivery={AddSelectedLivery}
             RemoveSelectedLivery={RemoveSelectedLivery}
             installedLiveries={installedLiveries.filter(o => o.airplane.toLowerCase() === ac.name.toLowerCase())}
+            selectedLiveries={selectedLiveries}
           />
         ))}
       </Box>
