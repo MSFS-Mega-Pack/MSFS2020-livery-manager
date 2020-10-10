@@ -27,7 +27,7 @@ export default function FullTable(props) {
         let x = [...selectedLiveries];
 
         liv.forEach(l => {
-          if (GetIndexOfLiveryInArray(l, selectedLiveries) === -1) {
+          if (GetIndexOfLiveryInArray(l, selectedLiveries)[0] === -1) {
             x.push(l);
           }
         });
@@ -37,7 +37,7 @@ export default function FullTable(props) {
       });
     } else {
       setSelectedLiveries(selectedLiveries => {
-        if (GetIndexOfLiveryInArray(liv, selectedLiveries) === -1) {
+        if (GetIndexOfLiveryInArray(liv, selectedLiveries)[0] === -1) {
           let x = [...selectedLiveries, liv];
           selectedLiveriesUpdated(x);
           return x;
@@ -57,7 +57,7 @@ export default function FullTable(props) {
         let x = [...selectedLiveries];
 
         liv.forEach(l => {
-          const index = GetIndexOfLiveryInArray(l, x);
+          const index = GetIndexOfLiveryInArray(l, x)[0];
 
           if (index === -1) {
             // Livery already isn't in the array
@@ -70,7 +70,7 @@ export default function FullTable(props) {
         selectedLiveriesUpdated(x);
         return x;
       } else {
-        const index = GetIndexOfLiveryInArray(liv, selectedLiveries);
+        const index = GetIndexOfLiveryInArray(liv, selectedLiveries)[0];
 
         if (index === -1) {
           // Livery already isn't in the array
