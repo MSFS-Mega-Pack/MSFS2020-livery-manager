@@ -17,7 +17,6 @@ export default function LiveryList(props) {
     <List dense>
       <Virtuoso
         totalCount={liveries.length}
-        className={classes.virtualList}
         style={{ height: 375 }}
         item={i => {
           const livery = liveries[i];
