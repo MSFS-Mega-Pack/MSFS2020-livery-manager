@@ -71,6 +71,8 @@ function createMainWindow() {
       webSecurity: false,
       preload: path.join(__dirname, 'src', 'helpers', 'Sentry', 'sentry.js'),
       devTools: isDev,
+      worldSafeExecuteJavaScript: true,
+      allowRunningInsecureContent: false,
     },
   });
 
