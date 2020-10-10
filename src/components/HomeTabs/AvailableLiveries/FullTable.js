@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Typography } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 
 import AircraftAccordion from './AircraftAccordion';
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';

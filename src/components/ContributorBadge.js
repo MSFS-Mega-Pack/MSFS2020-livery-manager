@@ -40,12 +40,12 @@ ContributorBadge.propTypes = {
   className: PropTypes.string.isRequired,
 };
 
-const useDialogStyles = makeStyles(theme => ({
+const useDialogStyles = makeStyles({
   dialog: { minWidth: 300 },
   link: { lineHeight: '24px' },
   icon: { verticalAlign: 'middle', marginRight: 4 },
   selectable: { userSelect: 'text' },
-}));
+});
 
 /**
  * Displays a contributor's info in a dialog

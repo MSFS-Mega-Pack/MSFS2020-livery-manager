@@ -49,4 +49,5 @@ ErrorDialog.propTypes = {
   title: PropTypes.node.isRequired,
   error: PropTypes.node.isRequired,
   suggestions: PropTypes.arrayOf(PropTypes.string),
+  dismissable: PropTypes.bool,
 };

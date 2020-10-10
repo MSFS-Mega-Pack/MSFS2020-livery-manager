@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 // 3rd party components
-import { Box, CircularProgress, Fab, Typography, Zoom } from '@material-ui/core';
+import { Box, Fab, Typography, Zoom } from '@material-ui/core';
 import DownloadIcon from 'mdi-react/DownloadOutlineIcon';
 
 // 1st party components
