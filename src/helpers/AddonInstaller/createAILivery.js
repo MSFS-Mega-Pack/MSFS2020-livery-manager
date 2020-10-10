@@ -2,6 +2,7 @@ import * as parseCFG from '../MSFS/ConfigFiles/parseCFGFile';
 import * as fs from 'fs';
 import AllModelData from '../../data/AIModelData.json';
 import * as Path from 'path';
+import ThrowError from '../ThrowError';
 
 const NoAIModelPlanes = ['Asobo_B747_8i'];
 
@@ -66,6 +67,8 @@ export default async function createAILivery(path) {
 }
 
 async function GetDirectories(path) {
+  if (!fs.existsSync(path)) ThrowError('E100', `Path does not exist:\n${path}`);
+
   return fs.readdirSync(path).filter(function (file) {
     return fs.statSync(path + '/' + file).isDirectory();
   });

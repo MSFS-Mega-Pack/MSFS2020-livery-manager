@@ -6,6 +6,7 @@ import ConfigKeys from '../../data/config-keys.json';
 import Constants from '../../data/Constants.json';
 
 import AsyncForEach from '../AsyncForEach';
+import ThrowError from '../ThrowError';
 
 /**
  * Get Installed Addons
@@ -16,6 +17,8 @@ import AsyncForEach from '../AsyncForEach';
 export default async function GetInstalledAddons() {
   let installedAddons = [];
   const Directory = Path.join(Config.get(ConfigKeys.settings.package_directory), 'Community');
+
+  if (!existsSync(Directory)) return ThrowError('E101', `Community path does not exist:\n${Directory}`);
 
   await AsyncForEach(readdirSync(Directory), folder => {
     const jsonPath = Path.join(Directory, folder, Constants.modLockFileName);
@@ -29,5 +32,6 @@ export default async function GetInstalledAddons() {
       console.log(error);
     }
   });
+
   return installedAddons;
 }
