@@ -42,6 +42,7 @@
     "fontsource-ibm-plex-mono": "^3.0.9",
     "fontsource-poppins": "^3.0.9",
     "mdi-react": "^7.3.0",
+    "node-fetch": "^2.6.1",
     "notistack": "^1.0.1",
     "open": "^7.3.0",
     "overlayscrollbars": "^1.13.0",
