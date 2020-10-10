@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import { Box } from '@material-ui/core';
 
-import { RefreshBox } from '../../RefreshBox';
+import RefreshBox from '../../RefreshBox';
+import Loading from '../../Loading';
 
 import GetInstalledAddons from '../../../helpers/AddonInstaller/getInstalledAddons';
 import Constants from '../../../data/Constants.json';
-import Loading from '../../Loading';
 
 export default function InstalledLiveries(props) {
   const [installedLiveries, setInstalledLiveries] = useState(undefined);

@@ -8,6 +8,8 @@ import DownloadIcon from 'mdi-react/DownloadOutlineIcon';
 // 1st party components
 import FullTable from './FullTable';
 import ErrorDialog from '../../ErrorDialog';
+import RefreshBox from '../../RefreshBox';
+import Loading from '../../Loading';
 
 // helpers and data
 import InstallAddon from '../../../helpers/AddonInstaller/InstallAddon';
@@ -19,8 +21,6 @@ import NoImage from '../../../images/no-image-available.png';
 // support libraries
 import { useSnackbar } from 'notistack';
 import Config from 'electron-json-config';
-import { RefreshBox } from '../../RefreshBox';
-import Loading from '../../Loading';
 
 const RefreshInterval = 30 * 1000;
 

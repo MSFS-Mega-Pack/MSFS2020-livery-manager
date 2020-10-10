@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   text: { lineHeight: '33px' },
 });
 
-export function RefreshBox(props) {
+export default function RefreshBox(props) {
   const { lastCheckedTime, justRefreshed, onRefresh, disabled, refreshInterval } = props;
   const classes = useStyles();
 
