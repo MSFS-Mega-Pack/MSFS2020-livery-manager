@@ -14,9 +14,7 @@ import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
  * @return {React.ReactNode}
  */
 export default function FullTable(props) {
-  const { sortedLiveries, allAircraft, selectedLiveriesUpdated, disabled, installedLiveries } = props;
-
-  const [selectedLiveries, setSelectedLiveries] = useState([]);
+  const { sortedLiveries, allAircraft, disabled, installedLiveries, selectedLiveries, setSelectedLiveries } = props;
 
   function AddSelectedLivery(liv) {
     // Don't edit the list if it's disabled! (Duh!!)
@@ -32,14 +30,13 @@ export default function FullTable(props) {
           }
         });
 
-        selectedLiveriesUpdated(x);
         return x;
       });
     } else {
       setSelectedLiveries(selectedLiveries => {
         if (GetIndexOfLiveryInArray(liv, selectedLiveries)[0] === -1) {
           let x = [...selectedLiveries, liv];
-          selectedLiveriesUpdated(x);
+
           return x;
         }
 
@@ -67,7 +64,6 @@ export default function FullTable(props) {
           x.splice(index, 1);
         });
 
-        selectedLiveriesUpdated(x);
         return x;
       } else {
         const index = GetIndexOfLiveryInArray(liv, selectedLiveries)[0];
@@ -79,7 +75,7 @@ export default function FullTable(props) {
 
         let x = [...selectedLiveries];
         x.splice(index, 1);
-        selectedLiveriesUpdated(x);
+
         return x;
       }
     });
@@ -144,11 +140,25 @@ FullTable.propTypes = {
     })
   ),
   allAircraft: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string.isRequired, thumbnail: PropTypes.string })),
-  selectedLiveriesUpdated: PropTypes.func.isRequired,
+  selectedLiveries: PropTypes.arrayOf(
+    PropTypes.shape({
+      airplane: PropTypes.string.isRequired,
+      fileName: PropTypes.string.isRequired,
+      generation: PropTypes.string.isRequired,
+      metaGeneration: PropTypes.string.isRequired,
+      lastModified: PropTypes.string.isRequired,
+      ETag: PropTypes.string.isRequired,
+      size: PropTypes.string.isRequired,
+      checkSum: PropTypes.string.isRequired,
+      image: PropTypes.string,
+      smallImage: PropTypes.string,
+    })
+  ),
+  setSelectedLiveries: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
 };
 
 FullTable.defaultProps = {
-  selectedLiveriesUpdated: () => {},
   disabled: false,
+  setSelectedLiveries: () => {},
 };

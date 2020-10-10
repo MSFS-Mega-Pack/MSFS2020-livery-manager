@@ -38,7 +38,7 @@ export default function AvailableLiveries(props) {
   const [justRefreshed, setJustRefreshed] = useState(false);
   const [isInstalling, setIsInstalling] = useState(false);
   /** @type {[object[], Function]} */
-  const [selectedLiveries, setSelectedLiveries] = useState(null);
+  const [selectedLiveries, setSelectedLiveries] = useState([]);
   /** @type {[object[], Function]} */
   const [installedLiveries, setInstalledLiveries] = useState(undefined);
 
@@ -187,7 +187,8 @@ export default function AvailableLiveries(props) {
           sortedLiveries={sortedLiveries}
           allAircraft={aircraft}
           disabled={isInstalling}
-          selectedLiveriesUpdated={livs => setSelectedLiveries(livs)}
+          setSelectedLiveries={setSelectedLiveries}
+          selectedLiveries={selectedLiveries}
           installedLiveries={installedLiveries}
         />
       )}
@@ -227,6 +228,7 @@ export default function AvailableLiveries(props) {
 
             setIsInstalling(false);
             setSelectedLiveries([]);
+
             GetInstalledAddons()
               .then(l => setInstalledLiveries(l))
               .catch(e => setInstalledLiveries(e));
