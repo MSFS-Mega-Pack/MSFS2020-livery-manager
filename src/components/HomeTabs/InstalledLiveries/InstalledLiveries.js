@@ -2,12 +2,7 @@ import React, { useState } from 'react';
 
 import { Typography, Box } from '@material-ui/core';
 
-import ErrorDialog from '../../ErrorDialog';
-
 import GetInstalledAddons from '../../../helpers/AddonInstaller/GetInstalledAddons';
-import ConfigKeys from '../../../data/config-keys.json';
-
-import Config from 'electron-json-config';
 
 export default function InstalledLiveries() {
   const [installedLiveries, setInstalledLiveries] = useState(undefined);
