@@ -12,6 +12,8 @@ import LiveryList from './LiveryList';
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
 
+import NoImagePng from '../../../images/no-image-available.png';
+
 const useStyles = makeStyles(theme => ({
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -69,8 +71,9 @@ export default function AircraftAccordion(props) {
         <Box className={classes.accordionContent}>
           <Box className={classes.aircraftThumbnail} component="figure">
             <picture alt="No image available">
-              <source srcSet={aircraft.thumbnail[0]} />
-              <img src={aircraft.thumbnail[1]} alt="No image available"></img>
+              {aircraft.thumbnails && <source srcSet={aircraft.thumbnails[0]} />}
+              {aircraft.thumbnails && <source srcSet={aircraft.thumbnails[0].substr(-3) + 'JPG'} />}
+              <img src={aircraft.thumbnails ? aircraft.thumbnails[1] : NoImagePng} alt="No image available"></img>
             </picture>
           </Box>
           <Box className={classes.aircraftDetails}>
@@ -129,7 +132,7 @@ export default function AircraftAccordion(props) {
 AircraftAccordion.propTypes = {
   aircraft: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    thumbnail: PropTypes.arrayOf(PropTypes.string).isRequired,
+    thumbnails: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
   sortedLiveries: PropTypes.arrayOf(
     PropTypes.shape({
