@@ -39,9 +39,10 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2),
     '& picture': {
       display: 'block',
-      maxWidth: 350,
       '& img': {
         objectFit: 'contain',
+        display: 'block',
+        maxWidth: 350,
       },
     },
   },
