@@ -11,13 +11,14 @@
   },
   "modLockFileName": ".livery-manager.json",
   "api": {
-    "version": "preview",
+    "version": "v1",
     "forceProdApi": true,
     "get": {
       "cdnFileListing": "get/allfiles",
       "feed": "get/feed/current",
       "feedHistory": "get/feed/history",
-      "article": "get/feed/article"
+      "article": "get/feed/article",
+      "update": "get/update"
     }
   }
 }
