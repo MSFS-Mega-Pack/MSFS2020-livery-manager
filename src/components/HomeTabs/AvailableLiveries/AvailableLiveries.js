@@ -85,17 +85,11 @@ export default function AvailableLiveries(props) {
       if (!m.has(item.airplane)) {
         m.set(item.airplane, true);
 
-        let thumb = fileListing.data.fileList.filter(a => a.airplane.toLowerCase() === item.airplane.toLowerCase()).find(a => a.image);
-
-        if (thumb && thumb.image) {
-          thumb = `${fileListing.data.cdnBaseUrl}/${thumb.image}`;
-        } else {
-          thumb = NoImage;
-        }
+        let thumb = `${fileListing.data.cdnBaseUrl}/img/${item.airplane}/thumbnail.jpg`;
 
         aircraft.push({
           name: item.airplane.toLowerCase(),
-          thumbnail: thumb,
+          thumbnails: [thumb, NoImage],
         });
       }
     }

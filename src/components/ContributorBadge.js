@@ -10,6 +10,7 @@ import TwitterIcon from 'mdi-react/TwitterIcon';
 import GithubIcon from 'mdi-react/GithubIcon';
 import DiscordIcon from 'mdi-react/DiscordIcon';
 import ForumsIcon from 'mdi-react/FlightTakeoffIcon';
+import clsx from 'clsx';
 
 /**
  * Nicely displays a contributor's info
@@ -39,6 +40,13 @@ ContributorBadge.propTypes = {
   className: PropTypes.string.isRequired,
 };
 
+const useDialogStyles = makeStyles(theme => ({
+  dialog: { minWidth: 300 },
+  link: { lineHeight: '24px' },
+  icon: { verticalAlign: 'middle', marginRight: 4 },
+  selectable: { userSelect: 'text' },
+}));
+
 /**
  * Displays a contributor's info in a dialog
  *
@@ -51,11 +59,12 @@ function ContributorDialog(props) {
   const { contributor, open, onClose } = props;
 
   const theme = useTheme();
+  const classes = useDialogStyles();
 
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Contributor info</DialogTitle>
-      <DialogContent style={{ minWidth: 300 }}>
+      <DialogContent className={classes.dialog}>
         <ContributorDialogSection fieldName="Name" value={contributor.name} />
         {contributor.twitter && (
           <ContributorDialogSection
@@ -66,9 +75,9 @@ function ContributorDialog(props) {
               <Link
                 target="_blank"
                 href={'https://twitter.com/' + (contributor.twitter.startsWith('@') ? contributor.twitter.slice(1) : contributor.twitter)}
-                style={{ lineHeight: '24px' }}
+                className={classes.link}
               >
-                <TwitterIcon style={{ verticalAlign: 'middle', marginRight: 4 }} color={theme.palette.primary.main} />
+                <TwitterIcon className={classes.icon} color={theme.palette.primary.main} />
                 {contributor.twitter.startsWith('@') ? contributor.twitter : '@' + contributor.twitter}
               </Link>
             }
@@ -78,8 +87,8 @@ function ContributorDialog(props) {
           <ContributorDialogSection
             fieldName="GitHub"
             value={
-              <Link target="_blank" href={'https://github.com/' + contributor.github} style={{ lineHeight: '24px' }}>
-                <GithubIcon style={{ verticalAlign: 'middle', marginRight: 4 }} color={theme.palette.primary.main} />
+              <Link target="_blank" href={'https://github.com/' + contributor.github} className={classes.link}>
+                <GithubIcon className={classes.icon} color={theme.palette.primary.main} />
                 {contributor.github}
               </Link>
             }
@@ -89,8 +98,8 @@ function ContributorDialog(props) {
           <ContributorDialogSection
             fieldName="Discord"
             value={
-              <span style={{ lineHeight: '24px', userSelect: 'text' }}>
-                <DiscordIcon style={{ verticalAlign: 'middle', marginRight: 4 }} color={theme.palette.primary.main} />
+              <span className={clsx(classes.link, classes.selectable)}>
+                <DiscordIcon className={classes.icon} color={theme.palette.primary.main} />
                 {contributor.discord}
               </span>
             }
@@ -100,8 +109,8 @@ function ContributorDialog(props) {
           <ContributorDialogSection
             fieldName="Flight Simulator Forums"
             value={
-              <Link target="_blank" href={'https://forums.flightsimulator.com/u/' + contributor.msfsforums} style={{ lineHeight: '24px' }}>
-                <ForumsIcon style={{ verticalAlign: 'middle', marginRight: 4 }} color={theme.palette.primary.main} />
+              <Link target="_blank" href={'https://forums.flightsimulator.com/u/' + contributor.msfsforums} className={classes.link}>
+                <ForumsIcon className={classes.icon} color={theme.palette.primary.main} />
                 {contributor.msfsforums}
               </Link>
             }

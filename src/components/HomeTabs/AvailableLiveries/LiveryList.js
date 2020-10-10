@@ -2,20 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Virtuoso } from 'react-virtuoso';
-import { List } from '@material-ui/core';
+import { List, makeStyles } from '@material-ui/core';
 
 import ListRow from './ListRow';
 
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
 
+const useStyles = makeStyles({
+  virtualList: {
+    height: 350,
+  },
+});
+
 export default function LiveryList(props) {
   const { liveries, AddSelectedLivery, RemoveSelectedLivery, disabled, installedLiveries, selectedLiveries } = props;
+
+  const classes = useStyles();
 
   return (
     <List dense>
       <Virtuoso
         totalCount={liveries.length}
-        style={{ height: 350 }}
+        className={classes.virtualList}
         item={i => {
           const livery = liveries[i];
 

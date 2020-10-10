@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Checkbox, Collapse, Divider, IconButton, ListItem, ListItemIcon, ListItemText, Tooltip } from '@material-ui/core';
+import { Box, Checkbox, Collapse, Divider, IconButton, ListItem, ListItemIcon, ListItemText, makeStyles, Tooltip } from '@material-ui/core';
 import ExpandMoreIcon from 'mdi-react/ExpandMoreIcon';
 
 import FieldValueDisplay from './FieldValueDisplay';
@@ -9,11 +9,38 @@ import InstalledBadge from './InstalledBadge';
 import UpdateAvailableBadge from './UpdateAvailableBadge';
 
 import Constants from '../../../data/Constants.json';
+import clsx from 'clsx';
+
+const useStyles = makeStyles(theme => ({
+  expandIcon: {
+    transition: 'transform 200ms ease-out',
+  },
+  expandIconExpanded: {
+    transform: 'rotate(180deg)',
+  },
+  liveryInfoContainer: {
+    padding: theme.spacing(2),
+  },
+  checksum: {
+    borderBottom: '#aaaa dotted 2px',
+    cursor: 'help',
+  },
+  image: {
+    padding: theme.spacing(),
+    '& img': {
+      display: 'block',
+      maxWidth: '100%',
+      maxHeight: 600,
+      objectFit: 'contain',
+    },
+  },
+}));
 
 export default function ListRow(props) {
   const { livery, AddSelectedLivery, RemoveSelectedLivery, disabled, isInstalled, isSelected, updateAvailable } = props;
 
   const [isExpanded, setIsExpanded] = useState(false);
+  const classes = useStyles();
 
   async function ToggleCheckbox(e) {
     // Don't edit the list if it's disabled! (Duh!!)
@@ -53,30 +80,26 @@ export default function ListRow(props) {
               setIsExpanded(e => !e);
             }}
           >
-            <ExpandMoreIcon style={{ transform: isExpanded ? 'rotate(180deg)' : null, transition: 'transform 200ms ease-out' }} />
+            <ExpandMoreIcon className={clsx(classes.expandIcon, { [classes.expandIconExpanded]: isExpanded })} />
           </IconButton>
         </Tooltip>
       </ListItem>
 
       <Collapse in={isExpanded} timeout="auto" unmountOnExit>
-        <Box p={2}>
+        <Box component="article" className={classes.liveryInfoContainer}>
           <FieldValueDisplay
             fieldName="Version"
             value={
               <Tooltip title="The version is a unique string that represents the entire livery">
-                <span style={{ borderBottom: '#aaaa dotted 2px', cursor: 'help' }}>{livery.checkSum.substr(0, 8)}</span>
+                <span className={classes.checksum}>{livery.checkSum.substr(0, 8)}</span>
               </Tooltip>
             }
           />
           <FieldValueDisplay
             fieldName="Thumbnail"
             value={
-              <Box component="figure" p={1}>
-                <img
-                  style={{ display: 'block', maxWidth: '100%', maxHeight: 600, objectFit: 'contain' }}
-                  src={`${Constants.urls.cdnEndpoint}/${livery.image || livery.smallImage}`}
-                  alt="No image available"
-                />
+              <Box component="figure" className={classes.thumbnail}>
+                <img src={`${Constants.urls.cdnEndpoint}/${livery.image || livery.smallImage}`} alt="No image available" />
               </Box>
             }
           />

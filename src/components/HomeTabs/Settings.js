@@ -20,6 +20,11 @@ import IsDev from '../../data/IsDev';
 import AdvancedSettingsToggleImage from '../../images/manager_text_advanced_settings.png';
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: '1',
+  },
   settingsRoot: {
     flex: '1',
     position: 'relative',
@@ -140,7 +145,7 @@ export default function Settings() {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', flex: '1' }}>
+    <div className={classes.root}>
       <section className={classes.settingsRoot}>
         <Paper className={classes.settingsItem}>
           <Typography className={classes.sectTitle} variant="caption" color="textSecondary" component="h2">
