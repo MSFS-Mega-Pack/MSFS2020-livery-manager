@@ -16,13 +16,12 @@ import InstallAddon from '../../../helpers/AddonInstaller/InstallAddon';
 import GetInstalledAddons from '../../../helpers/AddonInstaller/getInstalledAddons';
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
 import ConfigKeys from '../../../data/config-keys.json';
+import Constants from '../../../data/Constants.json';
 import NoImage from '../../../images/no-image-available.png';
 
 // support libraries
 import { useSnackbar } from 'notistack';
 import Config from 'electron-json-config';
-
-const RefreshInterval = 30 * 1000;
 
 export default function AvailableLiveries(props) {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -48,14 +47,19 @@ export default function AvailableLiveries(props) {
   if (typeof fileListing === 'undefined') {
     return (
       <>
-        <RefreshBox justRefreshed={true} lastCheckedTime={'checking now...'} disabled={isInstalling} />
+        <RefreshBox
+          justRefreshed={true}
+          lastCheckedTime={'checking now...'}
+          disabled={isInstalling}
+          refreshInterval={Constants.refreshInterval}
+        />
         <Loading />
       </>
     );
   } else if (refreshing) {
     return (
       <>
-        <RefreshBox justRefreshed={true} lastCheckedTime={'refreshing...'} disabled={isInstalling} />
+        <RefreshBox justRefreshed={true} lastCheckedTime={'refreshing...'} disabled={isInstalling} refreshInterval={Constants.refreshInterval} />
         <Loading />
       </>
     );
@@ -114,7 +118,7 @@ export default function AvailableLiveries(props) {
           });
         }}
         disabled={isInstalling}
-        refreshInterval={RefreshInterval}
+        refreshInterval={Constants.refreshInterval}
       />
 
       {typeof installedLiveries === 'string' && (

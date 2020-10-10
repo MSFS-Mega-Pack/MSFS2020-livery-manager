@@ -25,14 +25,14 @@ export default function InstalledLiveries(props) {
   if (typeof fileListing === 'undefined') {
     return (
       <>
-        <RefreshBox justRefreshed={true} lastCheckedTime={'checking now...'} />
+        <RefreshBox justRefreshed={true} lastCheckedTime={'checking now...'} refreshInterval={Constants.refreshInterval} />
         <Loading />
       </>
     );
   } else if (refreshing) {
     return (
       <>
-        <RefreshBox justRefreshed={true} lastCheckedTime={'refreshing...'} />
+        <RefreshBox justRefreshed={true} lastCheckedTime={'refreshing...'} refreshInterval={Constants.refreshInterval} />
         <Loading />
       </>
     );
