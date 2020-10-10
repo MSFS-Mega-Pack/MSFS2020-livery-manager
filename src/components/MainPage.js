@@ -1,11 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Paper, Tabs, Tab } from '@material-ui/core';
+import { Paper, Tabs, Tab, makeStyles } from '@material-ui/core';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 
 import HomeIcon from 'mdi-react/HomeIcon';
 
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+const useStyles = makeStyles({
+  main: {
+    maxHeight: 'calc(100vh - 124px)',
+    marginTop: 16,
+    flex: '1',
+    display: 'flex',
+  },
+  scrollbarComponent: {
+    flex: '1',
+    maxWidth: '100%',
+    padding: 16,
+    paddingBottom: 0,
+  },
+});
 
 export default function MainPage(props) {
   const TABS = [
@@ -36,6 +50,7 @@ export default function MainPage(props) {
   };
 
   const { children, onTabChange, scrollInnerStyle } = props;
+  const classes = useStyles();
 
   return (
     <>
@@ -46,14 +61,11 @@ export default function MainPage(props) {
           ))}
         </Tabs>
       </Paper>
-      <main style={{ maxHeight: 'calc(100vh - 124px)', marginTop: 16, flex: '1', display: 'flex' }}>
+      <main className={classes.main}>
         <OverlayScrollbarsComponent
           options={{ scrollbars: { visibility: 'hidden' } }}
+          className={classes.scrollbarComponent}
           style={{
-            flex: '1',
-            maxWidth: '100%',
-            padding: 16,
-            paddingBottom: 0,
             ...scrollInnerStyle,
           }}
         >

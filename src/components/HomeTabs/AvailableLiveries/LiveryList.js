@@ -11,11 +11,13 @@ import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
 export default function LiveryList(props) {
   const { liveries, AddSelectedLivery, RemoveSelectedLivery, disabled, installedLiveries, selectedLiveries } = props;
 
+  console.log(liveries);
+
   return (
     <List dense>
       <Virtuoso
         totalCount={liveries.length}
-        style={{ height: 350 }}
+        style={{ height: 375 }}
         item={i => {
           const livery = liveries[i];
 

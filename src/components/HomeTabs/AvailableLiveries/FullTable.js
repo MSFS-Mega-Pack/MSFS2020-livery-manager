@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Typography } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 
 import AircraftAccordion from './AircraftAccordion';
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
@@ -83,27 +83,18 @@ export default function FullTable(props) {
 
   return (
     <Box>
-      <Typography gutterBottom variant="h5">
-        All aircraft
-      </Typography>
-      <Typography paragraph variant="body2">
-        Click any aircraft to see its available liveries. Select the liveries you want, then click Install.
-      </Typography>
-
-      <Box>
-        {allAircraft.map(ac => (
-          <AircraftAccordion
-            disabled={disabled}
-            key={ac.name}
-            aircraft={ac}
-            sortedLiveries={sortedLiveries[ac.name]}
-            AddSelectedLivery={AddSelectedLivery}
-            RemoveSelectedLivery={RemoveSelectedLivery}
-            installedLiveries={installedLiveries.filter(o => o.airplane.toLowerCase() === ac.name.toLowerCase())}
-            selectedLiveries={selectedLiveries}
-          />
-        ))}
-      </Box>
+      {allAircraft.map(ac => (
+        <AircraftAccordion
+          disabled={disabled}
+          key={ac.name}
+          aircraft={ac}
+          sortedLiveries={sortedLiveries[ac.name]}
+          AddSelectedLivery={AddSelectedLivery}
+          RemoveSelectedLivery={RemoveSelectedLivery}
+          installedLiveries={installedLiveries.filter(o => o.airplane.toLowerCase() === ac.name.toLowerCase())}
+          selectedLiveries={selectedLiveries}
+        />
+      ))}
     </Box>
   );
 }

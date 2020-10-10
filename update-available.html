@@ -9,6 +9,14 @@
       html,
       body {
         height: 100%;
+        background: #fff;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+
+      * {
+        box-sizing: border-box;
       }
 
       html {
@@ -17,6 +25,7 @@
       }
 
       body {
+        border: 4px solid black;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -76,17 +85,23 @@
     </style>
   </head>
   <body>
-    <span id="spinner">0%</span>
+    <span id="spinner"></span>
     <h1>Update available</h1>
     <h2>We're downloading it now...</h2>
   </body>
   <script>
-    // Listen for messages
-    const { ipcRenderer } = require('electron');
+    // // Listen for messages
+    // const { ipcRenderer } = require('electron');
 
-    ipcRenderer.on('download-progress', function (event, data) {
-      var pct = document.getElementById('spinner');
-      pct.innerText = Math.floor(data.percent) + '%';
-    });
+    // ipcRenderer.on('download-progress', function (event, data) {
+    //   if (!data) return;
+
+    //   var pct = document.getElementById('spinner');
+    //   pct.innerText = Math.floor(data.percent) + '%';
+    // });
+
+    // setInterval(() => {
+    //   ipcRenderer.send('get-progress');
+    // }, 100);
   </script>
 </html>

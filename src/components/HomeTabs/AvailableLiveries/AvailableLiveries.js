@@ -1,41 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 // 3rd party components
-import { Box, CircularProgress, Fab, IconButton, Paper, Tooltip, Typography, Zoom } from '@material-ui/core';
-import RefreshIcon from 'mdi-react/RefreshIcon';
+import { Box, Fab, Typography, Zoom } from '@material-ui/core';
 import DownloadIcon from 'mdi-react/DownloadOutlineIcon';
 
 // 1st party components
 import FullTable from './FullTable';
 import ErrorDialog from '../../ErrorDialog';
+import RefreshBox from '../../RefreshBox';
+import Loading from '../../Loading';
 
 // helpers and data
-import FetchAndParseManifest from '../../../helpers/Manifest/FetchAndParseManifest';
-import ActiveApiEndpoint from '../../../data/ActiveApiEndpoint';
 import InstallAddon from '../../../helpers/AddonInstaller/InstallAddon';
-import GetInstalledAddons from '../../../helpers/AddonInstaller/GetInstalledAddons';
+import GetInstalledAddons from '../../../helpers/AddonInstaller/getInstalledAddons';
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
-import Constants from '../../../data/Constants.json';
 import ConfigKeys from '../../../data/config-keys.json';
+import Constants from '../../../data/Constants.json';
 import NoImage from '../../../images/no-image-available.png';
 
 // support libraries
 import { useSnackbar } from 'notistack';
-import dayjs from 'dayjs';
 import Config from 'electron-json-config';
-
-const RefreshInterval = 30 * 1000;
 
 export default function AvailableLiveries(props) {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-  const { fileListing, setFileListing } = props;
+  const { fileListing, UpdateFileList, justRefreshed, setJustRefreshed } = props;
   let aircraft = [],
     sortedLiveries = {};
 
   const [refreshing, setRefreshing] = useState(false);
-  const [justRefreshed, setJustRefreshed] = useState(false);
   const [isInstalling, setIsInstalling] = useState(false);
   /** @type {[object[], Function]} */
   const [selectedLiveries, setSelectedLiveries] = useState([]);
@@ -45,63 +40,27 @@ export default function AvailableLiveries(props) {
   if (typeof installedLiveries === 'undefined') {
     setInstalledLiveries(null);
     GetInstalledAddons()
-      .then(livs => setInstalledLiveries(livs))
+      .then(liveries => setInstalledLiveries(liveries))
       .catch(e => setInstalledLiveries(e));
   }
 
-  useEffect(() => {
-    let key;
-
-    if (justRefreshed) {
-      key = setInterval(() => {
-        let now = new Date().getTime();
-
-        if (now > justRefreshed + RefreshInterval) {
-          setJustRefreshed(false);
-          clearInterval(key);
-        }
-      }, 500);
-    }
-
-    return () => {
-      clearInterval(key);
-    };
-  }, [justRefreshed, setJustRefreshed]);
-
-  function UpdateFileList(callback) {
-    FetchAndParseManifest(`${ActiveApiEndpoint}/${Constants.api.get.cdnFileListing}`)
-      .then(d => {
-        setFileListing({ checkedAt: new Date().getTime(), ...d });
-        typeof callback === 'function' && callback();
-      })
-      .catch(() => setFileListing(null));
-  }
-
-  const loading = (
-    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', textAlign: 'center' }}>
-      <CircularProgress style={{ margin: 'auto', marginBottom: 24 }} size={64} />
-      <Typography variant="body1" style={{ paddingBottom: 2 }}>
-        Loading...
-      </Typography>
-      <Typography variant="body2" color="textSecondary">
-        This can take up to a minute
-      </Typography>
-    </div>
-  );
-
   if (typeof fileListing === 'undefined') {
-    UpdateFileList();
     return (
       <>
-        <RefreshBox justRefreshed={true} lastCheckedTime={'checking now...'} disabled={isInstalling} />
-        {loading}
+        <RefreshBox
+          justRefreshed={true}
+          lastCheckedTime={'checking now...'}
+          disabled={isInstalling}
+          refreshInterval={Constants.refreshInterval}
+        />
+        <Loading />
       </>
     );
   } else if (refreshing) {
     return (
       <>
-        <RefreshBox justRefreshed={true} lastCheckedTime={'refreshing...'} disabled={isInstalling} />
-        {loading}
+        <RefreshBox justRefreshed={true} lastCheckedTime={'refreshing...'} disabled={isInstalling} refreshInterval={Constants.refreshInterval} />
+        <Loading />
       </>
     );
   } else if (fileListing && fileListing.data && fileListing.data.fileList) {
@@ -111,17 +70,11 @@ export default function AvailableLiveries(props) {
       if (!m.has(item.airplane)) {
         m.set(item.airplane, true);
 
-        let thumb = fileListing.data.fileList.filter(a => a.airplane.toLowerCase() === item.airplane.toLowerCase()).find(a => a.image);
-
-        if (thumb && thumb.image) {
-          thumb = `${fileListing.data.cdnBaseUrl}/${thumb.image}`;
-        } else {
-          thumb = NoImage;
-        }
+        let thumb = `${fileListing.data.cdnBaseUrl}/img/${item.airplane}/thumbnail.JPG`;
 
         aircraft.push({
           name: item.airplane.toLowerCase(),
-          thumbnail: thumb,
+          thumbnails: [thumb, NoImage],
         });
       }
     }
@@ -165,10 +118,12 @@ export default function AvailableLiveries(props) {
           });
         }}
         disabled={isInstalling}
+        refreshInterval={Constants.refreshInterval}
       />
 
       {typeof installedLiveries === 'string' && (
         <ErrorDialog
+          dismissable
           title={"Couldn't load available liveries"}
           error={
             <Typography variant="body2" paragraph>
@@ -251,7 +206,9 @@ export default function AvailableLiveries(props) {
 }
 
 AvailableLiveries.propTypes = {
-  setFileListing: PropTypes.func.isRequired,
+  justRefreshed: PropTypes.any,
+  setJustRefreshed: PropTypes.func,
+  UpdateFileList: PropTypes.func.isRequired,
   fileListing: PropTypes.shape({
     checkedAt: PropTypes.number.isRequired,
     data: PropTypes.shape({
@@ -272,40 +229,4 @@ AvailableLiveries.propTypes = {
       ),
     }),
   }),
-};
-
-function RefreshBox(props) {
-  const { lastCheckedTime, justRefreshed, onRefresh, disabled } = props;
-
-  let toolTipContent = 'Refresh available liveries';
-  if (justRefreshed) toolTipContent = `Rate limiting is in effect: you need to wait at least ${RefreshInterval / 1000}s between refreshes`;
-  else if (disabled) toolTipContent = `You need to wait until your liveries are installed before refreshing.`;
-
-  return (
-    <Paper style={{ marginBottom: 16, marginTop: -8 }} variant="outlined">
-      <Box px={2} py={1} display="flex" flexDirection="row">
-        <Typography color="textSecondary" variant="body2" style={{ lineHeight: '33px' }}>
-          Last updated:{' '}
-          {typeof lastCheckedTime === 'string' ? lastCheckedTime : dayjs(lastCheckedTime).format('D MMM YYYY, h:mm A') || 'unknown'}
-        </Typography>
-        <Box flex={1} />
-        <Box>
-          <Tooltip title={toolTipContent}>
-            <span>
-              <IconButton color="primary" size="small" disabled={!!justRefreshed || disabled} onClick={onRefresh}>
-                <RefreshIcon />
-              </IconButton>
-            </span>
-          </Tooltip>
-        </Box>
-      </Box>
-    </Paper>
-  );
-}
-
-RefreshBox.propTypes = {
-  lastCheckedTime: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  justRefreshed: PropTypes.bool,
-  onRefresh: PropTypes.func,
-  disabled: PropTypes.bool,
 };

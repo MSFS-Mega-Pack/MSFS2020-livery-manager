@@ -12,6 +12,8 @@ import LiveryList from './LiveryList';
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
 
+import NoImagePng from '../../../images/no-image-available.png';
+
 const useStyles = makeStyles(theme => ({
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -24,6 +26,37 @@ const useStyles = makeStyles(theme => ({
     lineHeight: '30px',
     color: theme.palette.text.secondary,
   },
+  accordion: {
+    display: 'block',
+    paddingLeft: 32,
+    paddingRight: 32,
+  },
+  accordionContent: {
+    marginBottom: theme.spacing(),
+    display: 'flex',
+  },
+  aircraftThumbnail: {
+    marginRight: theme.spacing(2),
+    '& picture': {
+      display: 'block',
+      '& img': {
+        objectFit: 'contain',
+        display: 'block',
+        maxWidth: 350,
+      },
+    },
+  },
+  aircraftDetails: {
+    flex: '1',
+  },
+  aircraftControls: {
+    display: 'flex',
+    marginTop: theme.spacing(),
+    justifyContent: 'center',
+  },
+  dividerContainer: {
+    margin: theme.spacing(3, 0),
+  },
 }));
 export default function AircraftAccordion(props) {
   const { aircraft, sortedLiveries, AddSelectedLivery, RemoveSelectedLivery, disabled, installedLiveries, selectedLiveries } = props;
@@ -35,19 +68,23 @@ export default function AircraftAccordion(props) {
         <Typography className={classes.heading}>{PlaneNameTable[aircraft.name] || aircraft.name}</Typography>
         <Typography className={classes.secondaryHeading}>{sortedLiveries.length} liveries available</Typography>
       </AccordionSummary>
-      <AccordionDetails style={{ display: 'block', paddingLeft: 32, paddingRight: 32 }}>
-        <Box display="flex" mb={1}>
-          <Box component="figure" mr={2}>
-            <img style={{ display: 'block', maxWidth: 350, objectFit: 'contain' }} src={aircraft.thumbnail} alt="No image available" />
+      <AccordionDetails className={classes.accordion}>
+        <Box className={classes.accordionContent}>
+          <Box className={classes.aircraftThumbnail} component="figure">
+            <picture alt="No image available">
+              {aircraft.thumbnails && <source srcSet={aircraft.thumbnails[0]} />}
+              {aircraft.thumbnails && <source srcSet={aircraft.thumbnails[0].substr(-3) + 'JPG'} />}
+              <img src={aircraft.thumbnails ? aircraft.thumbnails[1] : NoImagePng} alt="No image available"></img>
+            </picture>
           </Box>
-          <Box flex={1}>
+          <Box className={classes.aircraftDetails}>
             <FieldValueDisplay fieldName="Aircraft" value={PlaneNameTable[aircraft.name] || aircraft.name} />
             <FieldValueDisplay fieldName="Total liveries" value={`${sortedLiveries.length} available`} />
             <FieldValueDisplay
               fieldName="Total liveries installed"
               value={`${installedLiveries.length} of ${sortedLiveries.length} installed`}
             />
-            <Box mt={1} display="flex" justifyContent="center">
+            <Box className={classes.aircraftControls}>
               <Button
                 disabled={disabled}
                 variant="outlined"
@@ -72,7 +109,7 @@ export default function AircraftAccordion(props) {
             </Box>
           </Box>
         </Box>
-        <Box mt={3} mb={3}>
+        <Box className={classes.dividerContainer}>
           <Divider />
         </Box>
         <Box>
@@ -96,7 +133,7 @@ export default function AircraftAccordion(props) {
 AircraftAccordion.propTypes = {
   aircraft: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    thumbnail: PropTypes.string.isRequired,
+    thumbnails: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
   sortedLiveries: PropTypes.arrayOf(
     PropTypes.shape({

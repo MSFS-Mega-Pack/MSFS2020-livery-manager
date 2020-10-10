@@ -3,6 +3,8 @@
 publish/
 dist/
 
+.env
+
 # Development folders and files #
 #################################
 .tmp/

@@ -20,5 +20,6 @@
       "article": "get/feed/article",
       "update": "get/update"
     }
-  }
+  },
+  "refreshInterval": 30000
 }
