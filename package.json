@@ -11,7 +11,7 @@
     "yarn": ">=1.22.0"
   },
   "browserslist": [
-    "last 4 versions"
+    "chrome latest"
   ],
   "main": "./main.js",
   "scripts": {
