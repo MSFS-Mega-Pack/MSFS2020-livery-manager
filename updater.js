@@ -24,7 +24,7 @@ async function checkForUpdates(window) {
 
   if (json.data.update) {
     // Update is available!
-    window.loadURL(`file://${__dirname}/update-available.html`);
+    window.loadURL(`file://${__dirname}/update-available.html?newVersion=${json.data.info.latest || ''}&currentVersion=${APP_VERSION || ''}`);
 
     const updateDir = Path.join(electron.app.getPath('temp'), APP_NAME, `/updates`);
     const exePath = Path.join(updateDir, `/setup_${json.data.info.latest}.exe`);

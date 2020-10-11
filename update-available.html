@@ -82,26 +82,48 @@
           transform: rotate(360deg);
         }
       }
+
+      .version-change {
+        font-size: 18px;
+        line-height: 20px;
+        margin-top: 16px;
+      }
+
+      .version-change svg {
+        display: inline;
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+      }
     </style>
   </head>
   <body>
     <span id="spinner"></span>
     <h1>Update available</h1>
     <h2>We're downloading it now...</h2>
+    <section id="version-info">
+      <p class="version-change">
+        <span id="current-version"></span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path
+            fill-rule="evenodd"
+            d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        <span id="new-version"></span>
+      </p>
+    </section>
   </body>
   <script>
-    // // Listen for messages
-    // const { ipcRenderer } = require('electron');
+    const params = new URLSearchParams(window.location.search);
 
-    // ipcRenderer.on('download-progress', function (event, data) {
-    //   if (!data) return;
+    const newVersion = params.get('newVersion');
+    const currentVersion = params.get('currentVersion');
 
-    //   var pct = document.getElementById('spinner');
-    //   pct.innerText = Math.floor(data.percent) + '%';
-    // });
+    if (!newVersion || !currentVersion) document.getElementById('version-info').style.display = 'none';
 
-    // setInterval(() => {
-    //   ipcRenderer.send('get-progress');
-    // }, 100);
+    document.getElementById('new-version').innerText = newVersion;
+    document.getElementById('current-version').innerText = currentVersion;
   </script>
 </html>
