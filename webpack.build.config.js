@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const BabiliPlugin = require('babel-minify-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SentryWebpackPlugin = require('@sentry/webpack-plugin');
 require('dotenv').config();
@@ -61,7 +61,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
-    new BabiliPlugin(),
+    new TerserPlugin(),
     process.env.SENTRY_AUTH_TOKEN
       ? new SentryWebpackPlugin({
           // sentry-cli configuration
