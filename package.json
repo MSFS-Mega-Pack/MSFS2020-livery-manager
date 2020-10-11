@@ -3,7 +3,7 @@
   "productName": "Flight Simulator Livery Manager",
   "version": "0.1.0",
   "description": "A simple, extensible livery manager for Microsoft Flight Simulator",
-  "license": "MIT",
+  "license": "CC-BY-NC-ND-4.0",
   "author": "David Wheatley",
   "engines": {
     "node": ">=12.0.0",
