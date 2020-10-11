@@ -1,13 +1,10 @@
 ---
 name: "\U0001F41B Bug Report"
 about: Report an issue so we can diagnose and fix it
-title: "[BUG] "
+title: '[BUG] '
 labels: bug, triage needed
 assignees: ''
-
 ---
-
-**Closes #XX**
 
 ## Description
 
@@ -26,7 +23,8 @@ assignees: ''
 <!-- Find your manager version at the bottom of the Settings tab -->
 
 **Manager version:**
-**Flight Sim Version:**
+
+**FS2020 Version:**
 
 ## Screenshots
 
