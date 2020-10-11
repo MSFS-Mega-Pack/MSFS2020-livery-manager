@@ -78,11 +78,10 @@ export default function AircraftAccordion(props) {
       <AccordionDetails className={classes.accordion}>
         <Box className={classes.accordionContent}>
           <Box className={classes.aircraftThumbnail} component="figure">
-            <picture alt="No image available">
+            <picture>
               {aircraft.thumbnails && <source srcSet={aircraft.thumbnails[0]} />}
               <img
                 src={NoImagePng}
-                alt="No image available"
                 onError={function (e) {
                   if (e.currentTarget.parentNode.childElementCount > 1) e.currentTarget.previousSibling.remove();
                 }}
