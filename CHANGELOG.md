@@ -27,11 +27,7 @@ To be merged:
 - Fix build on case sensitive filesystems (e996fb43657a97cd03f7633c79e02acf18662bb6)
 - Extract RefreshBox from inside the available liveries tab to its own component (4038edf8d930b604a464604324e97adb002b9592)
 - Make Smoketest only run on pushes to master (2b7fd6ad0e28afc25a00436e0fa016327cee82a0)
-
-<!--
-To be merged:
 - Fix incorrect Google Fonts CSS URL on update page (#78)
--->
 
 ## Removed
 
