@@ -25,11 +25,14 @@ const useStyles = makeStyles(theme => ({
     fontSize: theme.typography.pxToRem(13),
     lineHeight: '30px',
     color: theme.palette.text.secondary,
+    flexBasis: '25%',
+    flex: '1',
   },
   accordion: {
     display: 'block',
     paddingLeft: 32,
     paddingRight: 32,
+    flex: '1',
   },
   accordionContent: {
     marginBottom: theme.spacing(),
@@ -60,6 +63,7 @@ const useStyles = makeStyles(theme => ({
 }));
 export default function AircraftAccordion(props) {
   const { aircraft, sortedLiveries, AddSelectedLivery, RemoveSelectedLivery, disabled, installedLiveries, selectedLiveries } = props;
+
   const classes = useStyles();
 
   return (
@@ -67,14 +71,22 @@ export default function AircraftAccordion(props) {
       <AccordionSummary expandIcon={<ExpandIcon />}>
         <Typography className={classes.heading}>{PlaneNameTable[aircraft.name] || aircraft.name}</Typography>
         <Typography className={classes.secondaryHeading}>{sortedLiveries.length} liveries available</Typography>
+        <Typography className={classes.secondaryHeading}>
+          {installedLiveries.filter(l => l.airplane.toLowerCase() === aircraft.name.toLowerCase()).length} installed
+        </Typography>
       </AccordionSummary>
       <AccordionDetails className={classes.accordion}>
         <Box className={classes.accordionContent}>
           <Box className={classes.aircraftThumbnail} component="figure">
             <picture alt="No image available">
               {aircraft.thumbnails && <source srcSet={aircraft.thumbnails[0]} />}
-              {aircraft.thumbnails && <source srcSet={aircraft.thumbnails[0].substr(-3) + 'JPG'} />}
-              <img src={aircraft.thumbnails ? aircraft.thumbnails[1] : NoImagePng} alt="No image available"></img>
+              <img
+                src={NoImagePng}
+                alt="No image available"
+                onError={function (e) {
+                  if (e.currentTarget.parentNode.childElementCount > 1) e.currentTarget.previousSibling.remove();
+                }}
+              />
             </picture>
           </Box>
           <Box className={classes.aircraftDetails}>
