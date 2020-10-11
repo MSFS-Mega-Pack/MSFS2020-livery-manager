@@ -1,7 +1,7 @@
 {
   "appName": "fs2020-livery-manager",
   "urls": {
-    "managerRepo": "https://github.com/davwheat/MSFS2020-livery-manager",
+    "managerRepo": "https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager",
     "apiEndpoint": "https://msfs-liverypack-api.mrproper.dev",
     "devApiEndpoint": "http://localhost:2678",
     "cdnEndpoint": "https://msfs-liverypack-cdn.mrproper.dev"
