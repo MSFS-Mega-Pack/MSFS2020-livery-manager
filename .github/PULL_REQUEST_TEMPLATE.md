@@ -15,3 +15,12 @@
 - [ ] This PR does not add any errors to the console
 
 A build will automatically be run by GitHub actions when any changes are made on this PR. This must complete successfully before merging.
+
+## Screenshots or videos
+
+<details>
+<summary>Click to expand</summary>
+
+<!-- upload any screenshots or recordings demonstrating the issue here-->
+
+</details>
