@@ -26,7 +26,7 @@ assignees: ''
 
 **FS2020 Version:**
 
-## Screenshots
+## Screenshots or videos
 
 <details>
 <summary>Click to expand</summary>
