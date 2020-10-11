@@ -9,6 +9,8 @@ import InstalledBadge from './InstalledBadge';
 import UpdateAvailableBadge from './UpdateAvailableBadge';
 
 import Constants from '../../../data/Constants.json';
+import NoImagePng from '../../../images/no-image-available.png';
+
 import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
@@ -25,11 +27,11 @@ const useStyles = makeStyles(theme => ({
     borderBottom: '#aaaa dotted 2px',
     cursor: 'help',
   },
-  image: {
+  thumbnail: {
     padding: theme.spacing(),
     '& img': {
       display: 'block',
-      maxWidth: '100%',
+      maxWidth: 300,
       maxHeight: 600,
       objectFit: 'contain',
     },
@@ -91,6 +93,7 @@ export default function ListRow(props) {
             fieldName="Version"
             value={
               <Tooltip title="The version is a unique string that represents the entire livery">
+                {/* Display first 8 chars of checksum */}
                 <span className={classes.checksum}>{livery.checkSum.substr(0, 8)}</span>
               </Tooltip>
             }
@@ -99,7 +102,13 @@ export default function ListRow(props) {
             fieldName="Thumbnail"
             value={
               <Box component="figure" className={classes.thumbnail}>
-                <img src={`${Constants.urls.cdnEndpoint}/${livery.image || livery.smallImage}`} alt="No image available" />
+                <img
+                  src={`${Constants.urls.cdnEndpoint}/${livery.image || livery.smallImage}`}
+                  onError={function (e) {
+                    // set src to 'no image' image if the thumb fails to load
+                    if (e.currentTarget.getAttribute('src') !== NoImagePng) e.currentTarget.setAttribute('src', NoImagePng);
+                  }}
+                />
               </Box>
             }
           />
