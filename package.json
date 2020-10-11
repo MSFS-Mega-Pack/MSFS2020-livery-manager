@@ -11,7 +11,7 @@
     "yarn": ">=1.22.0"
   },
   "browserslist": [
-    "chrome latest"
+    "last 1 Electron version"
   ],
   "main": "./main.js",
   "scripts": {
