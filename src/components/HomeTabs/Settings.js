@@ -9,15 +9,17 @@ import ShowNativeDialog from '../../helpers/ShowNativeDialog';
 import ResetConfig from '../../helpers/ResetConfig';
 import ClearCache from '../../helpers/CleanUp/ClearCache';
 
-import { useSnackbar } from 'notistack';
-
-import Config from 'electron-json-config';
 import CONFIG_KEYS from '../../data/config-keys.json';
+import Constants from '../../data/Constants.json';
 import { AllRoutes } from '../../data/Routes';
 import IsAdvancedUser from '../../data/IsAdvancedUser';
 import IsDev from '../../data/IsDev';
+import packageJson from '../../../package.json';
 
 import AdvancedSettingsToggleImage from '../../images/manager_text_advanced_settings.png';
+
+import { useSnackbar } from 'notistack';
+import Config from 'electron-json-config';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -74,7 +76,18 @@ const useStyles = makeStyles(theme => ({
     display: 'block',
     width: '50%',
     margin: 'auto',
+    paddingTop: theme.spacing(4),
+  },
+  aboutFooter: {
+    color: theme.palette.text.hint,
     padding: theme.spacing(4, 0),
+    textAlign: 'center',
+    '& p': {
+      marginBottom: theme.spacing(0.5),
+    },
+  },
+  versionNumber: {
+    fontFamily: '"IBM Plex Mono"',
   },
 }));
 
@@ -261,6 +274,21 @@ export default function Settings() {
         )}
 
         <img ref={advancedSettingsToggleRef} className={classes.advancedSettingsToggle} src={AdvancedSettingsToggleImage} />
+
+        <footer className={classes.aboutFooter}>
+          <Typography variant="body2" paragraph>
+            {packageJson.productName} &mdash; Created for the Liveries Mega Pack
+          </Typography>
+          <Typography variant="body2" paragraph>
+            &copy; {new Date().getFullYear()} &mdash; All rights reserved &mdash;{' '}
+            <span className={classes.versionNumber}>v{packageJson.version}</span>
+          </Typography>
+          <Typography variant="body2" paragraph>
+            <Link target="_blank" href={Constants.urls.managerRepo}>
+              View the source code and license
+            </Link>
+          </Typography>
+        </footer>
       </section>
 
       <Box className={classes.saveButtonContainer}>
