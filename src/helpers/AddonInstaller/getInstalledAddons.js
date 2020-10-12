@@ -16,7 +16,7 @@ import ThrowError from '../ThrowError';
  */
 export default async function GetInstalledAddons() {
   let installedAddons = [];
-  const Directory = Path.join(Config.get(ConfigKeys.settings.package_directory), 'Community');
+  const Directory = Path.normalize(Config.get(ConfigKeys.settings.package_directory));
 
   if (!existsSync(Directory)) return ThrowError('E101', `Community path does not exist:\n${Directory}`);
 
