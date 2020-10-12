@@ -14,11 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Use `makeStyles` to generate classNames instead of inline styles (11d7453beaa282002538599e26e3419343ae24ab)
 - Complete functioning auto-update system (#75) (2155eca2ccba45d3ff34064dc34280f1bc3b2d9d)
 - Add application version and about info to settings (22ad1ed320de295a03c80a9b5b3103ba994882db)
-
-<!--
-To be merged:
 - Show current version and version being updated to on update page (#77)
--->
 
 ## Changed
 
