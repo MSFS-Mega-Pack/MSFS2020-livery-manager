@@ -162,7 +162,7 @@ export default function Settings() {
       <section className={classes.settingsRoot}>
         <Paper className={classes.settingsItem}>
           <Typography className={classes.sectTitle} variant="caption" color="textSecondary" component="h2">
-            Simulator packages directory
+            Community folder
           </Typography>
           <TextField
             error={!!error}
