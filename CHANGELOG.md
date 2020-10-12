@@ -7,25 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.2] - 2020-10-12
 
-## Added
+### Added
 
 _None_
 
-## Changed
+### Changed
 
 - Fix the incorrect version showing in Settings
 
-## Removed
+### Removed
 
 _None_
 
-## Meta
+### Meta
 
 _None_
 
 ## [0.1.1] - 2020-10-12
 
-## Added
+### Added
 
 - Add count of installed liveries to unexpanded accordion (8982ae5800da7a6833643bcf0606ace935916bec)
 - Allow builds without a Sentry API key (37eeeab47e8125ab8efaa08c476b996419c99b84)
@@ -34,7 +34,7 @@ _None_
 - Add application version and about info to settings (22ad1ed320de295a03c80a9b5b3103ba994882db)
 - Show current version and version being updated to on update page (#77)
 
-## Changed
+### Changed
 
 - Update 'no image available' thumbnail (f88a7c1527009f8cc9f32aef0717cd8085e170df)
 - Fix error when thumbnail is not defined (4d3ce24f1be27a652a925cee0b6687b228e85e62)
@@ -45,11 +45,11 @@ _None_
 - Ask user for their Community directory instead of root packages dir (#87 #88)
 - Use new official domain for manager CDN and API (#86)
 
-## Removed
+### Removed
 
 _None_
 
-## Meta
+### Meta
 
 - Add GitHub issue and PR templates (#76)
 
