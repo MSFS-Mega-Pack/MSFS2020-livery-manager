@@ -13,13 +13,10 @@ export default function ValidateFSDirectory(path) {
 
   let p = path.endsWith('/') || path.endsWith('\\') ? path.slice(0, -1) : path;
 
-  if (p.endsWith('Community') || p.endsWith('Official')) {
-    return [
-      false,
-      'Did you choose one of the folders inside your installation directory? Choose the folder with the folders "Community" and "Official" inside.',
-    ];
-  } else if (!fs.existsSync(Path.join(path, '\\Community'))) {
-    return [false, 'The chosen folder seems to be missing one or more subdirectories. Did you select the right folder?'];
+  if (!fs.existsSync(p)) {
+    return [false, "The path you've selected doesn't exist."];
+  } else if (!p.toLowerCase().endsWith('community')) {
+    return [false, "Please make sure you've selected your Community folder."];
   } else {
     return [true, ''];
   }
