@@ -122,7 +122,7 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
         Simulator packages directory
       </Typography>
       <Typography gutterBottom component="p" variant="body1">
-        Please check that the directory below matches your flight simulator packages directory. If it doesn&apos;t, choose the right directory
+        Please check that the directory below matches your Community folder path. If it doesn&apos;t, choose the correct directory
         with the browse button.
       </Typography>
       <TextField
