@@ -1,5 +1,4 @@
 import fs from 'fs';
-import Path from 'path';
 
 /**
  * Check if a chosen path is a valid FS2020 installation path
