@@ -23,7 +23,7 @@ export default async function InstallAddon(PlaneObject, index, total, updateProg
   const zipName = PlaneObject.fileName.substr(PlaneObject.fileName.lastIndexOf('/') + 1);
   const tempPath = Path.join(remote.app.getPath('temp'), Constants.appName, Constants.dirs.downloadCache);
   const zipPath = Path.join(tempPath, zipName);
-  const extractDir = Path.join(Directory, `Community\\${zipName.split('.zip')[0]}`);
+  const extractDir = Path.join(Directory, `${zipName.split('.zip')[0]}`);
 
   updateProgress(`Downloading livery ${index + 1} of ${total}`);
 
