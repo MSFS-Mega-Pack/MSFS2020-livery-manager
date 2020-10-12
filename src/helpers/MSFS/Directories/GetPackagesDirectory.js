@@ -29,11 +29,13 @@ export default async function GetPackagesDirectory() {
 
   const cfgLines = cfg.split('\n');
 
-  let installPath;
+  let installPath = null;
 
   cfgLines.forEach(line => {
     if (line.startsWith('InstalledPackagesPath')) {
       installPath = Path.resolve(line.slice('InstalledPackagesPath "'.length, -1));
+      installPath += '\\Community';
+      installPath = Path.normalize(installPath);
     }
   });
 
