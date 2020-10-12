@@ -10,7 +10,7 @@ const request = require('request');
 // The current version of your app.
 const APP_VERSION = require('./package.json').version;
 const APP_NAME = require('./package.json').name;
-const UPDATE_URL = `https://msfs-liverypack-api.mrproper.dev/v1/get/update`;
+const UPDATE_URL = `https://api.liveriesmegapack.com/v1/get/update`;
 
 async function checkForUpdates(window) {
   let json;
