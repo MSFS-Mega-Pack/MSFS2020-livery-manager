@@ -5,7 +5,25 @@ All notable changed to the livery manager will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased - 0.2.0] - 2020-xx-xx
+## [0.1.2] - 2020-10-12
+
+## Added
+
+_None_
+
+## Changed
+
+- Fix the incorrect version showing in Settings
+
+## Removed
+
+_None_
+
+## Meta
+
+_None_
+
+## [0.1.1] - 2020-10-12
 
 ## Added
 
@@ -24,6 +42,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Extract RefreshBox from inside the available liveries tab to its own component (4038edf8d930b604a464604324e97adb002b9592)
 - Make Smoketest only run on pushes to master (2b7fd6ad0e28afc25a00436e0fa016327cee82a0)
 - Fix incorrect Google Fonts CSS URL on update page (#78)
+- Ask user for their Community directory instead of root packages dir (#87 #88)
+- Use new official domain for manager CDN and API (#86)
 
 ## Removed
 
@@ -31,10 +51,7 @@ _None_
 
 ## Meta
 
-<!--
-To be merged:
 - Add GitHub issue and PR templates (#76)
--->
 
 ## [0.1.0](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/releases/tag/v0.1.0) - 2020-10-11
 
