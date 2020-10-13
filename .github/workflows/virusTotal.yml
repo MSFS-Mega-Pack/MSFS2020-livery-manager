@@ -1,8 +1,9 @@
-name: released
+name: After release
 
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   virustotal:
@@ -17,3 +18,4 @@ jobs:
           update_release_body: true
           files: |
             .exe$
+            .msi$
