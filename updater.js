@@ -17,11 +17,11 @@ async function checkForUpdates(window) {
 
   try {
     json = await (await fetch(`${UPDATE_URL}/${APP_VERSION}`)).json();
-  } catch {
+  } catch (error) {
+    console.log(error);
     // broken api??
     return;
   }
-
   if (json.data.update) {
     // Update is available!
     window.loadURL(`file://${__dirname}/update-available.html?newVersion=${json.data.info.latest || ''}&currentVersion=${APP_VERSION || ''}`);
@@ -42,6 +42,8 @@ async function checkForUpdates(window) {
     // ipcMain.on('get-progress', e => {
     //   e.reply('download-progress', progress);
     // });
+    let received_bytes = 0;
+    let total_bytes = 0;
 
     await new Promise((resolve, reject) => {
       // reqProgress(
@@ -53,6 +55,13 @@ async function checkForUpdates(window) {
         // .on('progress', p => {
         //   progress = p;
         // })
+        .on('response', function (data) {
+          total_bytes = parseInt(data.headers['content-length']);
+        })
+        .on('data', function (chunk) {
+          received_bytes += chunk.length;
+          showDownloadingProgress(received_bytes, total_bytes, window);
+        })
         .on('error', async err => {
           console.log(`Error`);
           console.error(err);
@@ -64,6 +73,13 @@ async function checkForUpdates(window) {
         });
     });
   }
+}
+
+function showDownloadingProgress(received, total, window) {
+  let percentage = ((received * 100) / total).toFixed(2);
+  window.webContents.send('updateData', {
+    msg: `${percentage} % | ${(received / 1048576).toFixed(2)} MB downloaded out of ${(total / 1048576).toFixed(2)} MB.`,
+  });
 }
 
 module.exports = {

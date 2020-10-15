@@ -116,6 +116,11 @@
     </section>
   </body>
   <script>
+    const {ipcRenderer} = require('electron');
+
+ipcRenderer.on('updateData', (event, res) => {
+ console.log(res) // result back in client/renderer
+})
     const params = new URLSearchParams(window.location.search);
 
     const newVersion = params.get('newVersion');
