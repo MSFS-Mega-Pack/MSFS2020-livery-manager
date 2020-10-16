@@ -37,6 +37,7 @@ module.exports = {
       },
       {
         test: /\.jsx?$/,
+        exclude: /node_modules/,
         use: [{ loader: 'babel-loader', query: { compact: false } }],
       },
       {
@@ -78,7 +79,7 @@ module.exports = {
   stats: {
     colors: true,
     children: false,
-    chunks: false,
+    chunks: true,
     modules: false,
   },
 };
