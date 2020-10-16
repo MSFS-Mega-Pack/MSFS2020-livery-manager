@@ -5,6 +5,24 @@ All notable changed to the livery manager will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - Unreleased
+
+### Added
+
+_None_
+
+### Changed
+
+- Allow access to setup stage without internet connectivity (#104) 
+
+### Removed
+
+_None_
+
+### Meta
+
+_None_
+
 ## [0.1.2] - 2020-10-12
 
 ### Added
@@ -13,7 +31,7 @@ _None_
 
 ### Changed
 
-- Fix the incorrect version showing in Settings
+- Fix the incorrect version showing in Settings (3cceb9265e0047285ca90fc73e8219dbb5af9646)
 
 ### Removed
 
