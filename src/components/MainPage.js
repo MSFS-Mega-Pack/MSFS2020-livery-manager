@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 
 import { Paper, Tabs, Tab, makeStyles } from '@material-ui/core';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
-
 import HomeIcon from 'mdi-react/HomeIcon';
+
+import OfflineError from './OfflineError';
 
 const useStyles = makeStyles({
   main: {
@@ -54,6 +55,7 @@ export default function MainPage(props) {
 
   return (
     <>
+      <OfflineError />
       <Paper>
         <Tabs value={selectedTab} onChange={handleChange} indicatorColor="primary" textColor="primary" centered>
           {TABS.map(tab => (
