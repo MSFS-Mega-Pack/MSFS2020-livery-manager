@@ -5,10 +5,12 @@ import { Box } from '@material-ui/core';
 
 import RefreshBox from '../../RefreshBox';
 import Loading from '../../Loading';
+import FullInstalledTable from './FullInstalledTable';
 
 import GetInstalledAddons from '../../../helpers/AddonInstaller/getInstalledAddons';
+
 import Constants from '../../../data/Constants.json';
-import FullInstalledTable from './FullInstalledTable';
+import NoImage from '../../../images/no-image-available.png';
 
 export default function InstalledLiveries(props) {
   const [installedLiveries, setInstalledLiveries] = useState(undefined);
@@ -21,6 +23,26 @@ export default function InstalledLiveries(props) {
     GetInstalledAddons()
       .then(liveries => setInstalledLiveries(liveries))
       .catch(e => setInstalledLiveries(e));
+  }
+
+  let allAircraft;
+
+  if (installedLiveries && fileListing) {
+    const m = new Map();
+    allAircraft = [];
+
+    for (const item of installedLiveries) {
+      if (!m.has(item.airplane)) {
+        m.set(item.airplane, true);
+
+        let thumb = `${fileListing.data.cdnBaseUrl}/img/${item.airplane}/thumbnail.JPG`;
+
+        allAircraft.push({
+          name: item.airplane.toLowerCase(),
+          thumbnails: [thumb, NoImage],
+        });
+      }
+    }
   }
 
   if (typeof fileListing === 'undefined') {
@@ -53,7 +75,7 @@ export default function InstalledLiveries(props) {
         }}
         refreshInterval={Constants.refreshInterval}
       />
-      <FullInstalledTable selectedLiveries={[]} liveries={installedLiveries}allAircraft={} />
+      <FullInstalledTable liveries={installedLiveries} allAircraft={allAircraft} />
     </Box>
   );
 }

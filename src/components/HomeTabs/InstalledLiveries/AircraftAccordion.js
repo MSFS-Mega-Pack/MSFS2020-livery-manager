@@ -7,7 +7,7 @@ import CheckboxTickIcon from 'mdi-react/CheckboxMarkedOutlineIcon';
 import CheckboxOffIcon from 'mdi-react/CheckboxBlankOffOutlineIcon';
 
 import FieldValueDisplay from '../../FieldValueDisplay';
-import LiveryList from './LiveryList';
+// import LiveryList from './LiveryList';
 
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
@@ -127,14 +127,14 @@ export default function AircraftAccordion(props) {
           <Typography variant="h6" gutterBottom>
             Liveries
           </Typography>
-          <LiveryList
+          {/* <LiveryList
             disabled={disabled}
             liveries={sortedLiveries}
             AddSelectedLivery={AddSelectedLivery}
             RemoveSelectedLivery={RemoveSelectedLivery}
             installedLiveries={installedLiveries}
             selectedLiveries={selectedLiveries}
-          />
+          /> */}
         </Box>
       </AccordionDetails>
     </Accordion>
