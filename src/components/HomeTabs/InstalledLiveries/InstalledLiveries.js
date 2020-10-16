@@ -8,6 +8,7 @@ import Loading from '../../Loading';
 
 import GetInstalledAddons from '../../../helpers/AddonInstaller/getInstalledAddons';
 import Constants from '../../../data/Constants.json';
+import FullInstalledTable from './FullInstalledTable';
 
 export default function InstalledLiveries(props) {
   const [installedLiveries, setInstalledLiveries] = useState(undefined);
@@ -52,6 +53,7 @@ export default function InstalledLiveries(props) {
         }}
         refreshInterval={Constants.refreshInterval}
       />
+      <FullInstalledTable selectedLiveries={[]} liveries={installedLiveries}allAircraft={} />
     </Box>
   );
 }
