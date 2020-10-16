@@ -13,7 +13,7 @@ _None_
 
 ### Changed
 
-- Allow access to setup stage without internet connectivity (#104) 
+- Allow access to setup stage without internet connectivity (#104)
 
 ### Removed
 
