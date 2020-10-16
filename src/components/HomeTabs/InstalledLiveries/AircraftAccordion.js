@@ -7,7 +7,7 @@ import CheckboxTickIcon from 'mdi-react/CheckboxMarkedOutlineIcon';
 import CheckboxOffIcon from 'mdi-react/CheckboxBlankOffOutlineIcon';
 
 import FieldValueDisplay from '../../FieldValueDisplay';
-// import LiveryList from './LiveryList';
+import LiveryList from './LiveryList';
 
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 export default function AircraftAccordion(props) {
-  const { aircraft, sortedLiveries, AddSelectedLivery, RemoveSelectedLivery, disabled, installedLiveries, selectedLiveries } = props;
+  const { aircraft, sortedLiveries, disabled, installedLiveries } = props;
 
   const classes = useStyles();
 
@@ -101,7 +101,7 @@ export default function AircraftAccordion(props) {
                 variant="outlined"
                 color="primary"
                 onClick={() => {
-                  AddSelectedLivery(sortedLiveries.filter(l => GetIndexOfLiveryInArray(l, installedLiveries)[0] === -1));
+                  // AddSelectedLivery(sortedLiveries.filter(l => GetIndexOfLiveryInArray(l, installedLiveries)[0] === -1));
                 }}
                 startIcon={<CheckboxTickIcon />}
               >
@@ -112,7 +112,7 @@ export default function AircraftAccordion(props) {
                 disabled={disabled}
                 variant="outlined"
                 color="primary"
-                onClick={() => RemoveSelectedLivery(sortedLiveries)}
+                // onClick={() => RemoveSelectedLivery(sortedLiveries)}
                 startIcon={<CheckboxOffIcon />}
               >
                 Deselect all
