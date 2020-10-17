@@ -90,34 +90,11 @@ export default function AircraftAccordion(props) {
           </Box>
           <Box className={classes.aircraftDetails}>
             <FieldValueDisplay fieldName="Aircraft" value={PlaneNameTable[aircraft.name] || aircraft.name} />
-            <FieldValueDisplay fieldName="Total liveries" value={`${sortedLiveries.length} available`} />
+            {/* <FieldValueDisplay fieldName="Total liveries" value={`${sortedLiveries.length} available`} />
             <FieldValueDisplay
               fieldName="Total liveries installed"
               value={`${installedLiveries.length} of ${sortedLiveries.length} installed`}
-            />
-            <Box className={classes.aircraftControls}>
-              <Button
-                disabled={disabled}
-                variant="outlined"
-                color="primary"
-                onClick={() => {
-                  // AddSelectedLivery(sortedLiveries.filter(l => GetIndexOfLiveryInArray(l, installedLiveries)[0] === -1));
-                }}
-                startIcon={<CheckboxTickIcon />}
-              >
-                Select all
-              </Button>
-              <Box p={1} />
-              <Button
-                disabled={disabled}
-                variant="outlined"
-                color="primary"
-                // onClick={() => RemoveSelectedLivery(sortedLiveries)}
-                startIcon={<CheckboxOffIcon />}
-              >
-                Deselect all
-              </Button>
-            </Box>
+            /> */}
           </Box>
         </Box>
         <Box className={classes.dividerContainer}>
@@ -127,14 +104,7 @@ export default function AircraftAccordion(props) {
           <Typography variant="h6" gutterBottom>
             Liveries
           </Typography>
-          {/* <LiveryList
-            disabled={disabled}
-            liveries={sortedLiveries}
-            AddSelectedLivery={AddSelectedLivery}
-            RemoveSelectedLivery={RemoveSelectedLivery}
-            installedLiveries={installedLiveries}
-            selectedLiveries={selectedLiveries}
-          /> */}
+          <LiveryList liveries={sortedLiveries} installedLiveries={installedLiveries} />
         </Box>
       </AccordionDetails>
     </Accordion>
