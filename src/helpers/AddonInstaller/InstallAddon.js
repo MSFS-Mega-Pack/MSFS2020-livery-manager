@@ -61,18 +61,21 @@ export default async function InstallAddon(PlaneObject, index, total, updateProg
         const zip = new admzip(zipPath);
 
         console.log(`Created folder \n${extractDir}`);
-
-        zip.extractAllToAsync(`${extractDir}`, /*overwrite*/ true, () => {
-          try {
-            fs.unlinkSync(zipPath);
-            fs.writeFileSync(Path.join(extractDir, Constants.modLockFileName), JSON.stringify(PlaneObject, null, 2));
-            console.log(`Installed: ${zipName}`);
-            resolve();
-          } catch (err) {
-            fs.unlinkSync(zipPath);
-            reject(err);
-          }
-        });
+        try {
+          zip.extractAllToAsync(`${extractDir}`, /*overwrite*/ true, () => {
+            try {
+              fs.unlinkSync(zipPath);
+              fs.writeFileSync(Path.join(extractDir, Constants.modLockFileName), JSON.stringify(PlaneObject, null, 2));
+              console.log(`Installed: ${zipName}`);
+              resolve();
+            } catch (err) {
+              fs.unlinkSync(zipPath);
+              reject(err);
+            }
+          });
+        } catch (error) {
+          reject(error);
+        }
       });
   });
 }
