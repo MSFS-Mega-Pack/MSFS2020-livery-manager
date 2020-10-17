@@ -1,7 +1,7 @@
 {
   "name": "fs2020-livery-manager",
   "productName": "Flight Simulator Livery Manager",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A simple, extensible livery manager for Microsoft Flight Simulator",
   "license": "SEE LICENSE IN LICENSE.md",
   "author": "David Wheatley",
