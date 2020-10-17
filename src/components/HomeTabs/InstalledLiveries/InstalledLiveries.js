@@ -15,6 +15,7 @@ import NoImage from '../../../images/no-image-available.png';
 export default function InstalledLiveries(props) {
   const [installedLiveries, setInstalledLiveries] = useState(undefined);
   const [refreshing, setRefreshing] = useState(false);
+  const [livData, setLivData] = useState({ disabled: [], deleting: [], updating: [], selected: [] });
 
   const { fileListing, UpdateFileList, justRefreshed, setJustRefreshed } = props;
 
@@ -75,7 +76,7 @@ export default function InstalledLiveries(props) {
         }}
         refreshInterval={Constants.refreshInterval}
       />
-      <FullInstalledTable liveries={installedLiveries} allAircraft={allAircraft} />
+      <FullInstalledTable liveries={installedLiveries} allAircraft={allAircraft} liveryData={livData} />
     </Box>
   );
 }

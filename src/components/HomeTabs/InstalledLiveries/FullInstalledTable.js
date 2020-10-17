@@ -4,16 +4,15 @@ import PropTypes from 'prop-types';
 import { Box, Link, Typography } from '@material-ui/core';
 
 import AircraftAccordion from './AircraftAccordion';
+
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
+import PlaneNameTable from '../../../data/PlaneNameTable.json';
 
 export default function FullInstalledTable(props) {
-  const { liveries, allAircraft } = props;
-
-  console.log(allAircraft);
-  console.log(liveries);
+  const { liveries, allAircraft, liveryData } = props;
 
   // if there are no aircraft...
-  if (!liveries || liveries.length === 0) {
+  if (!liveries || liveries.length === 0 || !allAircraft || allAircraft.length === 0) {
     return (
       <div style={{ position: 'absolute', left: '50%', top: '50%', width: 'max-content', transform: 'translate(-50%,-50%)' }}>
         <Typography variant="h5" component="p">
@@ -34,6 +33,15 @@ export default function FullInstalledTable(props) {
     );
   }
 
+  // Sort list of installed liveries by display names
+  allAircraft.sort((a, b) =>
+    (PlaneNameTable[a.name] || a.name) > (PlaneNameTable[b.name] || b.name)
+      ? 1
+      : (PlaneNameTable[a.name] || a.name) < (PlaneNameTable[b.name] || b.name)
+      ? -1
+      : 0
+  );
+
   return (
     <Box>
       {allAircraft.map(ac => {
@@ -52,41 +60,32 @@ export default function FullInstalledTable(props) {
   );
 }
 
-FullInstalledTable.propTypes = {
-  installedLiveries: PropTypes.arrayOf(
-    PropTypes.shape({
-      airplane: PropTypes.string.isRequired,
-      fileName: PropTypes.string.isRequired,
-      generation: PropTypes.string.isRequired,
-      metaGeneration: PropTypes.string.isRequired,
-      lastModified: PropTypes.string.isRequired,
-      ETag: PropTypes.string.isRequired,
-      size: PropTypes.string.isRequired,
-      checkSum: PropTypes.string.isRequired,
-      image: PropTypes.string,
-      smallImage: PropTypes.string,
-    })
-  ),
-  allAircraft: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string.isRequired, thumbnail: PropTypes.string })),
-  liveries: PropTypes.arrayOf(
-    PropTypes.shape({
-      airplane: PropTypes.string.isRequired,
-      fileName: PropTypes.string.isRequired,
-      generation: PropTypes.string.isRequired,
-      metaGeneration: PropTypes.string.isRequired,
-      lastModified: PropTypes.string.isRequired,
-      ETag: PropTypes.string.isRequired,
-      size: PropTypes.string.isRequired,
-      checkSum: PropTypes.string.isRequired,
-      image: PropTypes.string,
-      smallImage: PropTypes.string,
-    })
-  ),
-  setSelectedLiveries: PropTypes.func.isRequired,
-  disabled: PropTypes.bool,
+const CustomPropTypes = {
+  Livery: PropTypes.shape({
+    airplane: PropTypes.string.isRequired,
+    fileName: PropTypes.string.isRequired,
+    generation: PropTypes.string.isRequired,
+    metaGeneration: PropTypes.string.isRequired,
+    lastModified: PropTypes.string.isRequired,
+    ETag: PropTypes.string.isRequired,
+    size: PropTypes.string.isRequired,
+    checkSum: PropTypes.string.isRequired,
+    image: PropTypes.string,
+    smallImage: PropTypes.string,
+  }),
+  Aircraft: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string,
+  }),
 };
 
-FullInstalledTable.defaultProps = {
-  disabled: false,
-  setSelectedLiveries: () => {},
+FullInstalledTable.propTypes = {
+  liveryData: PropTypes.shape({
+    disabled: PropTypes.arrayOf(CustomPropTypes.Livery),
+    deleting: PropTypes.arrayOf(CustomPropTypes.Livery),
+    updating: PropTypes.arrayOf(CustomPropTypes.Livery),
+    selected: PropTypes.arrayOf(CustomPropTypes.Livery),
+  }),
+  allAircraft: PropTypes.arrayOf(CustomPropTypes.Aircraft),
+  liveries: PropTypes.arrayOf(CustomPropTypes.Livery),
 };

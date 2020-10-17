@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 export default function AircraftAccordion(props) {
-  const { aircraft, sortedLiveries, disabled, installedLiveries } = props;
+  const { aircraft, sortedLiveries, installedLiveries } = props;
 
   const classes = useStyles();
 
@@ -104,7 +104,10 @@ export default function AircraftAccordion(props) {
           <Typography variant="h6" gutterBottom>
             Liveries
           </Typography>
-          <LiveryList liveries={sortedLiveries} installedLiveries={installedLiveries} />
+          <LiveryList
+            liveries={sortedLiveries.filter(o => o.airplane.toLowerCase() === aircraft.name.toLowerCase())}
+            installedLiveries={installedLiveries}
+          />
         </Box>
       </AccordionDetails>
     </Accordion>
@@ -144,21 +147,4 @@ AircraftAccordion.propTypes = {
       smallImage: PropTypes.string,
     })
   ),
-  AddSelectedLivery: PropTypes.func.isRequired,
-  RemoveSelectedLivery: PropTypes.func.isRequired,
-  disabled: PropTypes.bool,
-  selectedLiveries: PropTypes.arrayOf(
-    PropTypes.shape({
-      airplane: PropTypes.string.isRequired,
-      fileName: PropTypes.string.isRequired,
-      generation: PropTypes.string.isRequired,
-      metaGeneration: PropTypes.string.isRequired,
-      lastModified: PropTypes.string.isRequired,
-      ETag: PropTypes.string.isRequired,
-      size: PropTypes.string.isRequired,
-      checkSum: PropTypes.string.isRequired,
-      image: PropTypes.string,
-      smallImage: PropTypes.string,
-    }).isRequired
-  ).isRequired,
 };
