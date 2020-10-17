@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Box, Checkbox, Collapse, Divider, IconButton, ListItem, ListItemIcon, ListItemText, makeStyles, Tooltip } from '@material-ui/core';
 import ExpandMoreIcon from 'mdi-react/ExpandMoreIcon';
 
-import FieldValueDisplay from './FieldValueDisplay';
+import FieldValueDisplay from '../../FieldValueDisplay';
 import InstalledBadge from './InstalledBadge';
 import UpdateAvailableBadge from './UpdateAvailableBadge';
 

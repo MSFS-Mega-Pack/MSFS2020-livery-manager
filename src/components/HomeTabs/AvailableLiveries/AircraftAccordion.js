@@ -6,7 +6,7 @@ import ExpandIcon from 'mdi-react/ExpandMoreIcon';
 import CheckboxTickIcon from 'mdi-react/CheckboxMarkedOutlineIcon';
 import CheckboxOffIcon from 'mdi-react/CheckboxBlankOffOutlineIcon';
 
-import FieldValueDisplay from './FieldValueDisplay';
+import FieldValueDisplay from '../../FieldValueDisplay';
 import LiveryList from './LiveryList';
 
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
