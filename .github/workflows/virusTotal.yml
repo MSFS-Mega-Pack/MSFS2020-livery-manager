@@ -2,7 +2,7 @@ name: After release
 
 on:
   release:
-    types: [published, edited]
+    types: [published, created, edited]
   workflow_dispatch:
 
 jobs:
