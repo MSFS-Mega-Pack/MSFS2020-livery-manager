@@ -1,5 +1,4 @@
 import fs from 'fs';
-import Path from 'path';
 import del from 'del';
 
 /**

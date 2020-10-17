@@ -154,7 +154,8 @@ export default function InstalledLiveries(props) {
       />
 
       <Typography paragraph variant="body1">
-        At the moment, you can&apos;t remove or update multiple liveries at a time. Don't worry because this will be coming in a future update.
+        At the moment, you can&apos;t remove or update multiple liveries at a time. Don&apos;t worry because this will be coming in a future
+        update.
       </Typography>
 
       <FullInstalledTable

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { Box, CircularProgress, IconButton, ListItem, ListItemText, makeStyles, Tooltip } from '@material-ui/core';
 import BinIcon from 'mdi-react/TrashCanOutlineIcon';
 import UpdateIcon from 'mdi-react/DownloadOutlineIcon';
+
 import { useSnackbar } from 'notistack';
 import clsx from 'clsx';
-import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
 
 const useStyles = makeStyles({
   root: {
