@@ -24,6 +24,14 @@ export default async function InstallAddon(PlaneObject, index, total, updateProg
   const tempPath = Path.join(remote.app.getPath('temp'), Constants.appName, Constants.dirs.downloadCache);
   const zipPath = Path.join(tempPath, zipName);
   const extractDir = Path.join(Directory, `${zipName.split('.zip')[0]}`);
+  const Sentry = require('@sentry/electron');
+  Sentry.init({
+    dsn: Constants.urls.sentryDSN,
+    environment: process.env.NODE_ENV,
+    enableNative: true,
+    debug: true,
+    attachStacktrace: true,
+  });
 
   updateProgress(`Downloading livery ${index + 1} of ${total}`);
 
@@ -61,18 +69,31 @@ export default async function InstallAddon(PlaneObject, index, total, updateProg
         const zip = new admzip(zipPath);
 
         console.log(`Created folder \n${extractDir}`);
-
-        zip.extractAllToAsync(`${extractDir}`, /*overwrite*/ true, () => {
-          try {
-            fs.unlinkSync(zipPath);
-            fs.writeFileSync(Path.join(extractDir, Constants.modLockFileName), JSON.stringify(PlaneObject, null, 2));
-            console.log(`Installed: ${zipName}`);
-            resolve();
-          } catch (err) {
-            fs.unlinkSync(zipPath);
-            reject(err);
-          }
-        });
+        try {
+          zip.extractAllToAsync(`${extractDir}`, /*overwrite*/ true, () => {
+            try {
+              fs.unlinkSync(zipPath);
+              fs.writeFileSync(Path.join(extractDir, Constants.modLockFileName), JSON.stringify(PlaneObject, null, 2));
+              console.log(`Installed: ${zipName}`);
+              resolve();
+            } catch (err) {
+              fs.unlinkSync(zipPath);
+              Sentry.captureException(`LiveryInstaller: ${zipName}, error: ${err}`, {
+                tags: {
+                  file: `${zipName} | ${PlaneObject.checkSum}`,
+                },
+              });
+              reject(`LiveryInstaller: ${zipName}, error: ${err}`);
+            }
+          });
+        } catch (error) {
+          Sentry.captureException(`LiveryInstaller: ${zipName}, error: ${error}`, {
+            tags: {
+              file: `${zipName} | ${PlaneObject.checkSum}`,
+            },
+          });
+          reject(`LiveryInstaller: ${zipName}, error: ${error}`);
+        }
       });
   });
 }

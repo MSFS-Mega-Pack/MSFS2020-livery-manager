@@ -190,7 +190,11 @@ export default function AvailableLiveries(props) {
 
             closeSnackbar(s);
             enqueueSnackbar('Installation complete', { variant: 'success', persist: false });
-            failures.length > 0 && enqueueSnackbar(`${failures.length} liveries failed to install`, { variant: 'error' });
+            failures.length > 0 &&
+              enqueueSnackbar(
+                `${failures.length} ${failures.length === 1 ? 'livery' : 'liveries'} failed to install, the team has been notified`,
+                { variant: 'error' }
+              );
           }}
           style={{ position: 'fixed', bottom: 24, right: 24 }}
           color="primary"

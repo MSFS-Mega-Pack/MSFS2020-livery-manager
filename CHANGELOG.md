@@ -9,11 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-_None_
+- Sentry logging for failed livery installations (#105)
 
 ### Changed
 
 - Allow access to setup stage without internet connectivity (#104)
+- Changed the "Failed to install livery" message (#105)
+- Prevent crashing when installing a corrupt livery (#105)
 
 ### Removed
 
