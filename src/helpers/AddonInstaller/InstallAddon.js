@@ -24,6 +24,14 @@ export default async function InstallAddon(PlaneObject, index, total, updateProg
   const tempPath = Path.join(remote.app.getPath('temp'), Constants.appName, Constants.dirs.downloadCache);
   const zipPath = Path.join(tempPath, zipName);
   const extractDir = Path.join(Directory, `${zipName.split('.zip')[0]}`);
+  const Sentry = require('@sentry/electron');
+  Sentry.init({
+    dsn: Constants.urls.sentryDSN,
+    environment: process.env.NODE_ENV,
+    enableNative: true,
+    debug: true,
+    attachStacktrace: true,
+  });
 
   updateProgress(`Downloading livery ${index + 1} of ${total}`);
 
@@ -70,11 +78,21 @@ export default async function InstallAddon(PlaneObject, index, total, updateProg
               resolve();
             } catch (err) {
               fs.unlinkSync(zipPath);
-              reject(err);
+              Sentry.captureException(`LiveryInstaller: ${zipName}, error: ${err}`, {
+                tags: {
+                  file: `${zipName} | ${PlaneObject.checkSum}`,
+                },
+              });
+              reject(`LiveryInstaller: ${zipName}, error: ${err}`);
             }
           });
         } catch (error) {
-          reject(error);
+          Sentry.captureException(`LiveryInstaller: ${zipName}, error: ${error}`, {
+            tags: {
+              file: `${zipName} | ${PlaneObject.checkSum}`,
+            },
+          });
+          reject(`LiveryInstaller: ${zipName}, error: ${error}`);
         }
       });
   });
