@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 
 import RefreshBox from '../../RefreshBox';
 import Loading from '../../Loading';
@@ -11,18 +11,94 @@ import GetInstalledAddons from '../../../helpers/AddonInstaller/getInstalledAddo
 
 import Constants from '../../../data/Constants.json';
 import NoImage from '../../../images/no-image-available.png';
+import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
 
 export default function InstalledLiveries(props) {
   const [installedLiveries, setInstalledLiveries] = useState(undefined);
   const [refreshing, setRefreshing] = useState(false);
-  const [livData, setLivData] = useState({ disabled: [], deleting: [], updating: [], selected: [] });
+
+  const [expandedList, setExpandedList] = useState([]);
+
+  function SetExpanded(aircraftName, expanded) {
+    if (expanded) setExpandedList(l => (l.includes(aircraftName) ? l : [...l, aircraftName]));
+    else
+      setExpandedList(l => {
+        const x = [...l];
+
+        const i = x.findIndex(v => v == aircraftName);
+        i !== -1 && x.splice(i, 1);
+
+        return x;
+      });
+  }
+
+  function RefreshInstalledLiveries() {
+    setRefreshing(true);
+    setInstalledLiveries(null);
+
+    GetInstalledAddons()
+      .then(liveries => {
+        setInstalledLiveries(liveries);
+        setRefreshing(false);
+      })
+      .catch(e => {
+        setInstalledLiveries(e);
+        setRefreshing(false);
+      });
+  }
+
+  const [livData, setLivData] = useState({
+    disabled: [],
+    deleting: [],
+    updating: [],
+    selected: [],
+    RefreshInstalledLiveries,
+  });
+
+  /**
+   * @param {"disabled"|"deleting"|"updating"|"selected"} arrayName Name of liveryData array
+   * @param {Object} livery Livery to add
+   */
+  function AddLiveryToData(arrayName, livery) {
+    setLivData(ld => {
+      // clone livery data
+      const x = { ...ld };
+
+      if (GetIndexOfLiveryInArray(livery, x[arrayName])[0] === -1) {
+        x[arrayName].push(livery);
+      }
+
+      return x;
+    });
+  }
+
+  /**
+   * @param {"disabled"|"deleting"|"updating"|"selected"} arrayName Name of liveryData array
+   * @param {Object} livery Livery to add
+   */
+  function RemoveLiveryFromData(arrayName, livery) {
+    setLivData(ld => {
+      // clone livery data
+      const x = { ...ld };
+      const i = GetIndexOfLiveryInArray(livery, x[arrayName])[0];
+
+      if (i !== -1) {
+        x[arrayName].splice(i, 1);
+      }
+
+      return x;
+    });
+  }
 
   const { fileListing, UpdateFileList, justRefreshed, setJustRefreshed } = props;
 
   if (typeof installedLiveries === 'undefined') {
     setInstalledLiveries(null);
     GetInstalledAddons()
-      .then(liveries => setInstalledLiveries(liveries))
+      .then(liveries => {
+        setInstalledLiveries(liveries);
+        setRefreshing(false);
+      })
       .catch(e => setInstalledLiveries(e));
   }
 
@@ -76,7 +152,20 @@ export default function InstalledLiveries(props) {
         }}
         refreshInterval={Constants.refreshInterval}
       />
-      <FullInstalledTable liveries={installedLiveries} allAircraft={allAircraft} liveryData={livData} />
+
+      <Typography paragraph variant="body1">
+        At the moment, you can&apos;t remove or update multiple liveries at a time. Don't worry because this will be coming in a future update.
+      </Typography>
+
+      <FullInstalledTable
+        liveries={installedLiveries}
+        allAircraft={allAircraft}
+        liveryData={livData}
+        AddLiveryToData={AddLiveryToData}
+        RemoveLiveryFromData={RemoveLiveryFromData}
+        SetExpanded={SetExpanded}
+        expandedList={expandedList}
+      />
     </Box>
   );
 }

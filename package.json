@@ -36,6 +36,7 @@
     "adm-zip": "^0.4.16",
     "clsx": "^1.1.1",
     "dayjs": "^1.9.3",
+    "del": "^6.0.0",
     "electron-json-config": "^1.5.3",
     "electron-react-titlebar": "^0.8.2",
     "electron-squirrel-startup": "^1.0.0",

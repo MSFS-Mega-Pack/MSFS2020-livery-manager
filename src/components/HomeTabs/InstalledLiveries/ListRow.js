@@ -1,13 +1,38 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { IconButton, ListItem, ListItemText, Tooltip } from '@material-ui/core';
+import { Box, CircularProgress, IconButton, ListItem, ListItemText, makeStyles, Tooltip } from '@material-ui/core';
 import BinIcon from 'mdi-react/TrashCanOutlineIcon';
 import UpdateIcon from 'mdi-react/DownloadOutlineIcon';
 import { useSnackbar } from 'notistack';
+import clsx from 'clsx';
+import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
+
+const useStyles = makeStyles({
+  root: {
+    transition: 'background-color 200ms ease-out',
+    '&:not([disabled]):hover': {
+      backgroundColor: 'rgba(128, 128, 128, 0.1)',
+    },
+  },
+  deleteButtonProgress: {
+    position: 'absolute',
+    left: '-50%',
+    top: '-50%',
+  },
+  deleteButtonIcon: {
+    position: 'absolute',
+    left: 0,
+    transition: 'color 200ms ease-out, opacity 200ms ease-out',
+  },
+  deleteButtonInProgress: {
+    color: '#fff',
+    opacity: 0.4,
+  },
+});
 
 // seconds the button must be help for to remove the liv
-const HoldToRemoveTime = 2.0;
+const HoldToRemoveTime = 1.5;
 
 const locale = {
   help: {
@@ -23,56 +48,82 @@ const locale = {
 };
 
 export default function ListRow(props) {
-  const { livery, updateAvailable } = props;
+  const { livery, updateAvailable, deleteLivery, beingDeleted } = props;
+  const classes = useStyles();
 
   const removeButton = useRef(null);
-  const handles = useRef({ timeout: null, interval: null, timeRemaining: HoldToRemoveTime });
+  const handles = useRef({ timeout: null, interval: null });
 
-  const [deleteTooltipText, setDeleteTooltipText] = useState(locale.help.tooltip.delete);
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [timeRemaining, setTimeRemaining] = useState(HoldToRemoveTime);
 
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     let startedDeleting = false;
+    /**
+     * @param {MouseEvent} e
+     */
+    function RemoveBtnMouseDown(e) {
+      // ignore non-LMB presses
+      if (e.button !== 0) return;
 
-    function RemoveBtnMouseDown() {
       handles.current.timeout = setTimeout(() => {
         if (!startedDeleting) {
           startedDeleting = true;
-          alert('2s');
+
+          console.log(`DELETING LIVERY`, livery.fileName);
+          deleteLivery(livery);
+
+          clearTimeout(handles.current.timeout);
+          clearInterval(handles.current.interval);
+          handles.current.timeout = handles.current.interval = null;
+
           startedDeleting = false;
         }
       }, 2000);
 
+      setTimeRemaining(t => t - 0.1);
+
       handles.current.interval = setInterval(() => {
-        handles.current.timeRemaining -= 0.1;
-        if (handles.current.timeRemaining < 0) {
-          handles.current.timeRemaining = 0;
+        setTimeRemaining(t => (t >= 0 ? t - 0.1 : 0));
+
+        if (timeRemaining <= 0) {
           clearInterval(handles.current.interval);
+          handles.current.interval = null;
           return;
         }
-
-        console.log('update text');
-        setDeleteTooltipText(locale.help.tooltip.delete_timer.replace(/%0/, handles.current.timeRemaining.toFixed(1).toString()));
       }, 100);
     }
 
     function RemoveBtnMouseUp() {
-      console.log('Clears');
-      clearTimeout(handles.current.timeout);
-      clearInterval(handles.current.interval);
+      if (timeRemaining < HoldToRemoveTime) {
+        // show help snackbar if user did a normal click
+        if (timeRemaining > HoldToRemoveTime - 0.5) {
+          enqueueSnackbar(locale.help.snackbar.hold_to_remove.replace(/%0/, HoldToRemoveTime.toFixed(1)), {
+            variant: 'info',
+          });
+        }
 
-      // show help snackbar if user did a normal click
-      if (handles.current.timeRemaining > 1.5) {
-        enqueueSnackbar(locale.help.snackbar.hold_to_remove.replace(/%0/, HoldToRemoveTime.toFixed(1).toString()), { variant: 'info' });
+        clearTimeout(handles.current.timeout);
+        clearInterval(handles.current.interval);
+        handles.current.timeout = handles.current.interval = null;
+
+        setTimeRemaining(HoldToRemoveTime);
       }
     }
 
-    if (removeButton && removeButton.current) {
-      removeButton.current.addEventListener('mousedown', RemoveBtnMouseDown);
-      removeButton.current.addEventListener('mouseup', RemoveBtnMouseUp);
-      removeButton.current.addEventListener('mouseleave', RemoveBtnMouseUp);
+    if (!beingDeleted) {
+      if (removeButton && removeButton.current) {
+        removeButton.current.addEventListener('mousedown', RemoveBtnMouseDown);
+        removeButton.current.addEventListener('mouseup', RemoveBtnMouseUp);
+        removeButton.current.addEventListener('mouseleave', RemoveBtnMouseUp);
+      }
+    } else {
+      removeButton.current.removeEventListener('mousedown', RemoveBtnMouseDown);
+      removeButton.current.removeEventListener('mouseup', RemoveBtnMouseUp);
+      removeButton.current.removeEventListener('mouseleave', RemoveBtnMouseUp);
+      clearTimeout(handles.current.timeout);
+      clearInterval(handles.current.interval);
     }
 
     return function () {
@@ -82,23 +133,44 @@ export default function ListRow(props) {
     };
   });
 
-  console.log(deleteTooltipText);
-
   return (
     <>
-      <ListItem>
+      <ListItem className={classes.root} disabled={beingDeleted}>
         <ListItemText primary={livery.fileName.substr(livery.fileName.indexOf('/') + 1).split('.zip')[0]} />
         {updateAvailable && (
           <Tooltip title={locale.help.tooltip.update}>
-            <IconButton color="primary">
-              <UpdateIcon />
-            </IconButton>
+            <span>
+              <IconButton onClick={() => alert('This feature is coming soon...')} disabled={beingDeleted} color="primary">
+                <UpdateIcon />
+              </IconButton>
+            </span>
           </Tooltip>
         )}
-        <Tooltip title={deleteTooltipText}>
-          <IconButton ref={removeButton} color="primary">
-            <BinIcon />
-          </IconButton>
+
+        <Tooltip
+          title={
+            timeRemaining === HoldToRemoveTime
+              ? locale.help.tooltip.delete
+              : locale.help.tooltip.delete_timer.replace(/%0/, timeRemaining <= 0 ? '0.0' : timeRemaining.toFixed(1).toString())
+          }
+        >
+          <span>
+            <IconButton disabled={beingDeleted} ref={removeButton} color="primary">
+              <Box position="relative" width={24} height={24}>
+                <CircularProgress
+                  className={classes.deleteButtonProgress}
+                  size={48}
+                  variant={beingDeleted ? 'indeterminate' : 'static'}
+                  value={((HoldToRemoveTime - (timeRemaining <= 0 ? 0 : timeRemaining)) / HoldToRemoveTime) * 100}
+                />
+                <BinIcon
+                  className={clsx(classes.deleteButtonIcon, {
+                    [classes.deleteButtonInProgress]: timeRemaining < HoldToRemoveTime,
+                  })}
+                />
+              </Box>
+            </IconButton>
+          </span>
         </Tooltip>
       </ListItem>
     </>
@@ -118,5 +190,12 @@ ListRow.propTypes = {
     image: PropTypes.string,
     smallImage: PropTypes.string,
   }).isRequired,
-  updateAvailable: PropTypes.bool,
+  updateAvailable: PropTypes.bool.isRequired,
+  beingDeleted: PropTypes.bool.isRequired,
+  deleteLivery: PropTypes.func.isRequired,
+};
+
+ListRow.defaultProps = {
+  updateAvailable: false,
+  beingDeleted: false,
 };
