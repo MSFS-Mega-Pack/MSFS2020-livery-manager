@@ -1,8 +1,18 @@
 const path = require('path');
 const url = require('url');
-const { app, BrowserWindow, session } = require('electron');
+const { app, BrowserWindow, globalShortcut } = require('electron');
 const open = require('open');
+const { checkForUpdates } = require('./updater');
+const Sentry = require('@sentry/electron');
 
+app.commandLine.appendSwitch('disable-http-cache');
+
+//! TEMPORARY FIX FOR CORS NOT BEING DISABLED
+//! Remove this when Electron merges and publishes new release with #25463
+// https://github.com/electron/electron/pull/25463
+app.commandLine.appendSwitch('disable-features', 'OutOfBlinkCors');
+
+/** @type {BrowserWindow} */
 let mainWindow;
 
 let isDev = false;
@@ -11,19 +21,58 @@ if (process.env.NODE_ENV !== undefined && process.env.NODE_ENV === 'development'
   isDev = true;
 }
 
+if (!isDev) {
+  if (require('electron-squirrel-startup')) {
+    app.quit();
+    process.exit(0);
+  }
+
+  app.whenReady().then(() => {
+    globalShortcut.register('CommandOrControl+R', () => {
+      console.log('CommandOrControl+R is pressed: Shortcut Disabled');
+    });
+    globalShortcut.register('F5', () => {
+      console.log('F5 is pressed: Shortcut Disabled');
+    });
+  });
+
+  //! Uncomment to prevent program running after install
+  // if (process.platform === 'win32') {
+  //   var cmd = process.argv[1];
+  //   if (cmd === '--squirrel-firstrun') {
+  //     app.quit();
+  //     process.exit(0);
+  //   }
+  // }
+
+  Sentry.init({
+    dsn: 'https://ac6e425a093744a0a72e061986c2f138@o252778.ingest.sentry.io/5431856',
+    environment: process.env.NODE_ENV,
+    enableNative: true,
+    debug: true,
+    attachStacktrace: true,
+  });
+}
+
 function createMainWindow() {
   mainWindow = new BrowserWindow({
     width: 1000,
     height: 750,
     frame: false,
     darkTheme: true,
+    backgroundColor: '#1b1b31',
     titleBarStyle: 'hidden',
     resizable: false,
     show: false,
-    icon: `${__dirname}/assets/icon.png`,
+    icon: `${__dirname}/assets/icon.ico`,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
+      webSecurity: false,
+      preload: path.join(__dirname, 'src', 'helpers', 'Sentry', 'sentry.js'),
+      devTools: isDev,
+      worldSafeExecuteJavaScript: true,
+      allowRunningInsecureContent: false,
     },
   });
 
@@ -44,16 +93,6 @@ function createMainWindow() {
     });
   }
 
-  // // Add CSP headers
-  // session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
-  //   callback({
-  //     responseHeaders: {
-  //       ...details.responseHeaders,
-  //       'Content-Security-Policy': ["default-src 'self' 'unsafe-inline' devtools: webpack:"],
-  //     },
-  //   });
-  // });
-
   // open new window links in the default browser
   mainWindow.webContents.on('new-window', (event, url) => {
     event.preventDefault();
@@ -62,6 +101,10 @@ function createMainWindow() {
 
   mainWindow.menuBarVisible = false;
   mainWindow.loadURL(indexPath);
+
+  if (!isDev) {
+    checkForUpdates(mainWindow);
+  }
 
   // Don't show until we are ready and loaded
   mainWindow.once('ready-to-show', () => {
@@ -79,7 +122,9 @@ function createMainWindow() {
   mainWindow.on('closed', () => (mainWindow = null));
 }
 
-app.on('ready', createMainWindow);
+app.on('ready', () => {
+  createMainWindow();
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

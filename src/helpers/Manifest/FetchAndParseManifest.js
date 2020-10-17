@@ -8,11 +8,10 @@ import ThrowError from '../ThrowError';
  * @export
  *
  * @param {string} url
- * @param {("sourceList"|"liverySource"|"aircraftManifest"|"liveryManifest")=} manifestType
  *
  * @return {Object} manifest JSON
  */
-export default async function FetchAndParseJsonManifest(url, manifestType) {
+export default async function FetchAndParseJsonManifest(url) {
   let response;
 
   try {
@@ -30,12 +29,7 @@ export default async function FetchAndParseJsonManifest(url, manifestType) {
   try {
     manifest = await response.clone().json();
   } catch {
-    ThrowError('E004', 'Malformed manifest (invalid JSON)');
-  }
-
-  if (manifestType && manifest.formatType !== manifestType) {
-    // Invalid manifest format
-    ThrowError('E001', 'Invalid manifest format');
+    ThrowError('E004', 'Malformed response (invalid JSON)');
   }
 
   return manifest;

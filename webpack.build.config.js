@@ -1,7 +1,9 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const BabiliPlugin = require('babel-minify-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const SentryWebpackPlugin = require('@sentry/webpack-plugin');
+require('dotenv').config();
 
 module.exports = {
   resolve: {
@@ -35,6 +37,7 @@ module.exports = {
       },
       {
         test: /\.jsx?$/,
+        exclude: /node_modules/,
         use: [{ loader: 'babel-loader', query: { compact: false } }],
       },
       {
@@ -59,12 +62,24 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
-    new BabiliPlugin(),
-  ],
+    new TerserPlugin(),
+    process.env.SENTRY_AUTH_TOKEN
+      ? new SentryWebpackPlugin({
+          // sentry-cli configuration
+          authToken: process.env.SENTRY_AUTH_TOKEN,
+          org: 'gewoonjaap',
+          project: 'msfs-api',
+
+          // webpack specific configuration
+          include: '.',
+          ignore: ['node_modules', 'webpack.build.config.js', 'webpack.dev.config.js'],
+        })
+      : console.log('WARNING: NOT UPLOADING SOURCE MAPS TO SENTRY!\n\nMISSING API KEY!') && false,
+  ].filter(Boolean),
   stats: {
     colors: true,
     children: false,
-    chunks: false,
+    chunks: true,
     modules: false,
   },
 };

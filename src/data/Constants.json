@@ -1,6 +1,26 @@
 {
+  "appName": "fs2020-livery-manager",
   "urls": {
-    "managerRepo": "https://github.com/davwheat/MSFS2020-livery-manager",
-    "officialSourceList": "https://raw.githubusercontent.com/davwheat/MSFS2020-livery-sources/master/sources.json"
-  }
+    "managerRepo": "https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager",
+    "apiEndpoint": "https://api.liveriesmegapack.com",
+    "devApiEndpoint": "http://localhost:2678",
+    "cdnEndpoint": "https://manager-cdn.liveriesmegapack.com",
+    "sentryDSN": "https://ac6e425a093744a0a72e061986c2f138@o252778.ingest.sentry.io/5431856"
+  },
+  "dirs": {
+    "downloadCache": "cache\\downloads"
+  },
+  "modLockFileName": ".livery-manager.json",
+  "api": {
+    "version": "v1",
+    "forceProdApi": true,
+    "get": {
+      "cdnFileListing": "get/allfiles",
+      "feed": "get/feed/current",
+      "feedHistory": "get/feed/history",
+      "article": "get/feed/article",
+      "update": "get/update"
+    }
+  },
+  "refreshInterval": 30000
 }

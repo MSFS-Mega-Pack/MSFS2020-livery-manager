@@ -6,7 +6,7 @@ name: Smoketest
 on:
   push:
     branches:
-      - master
+    - master
   pull_request:
 
 jobs:

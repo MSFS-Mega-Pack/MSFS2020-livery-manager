@@ -1,4 +1,5 @@
-export { default as GetPackagesDirectory } from './GetPackagesDirectory';
-export { default as ValidateFSDirectory } from './ValidateFSDirectory';
-export { parseCFGFile, loadCFG, getHighestPlaneNumber, addAirplane, removeAirplane } from './parseCFGFile';
-export { loadJSON, getJSONData, doesPlaneInfoExist, addPlaneInfo, deletePlaneInfo } from './layoutParser';
+import * as Directories from './Directories';
+import * as ConfigFiles from './ConfigFiles';
+import * as Packages from './Packages';
+
+export { Directories, ConfigFiles, Packages };

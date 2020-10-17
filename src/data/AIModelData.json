@@ -1,0 +1,4 @@
+{
+  "Asobo_A320_NEO": "[model.options]\nwithExterior_showInterior=FALSE\nwithExterior_showInterior_hideFirstLod=FALSE\nwithInterior_forceFirstLod=FALSE\nwithInterior_showExterior=FALSE\n\n[models]\nnormal=../../Asobo_A320_NEO/model.AirTraffic/A320_NEO_AIRTRAFFIC.xml",
+  "Asobo_B747_8i": "[model.options]\nwithExterior_showInterior=true\nwithExterior_showInterior_hideFirstLod=true\nwithInterior_forceFirstLod=false\nwithInterior_showExterior=true\n\n[models]\nexterior=../../Asobo_B747_8i/model/747_8I.xml\ninterior=../../Asobo_B747_8i/model/747_8I_INTERIOR.xml"
+}

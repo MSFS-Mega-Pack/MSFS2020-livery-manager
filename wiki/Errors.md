@@ -1,4 +1,4 @@
-### E001
+### E001 - Deprecated
 
 ```
 E001: Invalid manifest format
@@ -37,14 +37,14 @@ Attempted to fetch <url>
 ### E004
 
 ```
-E004: Malformed manifest (invalid JSON)
+E004: Malformed response (invalid JSON)
 ```
 
 #### Causes
 
-- Provided manifest is invalid JSON (maybe was served an interstitial page, e.g. from Cloudflare)
+- Response is invalid JSON (maybe was served an interstitial page, e.g. from Cloudflare)
 
-### E005
+### E005 - Deprecated
 
 ```
 E005: Invalid path <cfg/json path>
@@ -64,3 +64,25 @@ E006: Missing JSON Data <value missing>
 #### Causes
 
 - A JSON object is missing values.
+
+### E007
+
+```
+E007: Article content not specified
+```
+
+#### Causes
+
+- Article class attempted to be created, but the article content was not specified
+
+### E008
+
+```
+E008: Failed to fetch .zip <url>
+```
+
+#### Causes
+
+- CloudFlare might have blocked your request
+- No internet connection
+- Invalid url

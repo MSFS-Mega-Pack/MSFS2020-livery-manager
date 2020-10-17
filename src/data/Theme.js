@@ -11,7 +11,6 @@ export default createMuiTheme({
   },
   palette: {
     type: 'dark',
-    background: '',
     primary: colors.amber,
     secondary: colors.grey,
     text: {
@@ -35,8 +34,12 @@ export default createMuiTheme({
         borderRadius: 8,
       },
       root: {
-        background: 'rgba(0, 0, 0, 0.6)',
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
         borderColor: 'black',
+      },
+      outlined: {
+        backgroundColor: 'rgba(0, 0, 0, 0.35)',
+        borderColor: 'rgba(0, 0, 0, 0.8)',
       },
     },
     MuiDialog: {
@@ -52,6 +55,11 @@ export default createMuiTheme({
         '&:hover': {
           backgroundColor: 'rgba(255, 255, 255, 0.04) !important',
         },
+      },
+    },
+    MuiTooltip: {
+      tooltip: {
+        fontSize: 13,
       },
     },
   },

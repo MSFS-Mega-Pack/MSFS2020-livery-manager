@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { GetPackagesDirectory, ValidateFSDirectory } from '../helpers/MSFS';
+import { GetPackagesDirectory, ValidateFSDirectory } from '../helpers/MSFS/Directories';
+import { AllRoutes } from '../data/Routes';
 
-import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton, makeStyles, CircularProgress } from '@material-ui/core';
+import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton } from '@material-ui/core';
 import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
-import LiverySourcesTable from '../components/LiveryManager/SourceListTable';
 
-import GetLiverySources from '../helpers/Manifest/GetLiverySources';
 import Navigate from '../helpers/Navigate';
 
 import Electron from 'electron';
 import Config from 'electron-json-config';
 import ConfigKeys from '../data/config-keys.json';
-import LiverySource from '../models/LiverySource';
 
 export default function Setup() {
   const [page, setPage] = useState(1);
   const [nextButtonEnabled, setNextButtonEnabled] = useState(true);
-  const [data, setDataReal] = useState({ packageDir: undefined, liverySources: undefined });
+  const [data, setDataReal] = useState({ packageDir: undefined });
 
   if (page === 2) {
     if (!data.packageDir || data.packageDir.trim() === '') {
@@ -33,12 +31,6 @@ export default function Setup() {
   if (typeof data.packageDir === 'undefined') {
     GetPackagesDirectory().then(p => {
       setData({ packageDir: p });
-    });
-  }
-
-  if (typeof data.liverySources === 'undefined') {
-    GetLiverySources().then(ls => {
-      setData({ liverySources: ls });
     });
   }
 
@@ -69,8 +61,11 @@ export default function Setup() {
             if (page !== Pages.length) {
               setPage(page + 1);
             } else {
-              Config.set(ConfigKeys.state.setup_completed, true);
-              Navigate('/manager');
+              Config.setBulk({
+                [ConfigKeys.state.setup_completed]: true,
+                [ConfigKeys.settings.package_directory]: data.packageDir,
+              });
+              Navigate(AllRoutes.MULTI_PAGE_HOME);
             }
           }}
           disabled={!nextButtonEnabled}
@@ -82,7 +77,7 @@ export default function Setup() {
   );
 }
 
-const Pages = [WelcomePage, SimInstallDirectoryPage, ChooseLiverySourcesPage, SetupCompletePage];
+const Pages = [WelcomePage, SimInstallDirectoryPage, SetupCompletePage];
 
 function WelcomePage() {
   return (
@@ -127,8 +122,8 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
         Simulator packages directory
       </Typography>
       <Typography gutterBottom component="p" variant="body1">
-        Please check that the directory below matches your flight simulator packages directory. If it doesn&apos;t, choose the right directory
-        with the browse button.
+        Please check that the directory below matches your Community folder path. If it doesn&apos;t, choose the correct directory with the
+        browse button.
       </Typography>
       <TextField
         error={!!error}
@@ -157,70 +152,15 @@ function SimInstallDirectoryPage({ data, setData, setNextButtonEnabled }) {
   );
 }
 
-function ChooseLiverySourcesPage({ data }) {
-  return (
-    <>
-      <Typography gutterBottom component="h1" variant="h4">
-        Loaded livery sources
-      </Typography>
-      <Typography gutterBottom component="p" variant="body1">
-        You can add 3rd party livery pack sources after setup is complete.
-      </Typography>
-      {data.liverySources ? (
-        <LiverySourcesTable sourceList={data.liverySources} />
-      ) : (
-        <CircularProgress style={{ margin: 'auto', marginTop: 32 }} />
-      )}
-    </>
-  );
-}
-
-/**
- * Generates a section of the [ExpandableRow] from a field name and value.
- *
- * @param {Object} props
- * @param {string} props.fieldName Section title
- * @param {React.ReactNode} props.value Section value/description
- *
- * @return {React.ReactNode}
- */
-function SetupCompleteSummary(props) {
-  const classes = makeStyles({
-    sectTitle: { textTransform: 'uppercase', marginBottom: 2 },
-  })();
-
-  const { fieldName, value } = props;
-
-  return (
-    <>
-      <Typography className={classes.sectTitle} variant="caption" color="textSecondary" component="h2">
-        {fieldName}
-      </Typography>
-      <Typography variant="body2" gutterBottom component="div">
-        {value}
-      </Typography>
-    </>
-  );
-}
-
-SetupCompleteSummary.propTypes = {
-  fieldName: PropTypes.string.isRequired,
-  value: PropTypes.node.isRequired,
-};
-
-function SetupCompletePage({ data }) {
+function SetupCompletePage() {
   return (
     <>
       <Typography gutterBottom component="h1" variant="h4">
         Setup complete
       </Typography>
       <Typography gutterBottom component="p" variant="body1">
-        You&apos;re ready to take off! Here&apos;s a quick overview of what you&apos;ve chosen.
+        You&apos;re ready to take off!
       </Typography>
-      <Box marginTop={4} margin={1}>
-        <SetupCompleteSummary fieldName="Packages directory" value={data.packageDir} />
-        <SetupCompleteSummary fieldName="Livery sources loaded" value={data.liverySources.length} />
-      </Box>
     </>
   );
 }
@@ -228,7 +168,6 @@ function SetupCompletePage({ data }) {
 const PagePropTypes = {
   data: PropTypes.shape({
     packageDir: PropTypes.string.isRequired,
-    liverySources: PropTypes.arrayOf(PropTypes.instanceOf(LiverySource)).isRequired,
   }).isRequired,
   setData: PropTypes.func.isRequired,
   setNextButtonEnabled: PropTypes.func.isRequired,
@@ -238,18 +177,10 @@ SimInstallDirectoryPage.propTypes = {
   ...PagePropTypes,
 };
 
-ChooseLiverySourcesPage.propTypes = {
-  ...PagePropTypes,
-};
-
 SetupCompletePage.propTypes = {
   ...PagePropTypes,
 };
 
 WelcomePage.propTypes = {
-  ...PagePropTypes,
-};
-
-SetupCompletePage.propTypes = {
   ...PagePropTypes,
 };

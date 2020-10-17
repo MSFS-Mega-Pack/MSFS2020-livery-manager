@@ -1,6 +1,9 @@
 # Build folder and files #
 ##########################
-release-builds/
+publish/
+dist/
+
+.env
 
 # Development folders and files #
 #################################
