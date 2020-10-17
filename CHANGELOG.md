@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Sentry loggin for livery Installation (#105)
+- Sentry logging for failed livery installations (#105)
 
 ### Changed
 
