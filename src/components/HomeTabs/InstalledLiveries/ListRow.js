@@ -16,7 +16,6 @@ export default function ListRow(props) {
           <Tooltip title={'Update'}>
             <IconButton
               color="primary"
-              centerRipple
               onClick={e => {
                 e.stopPropagation();
               }}
@@ -28,7 +27,6 @@ export default function ListRow(props) {
         <Tooltip title={'Remove'}>
           <IconButton
             color="primary"
-            centerRipple
             onClick={e => {
               e.stopPropagation();
             }}
