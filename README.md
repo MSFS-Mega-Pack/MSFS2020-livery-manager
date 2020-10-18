@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # Liveries Mega Pack Manager
 
 A simple to use livery manager for Flight Simulator 2020.
@@ -5,6 +6,17 @@ A simple to use livery manager for Flight Simulator 2020.
 [Join the Official Liveries Mega Pack Discord server](https://discord.gg/megapack)
 
 [![DeepScan grade](https://deepscan.io/api/teams/10690/projects/13519/branches/230735/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=10690&pid=13519&bid=230735) [![](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/workflows/Smoketest/badge.svg)](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/actions/)
+
+- [Usage](#usage)
+  - [Installing liveries](#installing-liveries)
+- [Support](#support)
+- [FAQs](#faqs)
+  - ["I want to report a problem with a livery!"](#i-want-to-report-a-problem-with-a-livery)
+  - ["A livery is failing to install in the manager!"](#a-livery-is-failing-to-install-in-the-manager)
+  - ["The app is stuck on installing livery 1 of X"](#the-app-is-stuck-on-installing-livery-1-of-x)
+- [License and copyright](#license-and-copyright)
+- [Development](#development)
+- [Add your livery to the manager](#add-your-livery-to-the-manager)
 
 ## Usage
 
