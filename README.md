@@ -19,6 +19,14 @@ A simple to use livery manager for Flight Simulator 2020.
 3. Click the orange Install Liveries button.
 4. Wait for the liveries to install - the first download often takes the longest (up to a minute on some connections).
 
+## Support
+
+**Please do not submit support queries on GitHub.**
+
+If you open an issue with a support query about using the manager, it will be closed. Please submit these support requests via the [Liveries Mega Pack Discord server](https://discord.gg/megapack).
+
+We do allow support queries about contributing to the manager on GitHub, as well as bug reports and feature requests.
+
 ## License and copyright
 
 We offer **no license** for this repository. For more info, please see [the LICENSE file](LICENSE.md)
