@@ -11,6 +11,9 @@ import { CssBaseline } from '@material-ui/core';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import { TitleBar } from 'electron-react-titlebar';
 
+import Config from 'electron-json-config';
+import ConfigKeys from '../data/config-keys.json';
+
 import Theme from '../data/Theme';
 import Routes from '../data/Routes';
 import PackageJson from '../../package.json';
@@ -19,6 +22,7 @@ import planeIcon from '../images/plane-takeoff.png';
 import 'electron-react-titlebar/assets/style.css';
 
 import { SnackbarProvider } from 'notistack';
+import { LocaleProvider } from './LocaleContext';
 
 const useStyles = makeStyles({
   titlebar: {
@@ -41,20 +45,22 @@ function App() {
         <p className={classes.titlebar}>{PackageJson.productName}</p>
       </TitleBar>
       <main>
-        <ThemeProvider theme={Theme}>
-          <SnackbarProvider maxSnack={5}>
-            <CssBaseline />
-            <HashRouter hashType="slash">
-              <AnimatedSwitch atEnter={{ opacity: 0 }} atLeave={{ opacity: 0 }} atActive={{ opacity: 1 }} className="switch-wrapper">
-                {Routes.map(route => (
-                  <Route key={route.path} path={route.path}>
-                    {route.component}
-                  </Route>
-                ))}
-              </AnimatedSwitch>
-            </HashRouter>
-          </SnackbarProvider>
-        </ThemeProvider>
+        <LocaleProvider locale={Config.get(ConfigKeys.settings.locale, 'en-GB')}>
+          <ThemeProvider theme={Theme}>
+            <SnackbarProvider maxSnack={5}>
+              <CssBaseline />
+              <HashRouter hashType="slash">
+                <AnimatedSwitch atEnter={{ opacity: 0 }} atLeave={{ opacity: 0 }} atActive={{ opacity: 1 }} className="switch-wrapper">
+                  {Routes.map(route => (
+                    <Route key={route.path} path={route.path}>
+                      {route.component}
+                    </Route>
+                  ))}
+                </AnimatedSwitch>
+              </HashRouter>
+            </SnackbarProvider>
+          </ThemeProvider>
+        </LocaleProvider>
       </main>
     </>
   );

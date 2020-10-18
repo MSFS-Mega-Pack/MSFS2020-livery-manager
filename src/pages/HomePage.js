@@ -6,6 +6,7 @@ import FetchAndParseJsonManifest from '../helpers/Manifest/FetchAndParseManifest
 import Constants from '../data/Constants.json';
 import ActiveApiEndpoint from '../data/ActiveApiEndpoint';
 import GetInstalledAddons from '../helpers/AddonInstaller/getInstalledAddons';
+import LocaleContext from '../components/LocaleContext';
 
 export default function LiveryManager() {
   const [openPage, setOpenPage] = useState('dashboard');
@@ -20,6 +21,12 @@ export default function LiveryManager() {
 
   // Installed liveries state
   const [installedLiveries, setInstalledLiveries] = useState(undefined);
+
+  const CurrentLocale = React.useContext(LocaleContext);
+
+  console.log('Current locale:', CurrentLocale.name);
+  console.log('Locale ID:', CurrentLocale.locale);
+  console.log('Text "test":', CurrentLocale.translate('test', { var1: 'big poo' }));
 
   if (typeof installedLiveries === 'undefined') {
     setInstalledLiveries(null);

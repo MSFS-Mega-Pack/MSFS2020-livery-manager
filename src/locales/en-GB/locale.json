@@ -1,0 +1,9 @@
+{
+  "info": {
+    "name": "English (United Kingdom)",
+    "localeId": "en-GB"
+  },
+  "strings": {
+    "test": "Test string {{var1}}"
+  }
+}
