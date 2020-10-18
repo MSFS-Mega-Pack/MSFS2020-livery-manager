@@ -27,6 +27,24 @@ If you open an issue with a support query about using the manager, it will be cl
 
 We do allow support queries about contributing to the manager on GitHub, as well as bug reports and feature requests.
 
+## FAQs
+
+### "I want to report a problem with a livery!"
+
+Please report any issues regarding liveries to the Mega Pack Discord. The liveries are not produced by us, so we cannot fix any issues with them.
+
+### "A livery is failing to install in the manager!"
+
+If a livery fails to install, it's likely the ZIP is corrupted on our server, or while being downloaded. We get an automated alert when a livery fails to install, so you don't need to contact us about this. It should be fixed with 24 hours.
+
+If the livery still fails to install after 24 hours have passed, please [create an issue](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new?assignees=&labels=bug%2C+triage+needed&template=bug-report.md&title=%5BBUG%5D+Broken+livery:+%3Clivery+name%3E) in this repository.
+
+### "The app is stuck on installing livery 1 of X"
+
+The first livery can take a while to start downloading (up to 1 minute). This is because your PC needs to connect to the API, then to our global CDN, initiate a secured connection, fetch the file, then start serving it to you. Even after this, the speeds are often slow to begin with.
+
+If the manager has been stuck on the first livery for over 5 mins, please restart it and try again.
+
 ## License and copyright
 
 We offer **no license** for this repository. For more info, please see [the LICENSE file](LICENSE.md)
