@@ -1,7 +1,7 @@
 {
   "name": "fs2020-livery-manager",
   "productName": "Liveries Mega Pack Manager",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A simple, extensible livery manager for Microsoft Flight Simulator",
   "license": "SEE LICENSE IN LICENSE.md",
   "author": {
@@ -102,7 +102,7 @@
     "terser-webpack-plugin": "^4.2.3",
     "webpack": "^4.44.2",
     "webpack-bundle-analyzer": "^3.9.0",
-    "webpack-cli": "^4.0.0",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   }
 }
