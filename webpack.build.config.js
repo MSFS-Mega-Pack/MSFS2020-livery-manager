@@ -5,6 +5,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SentryWebpackPlugin = require('@sentry/webpack-plugin');
 require('dotenv').config();
 
+const PackageJson = require('./package.json');
+
 module.exports = {
   resolve: {
     alias: {
@@ -52,7 +54,7 @@ module.exports = {
   },
   target: 'electron-renderer',
   plugins: [
-    new HtmlWebpackPlugin({ title: 'FS2020 Livery Manager' }),
+    new HtmlWebpackPlugin({ title: PackageJson.productName }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional

@@ -12,6 +12,7 @@ import Navigate from '../helpers/Navigate';
 import Electron from 'electron';
 import Config from 'electron-json-config';
 import ConfigKeys from '../data/config-keys.json';
+import PackageJson from '../../package.json';
 
 export default function Setup() {
   const [page, setPage] = useState(1);
@@ -83,7 +84,7 @@ function WelcomePage() {
   return (
     <>
       <Typography gutterBottom component="h1" variant="h4">
-        Welcome to the Flight Simulator 2020 Livery Manager
+        Welcome to the {PackageJson.productName}
       </Typography>
       <Typography gutterBottom component="p" variant="body1">
         We need to go through a few brief setup pages before you can use the app, just to give you the best experience.

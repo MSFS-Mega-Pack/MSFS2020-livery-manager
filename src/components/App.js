@@ -1,4 +1,7 @@
 import React from 'react';
+import { hot } from 'react-hot-loader/root';
+import { Route, HashRouter } from 'react-router-dom';
+import { AnimatedSwitch } from 'react-router-transition';
 
 import 'fontsource-poppins';
 import 'fontsource-ibm-plex-mono';
@@ -6,19 +9,15 @@ import './styles/baseline.less';
 
 import { CssBaseline } from '@material-ui/core';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
-
-import { Route, HashRouter } from 'react-router-dom';
-import { AnimatedSwitch } from 'react-router-transition';
+import { TitleBar } from 'electron-react-titlebar';
 
 import Theme from '../data/Theme';
 import Routes from '../data/Routes';
-
-import { TitleBar } from 'electron-react-titlebar';
-import 'electron-react-titlebar/assets/style.css';
+import PackageJson from '../../package.json';
 
 import planeIcon from '../images/plane-takeoff.png';
+import 'electron-react-titlebar/assets/style.css';
 
-import { hot } from 'react-hot-loader/root';
 import { SnackbarProvider } from 'notistack';
 
 const useStyles = makeStyles({
@@ -39,7 +38,7 @@ function App() {
   return (
     <>
       <TitleBar icon={planeIcon} disableMaximize>
-        <p className={classes.titlebar}>Flight Simulator Livery Manager</p>
+        <p className={classes.titlebar}>{PackageJson.productName}</p>
       </TitleBar>
       <main>
         <ThemeProvider theme={Theme}>

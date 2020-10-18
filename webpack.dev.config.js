@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { spawn } = require('child_process');
+const PackageJson = require('./package.json');
 
 module.exports = {
   resolve: {
@@ -49,7 +50,7 @@ module.exports = {
   },
   target: 'electron-renderer',
   plugins: [
-    new HtmlWebpackPlugin({ title: 'FS2020 Livery Manager' }),
+    new HtmlWebpackPlugin({ title: PackageJson.productName }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
