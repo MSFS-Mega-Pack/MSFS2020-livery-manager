@@ -7,19 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.2.1] - 2020-10-19
 
-## Added
+### Added
 
-*None*
+_None_
 
-## Changed
+### Changed
 
 - Rename manager to Liveries Mega Pack Manager
 
-## Removed
- 
-*None*
+### Removed
 
-## Meta
+_None_
+
+### Meta
 
 - Update README with info about the manager, and a brief FAQ
 
