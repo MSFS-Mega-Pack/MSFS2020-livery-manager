@@ -19,7 +19,8 @@
       "feed": "get/feed/current",
       "feedHistory": "get/feed/history",
       "article": "get/feed/article",
-      "update": "get/update"
+      "update": "get/update",
+      "verify": "get/verify"
     }
   },
   "refreshInterval": 30000
