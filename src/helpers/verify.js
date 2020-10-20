@@ -1,48 +1,58 @@
 // const Trigger403 = require('../../default');
-import * as request from 'request';
-import * as constants from '../data/Constants.json';
+const request = require('request');
+const constants = require('../data/Constants.json');
 
-export default async function verifyClient() {
-  const NodeRSA = require('node-rsa');
+async function verifyClient(callback) {
+  try {
+    const NodeRSA = require('node-rsa');
+    let UUID;
+    let encrypted;
+    let key;
 
-  const key = new NodeRSA(
-    '-----BEGIN PUBLIC KEY-----\n' +
-      'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQCGQ7fNnPHlNZI7EV1NX9WMUc\n' +
-      '+3lnedklm4hgC6BmldXwbBIPJwmcFA02ArLr3LN7YZrXq+F9AJ/KEI/OEzTY9UQ1\n' +
-      'QGQVep+tcTKQZUM412nYQr4vug+CVqNC3wvN1IT4jZR5nLdfAsikEKwMeKQzTuQY\n' +
-      'fhiz52NAJJ+nrr/Q5wIDAQAB\n' +
-      '-----END PUBLIC KEY-----',
-    'public'
-  );
+    try {
+      key = new NodeRSA(
+        '-----BEGIN PUBLIC KEY-----\n' +
+          'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQCGQ7fNnPHlNZI7EV1NX9WMUc\n' +
+          '+3lnedklm4hgC6BmldXwbBIPJwmcFA02ArLr3LN7YZrXq+F9AJ/KEI/OEzTY9UQ1\n' +
+          'QGQVep+tcTKQZUM412nYQr4vug+CVqNC3wvN1IT4jZR5nLdfAsikEKwMeKQzTuQY\n' +
+          'fhiz52NAJJ+nrr/Q5wIDAQAB\n' +
+          '-----END PUBLIC KEY-----',
+        'public'
+      );
 
-  const UUID = generateUUID().toString();
-  const encrypted = key.encrypt(UUID, 'base64');
+      UUID = generateUUID().toString();
+      encrypted = key.encrypt(UUID, 'base64');
+    } catch (err) {
+      return callback(false);
+    }
 
-  const options = {
-    method: 'POST',
-    url: `${constants.urls.apiEndpoint}/${constants.api.version}/${constants.api.get.verify}`,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    form: {
-      info: encrypted,
-    },
-  };
-  new Promise(function (resolve, reject) {
-    request(options, function (error, response) {
+    const options = {
+      method: 'POST',
+      url: `${constants.urls.apiEndpoint}/${constants.api.version}/${constants.api.get.verify}`,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      form: {
+        info: encrypted,
+      },
+    };
+    request(options, async function (error, response) {
       try {
-        if (error) return resolve(false);
+        if (error) return callback(false);
 
         const res = JSON.parse(response.body);
         if (res.status == 'success' && res.data == UUID) {
-          return resolve(true);
+          return callback(true);
+        } else {
+          return callback(false);
         }
-        return resolve(false);
       } catch (err) {
-        return resolve(false);
+        return callback(false);
       }
     });
-  });
+  } catch (err) {
+    callback(false);
+  }
 }
 
 function generateUUID() {
@@ -54,3 +64,5 @@ function generateUUID() {
   });
   return uuid.toString();
 }
+
+module.exports = { verifyClient };
