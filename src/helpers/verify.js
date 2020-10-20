@@ -1,8 +1,8 @@
-import request from 'request';
-import { urls, api } from '../data/Constants.json';
-import NodeRSA from 'node-rsa';
+const request = require('request');
+const { urls, api } = require('../data/Constants.json');
+const NodeRSA = require('node-rsa');
 
-export default async function verifyClient(callback) {
+async function verifyClient(callback) {
   try {
     let UUID, encrypted, key;
 
@@ -61,3 +61,5 @@ function generateUUID() {
   });
   return uuid.toString();
 }
+
+module.exports = { verifyClient };
