@@ -5,21 +5,23 @@ All notable changed to the livery manager will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.2] - 2020-10-20
+## [0.2.2] - Unreleased
 
 ### Added
 
-_None_
+- Add more remote error logging to identify common issues in code.
 
 ### Changed
 
-- Added error logging and cleaned up code.
+- Code clean-up and refactors.
 
 ### Removed
 
 _None_
 
 ### Meta
+
+_None_
 
 ## [0.2.1] - 2020-10-19
 
