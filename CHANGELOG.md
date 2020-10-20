@@ -9,11 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add more remote error logging to identify common issues in code.
+- Add more remote error logging to identify common issues in code (#118)
 
 ### Changed
 
-- Code clean-up and refactors.
+- Code clean-up and refactors (#118)
 
 ### Removed
 
