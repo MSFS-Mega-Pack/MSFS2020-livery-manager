@@ -9,6 +9,15 @@ import del from 'del';
  * @return {Promise<[boolean, string]>} Removed the addon true/false
  */
 export default async function DeleteAddon(path) {
+  const Constants = require('../../data/Constants.json');
+  const Sentry = require('@sentry/electron');
+  Sentry.init({
+    dsn: Constants.urls.sentryDSN,
+    environment: process.env.NODE_ENV,
+    enableNative: true,
+    debug: true,
+    attachStacktrace: true,
+  });
   if (fs.existsSync(path)) {
     console.log('del: a');
     try {
@@ -17,6 +26,11 @@ export default async function DeleteAddon(path) {
       console.log('del: c');
     } catch (e) {
       console.error(e);
+      Sentry.captureException(`${e}, Error while deleting addon path.`, {
+        tags: {
+          path: path,
+        },
+      });
       console.log('del: f');
       return [false, 'Error while deleting addon path.'];
     }
