@@ -1,12 +1,10 @@
-const request = require('request');
-const constants = require('../data/Constants.json');
+import request from 'request';
+import { urls, api } from '../data/Constants.json';
+import NodeRSA from 'node-rsa';
 
-async function verifyClient(callback) {
+export default async function verifyClient(callback) {
   try {
-    const NodeRSA = require('node-rsa');
-    let UUID;
-    let encrypted;
-    let key;
+    let UUID, encrypted, key;
 
     try {
       key = new NodeRSA(
@@ -27,7 +25,7 @@ async function verifyClient(callback) {
 
     const options = {
       method: 'POST',
-      url: `${constants.urls.apiEndpoint}/${constants.api.version}/${constants.api.get.verify}`,
+      url: `${urls.apiEndpoint}/${api.version}/${api.get.verify}`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -63,5 +61,3 @@ function generateUUID() {
   });
   return uuid.toString();
 }
-
-module.exports = { verifyClient };
