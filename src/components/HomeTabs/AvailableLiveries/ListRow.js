@@ -72,7 +72,7 @@ export default function ListRow(props) {
             onChange={isInstalled ? null : ToggleCheckbox}
           />
         </ListItemIcon>
-        <ListItemText primary={livery.fileName.substr(livery.fileName.indexOf('/') + 1).split('.zip')[0]} />
+        <ListItemText primary={livery.fileName.substr(livery.fileName.lastIndexOf('/') + 1).split('.zip')[0]} />
         {isInstalled && (updateAvailable ? <UpdateAvailableBadge /> : <InstalledBadge />)}
         <Tooltip title={!isExpanded ? 'Show livery info' : 'Hide livery info'}>
           <IconButton
