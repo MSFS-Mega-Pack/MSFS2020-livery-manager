@@ -15,6 +15,15 @@ import ThrowError from '../ThrowError';
  * @return {Array} PlaneObject  Array of Plane Objects that are installed with installLocation
  */
 export default async function GetInstalledAddons() {
+  const Constants = require('../../data/Constants.json');
+  const Sentry = require('@sentry/electron');
+  Sentry.init({
+    dsn: Constants.urls.sentryDSN,
+    environment: process.env.NODE_ENV,
+    enableNative: true,
+    debug: true,
+    attachStacktrace: true,
+  });
   let installedAddons = [];
   const Directory = Path.normalize(Config.get(ConfigKeys.settings.package_directory));
 
@@ -30,6 +39,11 @@ export default async function GetInstalledAddons() {
       }
     } catch (error) {
       console.log(error);
+      Sentry.captureException(`${error}`, {
+        tags: {
+          path: jsonPath,
+        },
+      });
     }
   });
 
