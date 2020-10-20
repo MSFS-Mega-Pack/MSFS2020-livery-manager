@@ -15,7 +15,6 @@ import ThrowError from '../ThrowError';
  * @return {Array} PlaneObject  Array of Plane Objects that are installed with installLocation
  */
 export default async function GetInstalledAddons() {
-  const Constants = require('../../data/Constants.json');
   const Sentry = require('@sentry/electron');
   Sentry.init({
     dsn: Constants.urls.sentryDSN,
