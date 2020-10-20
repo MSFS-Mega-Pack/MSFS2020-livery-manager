@@ -1,4 +1,3 @@
-// const Trigger403 = require('../../default');
 const request = require('request');
 const constants = require('../data/Constants.json');
 

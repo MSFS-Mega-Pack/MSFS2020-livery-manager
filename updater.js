@@ -1,11 +1,9 @@
-// const { ipcMain } = require('electron');
 const electron = require('electron');
 const fs = require('fs');
 const { default: fetch } = require('node-fetch');
 const open = require('open');
 const Path = require('path');
 const request = require('request');
-// const reqProgress = require('request-progress');
 
 // The current version of your app.
 const APP_VERSION = require('./package.json').version;
