@@ -14,9 +14,9 @@ import NoImage from '../../../images/no-image-available.png';
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
 
 export default function InstalledLiveries(props) {
-  const [installedLiveries, setInstalledLiveries] = useState(undefined);
-  const [refreshing, setRefreshing] = useState(false);
+  const { fileListing, UpdateFileList, justRefreshed, setJustRefreshed, installedLiveries, setInstalledLiveries } = props;
 
+  const [refreshing, setRefreshing] = useState(false);
   const [expandedList, setExpandedList] = useState([]);
 
   function SetExpanded(aircraftName, expanded) {
@@ -32,19 +32,23 @@ export default function InstalledLiveries(props) {
       });
   }
 
-  function RefreshInstalledLiveries() {
-    setRefreshing(true);
-    setInstalledLiveries(null);
+  async function RefreshInstalledLiveries() {
+    return new Promise((resolve, reject) => {
+      setRefreshing(true);
+      setInstalledLiveries(null);
 
-    GetInstalledAddons()
-      .then(liveries => {
-        setInstalledLiveries(liveries);
-        setRefreshing(false);
-      })
-      .catch(e => {
-        setInstalledLiveries(e);
-        setRefreshing(false);
-      });
+      GetInstalledAddons()
+        .then(liveries => {
+          setInstalledLiveries(liveries);
+          setRefreshing(false);
+          resolve(true);
+        })
+        .catch(e => {
+          setInstalledLiveries(e);
+          setRefreshing(false);
+          reject(e);
+        });
+    });
   }
 
   const [livData, setLivData] = useState({
@@ -89,8 +93,6 @@ export default function InstalledLiveries(props) {
       return x;
     });
   }
-
-  const { fileListing, UpdateFileList, justRefreshed, setJustRefreshed } = props;
 
   if (typeof installedLiveries === 'undefined') {
     setInstalledLiveries(null);
@@ -143,8 +145,9 @@ export default function InstalledLiveries(props) {
       <RefreshBox
         justRefreshed={!!justRefreshed}
         lastCheckedTime={fileListing && fileListing.checkedAt}
-        onRefresh={() => {
+        onRefresh={async () => {
           setRefreshing(true);
+          await RefreshInstalledLiveries();
           UpdateFileList(() => {
             setRefreshing(false);
             setJustRefreshed(new Date().getTime());
@@ -195,4 +198,23 @@ InstalledLiveries.propTypes = {
       ),
     }),
   }),
+  installedLiveries: PropTypes.oneOf([
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        airplane: PropTypes.string,
+        fileName: PropTypes.string,
+        displayName: PropTypes.string,
+        generation: PropTypes.string,
+        metaGeneration: PropTypes.string,
+        lastModified: PropTypes.string,
+        ETag: PropTypes.string,
+        size: PropTypes.string,
+        checkSum: PropTypes.string,
+        image: PropTypes.string,
+        smallImage: PropTypes.string,
+      })
+    ),
+    PropTypes.string,
+  ]),
+  setInstalledLiveries: PropTypes.func,
 };

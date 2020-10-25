@@ -5,6 +5,7 @@ import { InstalledLiveries, AvailableLiveries, Feed, Settings } from '../compone
 import FetchAndParseJsonManifest from '../helpers/Manifest/FetchAndParseManifest';
 import Constants from '../data/Constants.json';
 import ActiveApiEndpoint from '../data/ActiveApiEndpoint';
+import GetInstalledAddons from '../helpers/AddonInstaller/getInstalledAddons';
 
 export default function LiveryManager() {
   const [openPage, setOpenPage] = useState('dashboard');
@@ -16,6 +17,16 @@ export default function LiveryManager() {
   // Avail liveries state
   const [fileListing, setFileListing] = useState(undefined);
   const [justRefreshed, setJustRefreshed] = useState(false);
+
+  // Installed liveries state
+  const [installedLiveries, setInstalledLiveries] = useState(undefined);
+
+  if (typeof installedLiveries === 'undefined') {
+    setInstalledLiveries(null);
+    GetInstalledAddons()
+      .then(liveries => setInstalledLiveries(liveries))
+      .catch(e => setInstalledLiveries(e));
+  }
 
   useEffect(() => {
     let key;
@@ -81,6 +92,8 @@ export default function LiveryManager() {
           fileListing={fileListing}
           setFileListing={setFileListing}
           UpdateFileList={UpdateFileList}
+          installedLiveries={installedLiveries}
+          setInstalledLiveries={setInstalledLiveries}
         />
       </div>
       <div style={{ display: pg !== 'installed liveries' && 'none' }}>
@@ -89,6 +102,8 @@ export default function LiveryManager() {
           setJustRefreshed={setJustRefreshed}
           fileListing={fileListing}
           UpdateFileList={UpdateFileList}
+          installedLiveries={installedLiveries}
+          setInstalledLiveries={setInstalledLiveries}
         />
       </div>
       <div style={{ display: pg !== 'settings' && 'none' }}>
