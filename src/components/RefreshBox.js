@@ -22,7 +22,7 @@ export default function RefreshBox(props) {
     <Paper className={classes.root} variant="outlined">
       <Box px={2} py={1} display="flex" flexDirection="row">
         <Typography color="textSecondary" variant="body2" className={classes.text}>
-          Livery list last updated:{' '}
+          Last refreshed:{' '}
           {typeof lastCheckedTime === 'string' ? lastCheckedTime : dayjs(lastCheckedTime).format('D MMM YYYY, h:mm A') || 'unknown'}
         </Typography>
         <Box flex={1} />
