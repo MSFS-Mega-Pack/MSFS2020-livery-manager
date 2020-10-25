@@ -9,10 +9,26 @@ import AsyncForEach from '../AsyncForEach';
 import ThrowError from '../ThrowError';
 
 /**
+ * @typedef {{
+      airplane: string,
+      fileName: string,
+      displayName: string,
+      generation: string,
+      metaGeneration: string,
+      lastModified: string,
+      ETag: string,
+      size: string,
+      checkSum: string,
+      image: string,
+      smallImage: string,
+    }} InstalledLiveryJson
+ */
+
+/**
  * Get Installed Addons
  *
  * @export
- * @return {Array} PlaneObject  Array of Plane Objects that are installed with installLocation
+ * @return {Promise<InstalledLiveryJson[]>} PlaneObject  Array of Plane Objects that are installed with installLocation
  */
 export default async function GetInstalledAddons() {
   const Sentry = require('@sentry/electron');

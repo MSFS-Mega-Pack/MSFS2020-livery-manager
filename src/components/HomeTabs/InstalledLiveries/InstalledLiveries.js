@@ -14,9 +14,9 @@ import NoImage from '../../../images/no-image-available.png';
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
 
 export default function InstalledLiveries(props) {
-  const [installedLiveries, setInstalledLiveries] = useState(undefined);
-  const [refreshing, setRefreshing] = useState(false);
+  const { fileListing, UpdateFileList, justRefreshed, setJustRefreshed, installedLiveries, setInstalledLiveries } = props;
 
+  const [refreshing, setRefreshing] = useState(false);
   const [expandedList, setExpandedList] = useState([]);
 
   function SetExpanded(aircraftName, expanded) {
@@ -41,7 +41,7 @@ export default function InstalledLiveries(props) {
         .then(liveries => {
           setInstalledLiveries(liveries);
           setRefreshing(false);
-          resolve();
+          resolve(true);
         })
         .catch(e => {
           setInstalledLiveries(e);
@@ -93,8 +93,6 @@ export default function InstalledLiveries(props) {
       return x;
     });
   }
-
-  const { fileListing, UpdateFileList, justRefreshed, setJustRefreshed } = props;
 
   if (typeof installedLiveries === 'undefined') {
     setInstalledLiveries(null);
@@ -200,4 +198,20 @@ InstalledLiveries.propTypes = {
       ),
     }),
   }),
+  installedLiveries: PropTypes.arrayOf(
+    PropTypes.shape({
+      airplane: PropTypes.string,
+      fileName: PropTypes.string,
+      displayName: PropTypes.string,
+      generation: PropTypes.string,
+      metaGeneration: PropTypes.string,
+      lastModified: PropTypes.string,
+      ETag: PropTypes.string,
+      size: PropTypes.string,
+      checkSum: PropTypes.string,
+      image: PropTypes.string,
+      smallImage: PropTypes.string,
+    })
+  ),
+  setInstalledLiveries: PropTypes.func,
 };
