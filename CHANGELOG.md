@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Longitude to plane name table to stop it showing as "asobo_longitude" (#135)
 - Refresh installed liveries list after installation to show newly installed liveries (#136)
 - Make refresh button in installed liveries tab actually refresh the installed liveries list (#136)
+- Clarify refresh box text from "Livery list last updated" to "Last refreshed" (#140)
 
 ### Removed
 
