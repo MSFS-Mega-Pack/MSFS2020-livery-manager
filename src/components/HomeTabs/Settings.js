@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useReducer } from 'react';
-import Electron from 'electron';
+import { remote as ElectronRemote } from 'electron';
 
 import { Paper, Typography, TextField, IconButton, InputAdornment, Box, Button, makeStyles, Link } from '@material-ui/core';
 import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
@@ -43,6 +43,9 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.text.secondary,
     cursor: 'pointer',
     float: 'right',
+    '&:not(:first-child)': {
+      marginLeft: theme.spacing(),
+    },
   },
   hintText: {
     fontSize: theme.typography.pxToRem(14),
@@ -136,7 +139,7 @@ export default function Settings() {
   });
 
   function openBrowseDialog() {
-    const d = Electron.remote.dialog.showOpenDialogSync(null, { properties: ['openDirectory'] });
+    const d = ElectronRemote.dialog.showOpenDialogSync(null, { properties: ['openDirectory'] });
 
     if (typeof d === 'undefined') {
       return;
@@ -215,6 +218,23 @@ export default function Settings() {
           >
             Reset to previous value
           </Link>
+          <Link
+            color="textSecondary"
+            className={classes.resetLink}
+            onClick={e => {
+              const target = e.currentTarget;
+
+              target.innerText = 'Opening...';
+
+              setTimeout(() => {
+                target.innerText = 'Show folder in explorer';
+              }, 2500);
+
+              ElectronRemote.shell.showItemInFolder(Config.get(CONFIG_KEYS.settings.package_directory));
+            }}
+          >
+            Show folder in explorer
+          </Link>
         </Paper>
 
         {IsAdvancedUser() && (
@@ -254,8 +274,8 @@ export default function Settings() {
                     ResetConfig();
 
                     if (!IsDev) {
-                      Electron.remote.app.relaunch();
-                      Electron.remote.app.exit();
+                      ElectronRemote.app.relaunch();
+                      ElectronRemote.app.exit();
                     } else {
                       // workaround for reset during dev
                       window.__navigate(AllRoutes.SETUP);
