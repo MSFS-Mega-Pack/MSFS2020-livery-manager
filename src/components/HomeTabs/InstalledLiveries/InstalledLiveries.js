@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import fs from 'fs';
 
-import { Box, Typography } from '@material-ui/core';
+import { Box, Button, Typography } from '@material-ui/core';
 
 import RefreshBox from '../../RefreshBox';
 import Loading from '../../Loading';
 import FullInstalledTable from './FullInstalledTable';
 
 import GetInstalledAddons from '../../../helpers/AddonInstaller/getInstalledAddons';
+import { useSnackbar } from 'notistack';
 
 import Constants from '../../../data/Constants.json';
 import NoImage from '../../../images/no-image-available.png';
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
+import DeleteAddon from '../../../helpers/AddonInstaller/deleteAddon';
+import ShowNativeDialog from '../../../helpers/ShowNativeDialog';
 
 export default function InstalledLiveries(props) {
   const { fileListing, UpdateFileList, justRefreshed, setJustRefreshed, installedLiveries, setInstalledLiveries } = props;
 
   const [refreshing, setRefreshing] = useState(false);
   const [expandedList, setExpandedList] = useState([]);
+
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   function SetExpanded(aircraftName, expanded) {
     if (expanded) setExpandedList(l => (l.includes(aircraftName) ? l : [...l, aircraftName]));
@@ -163,70 +169,101 @@ export default function InstalledLiveries(props) {
             update.
           </Typography>
         </Box>
-        <Box>
-          <Button
-            onClick={() => {
-              installedLiveries.forEach(async liv => {
-                console.log('start deletion');
-
-                if (!livery) {
-                  // No livery object passed
-                  enqueueSnackbar('Failed to remove livery: no obj passed (#1)', { variant: 'error' });
+        {installedLiveries.length > 0 && (
+          <Box>
+            <Button
+              onClick={async () => {
+                if (installedLiveries.length <= 0) {
+                  enqueueSnackbar("You don't have any installed liveries!", { variant: 'error' });
                   return;
                 }
 
-                console.log('a');
-                AddLiveryToData('deleting', livery);
-                console.log('b');
+                let d = ShowNativeDialog('Are you sure your want to uninstall ALL YOUR LIVERIES?', 'Remove all liveries?', "Once you've begun this step, you cannot cancel it. If you want to get your liveries back, you need to reinstall them.");
 
-                if (!livery.installLocation) {
-                  // No install location passed
-                  enqueueSnackbar('Failed to remove livery: unknown location (#2)', { variant: 'error' });
-                  RemoveLiveryFromData('deleting', livery);
-                  return;
-                }
-                console.log('c');
+                if (d !== 0) return;
 
-                const liveryPath = livery.installLocation;
-                console.log(liveryPath);
+                const total = installedLiveries.length;
+                let errors = 0,
+                  currentSnack,
+                  currentUninstall = 1;
 
-                if (!fs.existsSync(liveryPath)) {
-                  // Install path doesn't exist
-                  enqueueSnackbar('Failed to remove livery: folder not found (#3)', { variant: 'error' });
-                  RemoveLiveryFromData('deleting', livery);
-                  return;
-                }
-                console.log('d');
+                for (const livery of installedLiveries) {
+                  console.log('start deletion');
 
-                try {
-                  const result = await DeleteAddon(liveryPath);
+                  closeSnackbar(currentSnack);
+                  currentSnack = enqueueSnackbar(`Removing livery ${currentUninstall} of ${total}`, { variant: 'info' });
+                  currentUninstall++;
 
-                  console.log(result);
-                  console.log('f');
-                  liveryData.RefreshInstalledLiveries();
-                  console.log('g');
-
-                  if (result[0] === false) {
-                    // Other error
-                    enqueueSnackbar(`Failed to remove livery: ${result[1]} (#4)`, { variant: 'error' });
-                    RemoveLiveryFromData('deleting', livery);
-                    console.error(result[1]);
-                  } else {
-                    enqueueSnackbar('Successfully removed livery', { variant: 'success' });
+                  if (!livery) {
+                    // No livery object passed
+                    errors++;
+                    // enqueueSnackbar('Failed to remove livery: no obj passed (#1)', { variant: 'error' });
+                    return;
                   }
-                } catch (err) {
-                  // Other error
-                  enqueueSnackbar('Failed to remove livery: unknown error (#5)', { variant: 'error' });
-                  RemoveLiveryFromData('deleting', livery);
-                  console.error(err);
-                  return;
+
+                  console.log('a');
+                  AddLiveryToData('deleting', livery);
+                  console.log('b');
+
+                  if (!livery.installLocation) {
+                    // No install location passed
+                    errors++;
+                    // enqueueSnackbar('Failed to remove livery: unknown location (#2)', { variant: 'error' });
+                    RemoveLiveryFromData('deleting', livery);
+                    return;
+                  }
+                  console.log('c');
+
+                  const liveryPath = livery.installLocation;
+                  console.log(liveryPath);
+
+                  if (!fs.existsSync(liveryPath)) {
+                    // Install path doesn't exist
+                    errors++;
+                    // enqueueSnackbar('Failed to remove livery: folder not found (#3)', { variant: 'error' });
+                    RemoveLiveryFromData('deleting', livery);
+                    return;
+                  }
+                  console.log('d');
+
+                  try {
+                    const result = await DeleteAddon(liveryPath);
+
+                    console.log(result);
+                    console.log('f');
+                    RefreshInstalledLiveries();
+                    console.log('g');
+
+                    if (result[0] === false) {
+                      // Other error
+                      errors++;
+                      // enqueueSnackbar(`Failed to remove livery: ${result[1]} (#4)`, { variant: 'error' });
+                      RemoveLiveryFromData('deleting', livery);
+                      console.error(result[1]);
+                    } else {
+                      // enqueueSnackbar('Successfully removed livery', { variant: 'success' });
+                    }
+                  } catch (err) {
+                    // Other error
+                    errors++;
+                    // enqueueSnackbar('Failed to remove livery: unknown error (#5)', { variant: 'error' });
+                    RemoveLiveryFromData('deleting', livery);
+                    console.error(err);
+                    return;
+                  }
                 }
-              });
-            }}
-          >
-            Remove all
-          </Button>
-        </Box>
+
+                const success = total - errors;
+                enqueueSnackbar(`Successfully removed ${success} ${success === 1 ? 'livery' : 'liveries'}`, { variant: 'success' });
+                if (errors > 0) {
+                  enqueueSnackbar(`Failed to remove ${errors} ${errors === 1 ? 'livery' : 'liveries'}.`);
+                }
+              }}
+            >
+              Remove all
+            </Button>
+          </Box>
+        )}{' '}
       </Box>
 
       <FullInstalledTable
