@@ -65,7 +65,14 @@ export default function MainPage(props) {
       </Paper>
       <main className={classes.main}>
         <OverlayScrollbarsComponent
-          options={{ scrollbars: { visibility: 'hidden' } }}
+          options={{
+            className: 'os-theme-dark',
+            scrollbars: {
+              visibility: 'auto',
+              autoHide: 'move',
+              autoHideDelay: 500,
+            },
+          }}
           className={classes.scrollbarComponent}
           style={{
             ...scrollInnerStyle,
