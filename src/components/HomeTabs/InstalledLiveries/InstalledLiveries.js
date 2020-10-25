@@ -32,19 +32,23 @@ export default function InstalledLiveries(props) {
       });
   }
 
-  function RefreshInstalledLiveries() {
-    setRefreshing(true);
-    setInstalledLiveries(null);
+  async function RefreshInstalledLiveries() {
+    return new Promise((resolve, reject) => {
+      setRefreshing(true);
+      setInstalledLiveries(null);
 
-    GetInstalledAddons()
-      .then(liveries => {
-        setInstalledLiveries(liveries);
-        setRefreshing(false);
-      })
-      .catch(e => {
-        setInstalledLiveries(e);
-        setRefreshing(false);
-      });
+      GetInstalledAddons()
+        .then(liveries => {
+          setInstalledLiveries(liveries);
+          setRefreshing(false);
+          resolve();
+        })
+        .catch(e => {
+          setInstalledLiveries(e);
+          setRefreshing(false);
+          reject(e);
+        });
+    });
   }
 
   const [livData, setLivData] = useState({
@@ -143,8 +147,9 @@ export default function InstalledLiveries(props) {
       <RefreshBox
         justRefreshed={!!justRefreshed}
         lastCheckedTime={fileListing && fileListing.checkedAt}
-        onRefresh={() => {
+        onRefresh={async () => {
           setRefreshing(true);
+          await RefreshInstalledLiveries();
           UpdateFileList(() => {
             setRefreshing(false);
             setJustRefreshed(new Date().getTime());
