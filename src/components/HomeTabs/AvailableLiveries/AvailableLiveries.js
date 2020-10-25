@@ -26,7 +26,7 @@ import Config from 'electron-json-config';
 export default function AvailableLiveries(props) {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-  const { fileListing, UpdateFileList, justRefreshed, setJustRefreshed } = props;
+  const { fileListing, UpdateFileList, justRefreshed, setJustRefreshed, installedLiveries, setInstalledLiveries } = props;
   let aircraft = [],
     sortedLiveries = {};
 
@@ -34,15 +34,6 @@ export default function AvailableLiveries(props) {
   const [isInstalling, setIsInstalling] = useState(false);
   /** @type {[object[], Function]} */
   const [selectedLiveries, setSelectedLiveries] = useState([]);
-  /** @type {[object[], Function]} */
-  const [installedLiveries, setInstalledLiveries] = useState(undefined);
-
-  if (typeof installedLiveries === 'undefined') {
-    setInstalledLiveries(null);
-    GetInstalledAddons()
-      .then(liveries => setInstalledLiveries(liveries))
-      .catch(e => setInstalledLiveries(e));
-  }
 
   if (typeof fileListing === 'undefined') {
     return (
@@ -233,4 +224,23 @@ AvailableLiveries.propTypes = {
       ),
     }),
   }),
+  installedLiveries: PropTypes.oneOf([
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        airplane: PropTypes.string,
+        fileName: PropTypes.string,
+        displayName: PropTypes.string,
+        generation: PropTypes.string,
+        metaGeneration: PropTypes.string,
+        lastModified: PropTypes.string,
+        ETag: PropTypes.string,
+        size: PropTypes.string,
+        checkSum: PropTypes.string,
+        image: PropTypes.string,
+        smallImage: PropTypes.string,
+      })
+    ),
+    PropTypes.string,
+  ]),
+  setInstalledLiveries: PropTypes.func,
 };

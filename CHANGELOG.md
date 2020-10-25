@@ -14,6 +14,9 @@ _None_
 ### Changed
 
 - Show scrollbar on all tabs (was previously hidden) (#134)
+- Add Longitude to plane name table to stop it showing as "asobo_longitude" (#135)
+- Refresh installed liveries list after installation to show newly installed liveries (#136)
+- Make refresh button in installed liveries tab actually refresh the installed liveries list (#136)
 
 ### Removed
 
