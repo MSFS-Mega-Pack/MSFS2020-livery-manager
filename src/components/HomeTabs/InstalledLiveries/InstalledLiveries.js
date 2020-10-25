@@ -178,7 +178,11 @@ export default function InstalledLiveries(props) {
                   return;
                 }
 
-                let d = ShowNativeDialog('Are you sure your want to uninstall ALL YOUR LIVERIES?', 'Remove all liveries?', "Once you've begun this step, you cannot cancel it. If you want to get your liveries back, you need to reinstall them.");
+                let d = ShowNativeDialog(
+                  'Are you sure your want to uninstall ALL YOUR LIVERIES?',
+                  'Remove all liveries?',
+                  "Once you've begun this step, you cannot cancel it. If you want to get your liveries back, you need to reinstall them."
+                );
 
                 if (d !== 0) return;
 
