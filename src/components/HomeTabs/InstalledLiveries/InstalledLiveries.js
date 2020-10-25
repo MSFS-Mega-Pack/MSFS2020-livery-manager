@@ -198,20 +198,23 @@ InstalledLiveries.propTypes = {
       ),
     }),
   }),
-  installedLiveries: PropTypes.arrayOf(
-    PropTypes.shape({
-      airplane: PropTypes.string,
-      fileName: PropTypes.string,
-      displayName: PropTypes.string,
-      generation: PropTypes.string,
-      metaGeneration: PropTypes.string,
-      lastModified: PropTypes.string,
-      ETag: PropTypes.string,
-      size: PropTypes.string,
-      checkSum: PropTypes.string,
-      image: PropTypes.string,
-      smallImage: PropTypes.string,
-    })
-  ),
+  installedLiveries: PropTypes.oneOf([
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        airplane: PropTypes.string,
+        fileName: PropTypes.string,
+        displayName: PropTypes.string,
+        generation: PropTypes.string,
+        metaGeneration: PropTypes.string,
+        lastModified: PropTypes.string,
+        ETag: PropTypes.string,
+        size: PropTypes.string,
+        checkSum: PropTypes.string,
+        image: PropTypes.string,
+        smallImage: PropTypes.string,
+      })
+    ),
+    PropTypes.string,
+  ]),
   setInstalledLiveries: PropTypes.func,
 };
