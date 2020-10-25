@@ -37,9 +37,11 @@ export { default as enGB } from "./en-GB";
 ## Important notes
 
 - Do not rename any of the text inside curly braces (e.g. `{{percentage}}`). These are used in the software to embed data inside the translations.
-- Make sure that any pluralisations match the English (don't mistranslate 'houses' to 'house').
-- Don't use any slang or region-specific terms (e.g. say 'friends', not 'mandem').
-- Context is key! Make sure the translations make sense in each situation. If verbs are conjugated differently depending on the person actioning them (e.g. the manager vs the user), reflect that in your translations (e.g. on a button say 'Go home', instead of 'Goes home').
+- Make sure that any pluralisations match the English (don't mistranslate "houses" to "house").
+- Don't use any slang or region-specific terms (e.g. say "friends", not "mandem").
+- Context is key! Make sure the translations make sense in each situation. If verbs are conjugated differently depending on the person actioning them (e.g. the manager vs the user), reflect that in your translations (e.g. on a button say "Go home", instead of "Goes home").
+- Keep it casual. Don't make it sound like a business meetings, instead try to be friendly. (e.g. say "Make sure your community folder is right" instead of "Ensure that your community packages directory is correct".)
+  - The easiest way to do this in English is contractions (i.e. "it is" -> "it's")
 
 ## Questions and requests
 
