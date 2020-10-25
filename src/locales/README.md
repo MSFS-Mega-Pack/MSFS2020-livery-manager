@@ -20,7 +20,7 @@ export { default as enGB } from "./en-GB";
 
 4. Update your locale's JSON (`src/locales/<folder>/locale.json`) with the name and ID of your language:
 
-```json
+```jsonc
 {
    "info": {
       "name": "Pirate Speak",
