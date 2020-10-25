@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-_None_
+- Add button to open Community folder in explorer (#132)
 
 ### Changed
 
