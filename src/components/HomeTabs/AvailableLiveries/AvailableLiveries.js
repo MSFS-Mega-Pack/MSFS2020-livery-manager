@@ -224,7 +224,7 @@ AvailableLiveries.propTypes = {
       ),
     }),
   }),
-  installedLiveries: PropTypes.oneOf([
+  installedLiveries: PropTypes.oneOfType([
     PropTypes.arrayOf(
       PropTypes.shape({
         airplane: PropTypes.string,
