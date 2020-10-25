@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add button to open Community folder in explorer (#132)
+- Add button to delete ALL installed liveries (don't worry, you have to confirm it) (#141)
 
 ### Changed
 
