@@ -22,7 +22,7 @@ import planeIcon from '../images/plane-takeoff.png';
 import 'electron-react-titlebar/assets/style.css';
 
 import { SnackbarProvider } from 'notistack';
-import { LocaleProvider } from './LocaleContext';
+import { LocaleProvider } from '../locales/LocaleContext';
 
 const useStyles = makeStyles({
   titlebar: {
