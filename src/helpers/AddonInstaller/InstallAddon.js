@@ -25,12 +25,14 @@ export default async function InstallAddon(PlaneObject, index, total, updateProg
   const zipPath = Path.join(tempPath, zipName);
   const extractDir = Path.join(Directory, `${zipName.split('.zip')[0]}`);
   const Sentry = require('@sentry/electron');
+  const { RewriteFrames } = require('@sentry/integrations');
   Sentry.init({
     dsn: Constants.urls.sentryDSN,
     environment: process.env.NODE_ENV,
     enableNative: true,
     debug: true,
     attachStacktrace: true,
+    integrations: [new RewriteFrames()],
   });
 
   updateProgress(`Downloading livery ${index + 1} of ${total}`);

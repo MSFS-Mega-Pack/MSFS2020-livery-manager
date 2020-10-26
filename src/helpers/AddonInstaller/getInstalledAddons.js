@@ -32,12 +32,14 @@ import ThrowError from '../ThrowError';
  */
 export default async function GetInstalledAddons() {
   const Sentry = require('@sentry/electron');
+  const { RewriteFrames } = require('@sentry/integrations');
   Sentry.init({
     dsn: Constants.urls.sentryDSN,
     environment: process.env.NODE_ENV,
     enableNative: true,
     debug: true,
     attachStacktrace: true,
+    integrations: [new RewriteFrames()],
   });
   let installedAddons = [];
   const Directory = Path.normalize(Config.get(ConfigKeys.settings.package_directory));
