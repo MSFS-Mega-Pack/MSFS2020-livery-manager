@@ -5,6 +5,8 @@ All notable changed to the livery manager will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+Changed marked with `[DEV]` are invisible to users, and purely for the benefit of developers.
+
 ## [0.3.0] - Unreleased
 
 ### Added
@@ -19,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Refresh installed liveries list after installation to show newly installed liveries (#136)
 - Make refresh button in installed liveries tab actually refresh the installed liveries list (#136)
 - Clarify refresh box text from "Livery list last updated" to "Last refreshed" (#140)
+- Add missing aircraft translations (#142)
+- \[DEV\] Fix broken sourcemap uploads (#143)
 
 ### Removed
 
