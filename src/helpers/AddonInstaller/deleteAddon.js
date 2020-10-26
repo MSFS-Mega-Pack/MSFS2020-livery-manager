@@ -11,13 +11,14 @@ import del from 'del';
 export default async function DeleteAddon(path) {
   const Constants = require('../../data/Constants.json');
   const Sentry = require('@sentry/electron');
+  const { RewriteFrames } = require('@sentry/integrations');
   Sentry.init({
     dsn: Constants.urls.sentryDSN,
     environment: process.env.NODE_ENV,
     enableNative: true,
     debug: true,
     attachStacktrace: true,
-    integrations: [new Sentry.Integrations.RewriteFrames()],
+    integrations: [new RewriteFrames()],
   });
   if (fs.existsSync(path)) {
     console.log('del: a');
