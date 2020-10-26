@@ -175,7 +175,6 @@ const PagePropTypes = {
     packageDir: PropTypes.string.isRequired,
   }).isRequired,
   setData: PropTypes.func.isRequired,
-  setNextButtonEnabled: PropTypes.func.isRequired,
 };
 
 SimInstallDirectoryPage.propTypes = {
