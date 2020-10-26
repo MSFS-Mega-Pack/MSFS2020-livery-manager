@@ -7,6 +7,7 @@ import Navigate from '../helpers/Navigate';
 import Config from 'electron-json-config';
 import ConfigKeys from '../data/config-keys.json';
 import defaultConfig from '../data/default-config';
+import LocaleContext from '../locales/LocaleContext';
 
 const useStyles = makeStyles(theme => ({ loadingHeading: { marginTop: theme.spacing(3) } }));
 
@@ -22,6 +23,7 @@ function CheckConfig() {
 
 export default function SplashScreen() {
   CheckConfig();
+  const CurrentLocale = React.useContext(LocaleContext);
 
   const styles = useStyles();
 
@@ -41,7 +43,7 @@ export default function SplashScreen() {
     <Box display="flex" alignItems="center" justifyContent="center" flexDirection="column" height="100%">
       <CircularProgress size={64} />
       <Typography className={styles.loadingHeading} component="h1" variant="h4">
-        Loading
+        {CurrentLocale.translate('manager.splash_screen.loading')}
       </Typography>
       {/* Loads font on first start */}
       <p style={{ position: 'absolute', height: 1, width: 1, top: 0, left: 0, opacity: 0, fontFamily: 'IBM Plex Mono' }}>a</p>
