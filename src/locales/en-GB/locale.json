@@ -36,6 +36,15 @@
           "description1": "You're ready to take off!",
           "description2": "Click 'Finish' to confirm your settings and launch the manager."
         }
+      },
+      "tabs": {
+        "tab_labels": {
+          "update_feed": "Dashboard",
+          "available_liveries": "Available liveries",
+          "installed_liveries": "Installed liveries",
+          "settings": "settings"
+        },
+        "pages": {}
       }
     }
   }

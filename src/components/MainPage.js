@@ -6,6 +6,7 @@ import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import HomeIcon from 'mdi-react/HomeIcon';
 
 import OfflineError from './OfflineError';
+import LocaleContext from '../locales/LocaleContext';
 
 const useStyles = makeStyles({
   main: {
@@ -23,22 +24,24 @@ const useStyles = makeStyles({
 });
 
 export default function MainPage(props) {
+  const CurrentLocal = React.useContext(LocaleContext);
+
   const TABS = [
     {
-      label: 'Dashboard',
+      label: CurrentLocal.translate('manager.tabs.tab_labels.update_feed'),
       icon: <HomeIcon />,
       iconOnly: true,
     },
     {
-      label: 'Available liveries',
+      label: CurrentLocal.translate('manager.tabs.tab_labels.available_liveries'),
       iconOnly: false,
     },
     {
-      label: 'Installed liveries',
+      label: CurrentLocal.translate('manager.tabs.tab_labels.installed_liveries'),
       iconOnly: false,
     },
     {
-      label: 'Settings',
+      label: CurrentLocal.translate('manager.tabs.tab_labels.settings'),
       iconOnly: false,
     },
   ];
