@@ -10,9 +10,9 @@ In this guide, we assume that you already have copy of the repository locally.
 
 1. Create a copy of the `en-GB` folder
 2. Rename the folder to the correct language tag for your country (usually `language-COUNTRY`, which each code normally being only two letters)
-  - Not sure? Check out [this list](https://stackoverflow.com/a/28357857/11091039).
+   - Not sure? Check out [this list](https://stackoverflow.com/a/28357857/11091039).
 3. Add the line below to the `src/locales/index.js` file:
-  - Make sure to change `enGB` and `en-GB` to the language code used for the folder.
+   - Make sure to change `enGB` and `en-GB` to the language code used for the folder.
 
 ```js
 export { default as enGB } from './en-GB';
