@@ -6,5 +6,5 @@ Sentry.init({
   enableNative: true,
   debug: true,
   attachStacktrace: true,
-  integrations: [new Sentry.Integrations.RewriteFrames()]
+  integrations: [new Sentry.Integrations.RewriteFrames()],
 });

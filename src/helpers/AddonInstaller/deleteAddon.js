@@ -17,7 +17,7 @@ export default async function DeleteAddon(path) {
     enableNative: true,
     debug: true,
     attachStacktrace: true,
-    integrations: [new Sentry.Integrations.RewriteFrames()]
+    integrations: [new Sentry.Integrations.RewriteFrames()],
   });
   if (fs.existsSync(path)) {
     console.log('del: a');

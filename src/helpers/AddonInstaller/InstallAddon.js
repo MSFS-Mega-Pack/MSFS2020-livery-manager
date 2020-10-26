@@ -31,7 +31,7 @@ export default async function InstallAddon(PlaneObject, index, total, updateProg
     enableNative: true,
     debug: true,
     attachStacktrace: true,
-    integrations: [new Sentry.Integrations.RewriteFrames()]
+    integrations: [new Sentry.Integrations.RewriteFrames()],
   });
 
   updateProgress(`Downloading livery ${index + 1} of ${total}`);
