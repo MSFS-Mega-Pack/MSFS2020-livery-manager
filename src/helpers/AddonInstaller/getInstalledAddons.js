@@ -38,6 +38,7 @@ export default async function GetInstalledAddons() {
     enableNative: true,
     debug: true,
     attachStacktrace: true,
+    integrations: [new Sentry.Integrations.RewriteFrames()]
   });
   let installedAddons = [];
   const Directory = Path.normalize(Config.get(ConfigKeys.settings.package_directory));
