@@ -1,5 +1,6 @@
 const FS = require('fs').promises;
 const Path = require('path');
+const fs = require('fs');
 
 const MSFS_DIRECTORY = Path.join(process.env.LOCALAPPDATA + '\\Packages\\Microsoft.FlightSimulator_8wekyb3d8bbwe\\');
 const MSFS_DIRECTORY_STEAM = Path.join(process.env.APPDATA + '\\Microsoft Flight Simulator\\');
@@ -36,6 +37,11 @@ export default async function GetPackagesDirectory() {
       installPath = Path.resolve(line.slice('InstalledPackagesPath "'.length, -1));
       installPath += '\\Community';
       installPath = Path.normalize(installPath);
+      try {
+        fs.existsSync(installPath) || fs.mkdirSync(installPath);
+      } catch (error) {
+        console.log(error);
+      }
     }
   });
 
