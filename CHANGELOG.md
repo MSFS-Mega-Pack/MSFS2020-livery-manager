@@ -23,6 +23,7 @@ Changed marked with `[DEV]` are invisible to users, and purely for the benefit o
 - Clarify refresh box text from "Livery list last updated" to "Last refreshed" (#140)
 - Add missing aircraft translations (#142)
 - \[DEV\] Fix broken sourcemap uploads (#143)
+- \[DEV\] Create community folder if it does not exist, should fix the blank screen bug. (#148)
 
 ### Removed
 
