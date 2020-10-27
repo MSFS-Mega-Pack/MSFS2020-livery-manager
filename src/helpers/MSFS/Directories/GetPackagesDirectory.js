@@ -36,6 +36,9 @@ export default async function GetPackagesDirectory() {
       installPath = Path.resolve(line.slice('InstalledPackagesPath "'.length, -1));
       installPath += '\\Community';
       installPath = Path.normalize(installPath);
+      try {
+        fs.existsSync(installPath) || fs.mkdirSync(installPath);
+      } catch (error) {}
     }
   });
 
