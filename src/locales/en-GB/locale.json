@@ -45,6 +45,17 @@
           "settings": "Settings"
         }
       },
+      "components": {
+        "feed_article": {
+          "authored_by": "Written by {{author}}"
+        },
+        "badges": {
+          "update_available": {
+            "tooltip": "Go to 'Installed Liveries' to update this livery",
+            "content": "Update available"
+          }
+        }
+      },
       "pages": {
         "feed": {
           "error_more_info_button": "View more info",
@@ -75,11 +86,48 @@
             "install_complete": "Installed {{total}} [[total||livery|liveries]] successfully",
             "install_failed": "{{fails}} [[fails||livery|liveries]] failed to install. The team has been notified."
           },
-          "refresh_box": {
-            "refreshing_now": "checking now..."
-          },
           "fab_currently_installing": "Installing {{total}} [[total||livery|liveries]] ({{size}} MB)",
-          "fab_install": "Install {{total}} [[total||livery|liveries]] ({{size}} MB)"
+          "fab_install": "Install {{total}} [[total||livery|liveries]] ({{size}} MB)",
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "checking now..."
+            },
+            "aircraft_accordion": {
+              "available_count": "{{total}} [[total||livery|liveries]] available",
+              "installed_count": "{{total}} installed",
+              "info_fields": {
+                "aircraft_name": {
+                  "title": "Aircraft"
+                },
+                "total_livery_count": {
+                  "title": "Liveries available",
+                  "value": "{{total}} available"
+                },
+                "total_installed_count": {
+                  "title": "Liveries installed",
+                  "value": "{{count}} of {{total}} installed"
+                }
+              },
+              "buttons": {
+                "select_all_btn": "Select all",
+                "deselect_all_btn": "Deselect all"
+              },
+              "liveries_heading": "Liveries"
+            },
+            "livery_row": {
+              "expand_livery_details_tooltip": "Show livery info",
+              "shrink_livery_details_tooltip": "Hide livery info",
+              "info_fields": {
+                "version": {
+                  "title": "Version",
+                  "tooltip": "This text represents the current version of the livery which is available. If your version differs from this, it means a new update is available."
+                },
+                "thumbnail": {
+                  "title": "Thumbnail"
+                }
+              }
+            }
+          }
         }
       }
     }

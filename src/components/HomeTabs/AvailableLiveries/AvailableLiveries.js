@@ -42,7 +42,7 @@ export default function AvailableLiveries(props) {
       <>
         <RefreshBox
           justRefreshed={true}
-          lastCheckedTime={CurrentLocale.translate('manager.pages.available_liveries.refresh_box.refreshing_now')}
+          lastCheckedTime={CurrentLocale.translate('manager.pages.available_liveries.components.refresh_box.refreshing_now')}
           disabled={isInstalling}
           refreshInterval={Constants.refreshInterval}
         />
@@ -54,7 +54,7 @@ export default function AvailableLiveries(props) {
       <>
         <RefreshBox
           justRefreshed={true}
-          lastCheckedTime={CurrentLocale.translate('manager.pages.available_liveries.refresh_box.refreshing_now')}
+          lastCheckedTime={CurrentLocale.translate('manager.pages.available_liveries.components.refresh_box.refreshing_now')}
           disabled={isInstalling}
           refreshInterval={Constants.refreshInterval}
         />
