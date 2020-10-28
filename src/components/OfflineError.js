@@ -26,7 +26,9 @@ export default function OfflineError() {
     return (
       <Dialog open disableBackdropClick disableEscapeKeyDown>
         <DialogTitle style={{ paddingBottom: 4 }}>
-          <Typography variant="h5">You&apos;re offline</Typography>
+          <Typography variant="h5" component="span">
+            You&apos;re offline
+          </Typography>
         </DialogTitle>
         <DialogContent>
           <Typography variant="body2" paragraph>

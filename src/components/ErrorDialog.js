@@ -15,7 +15,7 @@ export default function ErrorDialog(props) {
       disableEscapeKeyDown={!dismissable}
     >
       <DialogTitle style={{ paddingBottom: 4 }}>
-        <Typography variant="h5">{title}</Typography>
+        <Typography variant="h5" component="span">{title}</Typography>
       </DialogTitle>
       <DialogContent>
         <Typography variant="h6" paragraph>
