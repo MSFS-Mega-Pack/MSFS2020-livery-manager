@@ -9,6 +9,11 @@
         "choose_directory": "Please choose a directory.",
         "path_doesnt_exist": "The path you've selected doesn't exist.",
         "invalid_path": "Please make sure you've selected your Community folder."
+      },
+      "show_native_dialog": {
+        "yes_button": "&Yes",
+        "no_button": "&No",
+        "cancel_button": "&Cancel"
       }
     },
     "manager": {
@@ -126,6 +131,26 @@
                   "title": "Thumbnail"
                 }
               }
+            }
+          }
+        },
+        "installed_liveries": {
+          "warning_cannot_remove_multiple_liveries": "At the moment, you can't remove or update multiple liveries at a time. Don't worry because this will be coming in a future update.",
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "checking now..."
+            }
+          },
+          "notifications": {
+            "no_liveries_to_remove": "You don't have any installed liveries!",
+            "removing_livery": "Removing livery {{current}} of {{total}}",
+            "successful_remove_all": "Successfully removed {{total}} [[total||livery|liveries]]"
+          },
+          "dialogs": {
+            "uninstall_all": {
+              "title": "Remove all liveries?",
+              "message": "Are you sure you want to uninstall ALL YOUR LIVERIES?",
+              "detail": "Once you start this process, you cannot pause or cancel it. To get your liveries back, you need to reinstall them."
             }
           }
         }

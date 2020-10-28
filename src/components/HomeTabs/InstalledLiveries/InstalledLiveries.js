@@ -10,6 +10,7 @@ import FullInstalledTable from './FullInstalledTable';
 
 import GetInstalledAddons from '../../../helpers/AddonInstaller/getInstalledAddons';
 import { useSnackbar } from 'notistack';
+import LocaleContext from '../../../locales/LocaleContext';
 
 import Constants from '../../../data/Constants.json';
 import NoImage from '../../../images/no-image-available.png';
@@ -64,6 +65,7 @@ export default function InstalledLiveries(props) {
     selected: [],
     RefreshInstalledLiveries,
   });
+  const CurrentLocale = React.useContext(LocaleContext);
 
   /**
    * @param {"disabled"|"deleting"|"updating"|"selected"} arrayName Name of liveryData array
@@ -133,14 +135,22 @@ export default function InstalledLiveries(props) {
   if (typeof fileListing === 'undefined') {
     return (
       <>
-        <RefreshBox justRefreshed={true} lastCheckedTime={'checking now...'} refreshInterval={Constants.refreshInterval} />
+        <RefreshBox
+          justRefreshed={true}
+          lastCheckedTime={CurrentLocale.translate('manager.pages.installed_liveries.components.refresh_box.refreshing_now')}
+          refreshInterval={Constants.refreshInterval}
+        />
         <Loading />
       </>
     );
   } else if (refreshing) {
     return (
       <>
-        <RefreshBox justRefreshed={true} lastCheckedTime={'refreshing...'} refreshInterval={Constants.refreshInterval} />
+        <RefreshBox
+          justRefreshed={true}
+          lastCheckedTime={CurrentLocale.translate('manager.pages.installed_liveries.components.refresh_box.refreshing_now')}
+          refreshInterval={Constants.refreshInterval}
+        />
         <Loading />
       </>
     );
@@ -165,8 +175,7 @@ export default function InstalledLiveries(props) {
       <Box display="flex">
         <Box flex="1">
           <Typography paragraph variant="body1">
-            At the moment, you can&apos;t remove or update multiple liveries at a time. Don&apos;t worry because this will be coming in a future
-            update.
+            {CurrentLocale.translate('manager.pages.installed_liveries.warning_cannot_remove_multiple_liveries')}
           </Typography>
         </Box>
         {installedLiveries.length > 0 && (
@@ -174,18 +183,22 @@ export default function InstalledLiveries(props) {
             <Button
               onClick={async () => {
                 if (installedLiveries.length <= 0) {
-                  enqueueSnackbar("You don't have any installed liveries!", { variant: 'error' });
+                  enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notifications.no_liveries_to_remove'), {
+                    variant: 'error',
+                  });
                   return;
                 }
 
                 let d = ShowNativeDialog(
-                  'Are you sure your want to uninstall ALL YOUR LIVERIES?',
-                  'Remove all liveries?',
-                  "Once you've begun this step, you cannot cancel it. If you want to get your liveries back, you need to reinstall them."
+                  CurrentLocale,
+                  CurrentLocale.translate('manager.pages.installed_liveries.dialog.uninstall_all.message'),
+                  CurrentLocale.translate('manager.pages.installed_liveries.dialog.uninstall_all.title'),
+                  CurrentLocale.translate('manager.pages.installed_liveries.dialog.uninstall_all.detail')
                 );
 
                 if (d !== 0) return;
 
+                /** @type {number} */
                 const total = installedLiveries.length;
                 let errors = 0,
                   currentSnack,
@@ -195,7 +208,13 @@ export default function InstalledLiveries(props) {
                   console.log('start deletion');
 
                   closeSnackbar(currentSnack);
-                  currentSnack = enqueueSnackbar(`Removing livery ${currentUninstall} of ${total}`, { variant: 'info' });
+                  currentSnack = enqueueSnackbar(
+                    CurrentLocale.translate('manager.pages.installed_liveries.notification.removing_livery', {
+                      current: currentUninstall,
+                      total: total,
+                    }),
+                    { variant: 'info' }
+                  );
                   currentUninstall++;
 
                   if (!livery) {
@@ -258,16 +277,21 @@ export default function InstalledLiveries(props) {
                 }
 
                 const success = total - errors;
-                enqueueSnackbar(`Successfully removed ${success} ${success === 1 ? 'livery' : 'liveries'}`, { variant: 'success' });
+                enqueueSnackbar(
+                  CurrentLocale.translate('manager.pages.installed_liveries.notification.remove_all_success', { total: success }),
+                  { variant: 'success' }
+                );
                 if (errors > 0) {
-                  enqueueSnackbar(`Failed to remove ${errors} ${errors === 1 ? 'livery' : 'liveries'}.`);
+                  enqueueSnackbar(
+                    CurrentLocale.translate('manager.pages.installed_liveries.notification.remove_all_failures', { errors: errors })
+                  );
                 }
               }}
             >
-              Remove all
+              {CurrentLocale.translate('manager.pages.installed_liveries.button.remove_all_liveries')}
             </Button>
           </Box>
-        )}{' '}
+        )}
       </Box>
 
       <FullInstalledTable

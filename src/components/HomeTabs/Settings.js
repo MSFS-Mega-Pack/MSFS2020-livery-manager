@@ -20,6 +20,7 @@ import AdvancedSettingsToggleImage from '../../images/manager_text_advanced_sett
 
 import { useSnackbar } from 'notistack';
 import Config from 'electron-json-config';
+import LocaleContext from '../../locales/LocaleContext';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -108,6 +109,8 @@ export default function Settings() {
   // eslint-disable-next-line
   const [_, forceUpdate] = useReducer(x => x + 1, 0);
 
+  const CurrentLocale = React.useContext(LocaleContext);
+
   useEffect(() => {
     function toggleAdvanced(e) {
       if (e.detail === 5) {
@@ -117,6 +120,7 @@ export default function Settings() {
           forceUpdate();
         } else {
           let d = ShowNativeDialog(
+            CurrentLocale,
             'Enable advanced settings?',
             'Enable advanced settings?',
             'Only do this if instructed to by a developer. This may have unintended consequences. You have been warned!'
