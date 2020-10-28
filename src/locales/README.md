@@ -62,6 +62,13 @@ export { default as enGB } from './en-GB';
 
 ### Pluralisation
 
+**Syntax:**
+```js
+"[[<variable>||<singular>|<plural>]]
+```
+
+If `<variable>` is `1`, then the singular value is used,otherwise the plural value is used.
+
 ```json
 {
   "manager": {
