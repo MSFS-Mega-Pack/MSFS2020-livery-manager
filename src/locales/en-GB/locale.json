@@ -42,9 +42,45 @@
           "update_feed": "Dashboard",
           "available_liveries": "Available liveries",
           "installed_liveries": "Installed liveries",
-          "settings": "settings"
+          "settings": "Settings"
+        }
+      },
+      "pages": {
+        "feed": {
+          "error_more_info_button": "View more info",
+          "no_more_posts": {
+            "heading": "That's all, folks!",
+            "info": "You've reached the end of the update feed"
+          },
+          "view_more_updates_button": "Read all updates",
+          "errors": {
+            "generic_message": "An error occurred while loading the news feed",
+            "unknown_error": "An unknown error",
+            "feed_unknown": "The Feed data fetched from the API was invalid. (null_err)"
+          }
         },
-        "pages": {}
+        "available_liveries": {
+          "errors": {
+            "installed_addons_fail": {
+              "title": "Couldn't find installed liveries.",
+              "error_text": "We couldn't fetch the list of installed liveries. Have you moved or deleted your community folder?",
+              "suggestion1": "The path you told us is {{path}}. Is this correct?",
+              "suggestion2": "Try updating your community folder in Settings."
+            }
+          },
+          "progress_notifications": {
+            "begin_install": "Installing liveries...",
+            "downloading_livery": "Downloading livery {{current}} of {{total}}",
+            "extracting_livery": "Extracting livery {{current}} of {{total}}",
+            "install_complete": "Installed {{total}} [[total||livery|liveries]] successfully",
+            "install_failed": "{{fails}} [[fails||livery|liveries]] failed to install. The team has been notified."
+          },
+          "refresh_box": {
+            "refreshing_now": "checking now..."
+          },
+          "fab_currently_installing": "Installing {{total}} [[total||livery|liveries]] ({{size}} MB)",
+          "fab_install": "Install {{total}} [[total||livery|liveries]] ({{size}} MB)"
+        }
       }
     }
   }

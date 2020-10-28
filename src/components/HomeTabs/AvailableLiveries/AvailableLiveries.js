@@ -22,8 +22,10 @@ import NoImage from '../../../images/no-image-available.png';
 // support libraries
 import { useSnackbar } from 'notistack';
 import Config from 'electron-json-config';
+import LocaleContext from '../../../locales/LocaleContext';
 
 export default function AvailableLiveries(props) {
+  const CurrentLocale = React.useContext(LocaleContext);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const { fileListing, UpdateFileList, justRefreshed, setJustRefreshed, installedLiveries, setInstalledLiveries } = props;
@@ -40,7 +42,7 @@ export default function AvailableLiveries(props) {
       <>
         <RefreshBox
           justRefreshed={true}
-          lastCheckedTime={'checking now...'}
+          lastCheckedTime={CurrentLocale.translate('manager.pages.available_liveries.refresh_box.refreshing_now')}
           disabled={isInstalling}
           refreshInterval={Constants.refreshInterval}
         />
@@ -50,7 +52,12 @@ export default function AvailableLiveries(props) {
   } else if (refreshing) {
     return (
       <>
-        <RefreshBox justRefreshed={true} lastCheckedTime={'refreshing...'} disabled={isInstalling} refreshInterval={Constants.refreshInterval} />
+        <RefreshBox
+          justRefreshed={true}
+          lastCheckedTime={CurrentLocale.translate('manager.pages.available_liveries.refresh_box.refreshing_now')}
+          disabled={isInstalling}
+          refreshInterval={Constants.refreshInterval}
+        />
         <Loading />
       </>
     );
@@ -115,15 +122,17 @@ export default function AvailableLiveries(props) {
       {typeof installedLiveries === 'string' && (
         <ErrorDialog
           dismissable
-          title={"Couldn't load available liveries"}
+          title={CurrentLocale.translate('manager.pages.available_liveries.errors.installed_addons_fail.title')}
           error={
             <Typography variant="body2" paragraph>
-              We couldn&apos;t fetch the list of installed liveries. Have you moved or deleted your Community folder?
+              {CurrentLocale.translate('manager.pages.available_liveries.errors.installed_addons_fail.error_text')}
             </Typography>
           }
           suggestions={[
-            `The path you told us is "${Config.get(ConfigKeys.settings.package_directory)}". Is this correct?`,
-            `Update your packages directory in Settings.`,
+            CurrentLocale.translate('manager.pages.available_liveries.errors.installed_addons_fail.suggestion1', {
+              path: Config.get(ConfigKeys.settings.package_directory),
+            }),
+            CurrentLocale.translate('manager.pages.available_liveries.errors.installed_addons_fail.suggestion2'),
           ]}
         />
       )}
@@ -147,7 +156,7 @@ export default function AvailableLiveries(props) {
 
             setIsInstalling(true);
 
-            let s = enqueueSnackbar('Installing liveries...', {
+            let s = enqueueSnackbar(CurrentLocale.translate('manager.pages.available_liveries.progress_notifications.begin_install'), {
               variant: 'info',
               persist: true,
             });
@@ -155,10 +164,10 @@ export default function AvailableLiveries(props) {
             let failures = [];
 
             for (let i = 0; i < selectedLiveries.length; i++) {
-              console.log(`Start Install ${i}`);
+              console.log(`Start install ${i}`);
 
               try {
-                await InstallAddon(selectedLiveries[i], i, selectedLiveries.length, message => {
+                await InstallAddon(selectedLiveries[i], i, selectedLiveries.length, CurrentLocale, message => {
                   closeSnackbar(s);
                   s = enqueueSnackbar(message, {
                     variant: 'info',
@@ -180,10 +189,17 @@ export default function AvailableLiveries(props) {
               .catch(e => setInstalledLiveries(e));
 
             closeSnackbar(s);
-            enqueueSnackbar('Installation complete', { variant: 'success', persist: false });
+            enqueueSnackbar(
+              CurrentLocale.translate('manager.pages.available_liveries.progress_notifications.install_complete', {
+                total: selectedLiveries.length,
+              }),
+              { variant: 'success', persist: false }
+            );
             failures.length > 0 &&
               enqueueSnackbar(
-                `${failures.length} ${failures.length === 1 ? 'livery' : 'liveries'} failed to install, the team has been notified`,
+                CurrentLocale.translate('manager.pages.available_liveries.progress_notifications.install_failed', {
+                  fails: failures.length,
+                }),
                 { variant: 'error' }
               );
           }}
@@ -191,9 +207,14 @@ export default function AvailableLiveries(props) {
           color="primary"
           variant="extended"
         >
-          <DownloadIcon style={{ marginRight: 8 }} /> {isInstalling ? 'Installing ' : 'Install '}
-          {(selectedLiveries && selectedLiveries.length) || '??'} liveries (
-          {selectedLiveries && Math.round(selectedLiveries.reduce((prev, curr) => prev + curr.size / 1000000, 0) * 10) / 10} MB)
+          <DownloadIcon style={{ marginRight: 8 }} />
+          {CurrentLocale.translate(
+            isInstalling ? 'manager.pages.available_liveries.fab_currently_installing' : 'manager.pages.available_liveries.fab_install',
+            {
+              total: selectedLiveries && selectedLiveries.length,
+              size: selectedLiveries && selectedLiveries.reduce((prev, curr) => prev + curr.size / 1000000, 0).toFixed(2),
+            }
+          )}
         </Fab>
       </Zoom>
     </div>

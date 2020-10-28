@@ -15,9 +15,12 @@ import ConfigKeys from '../../data/config-keys.json';
  * Download and install an addon
  *
  * @export
- * @argument {Object} PlaneObject  Pass the PlaneObject from the API
+ * @param {object} PlaneObject  Pass the PlaneObject from the API
+ * @param {number} index
+ * @param {number} total
+ * @param {import("../../locales/Locale").default} CurrentLocale Current locale
  */
-export default async function InstallAddon(PlaneObject, index, total, updateProgress) {
+export default async function InstallAddon(PlaneObject, index, total, CurrentLocale, updateProgress) {
   const Directory = Config.get(ConfigKeys.settings.package_directory);
   const downloadURL = `${Constants.urls.cdnEndpoint}/${PlaneObject.fileName}?hash=${PlaneObject.checkSum}`;
   const zipName = PlaneObject.fileName.substr(PlaneObject.fileName.lastIndexOf('/') + 1);
@@ -35,7 +38,12 @@ export default async function InstallAddon(PlaneObject, index, total, updateProg
     integrations: [new RewriteFrames()],
   });
 
-  updateProgress(`Downloading livery ${index + 1} of ${total}`);
+  updateProgress(
+    CurrentLocale.translate('manager.pages.available_liveries.progress_notifications.downloading_livery', {
+      current: `${index + 1}`,
+      total: `${total}`,
+    })
+  );
 
   console.log(zipPath);
 
@@ -66,7 +74,12 @@ export default async function InstallAddon(PlaneObject, index, total, updateProg
       })
       .on('finish', async () => {
         console.log(`Finished downloading: ${zipName}`);
-        updateProgress(`Extracting livery ${index + 1} of ${total}`);
+        updateProgress(
+          CurrentLocale.translate('manager.pages.available_liveries.progress_notifications.extracting_livery', {
+            current: `${index + 1}`,
+            total: `${total}`,
+          })
+        );
 
         const zip = new admzip(zipPath);
 
