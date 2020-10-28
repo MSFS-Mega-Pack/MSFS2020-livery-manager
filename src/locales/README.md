@@ -34,6 +34,46 @@ export { default as enGB } from './en-GB';
 
 5. Start updating strings!
 
+## Syntax
+
+### Basic strings
+
+```json
+{
+  "manager": {
+    "my_string": "My cool string"
+  }
+}
+```
+
+"My cool string" would be accessible via "manager.my_string".
+
+### Variables
+
+```json
+{
+  "manager": {
+    "my_string": "My {{type}} string"
+  }
+}
+```
+
+"My amazing string" would be accessible via "manager.my_string" and passing `{ type: "amazing" }` as the variables object.
+
+### Pluralisation
+
+```json
+{
+  "manager": {
+    "my_string": "I have {{count}} [[count||dog|dogs]]"
+  }
+}
+```
+
+"I have 2 dogs" would be accessible via "manager.my_string" and passing `{ count: 2 }` as the variables object.
+
+"I have 1 dog" would be accessible via "manager.my_string" and passing `{ count: 1 }` as the variables object.
+
 ## Important notes
 
 - Do not rename any of the text inside curly braces (e.g. `{{percentage}}`). These are used in the software to embed data inside the translations.
