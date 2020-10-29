@@ -63,6 +63,7 @@ export { default as enGB } from './en-GB';
 ### Pluralisation
 
 **Syntax:**
+
 ```js
 "[[<variable>||<singular>|<plural>]]
 ```
