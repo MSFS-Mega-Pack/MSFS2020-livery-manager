@@ -61,12 +61,14 @@
           }
         },
         "refresh_box": {
+          "date_format": "D MMM, h:mm A",
+          "last_refreshed": "Last refreshed:",
+          "last_refreshed_explanation_tooltip": "When you last checked for installed and available liveries",
           "refresh_button": {
             "tooltip": {
               "default": "Refresh available liveries",
               "rate_limited": "Rate limiting is in effect: you must wait {{interval}}s between refreshes"
             },
-            "last_refreshed": "Last refreshed:",
             "unknown_time": "unknown"
           }
         }

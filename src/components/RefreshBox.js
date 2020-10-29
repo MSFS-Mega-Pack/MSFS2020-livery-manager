@@ -18,7 +18,7 @@ export default function RefreshBox(props) {
 
   let toolTipContent = CurrentLocale.translate('manager.components.refresh_box.refresh_button.tooltip.default');
   if (justRefreshed)
-    toolTipContent = CurrentLocale.translate('manager.components.refresh_box.refresh_button.tooltip.default', {
+    toolTipContent = CurrentLocale.translate('manager.components.refresh_box.refresh_button.tooltip.rate_limited', {
       interval: refreshInterval / 1000,
     });
 
@@ -26,12 +26,13 @@ export default function RefreshBox(props) {
     <Paper className={classes.root} variant="outlined">
       <Box px={2} py={1} display="flex" flexDirection="row">
         <Typography color="textSecondary" variant="body2" className={classes.text}>
-          <Tooltip title="When you last checked for installed and available liveries">
-            <span>{CurrentLocale.translate('manager.components.refresh_box.refresh_button.last_refreshed')}</span>
+          <Tooltip title={CurrentLocale.translate('manager.components.refresh_box.last_refreshed_explanation_tooltip')}>
+            <span>{CurrentLocale.translate('manager.components.refresh_box.last_refreshed')}</span>
           </Tooltip>{' '}
           {typeof lastCheckedTime === 'string'
             ? lastCheckedTime
-            : dayjs(lastCheckedTime).format('D MMM YYYY, h:mm A') || CurrentLocale.translate('manager.components.refresh_box.unknown_time')}
+            : dayjs(lastCheckedTime).format(CurrentLocale.translate('manager.components.refresh_box.date_format')) ||
+              CurrentLocale.translate('manager.components.refresh_box.unknown_time')}
         </Typography>
         <Box flex={1} />
         <Box>
