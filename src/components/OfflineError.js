@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { Dialog, DialogContent, DialogTitle, Typography } from '@material-ui/core';
+import LocaleContext from '../locales/LocaleContext';
 
 export default function OfflineError() {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
@@ -22,20 +23,22 @@ export default function OfflineError() {
     };
   }, [setIsOnline]);
 
+  const CurrentLocale = React.useContext(LocaleContext);
+
   if (!isOnline) {
     return (
       <Dialog open disableBackdropClick disableEscapeKeyDown>
         <DialogTitle style={{ paddingBottom: 4 }}>
           <Typography variant="h5" component="span">
-            You&apos;re offline
+            {CurrentLocale.translate('manager.components.offline_error.title')}
           </Typography>
         </DialogTitle>
         <DialogContent>
           <Typography variant="body2" paragraph>
-            This app needs an internet connection to function. Double check your network.
+            {CurrentLocale.translate('manager.components.offline_error.paragraph1')}
           </Typography>
           <Typography variant="body2" paragraph>
-            This message will automatically dismiss when you regain connection.
+            {CurrentLocale.translate('manager.components.offline_error.paragraph2')}
           </Typography>
         </DialogContent>
       </Dialog>

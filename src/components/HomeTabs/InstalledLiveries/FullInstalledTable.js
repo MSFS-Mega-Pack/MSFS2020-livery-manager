@@ -6,26 +6,26 @@ import { Box, Link, Typography } from '@material-ui/core';
 import AircraftAccordion from './AircraftAccordion';
 
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
+import LocaleContext from '../../../locales/LocaleContext';
 
 export default function FullInstalledTable(props) {
   const { liveries, allAircraft, liveryData, AddLiveryToData, RemoveLiveryFromData, expandedList, SetExpanded } = props;
+  const CurrentLocale = React.useContext(LocaleContext);
 
   // if there are no aircraft...
   if (!liveries || liveries.length === 0 || !allAircraft || allAircraft.length === 0) {
     return (
       <div style={{ position: 'absolute', left: '50%', top: '50%', width: 'max-content', transform: 'translate(-50%,-50%)' }}>
         <Typography variant="h5" component="p">
-          No installed liveries detected.
+          {CurrentLocale.translate('manager.pages.installed_liveries.no_liveries_installed.message')}
         </Typography>
         <Typography variant="caption" component="p" style={{ position: 'absolute', bottom: -24, right: 0, cursor: 'pointer' }}>
           <Link
             onClick={() => {
-              alert(
-                "We couldn't find any mega pack liveries in your selected Community folder.\n\nIf you installed liveries through the mega pack zip, they will not appear here. They must be installed via the manager."
-              );
+              alert(CurrentLocale.translate('manager.pages.installed_liveries.no_liveries_installed.info'));
             }}
           >
-            More info
+            {CurrentLocale.translate('manager.pages.installed_liveries.no_liveries_installed.more_info_button')}
           </Link>
         </Typography>
       </div>
