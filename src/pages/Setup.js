@@ -113,9 +113,8 @@ function WelcomePage() {
   );
 }
 
-function LanguageSelectPage({ data, setData }) {
+function LanguageSelectPage() {
   const CurrentLocale = React.useContext(LocaleContext);
-  const forceUpdate = React.useReducer(x => x + 1, 0)[1];
 
   const activeLocaleId = CurrentLocale.locale;
 
