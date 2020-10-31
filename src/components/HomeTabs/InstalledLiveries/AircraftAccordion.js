@@ -139,7 +139,7 @@ export default function AircraftAccordion(props) {
               console.log('d');
 
               try {
-                const result = await DeleteAddon(liveryPath);
+                const result = await DeleteAddon(liveryPath, CurrentLocale);
 
                 console.log(result);
                 console.log('f');

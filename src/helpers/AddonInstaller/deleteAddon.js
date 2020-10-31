@@ -5,10 +5,11 @@ import del from 'del';
  * Remove installed addon by Path
  *
  * @export
- * @argument {string} Path, remove addon by path.
+ * @param {string} Path, remove addon by path.
+ * @param {import("../../locales/Locale").default} CurrentLocale current locale (from context)
  * @return {Promise<[boolean, string]>} Removed the addon true/false
  */
-export default async function DeleteAddon(path) {
+export default async function DeleteAddon(path, CurrentLocale) {
   const Constants = require('../../data/Constants.json');
   const Sentry = require('@sentry/electron');
   const { RewriteFrames } = require('@sentry/integrations');
@@ -34,13 +35,13 @@ export default async function DeleteAddon(path) {
         },
       });
       console.log('del: f');
-      return [false, 'Error while deleting addon path.'];
+      return [false, CurrentLocale.translate('helpers.delete_addon.delete_path_fail')];
     }
 
     console.log('del: d');
-    return [true, 'Addon deleted successfully.'];
+    return [true, CurrentLocale.translate('helpers.delete_addon.delete_path_success')];
   }
 
   console.log('del: e');
-  return [false, 'Addon path did not exist.'];
+  return [false, CurrentLocale.translate('helpers.delete_addon.non_existant')];
 }

@@ -6,9 +6,9 @@
   "strings": {
     "helpers": {
       "validate_fs_directory": {
-        "choose_directory": "Please choose a directory.",
-        "path_doesnt_exist": "The path you've selected doesn't exist.",
-        "invalid_path": "Please make sure you've selected your Community folder."
+        "choose_directory": "Please choose a directory",
+        "path_doesnt_exist": "The path you've selected doesn't exist",
+        "invalid_path": "Please make sure you've selected your Community folder"
       },
       "show_native_dialog": {
         "yes_button": "&Yes",
@@ -208,6 +208,47 @@
             "more_info_button": "View more info",
             "message": "No installed liveries detected",
             "info": "We couldn't find any mega pack liveries in your selected Community folder.\n\nIf you installed liveries through the mega pack zip, they will not appear here. They must be installed via the manager."
+          }
+        },
+        "settings": {
+          "advanced_settings": {
+            "enabled_notification": "Enabled advanced settings",
+            "disabled_notification": "Disabled advanced settings",
+            "dialog_title": "Enable advanced settings?",
+            "dialog_body": "Enable advanced settings?",
+            "dialog_detail": "Only do this if instructed to by a developer. This may have unintended consequences. You have been warned!"
+          },
+          "footer": {
+            "line1": "{{appName}} — Created for the Liveries Mega Pack",
+            "line2": "© {{year}} — All rights reserved — ",
+            "version": "v{{version}}",
+            "source_repo_and_license": "View the source code and license"
+          },
+          "errors_in_inputs": "Please fix the error(s) above before saving",
+          "save_settings_changes": "Click 'Save' to save changes",
+          "all_changes_saved": "All changes saved",
+          "save_button": "Save",
+          "user_settings": {
+            "community_folder": {
+              "name": "Community folder",
+              "input_label": "Path to community folder",
+              "browse_button_sr_text": "Browse to folder",
+              "reset_button": "Undo changes",
+              "open_in_explorer": "Show folder in explorer",
+              "open_in_explorer_opening": "Opening..."
+            },
+            "cache_clear": {
+              "name": "Caching",
+              "clearing_cache_notification": "Clearing cache. This might take a few minutes.",
+              "cache_clear_success_notification": "Cache cleared successfully!",
+              "cache_clear_error_notification": "Failed to clear cache",
+              "purge_cache_button": "Purge cache"
+            },
+            "reset_manager_to_defaults": {
+              "name": "Reset manager",
+              "detail": "This will reset all app settings and restart the manager. You won't lose any installed liveries, and any liveries that are already installed will be automatically re-detected.",
+              "reset_btn": "Reset all settings"
+            }
           }
         }
       }

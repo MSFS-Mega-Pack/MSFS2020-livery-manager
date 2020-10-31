@@ -116,19 +116,23 @@ export default function Settings() {
       if (e.detail === 5) {
         if (IsAdvancedUser()) {
           Config.set(CONFIG_KEYS.settings.show_advanced_settings, false);
-          enqueueSnackbar('Disabled advanced settings', { variant: 'info' });
+          enqueueSnackbar(CurrentLocale.translate('manager.pages.settings.advanced_settings.disabled_notification'), {
+            variant: 'info',
+          });
           forceUpdate();
         } else {
           let d = ShowNativeDialog(
             CurrentLocale,
-            'Enable advanced settings?',
-            'Enable advanced settings?',
-            'Only do this if instructed to by a developer. This may have unintended consequences. You have been warned!'
+            CurrentLocale.translate('manager.pages.settings.advanced_settings.dialog_body'),
+            CurrentLocale.translate('manager.pages.settings.advanced_settings.dialog_title'),
+            CurrentLocale.translate('manager.pages.settings.advanced_settings.dialog_detail')
           );
 
           if (d === 0) {
             Config.set(CONFIG_KEYS.settings.show_advanced_settings, true);
-            enqueueSnackbar('Enabled advanced settings', { variant: 'warning' });
+            enqueueSnackbar(CurrentLocale.translate('manager.pages.settings.advanced_settings.enabled_notification'), {
+              variant: 'warning',
+            });
             forceUpdate();
           }
         }
@@ -149,7 +153,7 @@ export default function Settings() {
       return;
     }
 
-    const [isValid, errorMsg] = ValidateFSDirectory(d[0]);
+    const [isValid, errorMsg] = ValidateFSDirectory(d[0], CurrentLocale);
 
     if (isValid) {
       setError(null);
@@ -169,7 +173,7 @@ export default function Settings() {
       <section className={classes.settingsRoot}>
         <Paper className={classes.settingsItem}>
           <Typography className={classes.sectTitle} variant="caption" color="textSecondary" component="h2">
-            Community folder
+            {CurrentLocale.translate('manager.pages.settings.user_settings.community_folder.name')}
           </Typography>
           <TextField
             error={!!error}
@@ -180,7 +184,10 @@ export default function Settings() {
               style: { fontFamily: 'IBM Plex Mono', letterSpacing: -0.2 },
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton aria-label="browse to folder" onClick={openBrowseDialog}>
+                  <IconButton
+                    aria-label={CurrentLocale.translate('manager.pages.settings.user_settings.community_folder.browse_button_sr_text')}
+                    onClick={openBrowseDialog}
+                  >
                     <FolderSearchOutlineIcon />
                   </IconButton>
                 </InputAdornment>
@@ -188,10 +195,10 @@ export default function Settings() {
             }}
             inputRef={PackagesDirTB}
             variant="filled"
-            label="Install path"
+            label={CurrentLocale.translate('manager.pages.settings.user_settings.community_folder.input_label')}
             defaultValue={Config.get(CONFIG_KEYS.settings.package_directory)}
             onChange={e => {
-              const [isValid, errorMsg] = ValidateFSDirectory(e.currentTarget.value);
+              const [isValid, errorMsg] = ValidateFSDirectory(e.currentTarget.value, CurrentLocale);
 
               if (isValid) {
                 setError(null);
@@ -211,7 +218,7 @@ export default function Settings() {
             onClick={() => {
               PackagesDirTB.current.value = Config.get(CONFIG_KEYS.settings.package_directory);
 
-              const [isValid, errorMsg] = ValidateFSDirectory(PackagesDirTB.current.value);
+              const [isValid, errorMsg] = ValidateFSDirectory(PackagesDirTB.current.value, CurrentLocale);
 
               if (isValid) {
                 setError(null);
@@ -220,7 +227,7 @@ export default function Settings() {
               }
             }}
           >
-            Reset to previous value
+            {CurrentLocale.translate('manager.pages.settings.user_settings.community_folder.reset_button')}
           </Link>
           <Link
             color="textSecondary"
@@ -228,16 +235,16 @@ export default function Settings() {
             onClick={e => {
               const target = e.currentTarget;
 
-              target.innerText = 'Opening...';
+              target.innerText = CurrentLocale.translate('manager.pages.settings.user_settings.community_folder.open_in_explorer_opening');
 
               setTimeout(() => {
-                target.innerText = 'Show folder in explorer';
+                target.innerText = CurrentLocale.translate('manager.pages.settings.user_settings.community_folder.open_in_explorer');
               }, 2500);
 
               ElectronRemote.shell.showItemInFolder(Config.get(CONFIG_KEYS.settings.package_directory));
             }}
           >
-            Show folder in explorer
+            {CurrentLocale.translate('manager.pages.settings.user_settings.community_folder.open_in_explorer')}
           </Link>
         </Paper>
 
@@ -245,32 +252,43 @@ export default function Settings() {
           <>
             <Paper className={classes.settingsItem}>
               <Typography className={classes.sectTitle} variant="caption" color="textSecondary" component="h2">
-                Caching
+                {CurrentLocale.translate('manager.pages.settings.user_settings.cache_clear.name')}
               </Typography>
               <Box mt={1}>
                 <Button
                   onClick={async () => {
-                    let s = enqueueSnackbar('Clearing cache. This might take a few mins.', { variant: 'info' });
+                    let s = enqueueSnackbar(
+                      CurrentLocale.translate('manager.pages.settings.user_settings.cache_clear.clearing_cache_notification'),
+                      {
+                        variant: 'info',
+                      }
+                    );
 
                     const x = await ClearCache();
 
                     if (x === true) {
                       closeSnackbar(s);
-                      enqueueSnackbar('Cache cleared successfully!', { variant: 'success' });
+                      enqueueSnackbar(
+                        CurrentLocale.translate('manager.pages.settings.user_settings.cache_clear.cache_clear_success_notification'),
+                        { variant: 'success' }
+                      );
                     } else {
                       closeSnackbar(s);
-                      enqueueSnackbar('Cache cleared with errors', { variant: 'error' });
+                      enqueueSnackbar(
+                        CurrentLocale.translate('manager.pages.settings.user_settings.cache_clear.cache_clear_error_notification'),
+                        { variant: 'error' }
+                      );
                     }
                   }}
                 >
-                  Purge cache
+                  {CurrentLocale.translate('manager.pages.settings.user_settings.cache_clear.purge_cache_button')}
                 </Button>
               </Box>
             </Paper>
 
             <Paper className={classes.settingsItem}>
               <Typography className={classes.sectTitle} variant="caption" color="textSecondary" component="h2">
-                Reset manager
+                {CurrentLocale.translate('manager.pages.settings.user_settings.reset_manager_to_defaults.name')}
               </Typography>
               <Box mt={1}>
                 <Button
@@ -286,12 +304,11 @@ export default function Settings() {
                     }
                   }}
                 >
-                  Reset all settings
+                  {CurrentLocale.translate('manager.pages.settings.user_settings.reset_manager_to_defaults.reset_btn')}
                 </Button>
               </Box>
               <Typography className={classes.hintText}>
-                This will reset all app settings and restart the manager. You won&apos;t lose any installed liveries, and any liveries that are
-                already installed will be automatically re-detected.
+                {CurrentLocale.translate('manager.pages.settings.user_settings.reset_manager_to_defaults.detail')}
               </Typography>
             </Paper>
           </>
@@ -301,15 +318,23 @@ export default function Settings() {
 
         <footer className={classes.aboutFooter}>
           <Typography variant="body2" paragraph>
-            {packageJson.productName} &mdash; Created for the Liveries Mega Pack
+            {CurrentLocale.translate('manager.pages.settings.footer.line1', {
+              appName: packageJson.productName,
+            })}
           </Typography>
           <Typography variant="body2" paragraph>
-            &copy; {new Date().getFullYear()} &mdash; All rights reserved &mdash;{' '}
-            <span className={classes.versionNumber}>v{packageJson.version}</span>
+            {CurrentLocale.translate('manager.pages.settings.footer.line2', {
+              year: new Date().getFullYear(),
+            })}{' '}
+            <span className={classes.versionNumber}>
+              {CurrentLocale.translate('manager.pages.settings.footer.version', {
+                version: packageJson.version,
+              })}
+            </span>
           </Typography>
           <Typography variant="body2" paragraph>
             <Link target="_blank" href={Constants.urls.managerRepo}>
-              View the source code and license
+              {CurrentLocale.translate('manager.pages.settings.footer.source_repo_and_license')}
             </Link>
           </Typography>
         </footer>
@@ -320,10 +345,10 @@ export default function Settings() {
           <Box flex="1">
             <Typography color="textSecondary" variant="body2" style={{ lineHeight: '33px' }}>
               {error
-                ? 'Please fix the error(s) above before saving.'
+                ? CurrentLocale.translate('manager.pages.settings.errors_in_inputs')
                 : saveButtonEnabled
-                ? "Click 'Save' to save changes."
-                : 'All changes saved.'}
+                ? CurrentLocale.translate('manager.pages.settings.save_settings_changes')
+                : CurrentLocale.translate('manager.pages.settings.all_changes_saved')}
             </Typography>
           </Box>
           <Button
@@ -336,7 +361,7 @@ export default function Settings() {
             }}
             disabled={!saveButtonEnabled}
           >
-            Save
+            {CurrentLocale.translate('manager.pages.settings.save_button')}
           </Button>
         </Paper>
       </Box>
