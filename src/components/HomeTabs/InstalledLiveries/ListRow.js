@@ -131,7 +131,7 @@ export default function ListRow(props) {
   return (
     <>
       <ListItem className={classes.root} disabled={beingDeleted}>
-        <ListItemText primary={livery.fileName.substr(livery.fileName.indexOf('/') + 1).split('.zip')[0]} />
+        <ListItemText primary={livery.fileName.substr(livery.fileName.lastIndexOf('/') + 1).split('.zip')[0]} />
         {updateAvailable && (
           <Tooltip title={CurrentLocale.translate('manager.pages.installed_liveries.components.list_row.help.tooltip.update')}>
             <span>
