@@ -2,11 +2,21 @@ const request = require('request');
 const { urls, api } = require('../data/Constants.json');
 const NodeRSA = require('node-rsa');
 
+/**
+ * Verifies that the API endpoint being queried is valid. This prevents any hostile
+ * takeovers in the case of domain expiry, etc.
+ *
+ * If verification fails, we fall back to a secondary API URL, then validate that. If
+ * that also fails verification, we're fucked.
+ *
+ * @param {function} callback
+ */
 async function verifyClient(callback) {
   try {
     let UUID, encrypted, key;
 
     try {
+      // API public key
       key = new NodeRSA(
         '-----BEGIN PUBLIC KEY-----\n' +
           'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQCGQ7fNnPHlNZI7EV1NX9WMUc\n' +
@@ -17,6 +27,7 @@ async function verifyClient(callback) {
         'public'
       );
 
+      // encrypt UUID with public key
       UUID = generateUUID().toString();
       encrypted = key.encrypt(UUID, 'base64');
     } catch (err) {
@@ -33,14 +44,18 @@ async function verifyClient(callback) {
         info: encrypted,
       },
     };
+
+    // send encrypted data to API
     request(options, async function (error, response) {
       try {
         if (error) return callback(false);
 
         const res = JSON.parse(response.body);
         if (res.status == 'success' && res.data == UUID) {
+          // API verified successfully
           return callback(true);
         } else {
+          // Verification failed
           return callback(false);
         }
       } catch (err) {
@@ -52,6 +67,7 @@ async function verifyClient(callback) {
   }
 }
 
+// generates a random UUID
 function generateUUID() {
   let d = new Date().getTime();
   let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
