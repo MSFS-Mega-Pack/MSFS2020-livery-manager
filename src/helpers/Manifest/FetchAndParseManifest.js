@@ -17,11 +17,11 @@ export default async function FetchAndParseJsonManifest(url) {
   try {
     response = await fetch(url);
   } catch {
-    throw 'E002: Manifest fetch failed\n\nAttempted to fetch URL ' + url;
+    ThrowError('E002', 'Manifest fetch failed\n\nAttempted to fetch URL ' + url);
   }
 
   if (!response.clone().ok) {
-    throw 'E003: Manifest fetch response not OK\n\nAttempted to fetch ' + url;
+    ThrowError('E003', 'Manifest fetch response not OK\n\nAttempted to fetch ' + url);
   }
 
   let manifest;
