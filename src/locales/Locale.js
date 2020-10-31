@@ -135,7 +135,7 @@ function EmbedVariables(translation, variables, shouldPluralise) {
  * @return {string} Full translation with variables embedded
  */
 function Pluralise(translation, variables, shouldPluralise) {
-  const plurals = translation.match(/\[\[\w+\|\|\w+\|\w+\]\]/gi);
+  const plurals = translation.match(/\[\[\w+?\|\|.+?\|.+?\]\]/gi);
   // console.log(plurals, translation);
 
   if (plurals === null) return translation;
