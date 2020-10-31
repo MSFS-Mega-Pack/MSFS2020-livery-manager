@@ -4,7 +4,20 @@ import PropTypes from 'prop-types';
 import { GetPackagesDirectory, ValidateFSDirectory } from '../helpers/MSFS/Directories';
 import { AllRoutes } from '../data/Routes';
 
-import { Typography, Box, useTheme, Button, TextField, InputAdornment, IconButton } from '@material-ui/core';
+import {
+  Typography,
+  Box,
+  useTheme,
+  Button,
+  TextField,
+  InputAdornment,
+  IconButton,
+  Link,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+} from '@material-ui/core';
 import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
 
 import Navigate from '../helpers/Navigate';
@@ -14,6 +27,7 @@ import Config from 'electron-json-config';
 import ConfigKeys from '../data/config-keys.json';
 import PackageJson from '../../package.json';
 import LocaleContext from '../locales/LocaleContext';
+import { GetAllLocales } from '../locales/LocaleHelpers';
 
 export default function Setup() {
   const [page, setPage] = useState(1);
@@ -82,7 +96,7 @@ export default function Setup() {
   );
 }
 
-const Pages = [WelcomePage, SimInstallDirectoryPage, SetupCompletePage];
+const Pages = [WelcomePage, LanguageSelectPage, SimInstallDirectoryPage, SetupCompletePage];
 
 function WelcomePage() {
   const CurrentLocale = React.useContext(LocaleContext);
@@ -95,6 +109,46 @@ function WelcomePage() {
       <Typography gutterBottom component="p" variant="body1">
         {CurrentLocale.translate('manager.setup.welcome_page.description')}
       </Typography>
+    </>
+  );
+}
+
+function LanguageSelectPage({ data, setData }) {
+  const CurrentLocale = React.useContext(LocaleContext);
+  const forceUpdate = React.useReducer(x => x + 1, 0)[1];
+
+  const activeLocaleId = CurrentLocale.locale;
+
+  return (
+    <>
+      <Typography gutterBottom component="h1" variant="h4">
+        {CurrentLocale.translate('manager.setup.locale_page.heading')}
+      </Typography>
+      <Typography gutterBottom component="p" variant="body1">
+        {CurrentLocale.translate('manager.setup.locale_page.description')}
+      </Typography>
+      <Typography gutterBottom component="p" variant="body1">
+        <Link color="primary" target="_blank" href="https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/tree/main/src/locales/README.md">
+          {CurrentLocale.translate('manager.setup.locale_page.help_translate_link')}
+        </Link>
+      </Typography>
+      <FormControl variant="outlined" margin="normal">
+        <InputLabel id="lang-label">{CurrentLocale.translate('manager.setup.locale_page.dropdown.label')}</InputLabel>
+        <Select
+          value={activeLocaleId}
+          onChange={e => {
+            CurrentLocale.updateLocale(e.target.value);
+          }}
+          label={CurrentLocale.translate('manager.setup.locale_page.dropdown.label')}
+          labelId="lang-label"
+        >
+          {GetAllLocales().map(locale => (
+            <MenuItem value={locale.info.localeId} key={locale.info.localeId}>
+              {locale.info.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     </>
   );
 }
