@@ -4,6 +4,11 @@
     "localeId": "en-GB"
   },
   "strings": {
+    "models": {
+      "article": {
+        "date_format": "ddd D MMM YYYY, h:mm A"
+      }
+    },
     "helpers": {
       "validate_fs_directory": {
         "choose_directory": "Please choose a directory",
@@ -14,6 +19,19 @@
         "yes_button": "&Yes",
         "no_button": "&No",
         "cancel_button": "&Cancel"
+      },
+      "delete_addon": {
+        "delete_path_fail": "Error while deleting addon path",
+        "delete_path_success": "Addon deleted successfully",
+        "non_existant": "Addon path did not exist"
+      },
+      "get_active_feed": {
+        "fetch_fail": "Failed to fetch current feed from API.",
+        "fetch_fail_article_text": "Failed to fetch article. If this continues, [report this to the developers](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      },
+      "get_feed_history": {
+        "fetch_fail": "Failed to fetch current feed from API.",
+        "fetch_fail_article_text": "Failed to fetch article. If this continues, [report this to the developers](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
       }
     },
     "manager": {
