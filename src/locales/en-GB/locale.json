@@ -76,6 +76,10 @@
           "update_available": {
             "tooltip": "Go to 'Installed Liveries' to update this livery",
             "content": "Update available"
+          },
+          "installed": {
+            "tooltip": "To uninstall, update, or reinstall, head to the Installed Liveries tab",
+            "content": "Installed"
           }
         },
         "refresh_box": {
