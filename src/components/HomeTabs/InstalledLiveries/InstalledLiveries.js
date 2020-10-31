@@ -278,12 +278,16 @@ export default function InstalledLiveries(props) {
 
                 const success = total - errors;
                 enqueueSnackbar(
-                  CurrentLocale.translate('manager.pages.installed_liveries.notification.remove_all_success', { total: success }),
+                  CurrentLocale.translate('manager.pages.installed_liveries.notification.remove_all_success', {
+                    total: success,
+                  }),
                   { variant: 'success' }
                 );
                 if (errors > 0) {
                   enqueueSnackbar(
-                    CurrentLocale.translate('manager.pages.installed_liveries.notification.remove_all_failures', { errors: errors })
+                    CurrentLocale.translate('manager.pages.installed_liveries.notification.remove_all_failures', {
+                      errors: errors,
+                    })
                   );
                 }
               }}
