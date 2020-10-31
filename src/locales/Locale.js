@@ -1,5 +1,8 @@
+import Config from 'electron-json-config';
+import ConfigKeys from '../data/config-keys.json';
+
 /**
- * @typedef {{ info: { name: string, localeId: string }, strings: Object }} LocaleData
+ * @typedef {{ info: { name: string, localeId: string }, strings: object, setLocale: function }} LocaleData
  */
 
 /**
@@ -28,6 +31,7 @@ export default class Locale {
    * @private
    */
   _fallbackStrings;
+  _setLocale;
 
   /**
    * Fetches a translation from the current locale based on a dot notation string (falling back on en-GB), and embeds any variables into it.
@@ -73,6 +77,11 @@ export default class Locale {
     return translation;
   }
 
+  updateLocale(newLocaleId) {
+    Config.set(ConfigKeys.settings.locale, newLocaleId);
+    this._setLocale(newLocaleId);
+  }
+
   /**
    * Create a new locale. Requires the locale's JSON data.
    *
@@ -84,6 +93,7 @@ export default class Locale {
     this.strings = localeData.strings;
 
     this._fallbackStrings = GetLocale('en-GB').strings;
+    this._setLocale = localeData.setLocale;
   }
 }
 

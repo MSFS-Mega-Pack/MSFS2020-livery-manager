@@ -39,13 +39,15 @@ const useStyles = makeStyles({
 
 function App() {
   const classes = useStyles();
+  const [language, setLanguage] = React.useState(Config.get(ConfigKeys.settings.locale, 'en-GB'));
+
   return (
     <>
       <TitleBar icon={planeIcon} disableMaximize>
         <p className={classes.titlebar}>{PackageJson.productName}</p>
       </TitleBar>
       <main>
-        <LocaleProvider locale={Config.get(ConfigKeys.settings.locale, 'en-GB')}>
+        <LocaleProvider locale={language} setLocale={setLanguage}>
           <ThemeProvider theme={Theme}>
             <SnackbarProvider maxSnack={5}>
               <CssBaseline />

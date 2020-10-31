@@ -30,8 +30,9 @@ export function GetLocale(localeId) {
  * Fetch a locale class by its ID
  *
  * @param {string} localeId A valid locale ID (falls back to en-GB)
+ * @param {function} setLocale A function called to update the current locale
  * @return {Locale}
  */
-export function GetLocaleClass(localeId) {
-  return new Locale(GetLocale(localeId));
+export function GetLocaleClass(localeId, setLocale) {
+  return new Locale({ ...GetLocale(localeId), setLocale });
 }
