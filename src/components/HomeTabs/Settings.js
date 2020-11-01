@@ -1,7 +1,21 @@
 import React, { useState, useRef, useEffect, useReducer } from 'react';
 import { remote as ElectronRemote } from 'electron';
 
-import { Paper, Typography, TextField, IconButton, InputAdornment, Box, Button, makeStyles, Link } from '@material-ui/core';
+import {
+  Paper,
+  Typography,
+  TextField,
+  IconButton,
+  InputAdornment,
+  Box,
+  Button,
+  makeStyles,
+  Link,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from '@material-ui/core';
 import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
 
 import { ValidateFSDirectory } from '../../helpers/MSFS/Directories';
@@ -21,6 +35,7 @@ import AdvancedSettingsToggleImage from '../../images/manager_text_advanced_sett
 import { useSnackbar } from 'notistack';
 import Config from 'electron-json-config';
 import LocaleContext from '../../locales/LocaleContext';
+import { GetAllLocales } from '../../locales/LocaleHelpers';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -245,6 +260,30 @@ export default function Settings() {
           >
             {CurrentLocale.translate('manager.pages.settings.user_settings.community_folder.open_in_explorer')}
           </Link>
+        </Paper>
+
+        <Paper className={classes.settingsItem}>
+          <Typography className={classes.sectTitle} variant="caption" color="textSecondary" component="h2">
+            {CurrentLocale.translate('manager.pages.settings.user_settings.locale_selection.name')}
+          </Typography>
+
+          <FormControl fullWidth variant="outlined" margin="normal">
+            <InputLabel id="lang-label">{CurrentLocale.translate('manager.pages.settings.user_settings.locale_selection.label')}</InputLabel>
+            <Select
+              value={CurrentLocale.locale}
+              onChange={e => {
+                CurrentLocale.updateLocale(e.target.value);
+              }}
+              label={CurrentLocale.translate('manager.pages.settings.user_settings.locale_selection.label')}
+              labelId="lang-label"
+            >
+              {GetAllLocales().map(locale => (
+                <MenuItem value={locale.info.localeId} key={locale.info.localeId}>
+                  {locale.info.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </Paper>
 
         {IsAdvancedUser() && (
