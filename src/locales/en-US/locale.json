@@ -44,19 +44,19 @@
         "finish_button": "Finish",
         "welcome_page": {
           "heading": "Welcome to the {{app_name}}",
-          "description": "We need to go through a few brief setup stages before you can use the liveries manager, just to give you the best experience and to make sure everything goes according to plan."
+          "description": "We need to go through a few setup pages before you can use the liveries manager. This is to make sure you get the best experience and to make sure everything works perfectly."
         },
         "locale_page": {
-          "heading": "Select your language",
-          "description": "All languages are community translations. Please report all translation errors on GitHub.",
-          "help_translate_link": "Why not help translate the manager into your language?",
+          "heading": "Choose your language",
+          "description": "All languages are community translations. Please report any translation errors on GitHub.",
+          "help_translate_link": "Why not help to translate the liveries manager into your language?",
           "dropdown": {
             "label": "Language"
           }
         },
         "community_directory": {
           "heading": "Find your community folder",
-          "description": "Please check that the directory below matches your community folder. If it doesn't, choose the correct folder with the browse button.",
+          "description": "Please check that the directory below matches your community folder. If it doesn't, find the correct folder with the browse button.",
           "text_field": {
             "label": "Community folder",
             "browse_button_sr_text": "Browse for folder"
@@ -86,7 +86,7 @@
             "content": "Update available"
           },
           "installed": {
-            "tooltip": "To uninstall, update, or reinstall, head to the Installed Liveries tab",
+            "tooltip": "To uninstall, update, or reinstall, go to the Installed Liveries tab",
             "content": "Installed"
           }
         },
@@ -205,15 +205,15 @@
                   "delete_timer": "Hold for {{time}}s to remove"
                 },
                 "snackbar": {
-                  "hold_to_remove": "To remove a livery, click and hold its delete button for {{time}} seconds"
+                  "hold_to_remove": "To remove a livery, click and hold its delete button for {{time}}s"
                 }
               }
             }
           },
           "notification": {
-            "no_liveries_to_remove": "You don't have any installed liveries!",
+            "no_liveries_to_remove": "You have no installed liveries",
             "removing_livery": "Removing livery {{current}} of {{total}}",
-            "remove_all_success": "Successfully removed {{total}} [[total||livery|liveries]]",
+            "remove_all_success": "Removed {{total}} [[total||livery|liveries]] successfully",
             "remove_all_failures": "Failed to remove {{errors}} [[errors||livery|liveries]]",
             "deletion": {
               "fail1": "Failed to remove livery: no obj passed",
@@ -237,7 +237,7 @@
           "no_liveries_installed": {
             "more_info_button": "View more info",
             "message": "No installed liveries detected",
-            "info": "We couldn't find any mega pack liveries in your selected Community folder.\n\nIf you installed liveries through the mega pack zip, they will not appear here. They must be installed via the manager."
+            "info": "We couldn't find any mega pack liveries in your Community folder.\n\nIf you installed liveries through the drag and drop zip, they won't appear here. They must be installed via the manager."
           }
         },
         "settings": {
