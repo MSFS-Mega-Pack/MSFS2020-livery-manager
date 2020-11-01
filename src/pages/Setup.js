@@ -116,8 +116,6 @@ function WelcomePage() {
 function LanguageSelectPage() {
   const CurrentLocale = React.useContext(LocaleContext);
 
-  const activeLocaleId = CurrentLocale.locale;
-
   return (
     <>
       <Typography gutterBottom component="h1" variant="h4">
@@ -131,10 +129,10 @@ function LanguageSelectPage() {
           {CurrentLocale.translate('manager.setup.locale_page.help_translate_link')}
         </Link>
       </Typography>
-      <FormControl variant="outlined" margin="normal">
+      <FormControl variant="outlined" margin="normal" fullWidth>
         <InputLabel id="lang-label">{CurrentLocale.translate('manager.setup.locale_page.dropdown.label')}</InputLabel>
         <Select
-          value={activeLocaleId}
+          value={CurrentLocale.locale}
           onChange={e => {
             CurrentLocale.updateLocale(e.target.value);
           }}
