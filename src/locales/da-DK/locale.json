@@ -267,6 +267,10 @@
               "open_in_explorer": "Åbn mappe i explorer",
               "open_in_explorer_opening": "Åbning..."
             },
+            "locale_selection": {
+              "name": "Valg af sprog",
+              "label": "Sprog"
+            },
             "cache_clear": {
               "name": "Caching",
               "clearing_cache_notification": "Rydning af cache. Dette kan tage et par minutter.",

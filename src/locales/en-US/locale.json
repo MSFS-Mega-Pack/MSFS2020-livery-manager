@@ -6,7 +6,7 @@
   "strings": {
     "models": {
       "article": {
-        "date_format": "ddd D MMM YYYY, h:mm A"
+        "date_format": "ddd D MMM 'YY, h:mm A"
       }
     },
     "helpers": {
@@ -266,6 +266,10 @@
               "reset_button": "Undo changes",
               "open_in_explorer": "Show folder in explorer",
               "open_in_explorer_opening": "Opening..."
+            },
+            "locale_selection": {
+              "name": "Manager language",
+              "label": "Language"
             },
             "cache_clear": {
               "name": "Caching",

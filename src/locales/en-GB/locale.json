@@ -267,6 +267,10 @@
               "open_in_explorer": "Show folder in explorer",
               "open_in_explorer_opening": "Opening..."
             },
+            "locale_selection": {
+              "name": "Manager language",
+              "label": "Language"
+            },
             "cache_clear": {
               "name": "Caching",
               "clearing_cache_notification": "Clearing cache. This might take a few minutes.",
