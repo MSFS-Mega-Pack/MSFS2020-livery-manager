@@ -62,5 +62,10 @@ export default createMuiTheme({
         fontSize: 13,
       },
     },
+    MuiPopover: {
+      paper: {
+        background: '#000',
+      },
+    },
   },
 });
