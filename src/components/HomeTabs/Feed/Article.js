@@ -7,6 +7,8 @@ import MarkdownRenderer from '../../MarkdownRenderer';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    maxWidth: 1000,
+    margin: 'auto',
     '&:not(:first-child)': {
       marginTop: theme.spacing(2),
     },
