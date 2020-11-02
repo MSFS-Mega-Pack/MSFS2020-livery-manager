@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@material-ui/core';
+import LocaleContext from '../locales/LocaleContext';
 
 export default function ErrorDialog(props) {
   const { title, error, suggestions, dismissable } = props;
   const [shown, setShown] = useState(true);
+  const CurrentLocale = React.useContext(LocaleContext);
 
   return (
     <Dialog
@@ -15,17 +17,19 @@ export default function ErrorDialog(props) {
       disableEscapeKeyDown={!dismissable}
     >
       <DialogTitle style={{ paddingBottom: 4 }}>
-        <Typography variant="h5">{title}</Typography>
+        <Typography variant="h5" component="span">
+          {title}
+        </Typography>
       </DialogTitle>
       <DialogContent>
         <Typography variant="h6" paragraph>
-          Error
+          {CurrentLocale.translate('manager.components.error_dialog.error')}
         </Typography>
         {error}
         {suggestions && (
           <>
             <Typography variant="h6" paragraph>
-              Suggestions
+              {CurrentLocale.translate('manager.components.error_dialog.suggestions')}
             </Typography>
             <ul>
               {/* {suggestions} */}
@@ -38,7 +42,7 @@ export default function ErrorDialog(props) {
       </DialogContent>
       {dismissable && (
         <DialogActions>
-          <Button onClick={() => setShown(false)}>Close</Button>
+          <Button onClick={() => setShown(false)}>{CurrentLocale.translate('manager.components.error_dialog.close_dialog_button')}</Button>
         </DialogActions>
       )}
     </Dialog>

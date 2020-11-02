@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ArticleClass from '../../../models/Article';
 import { Typography, makeStyles, Divider, Paper, Box } from '@material-ui/core';
 import MarkdownRenderer from '../../MarkdownRenderer';
+import LocaleContext from '../../../locales/LocaleContext';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,6 +45,7 @@ const useStyles = makeStyles(theme => ({
  * @return {React.ReactNode}
  */
 export default function Article(props) {
+  const CurrentLocale = React.useContext(LocaleContext);
   const { article } = props;
 
   const classes = useStyles();
@@ -55,7 +57,8 @@ export default function Article(props) {
           {article.title}
         </Typography>
         <Typography variant="caption" component="h3" gutterBottom color="textSecondary">
-          Written by {article.author} <span className={classes.bullet} /> {article.dateString}
+          {CurrentLocale.translate('manager.components.feed_article.authored_by', { author: article.author })}{' '}
+          <span className={classes.bullet} /> {article.dateString}
         </Typography>
         <Divider />
         <article className={classes.article}>

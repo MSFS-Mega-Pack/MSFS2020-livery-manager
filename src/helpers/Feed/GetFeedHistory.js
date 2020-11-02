@@ -6,12 +6,19 @@ import Feed from '../../models/Feed';
 import Constants from '../../data/Constants.json';
 import ActiveApiEndpoint from '../../data/ActiveApiEndpoint';
 
-export default async function GetFeedHistory() {
+/**
+ * Gets the full feed from the API
+ *
+ * @param {import("../../locales/Locale").default} CurrentLocale current locale (from context)
+ *
+ * @returns {string|Feed} String, if error, instance of Feed is successful
+ */
+export default async function GetFeedHistory(CurrentLocale) {
   let feed;
   try {
     feed = (await FetchAndParseJsonManifest(`${ActiveApiEndpoint}/${Constants.api.get.feedHistory}`)).data;
   } catch {
-    return 'Failed to fetch feed history from API.';
+    return CurrentLocale.translate('helpers.get_feed_history.fetch_fail');
   }
 
   /** @type {Article[]} */
@@ -25,8 +32,7 @@ export default async function GetFeedHistory() {
         try {
           text = (await FetchAndParseJsonManifest(`${ActiveApiEndpoint}/${Constants.api.get.article}/${article.article}`)).data;
         } catch {
-          text =
-            'Failed to fetch article. If this continues, [report this to the developers](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`';
+          text = CurrentLocale.translate('helpers.get_feed_history.fetch_fail_article_text');
         }
       }
 
@@ -34,9 +40,8 @@ export default async function GetFeedHistory() {
         date: article.date,
         title: article.title,
         author: article.author,
-        content:
-          text ||
-          'Failed to fetch article. If this continues, [report this to the developers](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).',
+        content: text || CurrentLocale.translate('helpers.get_feed_history.fetch_fail_article_text'),
+        CurrentLocale,
       });
 
       feedArticles.push(a);

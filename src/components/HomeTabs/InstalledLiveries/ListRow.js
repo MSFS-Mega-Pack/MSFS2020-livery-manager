@@ -7,6 +7,7 @@ import UpdateIcon from 'mdi-react/DownloadOutlineIcon';
 
 import { useSnackbar } from 'notistack';
 import clsx from 'clsx';
+import LocaleContext from '../../../locales/LocaleContext';
 
 const useStyles = makeStyles({
   root: {
@@ -34,19 +35,6 @@ const useStyles = makeStyles({
 // seconds the button must be help for to remove the liv
 const HoldToRemoveTime = 1.5;
 
-const locale = {
-  help: {
-    tooltip: {
-      update: 'Update livery',
-      delete: 'Remove livery',
-      delete_timer: 'Hold for %0s to remove',
-    },
-    snackbar: {
-      hold_to_remove: 'To remove a livery, click and hold its delete button for %0 seconds',
-    },
-  },
-};
-
 export default function ListRow(props) {
   const { livery, updateAvailable, deleteLivery, beingDeleted } = props;
   const classes = useStyles();
@@ -57,6 +45,8 @@ export default function ListRow(props) {
   const [timeRemaining, setTimeRemaining] = useState(HoldToRemoveTime);
 
   const { enqueueSnackbar } = useSnackbar();
+
+  const CurrentLocale = React.useContext(LocaleContext);
 
   useEffect(() => {
     let startedDeleting = false;
@@ -99,9 +89,14 @@ export default function ListRow(props) {
       if (timeRemaining < HoldToRemoveTime) {
         // show help snackbar if user did a normal click
         if (timeRemaining > HoldToRemoveTime - 0.5) {
-          enqueueSnackbar(locale.help.snackbar.hold_to_remove.replace(/%0/, HoldToRemoveTime.toFixed(1)), {
-            variant: 'info',
-          });
+          enqueueSnackbar(
+            CurrentLocale.translate('manager.pages.installed_liveries.components.list_row.help.snackbar.hold_to_remove', {
+              time: HoldToRemoveTime.toFixed(1),
+            }),
+            {
+              variant: 'info',
+            }
+          );
         }
 
         clearTimeout(handles.current.timeout);
@@ -136,9 +131,9 @@ export default function ListRow(props) {
   return (
     <>
       <ListItem className={classes.root} disabled={beingDeleted}>
-        <ListItemText primary={livery.fileName.substr(livery.fileName.indexOf('/') + 1).split('.zip')[0]} />
+        <ListItemText primary={livery.fileName.substr(livery.fileName.lastIndexOf('/') + 1).split('.zip')[0]} />
         {updateAvailable && (
-          <Tooltip title={locale.help.tooltip.update}>
+          <Tooltip title={CurrentLocale.translate('manager.pages.installed_liveries.components.list_row.help.tooltip.update')}>
             <span>
               <IconButton onClick={() => alert('This feature is coming soon...')} disabled={beingDeleted} color="primary">
                 <UpdateIcon />
@@ -150,8 +145,10 @@ export default function ListRow(props) {
         <Tooltip
           title={
             timeRemaining === HoldToRemoveTime
-              ? locale.help.tooltip.delete
-              : locale.help.tooltip.delete_timer.replace(/%0/, timeRemaining <= 0 ? '0.0' : timeRemaining.toFixed(1).toString())
+              ? CurrentLocale.translate('manager.pages.installed_liveries.components.list_row.help.tooltip.delete')
+              : CurrentLocale.translate('manager.pages.installed_liveries.components.list_row.help.tooltip.delete_timer', {
+                  time: timeRemaining <= 0 ? '0.0' : timeRemaining.toFixed(1).toString(),
+                })
           }
         >
           <span>

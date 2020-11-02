@@ -8,8 +8,11 @@ import GetFeedHistory from '../../../helpers/Feed/GetFeedHistory';
 
 import FeedClass from '../../../models/Feed';
 import Article from './Article';
+import LocaleContext from '../../../locales/LocaleContext';
 
 export default function Feed(props) {
+  const CurrentLocale = React.useContext(LocaleContext);
+
   /**
    * @type {[FeedClass, Function]}
    */
@@ -36,20 +39,20 @@ export default function Feed(props) {
     return (
       <div style={{ position: 'absolute', left: '50%', top: '50%', width: 'max-content', transform: 'translate(-50%,-50%)' }}>
         <Typography variant="h5" component="p">
-          An error occurred while loading the news feed.
+          {CurrentLocale.translate('manager.pages.feed.errors.generic_message')}
         </Typography>
         <Typography variant="caption" component="p" style={{ position: 'absolute', bottom: -24, right: 0, cursor: 'pointer' }}>
           <Link
             onClick={() => {
-              let error = 'Unknown error';
+              let error = CurrentLocale.translate('manager.pages.feed.errors.unknown_error');
 
               if (typeof feed === 'string') error = feed;
-              else if (feed === null) error = 'Feed === null';
+              else if (feed === null) error = CurrentLocale.translate('manager.pages.feed.errors.feed_unknown');
 
               alert(error);
             }}
           >
-            More info
+            {CurrentLocale.translate('manager.pages.feed.error_more_info_button')}
           </Link>
         </Typography>
       </div>
@@ -65,10 +68,10 @@ export default function Feed(props) {
         {!feed.isMoreHistoryAvailable || fullHistory ? (
           <>
             <Typography style={{ paddingBottom: 2 }} variant="body1">
-              That&apos;s all folks!
+              {CurrentLocale.translate('manager.pages.feed.no_more_posts.heading')}
             </Typography>
             <Typography variant="body2" color="textSecondary">
-              You&apos;ve reached the start of the update feed
+              {CurrentLocale.translate('manager.pages.feed.no_more_posts.info')}
             </Typography>
           </>
         ) : (
@@ -82,7 +85,7 @@ export default function Feed(props) {
               }}
               disabled={fullHistory === false}
             >
-              Read all updates
+              {CurrentLocale.translate('manager.pages.feed.view_more_updates_button')}
             </Button>
             {fullHistory === false && (
               <CircularProgress size={24} style={{ top: '50%', left: '50%', position: 'absolute', marginTop: -12, marginLeft: -12 }} />

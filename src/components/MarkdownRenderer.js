@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import { Typography, Link, Tooltip, makeStyles } from '@material-ui/core';
 
 /**
- * A modified version of `react-markdown` which converts supplied
- * Markdown into Material UI components
+ * An implementation of `react-markdown` which converts supplied
+ * Markdown code into Material UI components
  *
  * @export
  *

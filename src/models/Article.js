@@ -14,6 +14,11 @@ export default class Article {
   #content;
 
   /**
+   * @type {import("../locales/Locale").default?}
+   */
+  #CurrentLocale;
+
+  /**
    * Creates a new instance of an Article.
    *
    * Either content or contentUrl MUST be provided.
@@ -23,9 +28,10 @@ export default class Article {
    * @param {String} options.title
    * @param {String} options.author
    * @param {String} options.content
+   * @param {import("../locales/Locale").default} options.CurrentLocale
    */
   constructor(options) {
-    const { date, title, author, content } = options;
+    const { date, title, author, content, CurrentLocale } = options;
 
     if (!content) {
       ThrowError('E007', 'Article content not specified');
@@ -36,6 +42,7 @@ export default class Article {
     this.#title = title;
     this.#author = author;
     this.#content = content;
+    this.#CurrentLocale = CurrentLocale || null;
   }
 
   /**
@@ -55,7 +62,9 @@ export default class Article {
    * @memberof Article
    */
   get dateString() {
-    return dayjs(this.#date).format('ddd D MMM YYYY, h:mm A');
+    return dayjs(this.#date).format(
+      this.#CurrentLocale ? this.#CurrentLocale.translate('models.article.date_format') : 'ddd D MMM YYYY, h:mm A'
+    );
   }
 
   /**

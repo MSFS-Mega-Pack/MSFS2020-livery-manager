@@ -1,0 +1,291 @@
+{
+  "info": {
+    "name": "Danish",
+    "localeId": "da-DK"
+  },
+  "strings": {
+    "models": {
+      "article": {
+        "date_format": "ddd D MMM YYYY, h:mm A"
+      }
+    },
+    "helpers": {
+      "validate_fs_directory": {
+        "choose_directory": "Vælg en mappe",
+        "path_doesnt_exist": "Den valgte mappe findes ikke",
+        "invalid_path": "Sørg for, at du har valgt din Community mappe"
+      },
+      "show_native_dialog": {
+        "yes_button": "&Ja",
+        "no_button": "&Nej",
+        "cancel_button": "&Afbestille"
+      },
+      "delete_addon": {
+        "delete_path_fail": "Fejl opstod under sletning addon sti",
+        "delete_path_success": "Addon slettet",
+        "non_existant": "Addon findes ikke"
+      },
+      "get_active_feed": {
+        "fetch_fail": "Kunne ikke hente seneste nyheder fra API",
+        "fetch_fail_article_text": "Kunne ikke hente artiklen. Hvis dette fortsætter, skal du [rapportere dette til udviklerne](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      },
+      "get_feed_history": {
+        "fetch_fail": "Kunne ikke hente seneste nyheder fra API",
+        "fetch_fail_article_text": "Kunne ikke hente artiklen. Hvis dette fortsætter, skal du [rapportere dette til udviklerne](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      }
+    },
+    "manager": {
+      "splash_screen": {
+        "loading": "Indlæser..."
+      },
+      "setup": {
+        "back_button": "Tilbage",
+        "next_button": "Næste",
+        "finish_button": "Afslut",
+        "welcome_page": {
+          "heading": "Velkommen til {{app_name}}",
+          "description": "Vi er nødt til at gennemføre et par installationsfaser, før du kan bruge liveries manager, bare for at give dig den bedste oplevelse."
+        },
+        "locale_page": {
+          "heading": "Vælg dit sprog",
+          "description": "Alle oversættelser er bidraget af medlemmer af samfundet. Rapporter alle oversættelsesfejl på GitHub.",
+          "help_translate_link": "Hvorfor ikke hjælpe med at oversætte lederen til dit sprog?",
+          "dropdown": {
+            "label": "Sprog"
+          }
+        },
+        "community_directory": {
+          "heading": "Find din community mappe",
+          "description": "Sørg for, at nedenstående bibliotek matcher din community-mappe. Hvis den ikke er korrekt, skal du vælge den korrekte mappe med knappen Gennemse.",
+          "text_field": {
+            "label": "Community mappe",
+            "browse_button_sr_text": "Søg efter mappe"
+          }
+        },
+        "complete_page": {
+          "heading": "Opsætningen er gennemført",
+          "description1": "Du er klar til at flyve!",
+          "description2": "Klik på 'Afslut' for at bekræfte dine indstillinger og starte liveries manager."
+        }
+      },
+      "tabs": {
+        "tab_labels": {
+          "update_feed": "Nyheder",
+          "available_liveries": "Ledige liveries",
+          "installed_liveries": "Installeret liveries",
+          "settings": "Indstillinger"
+        }
+      },
+      "components": {
+        "feed_article": {
+          "authored_by": "Skrevet af {{author}}"
+        },
+        "badges": {
+          "update_available": {
+            "tooltip": "Gå til 'Installeret liveries' for at opdatere denne livery",
+            "content": "Opdatering tilgængelig"
+          },
+          "installed": {
+            "tooltip": "For at afinstallere, opdatere eller geninstallere skal du gå til fanen Installeret liveries",
+            "content": "Installeret"
+          }
+        },
+        "refresh_box": {
+          "date_format": "D MMM, h:mm A",
+          "last_refreshed": "Sidst opdateret:",
+          "last_refreshed_explanation_tooltip": "Når du sidst kontrollerede for installerede og tilgængelige liveries",
+          "refresh_button": {
+            "tooltip": {
+              "default": "Opdater tilgængelige liveries",
+              "rate_limited": "Satsbegrænsning er i kraft: du skal vente {{interval}}s mellem opdateringer"
+            },
+            "unknown_time": "ukendt"
+          }
+        },
+        "error_dialog": {
+          "error": "Fejl",
+          "suggestions": "Forslag",
+          "close_dialog_button": "Luk"
+        },
+        "offline_error": {
+          "title": "Du er offline",
+          "paragraph1": "Denne app har brug for en internetforbindelse for at fungere. Tjek din netværksforbindelse.",
+          "paragraph2": "Denne meddelelse lukkes automatisk, når din forbindelse gendannes."
+        }
+      },
+      "pages": {
+        "feed": {
+          "error_more_info_button": "Se mere info",
+          "no_more_posts": {
+            "heading": "Ingen flere nyheder",
+            "info": "Du har nået slutningen af nyhedsfeeden"
+          },
+          "view_more_updates_button": "Læs alle nyhedsopdateringer",
+          "errors": {
+            "generic_message": "Der opstod en fejl under indlæsning af nyhedsfeeden",
+            "unknown_error": "Der opstod en ukendt fejl",
+            "feed_unknown": "Nyhedsdataene hentet fra API'en var ugyldige. (null_err)"
+          }
+        },
+        "available_liveries": {
+          "errors": {
+            "installed_addons_fail": {
+              "title": "Kunne ikke registrere installerede liveries",
+              "error_text": "Vi kunne ikke registrere dine installerede liveries. Har du flyttet eller slettet din community mappe?",
+              "suggestion1": "Den valgte mappe er {{path}}. Er dette korrekt?",
+              "suggestion2": "Prøv at ændre din community mappe i indstillingerne."
+            }
+          },
+          "progress_notifications": {
+            "begin_install": "Installerer liveries...",
+            "downloading_livery": "Downloader livery {{current}} af {{total}}",
+            "extracting_livery": "Udpakning livery {{current}} af {{total}}",
+            "install_complete": "Installeret {{total}} [[total||livery|liveries]] med succes",
+            "install_failed": "{{fails}} [[fails||liveries|livery]] kunne ikke installeres. Udviklerne er blevet underrettet."
+          },
+          "fab_currently_installing": "Installerer {{total}} [[total||livery|liveries]] ({{size}} MB)",
+          "fab_install": "Installer {{total}} [[total||livery|liveries]] ({{size}} MB)",
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "Kontrollerer nu..."
+            },
+            "aircraft_accordion": {
+              "available_count": "{{total}} [[total||livery|liveries]] er tilgængeligt",
+              "installed_count": "{{total}} er installeret",
+              "info_fields": {
+                "aircraft_name": {
+                  "title": "Fly"
+                },
+                "total_livery_count": {
+                  "title": "Tilgængeligt liveries",
+                  "value": "{{total}} tilgængeligt"
+                },
+                "total_installed_count": {
+                  "title": "Installerede liveries",
+                  "value": "{{count}} af {{total}} er installeret"
+                }
+              },
+              "buttons": {
+                "select_all_btn": "Vælg alle",
+                "deselect_all_btn": "Fravælg alle"
+              },
+              "liveries_heading": "Liveries"
+            },
+            "livery_row": {
+              "expand_livery_details_tooltip": "Vis info om livery",
+              "shrink_livery_details_tooltip": "Skjul livery info",
+              "info_fields": {
+                "version": {
+                  "title": "Version",
+                  "tooltip": "Denne tekst repræsenterer den nyeste version af livery. Hvis din version er anderledes end dette, betyder det, at en ny opdatering er tilgængelig."
+                },
+                "thumbnail": {
+                  "title": "Miniaturebillede"
+                }
+              }
+            }
+          }
+        },
+        "installed_liveries": {
+          "warning_cannot_remove_multiple_liveries": "I øjeblikket kan du ikke fjerne eller opdatere flere liveries ad gangen. Bare rolig, fordi dette kommer i en fremtidig opdatering.",
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "Kontrollerer nu..."
+            },
+            "aircraft_accordion": {
+              "liveries_heading": "Liveries",
+              "installed_count": "{{total}} er installeret",
+              "update_count": "{{updates}} [[updates||livery har en opdatering|liveries har opdateringer]]"
+            },
+            "list_row": {
+              "help": {
+                "tooltip": {
+                  "update": "Opdater livery",
+                  "delete": "Slet livery",
+                  "delete_timer": "Hold i {{time}}s for at slette"
+                },
+                "snackbar": {
+                  "hold_to_remove": "For at fjerne en livery skal du klikke og holde sletningsknappen nede i {{time}} sekunder"
+                }
+              }
+            }
+          },
+          "notification": {
+            "no_liveries_to_remove": "Du har ikke installeret liveries!",
+            "removing_livery": "Sletning af livery {{current}} af {{total}}",
+            "remove_all_success": "{{total}} [[total||livery|liveries]] blev slettet",
+            "remove_all_failures": "{{errors}} [[errors||livery|liveries]] kunne ikke slettes",
+            "deletion": {
+              "fail1": "Kunne ikke slette livery: no obj passed",
+              "fail2": "Kunne ikke slette livery: ukendt filsti",
+              "fail3": "Kunne ikke slette livery: mappe ikke fundet",
+              "fail4": "Kunne ikke slette livery: {{error}}",
+              "fail5": "Kunne ikke slette livery: ukendt fejl",
+              "success": "Levering er slettet"
+            }
+          },
+          "dialog": {
+            "uninstall_all": {
+              "title": "Slet alle liveries?",
+              "message": "Er du sikker på, at du vil slette alle dine liveries?",
+              "detail": "Når du begynder denne proces, kan du ikke holde pause eller annullere den. For at få dine liveries bakke, skal du geninstallere dem."
+            }
+          },
+          "button": {
+            "remove_all_liveries": "Slet alt"
+          },
+          "no_liveries_installed": {
+            "more_info_button": "Se mere info",
+            "message": "Der blev ikke fundet nogen installerede liveries",
+            "info": "Vi kunne ikke finde nogen mega pack-leverancer i din valgte community mappe.\n\nHvis du har installeret leverancer gennem megapakke zip, vises de ikke her. De skal installeres via manager."
+          }
+        },
+        "settings": {
+          "advanced_settings": {
+            "enabled_notification": "Avancerede indstillinger aktiveret",
+            "disabled_notification": "Avancerede indstillinger deaktiveret",
+            "dialog_title": "Aktivere avancerede indstillinger?",
+            "dialog_body": "Aktivere avancerede indstillinger?",
+            "dialog_detail": "Kun gøre dette, hvis instrueret til af en udvikler. Dette kan have utilsigtede konsekvenser. Du er blevet advaret!"
+          },
+          "footer": {
+            "line1": "{{appName}} — Oprettet til Liveries Mega Pack",
+            "line2": "© {{year}} — Alle rettigheder forbeholdes — ",
+            "version": "v{{version}}",
+            "source_repo_and_license": "Se kildekoden og licensen"
+          },
+          "errors_in_inputs": "Ret fejlen(e) ovenfor, før du gemmer",
+          "save_settings_changes": "Klik på 'Gem' for at gemme ændringer",
+          "all_changes_saved": "Alle ændringer gemt",
+          "save_button": "Gem",
+          "user_settings": {
+            "community_folder": {
+              "name": "Community mappe",
+              "input_label": "Sti til community mappen",
+              "browse_button_sr_text": "Søg efter mappe",
+              "reset_button": "Fortryd ændringer",
+              "open_in_explorer": "Åbn mappe i explorer",
+              "open_in_explorer_opening": "Åbning..."
+            },
+            "locale_selection": {
+              "name": "Valg af sprog",
+              "label": "Sprog"
+            },
+            "cache_clear": {
+              "name": "Caching",
+              "clearing_cache_notification": "Rydning af cache. Dette kan tage et par minutter.",
+              "cache_clear_success_notification": "Cache blev ryddet!",
+              "cache_clear_error_notification": "Kunne ikke rydde cachen",
+              "purge_cache_button": "Rens cache"
+            },
+            "reset_manager_to_defaults": {
+              "name": "Nulstil manager",
+              "detail": "Dette nulstiller alle appindstillinger og genstarter manager. Du mister ikke installerede leverancer, og eventuelle leverer, der allerede er installeret, registreres automatisk igen.",
+              "reset_btn": "Nulstil alle indstillinger"
+            }
+          }
+        }
+      }
+    }
+  }
+}

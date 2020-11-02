@@ -13,6 +13,7 @@ import PlaneNameTable from '../../../data/PlaneNameTable.json';
 
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
 import DeleteAddon from '../../../helpers/AddonInstaller/deleteAddon';
+import LocaleContext from '../../../locales/LocaleContext';
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -74,6 +75,7 @@ export default function AircraftAccordion(props) {
   );
 
   const { enqueueSnackbar } = useSnackbar();
+  const CurrentLocale = React.useContext(LocaleContext);
 
   return (
     <Accordion
@@ -85,15 +87,21 @@ export default function AircraftAccordion(props) {
     >
       <AccordionSummary expandIcon={<ExpandIcon />}>
         <Typography className={classes.heading}>{PlaneNameTable[aircraft.name] || aircraft.name}</Typography>
-        <Typography className={classes.secondaryHeading}>{liveriesForThisAircraft.length} installed</Typography>
         <Typography className={classes.secondaryHeading}>
-          {liveriesWithUpdatesAvailable.length} {liveriesWithUpdatesAvailable.length === 1 ? 'has' : 'have'} updates
+          {CurrentLocale.translate('manager.pages.installed_liveries.components.aircraft_accordion.installed_count', {
+            total: liveriesForThisAircraft.length,
+          })}
+        </Typography>
+        <Typography className={classes.secondaryHeading}>
+          {CurrentLocale.translate('manager.pages.installed_liveries.components.aircraft_accordion.update_count', {
+            updates: liveriesWithUpdatesAvailable.length,
+          })}
         </Typography>
       </AccordionSummary>
       <AccordionDetails className={classes.accordion}>
         <Box>
           <Typography variant="h6" gutterBottom>
-            Liveries
+            {CurrentLocale.translate('manager.pages.installed_liveries.components.aircraft_accordion.liveries_heading')}
           </Typography>
           <LiveryList
             installedLiveries={installedLiveries}
@@ -103,7 +111,7 @@ export default function AircraftAccordion(props) {
 
               if (!livery) {
                 // No livery object passed
-                enqueueSnackbar('Failed to remove livery: no obj passed (#1)', { variant: 'error' });
+                enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notification.deletion.fail1'), { variant: 'error' });
                 return;
               }
 
@@ -113,7 +121,7 @@ export default function AircraftAccordion(props) {
 
               if (!livery.installLocation) {
                 // No install location passed
-                enqueueSnackbar('Failed to remove livery: unknown location (#2)', { variant: 'error' });
+                enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notification.deletion.fail2'), { variant: 'error' });
                 RemoveLiveryFromData('deleting', livery);
                 return;
               }
@@ -124,14 +132,14 @@ export default function AircraftAccordion(props) {
 
               if (!fs.existsSync(liveryPath)) {
                 // Install path doesn't exist
-                enqueueSnackbar('Failed to remove livery: folder not found (#3)', { variant: 'error' });
+                enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notification.deletion.fail3'), { variant: 'error' });
                 RemoveLiveryFromData('deleting', livery);
                 return;
               }
               console.log('d');
 
               try {
-                const result = await DeleteAddon(liveryPath);
+                const result = await DeleteAddon(liveryPath, CurrentLocale);
 
                 console.log(result);
                 console.log('f');
@@ -140,15 +148,20 @@ export default function AircraftAccordion(props) {
 
                 if (result[0] === false) {
                   // Other error
-                  enqueueSnackbar(`Failed to remove livery: ${result[1]} (#4)`, { variant: 'error' });
+                  enqueueSnackbar(
+                    CurrentLocale.translate('manager.pages.installed_liveries.notification.deletion.fail4', { error: result[1] }),
+                    { variant: 'error' }
+                  );
                   RemoveLiveryFromData('deleting', livery);
                   console.error(result[1]);
                 } else {
-                  enqueueSnackbar('Successfully removed livery', { variant: 'success' });
+                  enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notification.deletion.success'), {
+                    variant: 'success',
+                  });
                 }
               } catch (err) {
                 // Other error
-                enqueueSnackbar('Failed to remove livery: unknown error (#5)', { variant: 'error' });
+                enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notification.deletion.fail5'), { variant: 'error' });
                 RemoveLiveryFromData('deleting', livery);
                 console.error(err);
                 return;

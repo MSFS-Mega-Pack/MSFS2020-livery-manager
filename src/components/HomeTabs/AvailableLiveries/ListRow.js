@@ -12,6 +12,7 @@ import Constants from '../../../data/Constants.json';
 import NoImagePng from '../../../images/no-image-available.png';
 
 import clsx from 'clsx';
+import LocaleContext from '../../../locales/LocaleContext';
 
 const useStyles = makeStyles(theme => ({
   expandIcon: {
@@ -60,6 +61,8 @@ export default function ListRow(props) {
     }
   }
 
+  const CurrentLocale = React.useContext(LocaleContext);
+
   return (
     <>
       <ListItem button disableRipple onClick={isInstalled ? null : ToggleCheckbox}>
@@ -74,7 +77,13 @@ export default function ListRow(props) {
         </ListItemIcon>
         <ListItemText primary={livery.fileName.substr(livery.fileName.lastIndexOf('/') + 1).split('.zip')[0]} />
         {isInstalled && (updateAvailable ? <UpdateAvailableBadge /> : <InstalledBadge />)}
-        <Tooltip title={!isExpanded ? 'Show livery info' : 'Hide livery info'}>
+        <Tooltip
+          title={
+            !isExpanded
+              ? CurrentLocale.translate('manager.pages.available_liveries.components.livery_row.expand_livery_details_toolip')
+              : CurrentLocale.translate('manager.pages.available_liveries.components.livery_row.shrink_livery_details_toolip')
+          }
+        >
           <IconButton
             centerRipple
             onClick={e => {
@@ -90,16 +99,16 @@ export default function ListRow(props) {
       <Collapse in={isExpanded} timeout="auto" unmountOnExit>
         <Box component="article" className={classes.liveryInfoContainer}>
           <FieldValueDisplay
-            fieldName="Version"
+            fieldName={CurrentLocale.translate('manager.pages.available_liveries.components.livery_row.info_fields.version.title')}
             value={
-              <Tooltip title="The version is a unique string that represents the entire livery">
+              <Tooltip title={CurrentLocale.translate('manager.pages.available_liveries.components.livery_row.info_fields.version.tooltip')}>
                 {/* Display first 8 chars of checksum */}
                 <span className={classes.checksum}>{livery.checkSum.substr(0, 8)}</span>
               </Tooltip>
             }
           />
           <FieldValueDisplay
-            fieldName="Thumbnail"
+            fieldName={CurrentLocale.translate('manager.pages.available_liveries.components.livery_row.info_fields.thumbnail.title')}
             value={
               <Box component="figure" className={classes.thumbnail}>
                 <img

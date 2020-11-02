@@ -11,6 +11,7 @@ import LiveryList from './LiveryList';
 
 import PlaneNameTable from '../../../data/PlaneNameTable.json';
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
+import LocaleContext from '../../../locales/LocaleContext';
 
 import NoImagePng from '../../../images/no-image-available.png';
 
@@ -63,6 +64,7 @@ const useStyles = makeStyles(theme => ({
 }));
 export default function AircraftAccordion(props) {
   const { aircraft, sortedLiveries, AddSelectedLivery, RemoveSelectedLivery, disabled, installedLiveries, selectedLiveries } = props;
+  const CurrentLocale = React.useContext(LocaleContext);
 
   const classes = useStyles();
 
@@ -70,9 +72,15 @@ export default function AircraftAccordion(props) {
     <Accordion TransitionProps={{ unmountOnExit: true }}>
       <AccordionSummary expandIcon={<ExpandIcon />}>
         <Typography className={classes.heading}>{PlaneNameTable[aircraft.name] || aircraft.name}</Typography>
-        <Typography className={classes.secondaryHeading}>{sortedLiveries.length} liveries available</Typography>
         <Typography className={classes.secondaryHeading}>
-          {installedLiveries.filter(l => l.airplane.toLowerCase() === aircraft.name.toLowerCase()).length} installed
+          {CurrentLocale.translate('manager.pages.available_liveries.components.aircraft_accordion.available_count', {
+            total: sortedLiveries.length,
+          })}
+        </Typography>
+        <Typography className={classes.secondaryHeading}>
+          {CurrentLocale.translate('manager.pages.available_liveries.components.aircraft_accordion.installed_count', {
+            total: installedLiveries.filter(l => l.airplane.toLowerCase() === aircraft.name.toLowerCase()).length,
+          })}
         </Typography>
       </AccordionSummary>
       <AccordionDetails className={classes.accordion}>
@@ -89,15 +97,33 @@ export default function AircraftAccordion(props) {
             </picture>
           </Box>
           <Box className={classes.aircraftDetails}>
-            <FieldValueDisplay fieldName="Aircraft" value={PlaneNameTable[aircraft.name] || aircraft.name} />
-            <FieldValueDisplay fieldName="Total liveries" value={`${sortedLiveries.length} available`} />
             <FieldValueDisplay
-              fieldName="Total liveries installed"
-              value={`${installedLiveries.length} of ${sortedLiveries.length} installed`}
+              fieldName={CurrentLocale.translate(
+                'manager.pages.available_liveries.components.aircraft_accordion.info_fields.aircraft_name.title'
+              )}
+              value={PlaneNameTable[aircraft.name] || aircraft.name}
+            />
+            <FieldValueDisplay
+              fieldName={CurrentLocale.translate(
+                'manager.pages.available_liveries.components.aircraft_accordion.info_fields.total_livery_count.title'
+              )}
+              value={CurrentLocale.translate(
+                'manager.pages.available_liveries.components.aircraft_accordion.info_fields.total_livery_count.value',
+                { total: sortedLiveries.length }
+              )}
+            />
+            <FieldValueDisplay
+              fieldName={CurrentLocale.translate(
+                'manager.pages.available_liveries.components.aircraft_accordion.info_fields.total_installed_count.title'
+              )}
+              value={CurrentLocale.translate(
+                'manager.pages.available_liveries.components.aircraft_accordion.info_fields.total_installed_count.value',
+                { count: installedLiveries.length, total: sortedLiveries.length }
+              )}
             />
             <Box className={classes.aircraftControls}>
               <Button
-                disabled={disabled}
+                disabled={disabled || selectedLiveries.length === sortedLiveries.length}
                 variant="outlined"
                 color="primary"
                 onClick={() => {
@@ -105,17 +131,17 @@ export default function AircraftAccordion(props) {
                 }}
                 startIcon={<CheckboxTickIcon />}
               >
-                Select all
+                {CurrentLocale.translate('manager.pages.available_liveries.components.aircraft_accordion.buttons.select_all_btn')}
               </Button>
               <Box p={1} />
               <Button
-                disabled={disabled}
+                disabled={disabled || selectedLiveries.length === 0}
                 variant="outlined"
                 color="primary"
                 onClick={() => RemoveSelectedLivery(sortedLiveries)}
                 startIcon={<CheckboxOffIcon />}
               >
-                Deselect all
+                {CurrentLocale.translate('manager.pages.available_liveries.components.aircraft_accordion.buttons.deselect_all_btn')}
               </Button>
             </Box>
           </Box>
@@ -125,7 +151,7 @@ export default function AircraftAccordion(props) {
         </Box>
         <Box>
           <Typography variant="h6" gutterBottom>
-            Liveries
+            {CurrentLocale.translate('manager.pages.available_liveries.components.aircraft_accordion.liveries_heading')}
           </Typography>
           <LiveryList
             disabled={disabled}
