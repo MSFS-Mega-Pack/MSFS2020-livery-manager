@@ -47,6 +47,9 @@ const useStyles = makeStyles(theme => ({
     flex: '1',
     position: 'relative',
     paddingBottom: 90,
+    maxWidth: 1000,
+    width: '100%',
+    margin: 'auto',
   },
   settingsItem: {
     flex: 1,

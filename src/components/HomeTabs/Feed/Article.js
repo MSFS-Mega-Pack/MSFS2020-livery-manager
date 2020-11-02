@@ -8,6 +8,8 @@ import LocaleContext from '../../../locales/LocaleContext';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    maxWidth: 1000,
+    margin: 'auto',
     '&:not(:first-child)': {
       marginTop: theme.spacing(2),
     },

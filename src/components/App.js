@@ -43,7 +43,7 @@ function App() {
 
   return (
     <>
-      <TitleBar icon={planeIcon} disableMaximize>
+      <TitleBar icon={planeIcon}>
         <p className={classes.titlebar}>{PackageJson.productName}</p>
       </TitleBar>
       <main>

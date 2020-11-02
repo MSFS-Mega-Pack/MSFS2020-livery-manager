@@ -56,13 +56,16 @@ if (!isDev) {
 
 function createMainWindow() {
   mainWindow = new BrowserWindow({
+    minWidth: 900,
+    minHeight: 700,
     width: 1000,
     height: 750,
+    // maxWidth: 1920,
+    // maxHeight: 1080,
     frame: false,
     darkTheme: true,
     backgroundColor: '#1b1b31',
     titleBarStyle: 'hidden',
-    resizable: false,
     show: false,
     icon: `${__dirname}/assets/icon.ico`,
     webPreferences: {

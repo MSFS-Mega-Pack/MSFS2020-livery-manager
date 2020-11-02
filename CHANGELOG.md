@@ -14,6 +14,7 @@ Changed marked with `[DEV]` are invisible to users, and purely for the benefit o
 - Add button to open Community folder in explorer (#132)
 - Add button to delete ALL installed liveries (don't worry, you have to confirm it) (#141)
 - Add internationalisation (translation) support (#144)
+- YOU CAN RESIZE THE WINDOW NOW STOP COMPLAINING PLEASE! (#155)
 
 ### Changed
 
@@ -32,7 +33,7 @@ _None_
 
 ### Meta
 
-_None_
+- Add "add to changelog" task in PR templates (#156)
 
 ## [0.2.2] - 2020-10-20
 
