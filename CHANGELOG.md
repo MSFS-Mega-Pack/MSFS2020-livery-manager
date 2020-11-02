@@ -32,7 +32,7 @@ _None_
 
 ### Meta
 
-_None_
+- Add "add to changelog" task in PR templates (#156)
 
 ## [0.2.2] - 2020-10-20
 
