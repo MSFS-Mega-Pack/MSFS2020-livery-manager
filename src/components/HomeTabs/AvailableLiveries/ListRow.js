@@ -80,8 +80,8 @@ export default function ListRow(props) {
         <Tooltip
           title={
             !isExpanded
-              ? CurrentLocale.translate('manager.pages.available_liveries.components.livery_row.expand_livery_details_toolip')
-              : CurrentLocale.translate('manager.pages.available_liveries.components.livery_row.shrink_livery_details_toolip')
+              ? CurrentLocale.translate('manager.pages.available_liveries.components.livery_row.expand_livery_details_tooltip')
+              : CurrentLocale.translate('manager.pages.available_liveries.components.livery_row.shrink_livery_details_tooltip')
           }
         >
           <IconButton
