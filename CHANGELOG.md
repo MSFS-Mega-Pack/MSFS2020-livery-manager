@@ -23,7 +23,7 @@ Changed marked with `[DEV]` are invisible to users, and purely for the benefit o
 - Refresh installed liveries list after installation to show newly installed liveries (#136)
 - Make refresh button in installed liveries tab actually refresh the installed liveries list (#136)
 - Clarify refresh box text from "Livery list last updated" to "Last refreshed" (#140)
-- Add missing aircraft translations (#142)
+- Add missing aircraft translations (#142 & #158)
 - \[DEV\] Fix broken sourcemap uploads (#143)
 - \[DEV\] Create community folder if it does not exist, should fix the blank screen bug. (#148)
 
