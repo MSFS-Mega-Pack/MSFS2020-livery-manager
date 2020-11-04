@@ -355,7 +355,7 @@ export default function Settings() {
           </>
         )}
 
-        <img ref={advancedSettingsToggleRef} className={classes.advancedSettingsToggle} src={AdvancedSettingsToggleImage} />
+        <img draggable="false" ref={advancedSettingsToggleRef} className={classes.advancedSettingsToggle} src={AdvancedSettingsToggleImage} />
 
         <footer className={classes.aboutFooter}>
           <Typography variant="body2" paragraph>

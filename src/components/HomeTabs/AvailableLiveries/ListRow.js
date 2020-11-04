@@ -112,6 +112,7 @@ export default function ListRow(props) {
             value={
               <Box component="figure" className={classes.thumbnail}>
                 <img
+                  draggable="false"
                   src={`${Constants.urls.cdnEndpoint}/${livery.image || livery.smallImage}`}
                   onError={function (e) {
                     // set src to 'no image' image if the thumb fails to load

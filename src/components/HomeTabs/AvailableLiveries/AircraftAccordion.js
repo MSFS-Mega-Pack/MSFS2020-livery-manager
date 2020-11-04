@@ -92,6 +92,7 @@ export default function AircraftAccordion(props) {
             <picture>
               {aircraft.thumbnails && <source srcSet={aircraft.thumbnails[0]} />}
               <img
+                draggable="false"
                 src={NoImagePng}
                 onError={function (e) {
                   if (e.currentTarget.parentNode.childElementCount > 1) e.currentTarget.previousSibling.remove();
