@@ -63,7 +63,7 @@ export default function FullInstalledTable(props) {
             installedLiveries={liveries
               .filter(o => o.airplane.toLowerCase() === ac.name.toLowerCase())
               .sort((a, b) => (a.name > b.name ? 1 : a.name < b.name ? -1 : 0))}
-            fileListing={fileListing}
+            fileListing={{ data: { fileList: fileListing.data.fileList.filter(f => f.airplane.toLowerCase() === ac.name.toLowerCase()) } }}
           />
         );
       })}
