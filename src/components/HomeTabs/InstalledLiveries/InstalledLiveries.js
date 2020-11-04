@@ -306,6 +306,7 @@ export default function InstalledLiveries(props) {
         RemoveLiveryFromData={RemoveLiveryFromData}
         SetExpanded={SetExpanded}
         expandedList={expandedList}
+        fileListing={fileListing}
       />
     </Box>
   );

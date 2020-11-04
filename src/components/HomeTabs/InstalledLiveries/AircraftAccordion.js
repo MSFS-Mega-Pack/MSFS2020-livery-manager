@@ -63,15 +63,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 export default function AircraftAccordion(props) {
-  const { aircraft, installedLiveries, AddLiveryToData, RemoveLiveryFromData, liveryData, expanded, setExpanded } = props;
+  const { aircraft, installedLiveries, AddLiveryToData, RemoveLiveryFromData, liveryData, expanded, setExpanded, fileListing } = props;
 
   const classes = useStyles();
-
   const liveriesForThisAircraft = installedLiveries
     ? installedLiveries.filter(l => l.airplane.toLowerCase() === aircraft.name.toLowerCase())
     : [];
   const liveriesWithUpdatesAvailable = liveriesForThisAircraft.filter(
-    l => GetIndexOfLiveryInArray(l, liveriesForThisAircraft)[1] === 'differentHash'
+    l => GetIndexOfLiveryInArray(l, fileListing.data.fileList)[1] === 'differentHash'
   );
 
   const { enqueueSnackbar } = useSnackbar();
@@ -206,4 +205,5 @@ AircraftAccordion.propTypes = {
   }),
   expanded: PropTypes.bool.isRequired,
   setExpanded: PropTypes.func.isRequired,
+  fileListing: PropTypes.arrayOf(CustomPropTypes.Livery),
 };
