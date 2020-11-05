@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, CircularProgress, IconButton, ListItem, ListItemText, makeStyles, Tooltip } from '@material-ui/core';
+import { Box, Button, CircularProgress, IconButton, ListItem, ListItemText, makeStyles, Tooltip } from '@material-ui/core';
 import BinIcon from 'mdi-react/TrashCanOutlineIcon';
-import UpdateIcon from 'mdi-react/DownloadOutlineIcon';
+import UpdateIcon from 'mdi-react/CloudDownloadOutlineIcon';
 
 import { useSnackbar } from 'notistack';
 import clsx from 'clsx';
@@ -133,13 +133,16 @@ export default function ListRow(props) {
       <ListItem className={classes.root} disabled={beingDeleted}>
         <ListItemText primary={livery.fileName.substr(livery.fileName.lastIndexOf('/') + 1).split('.zip')[0]} />
         {updateAvailable && (
-          <Tooltip title={CurrentLocale.translate('manager.pages.installed_liveries.components.list_row.help.tooltip.update')}>
-            <span>
-              <IconButton onClick={() => alert('This feature is coming soon...')} disabled={beingDeleted} color="primary">
-                <UpdateIcon />
-              </IconButton>
-            </span>
-          </Tooltip>
+          <span>
+            <Button
+              startIcon={<UpdateIcon />}
+              onClick={() => alert(CurrentLocale.translate('manager.common.coming_soon'))}
+              disabled={beingDeleted}
+              color="primary"
+            >
+              {CurrentLocale.translate('manager.pages.installed_liveries.components.list_row.update.button')}
+            </Button>
+          </span>
         )}
 
         <Tooltip
