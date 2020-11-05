@@ -231,6 +231,7 @@ ListRow.propTypes = {
   updateAvailable: PropTypes.bool.isRequired,
   beingDeleted: PropTypes.bool.isRequired,
   deleteLivery: PropTypes.func.isRequired,
+  newLiveryObject: PropTypes.arrayOf(ListRow.livery),
 };
 
 ListRow.defaultProps = {
