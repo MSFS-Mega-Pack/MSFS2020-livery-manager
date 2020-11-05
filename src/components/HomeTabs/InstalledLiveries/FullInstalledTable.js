@@ -104,5 +104,5 @@ FullInstalledTable.propTypes = {
   RemoveLiveryFromData: PropTypes.func,
   SetExpanded: PropTypes.func.isRequired,
   expandedList: PropTypes.arrayOf(PropTypes.string).isRequired,
-  fileListing: PropTypes.arrayOf(CustomPropTypes.Livery),
+  fileListing: PropTypes.shape({ data: { fileList: PropTypes.arrayOf(CustomPropTypes.Livery) } }),
 };
