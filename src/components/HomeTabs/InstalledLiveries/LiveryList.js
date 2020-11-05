@@ -10,7 +10,6 @@ import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
 
 export default function LiveryList(props) {
   const { installedLiveries, deleteLivery, liveryData, fileListing } = props;
-
   return (
     <List dense>
       <Virtuoso
@@ -20,7 +19,7 @@ export default function LiveryList(props) {
           const livery = installedLiveries[i];
 
           /* eslint-disable-next-line no-unused-vars */
-          const [_, msg] = GetIndexOfLiveryInArray(livery, fileListing);
+          const [_, msg] = GetIndexOfLiveryInArray(livery, fileListing.data.fileList);
 
           return (
             <ListRow

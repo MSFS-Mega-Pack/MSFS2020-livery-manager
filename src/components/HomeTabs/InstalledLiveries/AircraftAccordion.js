@@ -67,7 +67,6 @@ const useStyles = makeStyles(theme => ({
 }));
 export default function AircraftAccordion(props) {
   const { aircraft, installedLiveries, AddLiveryToData, RemoveLiveryFromData, liveryData, expanded, setExpanded, fileListing } = props;
-
   const classes = useStyles();
   const liveriesForThisAircraft = installedLiveries
     ? installedLiveries.filter(l => l.airplane.toLowerCase() === aircraft.name.toLowerCase())
