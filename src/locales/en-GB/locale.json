@@ -228,13 +228,22 @@
               "fail4": "Failed to remove livery: {{error}}",
               "fail5": "Failed to remove livery: unknown error",
               "success": "Successfully removed livery"
-            }
+            },
+            "no_liveries_to_update": "You don't have any installed liveries!",
+            "update_all_success": "Successfully updated {{total}} [[total||livery|liveries]]",
+            "update_all_failures": "Failed to update {{errors}} [[errors||livery|liveries]]",
+            "updating_livery": "Updating livery {{current}} of {{total}}"
           },
           "dialog": {
             "uninstall_all": {
               "title": "Remove all liveries?",
               "message": "Are you sure you want to uninstall ALL YOUR LIVERIES?",
               "detail": "Once you start this process, you cannot pause or cancel it. To get your liveries back, you need to reinstall them."
+            },
+            "update_all": {
+              "title": "Update all liveries?",
+              "message": "Are you sure you want to update ALL YOUR LIVERIES?",
+              "detail": "Once you start this process, you cannot pause or cancel it."
             }
           },
           "button": {

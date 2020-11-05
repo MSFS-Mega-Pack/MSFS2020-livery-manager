@@ -16,6 +16,7 @@ import Constants from '../../../data/Constants.json';
 import NoImage from '../../../images/no-image-available.png';
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
 import DeleteAddon from '../../../helpers/AddonInstaller/deleteAddon';
+import InstallAddon from '../../../helpers/AddonInstaller/InstallAddon';
 import ShowNativeDialog from '../../../helpers/ShowNativeDialog';
 
 export default function InstalledLiveries(props) {
@@ -293,6 +294,118 @@ export default function InstalledLiveries(props) {
               }}
             >
               {CurrentLocale.translate('manager.pages.installed_liveries.button.remove_all_liveries')}
+            </Button>
+            <Button
+              onClick={async () => {
+                const liveriesWithUpdatesAvailable = installedLiveries.filter(
+                  l => GetIndexOfLiveryInArray(l, fileListing.data.fileList)[1] === 'differentHash'
+                );
+                if (liveriesWithUpdatesAvailable.length <= 0) {
+                  enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notifications.no_liveries_to_update'), {
+                    variant: 'error',
+                  });
+                  return;
+                }
+
+                let d = ShowNativeDialog(
+                  CurrentLocale,
+                  CurrentLocale.translate('manager.pages.installed_liveries.dialog.update_all.message'),
+                  CurrentLocale.translate('manager.pages.installed_liveries.dialog.update_all.title'),
+                  CurrentLocale.translate('manager.pages.installed_liveries.dialog.update_all.detail')
+                );
+
+                if (d !== 0) return;
+
+                /** @type {number} */
+                const total = liveriesWithUpdatesAvailable.length;
+                let errors = 0,
+                  currentSnack,
+                  currentUpdate = 1;
+
+                for (const livery of liveriesWithUpdatesAvailable) {
+                  console.log('start updating all');
+
+                  closeSnackbar(currentSnack);
+                  currentSnack = enqueueSnackbar(
+                    CurrentLocale.translate('manager.pages.installed_liveries.notification.updating_livery', {
+                      current: currentUpdate,
+                      total: total,
+                    }),
+                    { variant: 'info' }
+                  );
+                  currentUpdate++;
+
+                  if (!livery) {
+                    // No livery object passed
+                    errors++;
+                    // enqueueSnackbar('Failed to remove livery: no obj passed (#1)', { variant: 'error' });
+                    return;
+                  }
+
+                  console.log('a');
+                  AddLiveryToData('updating', livery);
+                  console.log('b');
+
+                  if (!livery.installLocation) {
+                    // No install location passed
+                    errors++;
+                    // enqueueSnackbar('Failed to remove livery: unknown location (#2)', { variant: 'error' });
+                    RemoveLiveryFromData('updating', livery);
+                    return;
+                  }
+                  console.log('c');
+
+                  const liveryPath = livery.installLocation;
+                  console.log(liveryPath);
+
+                  if (!fs.existsSync(liveryPath)) {
+                    // Install path doesn't exist
+                    errors++;
+                    // enqueueSnackbar('Failed to remove livery: folder not found (#3)', { variant: 'error' });
+                    RemoveLiveryFromData('updating', livery);
+                    return;
+                  }
+                  console.log('d');
+
+                  try {
+                    /* eslint-disable-next-line no-unused-vars */
+                    const [_, msg] = GetIndexOfLiveryInArray(livery, fileListing.data.fileList);
+                    if (_ == -1) return;
+                    await InstallAddon(fileListing.data.fileList[_], currentUpdate, total, CurrentLocale, message => {
+                      closeSnackbar(currentSnack);
+                      currentSnack = enqueueSnackbar(message, {
+                        variant: 'info',
+                        persist: true,
+                      });
+                    });
+                    RefreshInstalledLiveries();
+                  } catch (err) {
+                    // Other error
+                    errors++;
+                    // enqueueSnackbar('Failed to remove livery: unknown error (#5)', { variant: 'error' });
+                    RemoveLiveryFromData('updating', livery);
+                    console.error(err);
+                    return;
+                  }
+                }
+
+                const success = total - errors;
+                enqueueSnackbar(
+                  CurrentLocale.translate('manager.pages.installed_liveries.notification.update_all_success', {
+                    total: success,
+                  }),
+                  { variant: 'success' }
+                );
+                if (errors > 0) {
+                  enqueueSnackbar(
+                    CurrentLocale.translate('manager.pages.installed_liveries.notification.update_all_failures', {
+                      errors: errors,
+                    })
+                  );
+                }
+              }}
+            >
+              {CurrentLocale.translate('manager.pages.installed_liveries.button.update_all')}
             </Button>
           </Box>
         )}
