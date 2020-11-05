@@ -341,36 +341,17 @@ export default function InstalledLiveries(props) {
                     // enqueueSnackbar('Failed to remove livery: no obj passed (#1)', { variant: 'error' });
                     return;
                   }
-
-                  console.log('a');
                   AddLiveryToData('updating', livery);
-                  console.log('b');
-
-                  if (!livery.installLocation) {
-                    // No install location passed
-                    errors++;
-                    // enqueueSnackbar('Failed to remove livery: unknown location (#2)', { variant: 'error' });
-                    RemoveLiveryFromData('updating', livery);
-                    return;
-                  }
-                  console.log('c');
 
                   const liveryPath = livery.installLocation;
                   console.log(liveryPath);
-
-                  if (!fs.existsSync(liveryPath)) {
-                    // Install path doesn't exist
-                    errors++;
-                    // enqueueSnackbar('Failed to remove livery: folder not found (#3)', { variant: 'error' });
-                    RemoveLiveryFromData('updating', livery);
-                    return;
-                  }
-                  console.log('d');
-
                   try {
                     /* eslint-disable-next-line no-unused-vars */
                     const [_, msg] = GetIndexOfLiveryInArray(livery, fileListing.data.fileList);
-                    if (_ == -1) return;
+                    if (_ == -1) {
+                      errors++;
+                      return;
+                    }
                     await InstallAddon(fileListing.data.fileList[_], currentUpdate, total, CurrentLocale, message => {
                       closeSnackbar(currentSnack);
                       currentSnack = enqueueSnackbar(message, {
