@@ -4,6 +4,9 @@
     "localeId": "en-US"
   },
   "strings": {
+    "common": {
+      "coming_soon": "Feature coming soon."
+    },
     "models": {
       "article": {
         "date_format": "ddd D MMM 'YY, h:mm A"
@@ -198,9 +201,11 @@
               "update_count": "{{updates}} [[updates||livery has an update|liveries have updates]]"
             },
             "list_row": {
+              "update": {
+                "button": "Update"
+              },
               "help": {
                 "tooltip": {
-                  "update": "Update livery",
                   "delete": "Remove livery",
                   "delete_timer": "Hold for {{time}}s to remove"
                 },
@@ -232,7 +237,8 @@
             }
           },
           "button": {
-            "remove_all_liveries": "Remove all"
+            "remove_all_liveries": "Remove all",
+            "update_all": "Update all"
           },
           "no_liveries_installed": {
             "more_info_button": "View more info",
