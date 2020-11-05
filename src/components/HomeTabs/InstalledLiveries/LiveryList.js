@@ -9,7 +9,7 @@ import ListRow from './ListRow';
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
 
 export default function LiveryList(props) {
-  const { installedLiveries, deleteLivery, liveryData } = props;
+  const { installedLiveries, deleteLivery, liveryData, fileListing } = props;
 
   return (
     <List dense>
@@ -20,7 +20,7 @@ export default function LiveryList(props) {
           const livery = installedLiveries[i];
 
           /* eslint-disable-next-line no-unused-vars */
-          const [_, msg] = GetIndexOfLiveryInArray(livery, installedLiveries);
+          const [_, msg] = GetIndexOfLiveryInArray(livery, fileListing);
 
           return (
             <ListRow
@@ -75,4 +75,5 @@ LiveryList.propTypes = {
     selected: PropTypes.arrayOf(CustomPropTypes.Livery),
     RefreshInstalledLiveries: PropTypes.func,
   }),
+  fileListing: PropTypes.arrayOf(CustomPropTypes.Livery),
 };

@@ -108,6 +108,7 @@ export default function AircraftAccordion(props) {
           <LiveryList
             installedLiveries={installedLiveries}
             liveryData={liveryData}
+            fileListing={fileListing}
             deleteLivery={async livery => {
               console.log('start deletion');
 
