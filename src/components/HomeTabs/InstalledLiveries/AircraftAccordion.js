@@ -209,5 +209,5 @@ AircraftAccordion.propTypes = {
   }),
   expanded: PropTypes.bool.isRequired,
   setExpanded: PropTypes.func.isRequired,
-  fileListing: PropTypes.arrayOf(CustomPropTypes.Livery),
+  fileListing: PropTypes.shape({ data: { fileList: PropTypes.arrayOf(CustomPropTypes.Livery) } }),
 };
