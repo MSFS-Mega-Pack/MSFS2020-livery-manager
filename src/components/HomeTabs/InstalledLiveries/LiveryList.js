@@ -28,6 +28,7 @@ export default function LiveryList(props) {
               updateAvailable={msg === 'differentHash'}
               deleteLivery={deleteLivery}
               beingDeleted={GetIndexOfLiveryInArray(livery, liveryData.deleting)[0] !== -1}
+              newLiveryObject={fileListing.data.fileList[_]}
             />
           );
         }}

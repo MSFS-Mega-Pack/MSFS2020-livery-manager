@@ -9,6 +9,8 @@ import { useSnackbar } from 'notistack';
 import clsx from 'clsx';
 import LocaleContext from '../../../locales/LocaleContext';
 
+import InstallAddon from '../../../helpers/AddonInstaller/InstallAddon';
+
 const useStyles = makeStyles({
   root: {
     transition: 'background-color 200ms ease-out',
@@ -36,7 +38,7 @@ const useStyles = makeStyles({
 const HoldToRemoveTime = 1.5;
 
 export default function ListRow(props) {
-  const { livery, updateAvailable, deleteLivery, beingDeleted } = props;
+  const { livery, updateAvailable, deleteLivery, beingDeleted, newLiveryObject } = props;
   const classes = useStyles();
 
   const removeButton = useRef(null);
@@ -44,7 +46,7 @@ export default function ListRow(props) {
 
   const [timeRemaining, setTimeRemaining] = useState(HoldToRemoveTime);
 
-  const { enqueueSnackbar } = useSnackbar();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const CurrentLocale = React.useContext(LocaleContext);
 
@@ -136,7 +138,43 @@ export default function ListRow(props) {
           <span>
             <Button
               startIcon={<UpdateIcon />}
-              onClick={() => alert(CurrentLocale.translate('manager.common.coming_soon'))}
+              onClick={async () => {
+                let s = enqueueSnackbar(CurrentLocale.translate('manager.pages.available_liveries.progress_notifications.begin_install'), {
+                  variant: 'info',
+                  persist: true,
+                });
+                let failures = [];
+                try {
+                  await InstallAddon(newLiveryObject, 0, 1, CurrentLocale, message => {
+                    closeSnackbar(s);
+                    s = enqueueSnackbar(message, {
+                      variant: 'info',
+                      persist: true,
+                    });
+                  });
+                } catch (e) {
+                  failures.push(1);
+                  console.log('failed!');
+                  console.log(e);
+                }
+                closeSnackbar(s);
+                s = enqueueSnackbar(
+                  CurrentLocale.translate('manager.pages.available_liveries.progress_notifications.install_complete', {
+                    total: 1,
+                  }),
+                  { variant: 'success', persist: false }
+                );
+                failures.length > 0 &&
+                  enqueueSnackbar(
+                    CurrentLocale.translate('manager.pages.available_liveries.progress_notifications.install_failed', {
+                      fails: failures.length,
+                    }),
+                    { variant: 'error' }
+                  );
+                setTimeout(function () {
+                  closeSnackbar(s);
+                }, 3000);
+              }}
               disabled={beingDeleted}
               color="primary"
             >
