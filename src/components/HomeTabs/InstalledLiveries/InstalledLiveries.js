@@ -184,7 +184,7 @@ export default function InstalledLiveries(props) {
             <Button
               onClick={async () => {
                 if (installedLiveries.length <= 0) {
-                  enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notifications.no_liveries_to_remove'), {
+                  enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notification.no_liveries_to_remove'), {
                     variant: 'error',
                   });
                   return;
@@ -301,7 +301,7 @@ export default function InstalledLiveries(props) {
                   l => GetIndexOfLiveryInArray(l, fileListing.data.fileList)[1] === 'differentHash'
                 );
                 if (liveriesWithUpdatesAvailable.length <= 0) {
-                  enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notifications.no_liveries_to_update'), {
+                  enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notification.no_liveries_to_update'), {
                     variant: 'error',
                   });
                   return;
