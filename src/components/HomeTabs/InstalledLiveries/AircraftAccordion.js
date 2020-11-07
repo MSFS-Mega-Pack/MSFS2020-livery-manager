@@ -66,7 +66,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 export default function AircraftAccordion(props) {
-  const { aircraft, installedLiveries, AddLiveryToData, RemoveLiveryFromData, liveryData, expanded, setExpanded, fileListing } = props;
+  const {
+    aircraft,
+    installedLiveries,
+    AddLiveryToData,
+    RemoveLiveryFromData,
+    liveryData,
+    expanded,
+    setExpanded,
+    fileListing,
+    RefreshAllData,
+  } = props;
   const classes = useStyles();
   const liveriesForThisAircraft = installedLiveries
     ? installedLiveries.filter(l => l.airplane.toLowerCase() === aircraft.name.toLowerCase())
@@ -108,6 +118,8 @@ export default function AircraftAccordion(props) {
             installedLiveries={installedLiveries}
             liveryData={liveryData}
             fileListing={fileListing}
+            liveryDataFuncs={{ add: AddLiveryToData, remove: RemoveLiveryFromData }}
+            RefreshAllData={RefreshAllData}
             deleteLivery={async livery => {
               console.log('start deletion');
 
@@ -209,4 +221,5 @@ AircraftAccordion.propTypes = {
   expanded: PropTypes.bool.isRequired,
   setExpanded: PropTypes.func.isRequired,
   fileListing: PropTypes.shape({ data: { fileList: PropTypes.arrayOf(CustomPropTypes.Livery) } }),
+  RefreshAllData: PropTypes.func.isRequired,
 };

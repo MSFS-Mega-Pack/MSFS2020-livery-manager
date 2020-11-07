@@ -9,7 +9,7 @@ import ListRow from './ListRow';
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
 
 export default function LiveryList(props) {
-  const { installedLiveries, deleteLivery, liveryData, fileListing } = props;
+  const { installedLiveries, deleteLivery, liveryData, fileListing, liveryDataFuncs, RefreshAllData } = props;
   return (
     <List dense>
       <Virtuoso
@@ -27,8 +27,12 @@ export default function LiveryList(props) {
               livery={livery}
               updateAvailable={msg === 'differentHash'}
               deleteLivery={deleteLivery}
+              liveryDataFuncs={liveryDataFuncs}
               beingDeleted={GetIndexOfLiveryInArray(livery, liveryData.deleting)[0] !== -1}
+              beingUpdated={GetIndexOfLiveryInArray(livery, liveryData.updating)[0] !== -1}
+              selected={GetIndexOfLiveryInArray(livery, liveryData.selected)[0] !== -1}
               newLiveryObject={fileListing.data.fileList[_]}
+              RefreshAllData={RefreshAllData}
             />
           );
         }}
@@ -75,5 +79,14 @@ LiveryList.propTypes = {
     selected: PropTypes.arrayOf(CustomPropTypes.Livery),
     RefreshInstalledLiveries: PropTypes.func,
   }),
-  fileListing: PropTypes.shape({ data: { fileList: PropTypes.arrayOf(CustomPropTypes.Livery) } }),
+  fileListing: PropTypes.shape({
+    data: {
+      fileList: PropTypes.arrayOf(CustomPropTypes.Livery),
+    },
+  }),
+  liveryDataFuncs: PropTypes.shape({
+    add: PropTypes.func.isRequired,
+    remove: PropTypes.func.isRequired,
+  }),
+  RefreshAllData: PropTypes.func.isRequired,
 };

@@ -87,7 +87,7 @@ export default function InstalledLiveries(props) {
 
   /**
    * @param {"disabled"|"deleting"|"updating"|"selected"} arrayName Name of liveryData array
-   * @param {Object} livery Livery to add
+   * @param {Object} livery Livery to remove
    */
   function RemoveLiveryFromData(arrayName, livery) {
     setLivData(ld => {
@@ -157,28 +157,27 @@ export default function InstalledLiveries(props) {
     );
   }
 
+  async function RefreshAllData() {
+    setRefreshing(true);
+    await RefreshInstalledLiveries();
+    UpdateFileList(() => {
+      setRefreshing(false);
+      setJustRefreshed(new Date().getTime());
+    });
+  }
+
   return (
     <Box>
       <RefreshBox
         justRefreshed={!!justRefreshed}
         lastCheckedTime={fileListing && fileListing.checkedAt}
         onRefresh={async () => {
-          setRefreshing(true);
-          await RefreshInstalledLiveries();
-          UpdateFileList(() => {
-            setRefreshing(false);
-            setJustRefreshed(new Date().getTime());
-          });
+          await RefreshAllData();
         }}
         refreshInterval={Constants.refreshInterval}
       />
 
       <Box display="flex">
-        <Box flex="1">
-          <Typography paragraph variant="body1">
-            {CurrentLocale.translate('manager.pages.installed_liveries.warning_cannot_remove_multiple_liveries')}
-          </Typography>
-        </Box>
         {installedLiveries.length > 0 && (
           <Box>
             <Button
@@ -401,6 +400,7 @@ export default function InstalledLiveries(props) {
         SetExpanded={SetExpanded}
         expandedList={expandedList}
         fileListing={fileListing}
+        RefreshAllData={RefreshAllData}
       />
     </Box>
   );

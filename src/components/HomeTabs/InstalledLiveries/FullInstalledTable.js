@@ -9,7 +9,17 @@ import PlaneNameTable from '../../../data/PlaneNameTable.json';
 import LocaleContext from '../../../locales/LocaleContext';
 
 export default function FullInstalledTable(props) {
-  const { liveries, allAircraft, liveryData, AddLiveryToData, RemoveLiveryFromData, expandedList, SetExpanded, fileListing } = props;
+  const {
+    liveries,
+    allAircraft,
+    liveryData,
+    AddLiveryToData,
+    RemoveLiveryFromData,
+    expandedList,
+    SetExpanded,
+    fileListing,
+    RefreshAllData,
+  } = props;
   const CurrentLocale = React.useContext(LocaleContext);
 
   // if there are no aircraft...
@@ -60,6 +70,7 @@ export default function FullInstalledTable(props) {
               selected: liveryData.selected.filter(l => l.airplane.toLowerCase() === ac.name.toLowerCase()),
               RefreshInstalledLiveries: liveryData.RefreshInstalledLiveries,
             }}
+            RefreshAllData={RefreshAllData}
             installedLiveries={liveries
               .filter(o => o.airplane.toLowerCase() === ac.name.toLowerCase())
               .sort((a, b) => (a.name > b.name ? 1 : a.name < b.name ? -1 : 0))}
@@ -105,4 +116,5 @@ FullInstalledTable.propTypes = {
   SetExpanded: PropTypes.func.isRequired,
   expandedList: PropTypes.arrayOf(PropTypes.string).isRequired,
   fileListing: PropTypes.shape({ data: { fileList: PropTypes.arrayOf(CustomPropTypes.Livery) } }),
+  RefreshAllData: PropTypes.func.isRequired,
 };
