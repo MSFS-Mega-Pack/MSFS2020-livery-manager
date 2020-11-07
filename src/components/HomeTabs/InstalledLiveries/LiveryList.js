@@ -75,5 +75,5 @@ LiveryList.propTypes = {
     selected: PropTypes.arrayOf(CustomPropTypes.Livery),
     RefreshInstalledLiveries: PropTypes.func,
   }),
-  fileListing: PropTypes.arrayOf(CustomPropTypes.Livery),
+  fileListing: PropTypes.shape({ data: { fileList: PropTypes.arrayOf(CustomPropTypes.Livery) } }),
 };
