@@ -19,8 +19,9 @@ import ConfigKeys from '../../data/config-keys.json';
  * @param {number} index
  * @param {number} total
  * @param {import("../../locales/Locale").default} CurrentLocale Current locale
+ * @param {boolean=false} isUpdate Whether this install is a livery update
  */
-export default async function InstallAddon(PlaneObject, index, total, CurrentLocale, updateProgress) {
+export default async function InstallAddon(PlaneObject, index, total, CurrentLocale, updateProgress, isUpdate = false) {
   const Directory = Config.get(ConfigKeys.settings.package_directory);
   const downloadURL = `${Constants.urls.cdnEndpoint}/${PlaneObject.fileName}?hash=${PlaneObject.checkSum}`;
   const zipName = PlaneObject.fileName.substr(PlaneObject.fileName.lastIndexOf('/') + 1);
@@ -39,7 +40,7 @@ export default async function InstallAddon(PlaneObject, index, total, CurrentLoc
   });
 
   updateProgress(
-    CurrentLocale.translate('manager.pages.available_liveries.progress_notifications.downloading_livery', {
+    CurrentLocale.translate('helpers.install_addon.progress_notifications.downloading_livery', {
       current: `${index + 1}`,
       total: `${total}`,
     })
@@ -82,7 +83,7 @@ export default async function InstallAddon(PlaneObject, index, total, CurrentLoc
       .on('finish', async () => {
         console.log(`Finished downloading: ${zipName}`);
         updateProgress(
-          CurrentLocale.translate('manager.pages.available_liveries.progress_notifications.extracting_livery', {
+          CurrentLocale.translate('helpers.install_addon.progress_notifications.extracting_livery', {
             current: `${index + 1}`,
             total: `${total}`,
           })
