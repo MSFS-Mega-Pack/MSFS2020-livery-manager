@@ -38,7 +38,17 @@ const useStyles = makeStyles({
 const HoldToRemoveTime = 1.5;
 
 export default function ListRow(props) {
-  const { livery, updateAvailable, deleteLivery, beingDeleted, newLiveryObject } = props;
+  const { livery, updateAvailable, deleteLivery, beingDeleted, newLiveryObject, beingUpdated, selected, RefreshAllData } = props;
+
+  /**
+   * @callback UpdateLiveryData
+   * @param {"disabled"|"deleting"|"updating"|"selected"} arrayName Name of liveryData array
+   * @param {Object} livery Livery to add/remove
+   */
+
+  /** @type {{ add: UpdateLiveryData, remove: UpdateLiveryData }} */
+  const { add: AddLiveryToData, remove: RemoveLiveryFromData } = props.liveryDataFuncs;
+
   const classes = useStyles();
 
   const removeButton = useRef(null);
@@ -60,7 +70,7 @@ export default function ListRow(props) {
       if (e.button !== 0) return;
 
       handles.current.timeout = setTimeout(() => {
-        if (!startedDeleting) {
+        if (!startedDeleting && !beingUpdated) {
           startedDeleting = true;
 
           console.log(`DELETING LIVERY`, livery.fileName);
@@ -138,44 +148,62 @@ export default function ListRow(props) {
           <span>
             <Button
               startIcon={<UpdateIcon />}
+              disabled={beingUpdated || beingDeleted}
+              variant="outlined"
               onClick={async () => {
-                let s = enqueueSnackbar(CurrentLocale.translate('manager.pages.available_liveries.progress_notifications.begin_install'), {
-                  variant: 'info',
-                  persist: true,
-                });
-                let failures = [];
-                try {
-                  await InstallAddon(newLiveryObject, 0, 1, CurrentLocale, message => {
-                    closeSnackbar(s);
-                    s = enqueueSnackbar(message, {
-                      variant: 'info',
-                      persist: true,
-                    });
-                  });
-                } catch (e) {
-                  failures.push(1);
-                  console.log('failed!');
-                  console.log(e);
-                }
-                closeSnackbar(s);
-                s = enqueueSnackbar(
-                  CurrentLocale.translate('manager.pages.available_liveries.progress_notifications.install_complete', {
-                    total: 1,
-                  }),
-                  { variant: 'success', persist: false }
+                AddLiveryToData('updating', livery);
+
+                let s = enqueueSnackbar(
+                  CurrentLocale.translate('manager.pages.installed_liveries.progress_notifications.begin_update', { total: 1 }),
+                  {
+                    variant: 'info',
+                    persist: true,
+                  }
                 );
-                failures.length > 0 &&
-                  enqueueSnackbar(
-                    CurrentLocale.translate('manager.pages.available_liveries.progress_notifications.install_failed', {
-                      fails: failures.length,
-                    }),
-                    { variant: 'error' }
+
+                let failed = false;
+
+                try {
+                  await InstallAddon(
+                    newLiveryObject,
+                    0,
+                    1,
+                    CurrentLocale,
+                    message => {
+                      closeSnackbar(s);
+                      s = enqueueSnackbar(message, {
+                        variant: 'info',
+                        persist: true,
+                      });
+                    },
+                    true
                   );
-                setTimeout(function () {
-                  closeSnackbar(s);
-                }, 3000);
+                } catch (e) {
+                  failed = true;
+                  console.log('failed!', e);
+                }
+
+                closeSnackbar(s);
+
+                if (failed) {
+                  enqueueSnackbar(
+                    CurrentLocale.translate('manager.pages.installed_liveries.progress_notifications.update_failed', {
+                      fails: 1,
+                    }),
+                    { variant: 'error', persist: false }
+                  );
+                } else {
+                  enqueueSnackbar(
+                    CurrentLocale.translate('manager.pages.installed_liveries.progress_notifications.update_complete', {
+                      total: 1,
+                    }),
+                    { variant: 'success', persist: false }
+                  );
+                }
+
+                RemoveLiveryFromData('updating', livery);
+                RefreshAllData();
               }}
-              disabled={beingDeleted}
               color="primary"
             >
               {CurrentLocale.translate('manager.pages.installed_liveries.components.list_row.update.button')}
@@ -193,7 +221,7 @@ export default function ListRow(props) {
           }
         >
           <span>
-            <IconButton disabled={beingDeleted} ref={removeButton} color="primary">
+            <IconButton disabled={beingUpdated || beingDeleted} ref={removeButton} color="primary">
               <Box position="relative" width={24} height={24}>
                 <CircularProgress
                   className={classes.deleteButtonProgress}
@@ -230,8 +258,15 @@ ListRow.propTypes = {
   }).isRequired,
   updateAvailable: PropTypes.bool.isRequired,
   beingDeleted: PropTypes.bool.isRequired,
+  beingUpdated: PropTypes.bool.isRequired,
+  selected: PropTypes.bool.isRequired,
   deleteLivery: PropTypes.func.isRequired,
   newLiveryObject: PropTypes.arrayOf(ListRow.livery),
+  liveryDataFuncs: PropTypes.shape({
+    add: PropTypes.func.isRequired,
+    remove: PropTypes.func.isRequired,
+  }),
+  RefreshAllData: PropTypes.func.isRequired,
 };
 
 ListRow.defaultProps = {
