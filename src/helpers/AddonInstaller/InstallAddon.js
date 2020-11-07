@@ -51,6 +51,13 @@ export default async function InstallAddon(PlaneObject, index, total, CurrentLoc
   if (!fs.existsSync(tempPath)) {
     await fsPromises.mkdir(tempPath, { recursive: true });
   }
+  try {
+    if (fs.existsSync(extractDir)) {
+      await fsPromises.rmdir(extractDir, { recursive: true });
+    }
+  } catch (err) {
+    console.log(err);
+  }
 
   console.log(`check zip exists`);
   if (fs.existsSync(zipPath)) {
