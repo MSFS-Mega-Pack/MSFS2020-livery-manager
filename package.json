@@ -84,7 +84,7 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.5",
     "@sentry/webpack-plugin": "^1.13.0",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "^8.2.1",
     "cross-env": "^7.0.2",
     "css-loader": "^5.0.1",
     "dotenv": "^8.2.0",
