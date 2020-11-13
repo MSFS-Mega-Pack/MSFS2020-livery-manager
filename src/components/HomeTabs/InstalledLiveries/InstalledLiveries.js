@@ -365,7 +365,6 @@ export default function InstalledLiveries(props) {
                     // enqueueSnackbar('Failed to remove livery: unknown error (#5)', { variant: 'error' });
                     RemoveLiveryFromData('updating', livery);
                     console.error(err);
-                    return;
                   }
                 }
 

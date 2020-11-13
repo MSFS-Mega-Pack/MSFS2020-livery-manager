@@ -252,7 +252,7 @@ ListRow.propTypes = {
   updateAvailable: PropTypes.bool.isRequired,
   beingDeleted: PropTypes.bool.isRequired,
   beingUpdated: PropTypes.bool.isRequired,
-  selected: PropTypes.bool.isRequired,
+  // selected: PropTypes.bool.isRequired,
   deleteLivery: PropTypes.func.isRequired,
   newLiveryObject: PropTypes.arrayOf(ListRow.livery),
   liveryDataFuncs: PropTypes.shape({
