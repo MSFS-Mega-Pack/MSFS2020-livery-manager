@@ -8,6 +8,7 @@ import progress from 'request-progress';
 import Config from 'electron-json-config';
 
 import ThrowError from '../ThrowError';
+import addLiveryInstallAnalytic from './addLiveryInstallAnalytic';
 
 import Constants from '../../data/Constants.json';
 import ConfigKeys from '../../data/config-keys.json';
@@ -19,8 +20,9 @@ import ConfigKeys from '../../data/config-keys.json';
  * @param {number} index
  * @param {number} total
  * @param {import("../../locales/Locale").default} CurrentLocale Current locale
+ * @param {"fresh"|"update"} installType Type of install (update, fresh install, etc)
  */
-export default async function InstallAddon(PlaneObject, index, total, CurrentLocale, updateProgress) {
+export default async function InstallAddon(PlaneObject, index, total, CurrentLocale, updateProgress, installType) {
   const Directory = Config.get(ConfigKeys.settings.package_directory);
   const downloadURL = `${Constants.urls.cdnEndpoint}/${PlaneObject.fileName}?hash=${PlaneObject.checkSum}`;
   const zipName = PlaneObject.fileName.substr(PlaneObject.fileName.lastIndexOf('/') + 1);
@@ -29,6 +31,7 @@ export default async function InstallAddon(PlaneObject, index, total, CurrentLoc
   const extractDir = Path.join(Directory, `${zipName.split('.zip')[0]}`);
   const Sentry = require('@sentry/electron');
   const { RewriteFrames } = require('@sentry/integrations');
+
   Sentry.init({
     dsn: Constants.urls.sentryDSN,
     environment: process.env.NODE_ENV,
@@ -97,6 +100,12 @@ export default async function InstallAddon(PlaneObject, index, total, CurrentLoc
               fs.unlinkSync(zipPath);
               fs.writeFileSync(Path.join(extractDir, Constants.modLockFileName), JSON.stringify(PlaneObject, null, 2));
               console.log(`Installed: ${zipName}`);
+
+              // Add analytic for this installed livery
+              if (installType === 'fresh') {
+                addLiveryInstallAnalytic(PlaneObject.displayName);
+              }
+
               resolve();
             } catch (err) {
               fs.unlinkSync(zipPath);

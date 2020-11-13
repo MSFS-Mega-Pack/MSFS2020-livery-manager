@@ -167,13 +167,20 @@ export default function AvailableLiveries(props) {
               console.log(`Start install ${i}`);
 
               try {
-                await InstallAddon(selectedLiveries[i], i, selectedLiveries.length, CurrentLocale, message => {
-                  closeSnackbar(s);
-                  s = enqueueSnackbar(message, {
-                    variant: 'info',
-                    persist: true,
-                  });
-                });
+                await InstallAddon(
+                  selectedLiveries[i],
+                  i,
+                  selectedLiveries.length,
+                  CurrentLocale,
+                  message => {
+                    closeSnackbar(s);
+                    s = enqueueSnackbar(message, {
+                      variant: 'info',
+                      persist: true,
+                    });
+                  },
+                  'fresh'
+                );
               } catch (e) {
                 failures.push(i);
                 console.log('failed!');

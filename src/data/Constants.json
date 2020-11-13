@@ -20,7 +20,8 @@
       "feedHistory": "get/feed/history",
       "article": "get/feed/article",
       "update": "get/update",
-      "verify": "get/verify"
+      "verify": "get/verify",
+      "addLiveryStat": "get/addLiveryStat"
     }
   },
   "refreshInterval": 30000
