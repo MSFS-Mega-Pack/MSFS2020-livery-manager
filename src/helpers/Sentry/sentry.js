@@ -8,4 +8,5 @@ Sentry.init({
   debug: true,
   attachStacktrace: true,
   integrations: [new RewriteFrames()],
+  ignoreErrors: ['BrowserWindow Unresponsive'],
 });

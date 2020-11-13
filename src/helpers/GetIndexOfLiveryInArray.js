@@ -26,7 +26,6 @@ export default function GetIndexOfLiveryInArray(livery, arr) {
         fileName: livery.fileName.toLowerCase(),
       })
   );
-
   // If the livery was found in the list of installed, but the hash
   // is different, report that. An update is probably available!
   if (index !== -1 && arr[index].checkSum !== livery.checkSum) {

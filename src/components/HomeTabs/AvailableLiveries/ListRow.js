@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
   liveryInfoContainer: {
     padding: theme.spacing(2),
+    display: 'flex',
   },
   checksum: {
     borderBottom: '#aaaa dotted 2px',
@@ -30,10 +31,11 @@ const useStyles = makeStyles(theme => ({
   },
   thumbnail: {
     padding: theme.spacing(),
+    flexGrow: 1,
     '& img': {
       display: 'block',
-      maxWidth: 300,
-      maxHeight: 600,
+      maxHeight: 400,
+      width: '100%',
       objectFit: 'contain',
     },
   },
@@ -108,10 +110,12 @@ export default function ListRow(props) {
             }
           />
           <FieldValueDisplay
+            titleProps={{ style: { textAlign: 'center' } }}
             fieldName={CurrentLocale.translate('manager.pages.available_liveries.components.livery_row.info_fields.thumbnail.title')}
             value={
               <Box component="figure" className={classes.thumbnail}>
                 <img
+                  draggable="false"
                   src={`${Constants.urls.cdnEndpoint}/${livery.image || livery.smallImage}`}
                   onError={function (e) {
                     // set src to 'no image' image if the thumb fails to load

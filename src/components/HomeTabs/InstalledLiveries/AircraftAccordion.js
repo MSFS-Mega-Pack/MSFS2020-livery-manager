@@ -41,12 +41,15 @@ const useStyles = makeStyles(theme => ({
   },
   aircraftThumbnail: {
     marginRight: theme.spacing(2),
+    flexBasis: '33%',
+    maxWidth: '100%',
     '& picture': {
       display: 'block',
       '& img': {
         objectFit: 'contain',
         display: 'block',
-        maxWidth: 350,
+        height: '100%',
+        width: '100%',
       },
     },
   },
@@ -63,15 +66,23 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 export default function AircraftAccordion(props) {
-  const { aircraft, installedLiveries, AddLiveryToData, RemoveLiveryFromData, liveryData, expanded, setExpanded } = props;
-
+  const {
+    aircraft,
+    installedLiveries,
+    AddLiveryToData,
+    RemoveLiveryFromData,
+    liveryData,
+    expanded,
+    setExpanded,
+    fileListing,
+    RefreshAllData,
+  } = props;
   const classes = useStyles();
-
   const liveriesForThisAircraft = installedLiveries
     ? installedLiveries.filter(l => l.airplane.toLowerCase() === aircraft.name.toLowerCase())
     : [];
   const liveriesWithUpdatesAvailable = liveriesForThisAircraft.filter(
-    l => GetIndexOfLiveryInArray(l, liveriesForThisAircraft)[1] === 'differentHash'
+    l => GetIndexOfLiveryInArray(l, fileListing.data.fileList)[1] === 'differentHash'
   );
 
   const { enqueueSnackbar } = useSnackbar();
@@ -106,6 +117,9 @@ export default function AircraftAccordion(props) {
           <LiveryList
             installedLiveries={installedLiveries}
             liveryData={liveryData}
+            fileListing={fileListing}
+            liveryDataFuncs={{ add: AddLiveryToData, remove: RemoveLiveryFromData }}
+            RefreshAllData={RefreshAllData}
             deleteLivery={async livery => {
               console.log('start deletion');
 
@@ -206,4 +220,6 @@ AircraftAccordion.propTypes = {
   }),
   expanded: PropTypes.bool.isRequired,
   setExpanded: PropTypes.func.isRequired,
+  fileListing: PropTypes.shape({ data: { fileList: PropTypes.arrayOf(CustomPropTypes.Livery) } }),
+  RefreshAllData: PropTypes.func.isRequired,
 };

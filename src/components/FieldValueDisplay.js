@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, Typography } from '@material-ui/core';
+import { Box, makeStyles, Typography } from '@material-ui/core';
 
 /**
  * @param {Object} props
@@ -14,21 +14,23 @@ export default function FieldValueDisplay(props) {
     sectTitle: { textTransform: 'uppercase', marginBottom: 2 },
   })();
 
-  const { fieldName, value } = props;
+  const { fieldName, value, titleProps, contentProps } = props;
 
   return (
-    <>
-      <Typography className={classes.sectTitle} variant="caption" color="textSecondary" component="h2">
+    <Box>
+      <Typography className={classes.sectTitle} variant="caption" color="textSecondary" component="h2" {...titleProps}>
         {fieldName}
       </Typography>
-      <Typography variant="body2" gutterBottom component="div">
+      <Typography variant="body2" gutterBottom component="div" {...contentProps}>
         {value}
       </Typography>
-    </>
+    </Box>
   );
 }
 
 FieldValueDisplay.propTypes = {
   fieldName: PropTypes.string.isRequired,
   value: PropTypes.node.isRequired,
+  titleProps: PropTypes.object,
+  contentProps: PropTypes.object,
 };

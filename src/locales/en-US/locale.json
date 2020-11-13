@@ -4,6 +4,9 @@
     "localeId": "en-US"
   },
   "strings": {
+    "common": {
+      "coming_soon": "Feature coming soon."
+    },
     "models": {
       "article": {
         "date_format": "ddd D MMM 'YY, h:mm A"
@@ -19,6 +22,12 @@
         "yes_button": "&Yes",
         "no_button": "&No",
         "cancel_button": "&Cancel"
+      },
+      "install_addon": {
+        "progress_notifications": {
+          "downloading_livery": "Downloading livery {{current}} of {{total}}",
+          "extracting_livery": "Extracting livery {{current}} of {{total}}"
+        }
       },
       "delete_addon": {
         "delete_path_fail": "Error while deleting addon path",
@@ -138,8 +147,6 @@
           },
           "progress_notifications": {
             "begin_install": "Installing liveries...",
-            "downloading_livery": "Downloading livery {{current}} of {{total}}",
-            "extracting_livery": "Extracting livery {{current}} of {{total}}",
             "install_complete": "Installed {{total}} [[total||livery|liveries]] successfully",
             "install_failed": "{{fails}} [[fails||livery|liveries]] failed to install. The team has been notified."
           },
@@ -188,6 +195,11 @@
         },
         "installed_liveries": {
           "warning_cannot_remove_multiple_liveries": "At the moment, you can't remove or update multiple liveries at a time. Don't worry because this will be coming in a future update.",
+          "progress_notifications": {
+            "begin_update": "Updating [[total||livery|liveries]]...",
+            "update_complete": "Updated {{total}} [[total||livery|liveries]] successfully",
+            "update_failed": "{{fails}} [[fails||livery|liveries]] failed to update. The team has been notified."
+          },
           "components": {
             "refresh_box": {
               "refreshing_now": "checking now..."
@@ -198,9 +210,11 @@
               "update_count": "{{updates}} [[updates||livery has an update|liveries have updates]]"
             },
             "list_row": {
+              "update": {
+                "button": "Update"
+              },
               "help": {
                 "tooltip": {
-                  "update": "Update livery",
                   "delete": "Remove livery",
                   "delete_timer": "Hold for {{time}}s to remove"
                 },
@@ -232,7 +246,8 @@
             }
           },
           "button": {
-            "remove_all_liveries": "Remove all"
+            "remove_all_liveries": "Remove all",
+            "update_all": "Update all"
           },
           "no_liveries_installed": {
             "more_info_button": "View more info",

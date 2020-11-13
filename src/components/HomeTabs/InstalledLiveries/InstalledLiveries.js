@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import fs from 'fs';
 
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 
 import RefreshBox from '../../RefreshBox';
 import Loading from '../../Loading';
@@ -16,6 +16,7 @@ import Constants from '../../../data/Constants.json';
 import NoImage from '../../../images/no-image-available.png';
 import GetIndexOfLiveryInArray from '../../../helpers/GetIndexOfLiveryInArray';
 import DeleteAddon from '../../../helpers/AddonInstaller/deleteAddon';
+import InstallAddon from '../../../helpers/AddonInstaller/InstallAddon';
 import ShowNativeDialog from '../../../helpers/ShowNativeDialog';
 
 export default function InstalledLiveries(props) {
@@ -86,7 +87,7 @@ export default function InstalledLiveries(props) {
 
   /**
    * @param {"disabled"|"deleting"|"updating"|"selected"} arrayName Name of liveryData array
-   * @param {Object} livery Livery to add
+   * @param {Object} livery Livery to remove
    */
   function RemoveLiveryFromData(arrayName, livery) {
     setLivData(ld => {
@@ -156,34 +157,33 @@ export default function InstalledLiveries(props) {
     );
   }
 
+  async function RefreshAllData() {
+    setRefreshing(true);
+    await RefreshInstalledLiveries();
+    UpdateFileList(() => {
+      setRefreshing(false);
+      setJustRefreshed(new Date().getTime());
+    });
+  }
+
   return (
     <Box>
       <RefreshBox
         justRefreshed={!!justRefreshed}
         lastCheckedTime={fileListing && fileListing.checkedAt}
         onRefresh={async () => {
-          setRefreshing(true);
-          await RefreshInstalledLiveries();
-          UpdateFileList(() => {
-            setRefreshing(false);
-            setJustRefreshed(new Date().getTime());
-          });
+          await RefreshAllData();
         }}
         refreshInterval={Constants.refreshInterval}
       />
 
       <Box display="flex">
-        <Box flex="1">
-          <Typography paragraph variant="body1">
-            {CurrentLocale.translate('manager.pages.installed_liveries.warning_cannot_remove_multiple_liveries')}
-          </Typography>
-        </Box>
         {installedLiveries.length > 0 && (
           <Box>
             <Button
               onClick={async () => {
                 if (installedLiveries.length <= 0) {
-                  enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notifications.no_liveries_to_remove'), {
+                  enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notification.no_liveries_to_remove'), {
                     variant: 'error',
                   });
                   return;
@@ -294,6 +294,98 @@ export default function InstalledLiveries(props) {
             >
               {CurrentLocale.translate('manager.pages.installed_liveries.button.remove_all_liveries')}
             </Button>
+            <Button
+              onClick={async () => {
+                const liveriesWithUpdatesAvailable = installedLiveries.filter(
+                  l => GetIndexOfLiveryInArray(l, fileListing.data.fileList)[1] === 'differentHash'
+                );
+                if (liveriesWithUpdatesAvailable.length <= 0) {
+                  enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notification.no_liveries_to_update'), {
+                    variant: 'error',
+                  });
+                  return;
+                }
+
+                let d = ShowNativeDialog(
+                  CurrentLocale,
+                  CurrentLocale.translate('manager.pages.installed_liveries.dialog.update_all.message'),
+                  CurrentLocale.translate('manager.pages.installed_liveries.dialog.update_all.title'),
+                  CurrentLocale.translate('manager.pages.installed_liveries.dialog.update_all.detail')
+                );
+
+                if (d !== 0) return;
+
+                /** @type {number} */
+                const total = liveriesWithUpdatesAvailable.length;
+                let errors = 0,
+                  currentSnack,
+                  currentUpdate = 1;
+
+                for (const livery of liveriesWithUpdatesAvailable) {
+                  console.log('start updating all');
+
+                  closeSnackbar(currentSnack);
+                  currentSnack = enqueueSnackbar(
+                    CurrentLocale.translate('manager.pages.installed_liveries.notification.updating_livery', {
+                      current: currentUpdate,
+                      total: total,
+                    }),
+                    { variant: 'info' }
+                  );
+                  currentUpdate++;
+
+                  if (!livery) {
+                    // No livery object passed
+                    errors++;
+                    // enqueueSnackbar('Failed to remove livery: no obj passed (#1)', { variant: 'error' });
+                    return;
+                  }
+                  AddLiveryToData('updating', livery);
+
+                  const liveryPath = livery.installLocation;
+                  console.log(liveryPath);
+                  try {
+                    /* eslint-disable-next-line no-unused-vars */
+                    const [_, msg] = GetIndexOfLiveryInArray(livery, fileListing.data.fileList);
+                    if (_ == -1) {
+                      errors++;
+                      return;
+                    }
+                    await InstallAddon(fileListing.data.fileList[_], currentUpdate, total, CurrentLocale, message => {
+                      closeSnackbar(currentSnack);
+                      currentSnack = enqueueSnackbar(message, {
+                        variant: 'info',
+                        persist: true,
+                      });
+                    });
+                    RefreshInstalledLiveries();
+                  } catch (err) {
+                    // Other error
+                    errors++;
+                    // enqueueSnackbar('Failed to remove livery: unknown error (#5)', { variant: 'error' });
+                    RemoveLiveryFromData('updating', livery);
+                    console.error(err);
+                  }
+                }
+
+                const success = total - errors;
+                enqueueSnackbar(
+                  CurrentLocale.translate('manager.pages.installed_liveries.notification.update_all_success', {
+                    total: success,
+                  }),
+                  { variant: 'success' }
+                );
+                if (errors > 0) {
+                  enqueueSnackbar(
+                    CurrentLocale.translate('manager.pages.installed_liveries.notification.update_all_failures', {
+                      errors: errors,
+                    })
+                  );
+                }
+              }}
+            >
+              {CurrentLocale.translate('manager.pages.installed_liveries.button.update_all')}
+            </Button>
           </Box>
         )}
       </Box>
@@ -306,6 +398,8 @@ export default function InstalledLiveries(props) {
         RemoveLiveryFromData={RemoveLiveryFromData}
         SetExpanded={SetExpanded}
         expandedList={expandedList}
+        fileListing={fileListing}
+        RefreshAllData={RefreshAllData}
       />
     </Box>
   );
