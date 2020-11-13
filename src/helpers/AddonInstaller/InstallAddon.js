@@ -19,9 +19,8 @@ import ConfigKeys from '../../data/config-keys.json';
  * @param {number} index
  * @param {number} total
  * @param {import("../../locales/Locale").default} CurrentLocale Current locale
- * @param {boolean=false} isUpdate Whether this install is a livery update
  */
-export default async function InstallAddon(PlaneObject, index, total, CurrentLocale, updateProgress, isUpdate = false) {
+export default async function InstallAddon(PlaneObject, index, total, CurrentLocale, updateProgress) {
   const Directory = Config.get(ConfigKeys.settings.package_directory);
   const downloadURL = `${Constants.urls.cdnEndpoint}/${PlaneObject.fileName}?hash=${PlaneObject.checkSum}`;
   const zipName = PlaneObject.fileName.substr(PlaneObject.fileName.lastIndexOf('/') + 1);

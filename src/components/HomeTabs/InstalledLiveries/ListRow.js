@@ -38,7 +38,7 @@ const useStyles = makeStyles({
 const HoldToRemoveTime = 1.5;
 
 export default function ListRow(props) {
-  const { livery, updateAvailable, deleteLivery, beingDeleted, newLiveryObject, beingUpdated, selected, RefreshAllData } = props;
+  const { livery, updateAvailable, deleteLivery, beingDeleted, newLiveryObject, beingUpdated, /*selected,*/ RefreshAllData } = props;
 
   /**
    * @callback UpdateLiveryData
@@ -164,20 +164,13 @@ export default function ListRow(props) {
                 let failed = false;
 
                 try {
-                  await InstallAddon(
-                    newLiveryObject,
-                    0,
-                    1,
-                    CurrentLocale,
-                    message => {
-                      closeSnackbar(s);
-                      s = enqueueSnackbar(message, {
-                        variant: 'info',
-                        persist: true,
-                      });
-                    },
-                    true
-                  );
+                  await InstallAddon(newLiveryObject, 0, 1, CurrentLocale, message => {
+                    closeSnackbar(s);
+                    s = enqueueSnackbar(message, {
+                      variant: 'info',
+                      persist: true,
+                    });
+                  });
                 } catch (e) {
                   failed = true;
                   console.log('failed!', e);

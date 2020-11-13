@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import fs from 'fs';
 
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 
 import RefreshBox from '../../RefreshBox';
 import Loading from '../../Loading';
