@@ -15,6 +15,8 @@ Changed marked with `[DEV]` are invisible to users, and purely for the benefit o
 - Add button to delete ALL installed liveries (don't worry, you have to confirm it) (#141)
 - Add internationalisation (translation) support (#144)
 - YOU CAN RESIZE THE WINDOW NOW STOP COMPLAINING PLEASE! (#155)
+- You can now update your liveries at the press of a button! (#161)
+- We now collect anonymous analytics about what liveries are being installed (the only data being sent is the name of the livery when you install it) (#161)
 
 ### Changed
 
