@@ -11,7 +11,7 @@ Changed marked with `[DEV]` are invisible to users, and purely for the benefit o
 
 ### Added
 
-*None*
+_None_
 
 ### Changed
 
@@ -19,11 +19,11 @@ Changed marked with `[DEV]` are invisible to users, and purely for the benefit o
 
 ### Removed
 
-*None*
+_None_
 
 ### Meta
 
-*None*
+_None_
 
 ## [0.3.0] - 2020-11-13
 

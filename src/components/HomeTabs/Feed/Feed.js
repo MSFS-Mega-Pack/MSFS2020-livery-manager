@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Typography, CircularProgress, Link, Box, Button } from '@material-ui/core';
@@ -9,7 +9,6 @@ import GetFeedHistory from '../../../helpers/Feed/GetFeedHistory';
 import FeedClass from '../../../models/Feed';
 import Article from './Article';
 import LocaleContext from '../../../locales/LocaleContext';
-import IsDev from '../../../data/IsDev';
 
 export default function Feed(props) {
   const CurrentLocale = React.useContext(LocaleContext);
