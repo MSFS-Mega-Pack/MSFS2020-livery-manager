@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Changed marked with `[DEV]` are invisible to users, and purely for the benefit of developers.
 
+## [0.3.1] - 2020-11-15
+
+### Added
+
+*None*
+
+### Changed
+
+- Fixed bug where users can't progress from the language selection page (7e6da5)
+
+### Removed
+
+*None*
+
+### Meta
+
+*None*
+
 ## [0.3.0] - 2020-11-13
 
 ### Added
