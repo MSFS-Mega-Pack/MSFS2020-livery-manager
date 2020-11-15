@@ -37,7 +37,7 @@ export default function Setup() {
   const theme = useTheme();
   const CurrentLocale = React.useContext(LocaleContext);
 
-  if (page === 2) {
+  if (page === 3) {
     if (!ValidateFSDirectory(data.packageDir, CurrentLocale)[0]) {
       nextButtonEnabled !== false && setNextButtonEnabled(false);
     } else {
