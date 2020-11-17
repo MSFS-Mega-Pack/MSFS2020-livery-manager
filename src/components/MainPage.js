@@ -24,24 +24,24 @@ const useStyles = makeStyles({
 });
 
 export default function MainPage(props) {
-  const CurrentLocal = React.useContext(LocaleContext);
+  const CurrentLocale = React.useContext(LocaleContext);
 
   const TABS = [
     {
-      label: CurrentLocal.translate('manager.tabs.tab_labels.update_feed'),
+      label: CurrentLocale.translate('manager.tabs.tab_labels.update_feed'),
       icon: <HomeIcon />,
       iconOnly: true,
     },
     {
-      label: CurrentLocal.translate('manager.tabs.tab_labels.available_liveries'),
+      label: CurrentLocale.translate('manager.tabs.tab_labels.available_liveries'),
       iconOnly: false,
     },
     {
-      label: CurrentLocal.translate('manager.tabs.tab_labels.installed_liveries'),
+      label: CurrentLocale.translate('manager.tabs.tab_labels.installed_liveries'),
       iconOnly: false,
     },
     {
-      label: CurrentLocal.translate('manager.tabs.tab_labels.settings'),
+      label: CurrentLocale.translate('manager.tabs.tab_labels.settings'),
       iconOnly: false,
     },
   ];
