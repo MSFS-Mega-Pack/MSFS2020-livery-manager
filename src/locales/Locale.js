@@ -39,7 +39,7 @@ export default class Locale {
    * @param {string} translationId Translation, referenced in dot notation (e.g. `settings.setting.community_folder.title`)
    * @param {object=} variables Variables to use inside the translation (e.g. {percentage: "69%"})
    * @param {PluraliseFunction=} pluralisePredicate Used to determine whether the string should be pluralised, if applicable. Default is `false` for values of 1, `true` otherwise.
-   * 
+   *
    * @returns {string} Translated text, or ID if not found
    */
   translate(translationId, variables, pluralisePredicate) {
@@ -105,7 +105,7 @@ export default class Locale {
  * @param {string} translation The fetched translation
  * @param {object} variables Variables to be embedded inside the translation
  * @param {PluraliseFunction=} shouldPluralise Used to determine whether the string should be pluralised, if applicable. Default is `false` for values of 1, `true` otherwise.
- * 
+ *
  * @returns {string} Full translation with variables embedded
  */
 function EmbedVariables(translation, variables, shouldPluralise) {
@@ -145,7 +145,7 @@ function EmbedVariables(translation, variables, shouldPluralise) {
  * @param {string} translation The fetched translation
  * @param {object} variables Variables to be embedded inside the translation
  * @param {PluraliseFunction=} shouldPluralise Used to determine whether the string should be pluralised, if applicable. Default is `false` for values of 1, `true` otherwise.
- * 
+ *
  * @returns {string} Full translation with variables embedded
  */
 function Pluralise(translation, variables, shouldPluralise) {
