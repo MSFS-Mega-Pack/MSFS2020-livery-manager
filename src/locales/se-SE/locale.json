@@ -230,12 +230,12 @@
                         "remove_all_success": "Tog bort {{total}} [[total||livery|liveries]]",
                         "remove_all_failures": "Misslyckades att ta bort {{errors}} [[errors||livery|liveries]]",
                         "deletion": {
-                            "fail1": "Failed to remove livery: no obj passed",
-                            "fail2": "Failed to remove livery: unknown location",
-                            "fail3": "Failed to remove livery: folder not found",
-                            "fail4": "Failed to remove livery: {{error}}",
-                            "fail5": "Failed to remove livery: unknown error",
-                            "success": "Successfully removed livery"
+                            "fail1": "Misslyckaeds att ta bort livery: inget obj passerat",
+                            "fail2": "Misslyckaeds att ta bort livery: okänd plats",
+                            "fail3": "Misslyckaeds att ta bort livery: hitta inte mappen",
+                            "fail4": "Misslyckaeds att ta bort livery: {{error}}",
+                            "fail5": "Misslyckaeds att ta bort livery: okänt fel",
+                            "success": "Lyckades ta bort livery!"
                         }
                     },
                     "dialog": {
