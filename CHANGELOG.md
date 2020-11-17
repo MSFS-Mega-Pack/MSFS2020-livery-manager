@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Changed marked with `[DEV]` are invisible to users, and purely for the benefit of developers.
 
+## [0.4.0] - Unreleased
+
+### Added
+
+_None_
+
+### Changed
+
+- Fixed issue with custom languages that didn't affect anyone in 0.3.1, but would have from this update (#182)
+
+### Removed
+
+_None_
+
+### Meta
+
+_None_
+
 ## [0.3.1] - 2020-11-15
 
 ### Added
