@@ -6,8 +6,11 @@ import FetchAndParseJsonManifest from '../helpers/Manifest/FetchAndParseManifest
 import Constants from '../data/Constants.json';
 import ActiveApiEndpoint from '../data/ActiveApiEndpoint';
 import GetInstalledAddons from '../helpers/AddonInstaller/getInstalledAddons';
+import LocaleContext from '../locales/LocaleContext';
 
 export default function LiveryManager() {
+  const CurrentLocale = React.useContext(LocaleContext);
+
   const [openPage, setOpenPage] = useState('dashboard');
 
   // Feed state
@@ -82,10 +85,10 @@ export default function LiveryManager() {
           : null
       }
     >
-      <div style={{ display: pg !== 'dashboard' && 'none' }}>
+      <div style={{ display: pg !== CurrentLocale.translate('manager.tabs.tab_labels.update_feed').toLowerCase() && 'none' }}>
         <Feed feed={feed} setFeed={setFeed} fullHistory={fullHistory} setFullHistory={setFullHistory} />
       </div>
-      <div style={{ display: pg !== 'available liveries' && 'none' }}>
+      <div style={{ display: pg !== CurrentLocale.translate('manager.tabs.tab_labels.available_liveries').toLowerCase() && 'none' }}>
         <AvailableLiveries
           justRefreshed={justRefreshed}
           setJustRefreshed={setJustRefreshed}
@@ -96,7 +99,7 @@ export default function LiveryManager() {
           setInstalledLiveries={setInstalledLiveries}
         />
       </div>
-      <div style={{ display: pg !== 'installed liveries' && 'none' }}>
+      <div style={{ display: pg !== CurrentLocale.translate('manager.tabs.tab_labels.installed_liveries').toLowerCase() && 'none' }}>
         <InstalledLiveries
           justRefreshed={justRefreshed}
           setJustRefreshed={setJustRefreshed}
@@ -106,7 +109,7 @@ export default function LiveryManager() {
           setInstalledLiveries={setInstalledLiveries}
         />
       </div>
-      <div style={{ display: pg !== 'settings' && 'none' }}>
+      <div style={{ display: pg !== CurrentLocale.translate('manager.tabs.tab_labels.settings').toLowerCase() && 'none' }}>
         <Settings />
       </div>
     </MainPage>
