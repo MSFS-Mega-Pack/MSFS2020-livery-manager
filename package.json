@@ -93,7 +93,7 @@
     "electron-installer-windows": "^3.0.0",
     "electron-packager": "^15.1.0",
     "eslint": "^7.13.0",
-    "eslint-plugin-jsdoc": "^30.7.7",
+    "eslint-plugin-jsdoc": "^30.7.8",
     "eslint-plugin-react": "^7.21.5",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
@@ -104,7 +104,7 @@
     "style-loader": "^2.0.0",
     "terser-webpack-plugin": "^4.2.3",
     "webpack": "^4.44.2",
-    "webpack-bundle-analyzer": "^3.9.0",
+    "webpack-bundle-analyzer": "^4.1.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   }
