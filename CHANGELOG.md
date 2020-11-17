@@ -11,7 +11,7 @@ Changed marked with `[DEV]` are invisible to users, and purely for the benefit o
 
 ### Added
 
-_None_
+- Add Swedish language (thank you @brezedc!) (#180)
 
 ### Changed
 
