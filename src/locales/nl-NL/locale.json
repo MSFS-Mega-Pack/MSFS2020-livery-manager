@@ -1,0 +1,316 @@
+{
+  "info": {
+    "name": "Dutch",
+    "localeId": "nl-NL"
+  },
+  "strings": {
+    "common": {
+      "coming_soon": "Functie binnenkort beschikbaar."
+    },
+    "models": {
+      "article": {
+        "date_format": "ddd D MMM YYYY, h:mm A"
+      }
+    },
+    "helpers": {
+      "validate_fs_directory": {
+        "choose_directory": "Selecteer een doelmap",
+        "path_doesnt_exist": "De geselecteerde locatie bestaat niet",
+        "invalid_path": "zorg ervoor dat je Community map geselecteerd is"
+      },
+      "show_native_dialog": {
+        "yes_button": "&Ja",
+        "no_button": "&Nee",
+        "cancel_button": "&Annuleren"
+      },
+      "install_addon": {
+        "progress_notifications": {
+          "downloading_livery": "Livery {{current}} van {{total}} downloaden",
+          "extracting_livery": "Livery {{current}} van {{total}} uitpakken"
+        }
+      },
+      "delete_addon": {
+        "delete_path_fail": "Fout bij verwijderen addon bestandspad",
+        "delete_path_success": "Addon succesvol verwijderd",
+        "non_existant": "Addon bestandspad bestond niet"
+      },
+      "get_active_feed": {
+        "fetch_fail": "Kan huidige feed van de API niet ophalen.",
+        "fetch_fail_article_text": "Kan artikel niet ophalen. Als dit zo blijft, [meldt dit bij de ontwikkelaar](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      },
+      "get_feed_history": {
+        "fetch_fail": "Kan huidige feed van de API niet ophalen.",
+        "fetch_fail_article_text": "Kan artikel niet ophalen. Als dit zo blijft, [meldt dit bij de ontwikkelaar](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      }
+    },
+    "manager": {
+      "splash_screen": {
+        "loading": "Laden..."
+      },
+      "setup": {
+        "back_button": "Vorige",
+        "next_button": "Volgende",
+        "finish_button": "Voltooien",
+        "welcome_page": {
+          "heading": "Welkom bij de {{app_name}}",
+          "description": "We moeten een paar korte installatie stappen doorlopen voordat je de liveries manager kunt gebruiken, zodat we je de beste ervaring kunnen geven en om te zorgen dat alles volgens plan gaat."
+        },
+        "locale_page": {
+          "heading": "Kies je taal",
+          "description": "Alle talen zijn door de community vertaald. Fouten in vertalingen kunnen gerapporteerd worden op GitHub.",
+          "help_translate_link": "Help je ook mee de manager te vertalen in jouw taal? Why not help translate the manager into your language?",
+          "dropdown": {
+            "label": "Taal"
+          }
+        },
+        "community_directory": {
+          "heading": "Vind je community map",
+          "description": "Zorg ervoor dat de onderstaande locatie gelijk is aan jouw community map locatie. Als dit niet zo is, kies dan de correcte map met de bladeren knop.",
+          "text_field": {
+            "label": "Community map",
+            "browse_button_sr_text": "Blader naar map"
+          }
+        },
+        "complete_page": {
+          "heading": "Installatie voltooid",
+          "description1": "Klaar om op te stijgen!",
+          "description2": "Kies 'Voltooien' om je instellingen te bevestigen en de manager te starten."
+        }
+      },
+      "tabs": {
+        "tab_labels": {
+          "update_feed": "Dashboard",
+          "available_liveries": "Beschikbare liveries",
+          "installed_liveries": "Geïnstalleerde liveries",
+          "settings": "Instellingen"
+        }
+      },
+      "components": {
+        "feed_article": {
+          "authored_by": "Door {{author}}"
+        },
+        "badges": {
+          "update_available": {
+            "tooltip": "Ga naar 'Geïnstalleerde liveries' om de livery te updaten",
+            "content": "Update beschikbaar"
+          },
+          "installed": {
+            "tooltip": "Om te verwijderen, updaten, of herinstalleren, ga naar de Geïnstalleerde liveries tab.To uninstall, update, or reinstall, head to the Installed Liveries tab",
+            "content": "Geïnstalleerd"
+          }
+        },
+        "refresh_box": {
+          "date_format": "D MMM, h:mm A",
+          "last_refreshed": "Laatst ververst om:",
+          "last_refreshed_explanation_tooltip": "Wanneer je voor het laatst voor geïnstalleerde en beschikbare liveries hebt gecheckt",
+          "refresh_button": {
+            "tooltip": {
+              "default": "Ververs beschikbare liveries",
+              "rate_limited": "Het aantal keer verversen is beperkt: je moet {{interval}}s wachten om te verversen"
+            },
+            "unknown_time": "onbekend"
+          }
+        },
+        "error_dialog": {
+          "error": "Fout",
+          "suggestions": "Suggestie",
+          "close_dialog_button": "Sluiten"
+        },
+        "offline_error": {
+          "title": "Je bent offline",
+          "paragraph1": "Deze app heeft een internetverbinding nodig om the werken. Controleer je netwerk.",
+          "paragraph2": "Deze melding verdwijnt automatisch wanneer de verbinding wordt hersteld."
+        }
+      },
+      "pages": {
+        "feed": {
+          "error_more_info_button": "Bekijk meer info",
+          "no_more_posts": {
+            "heading": "Dit was alles!",
+            "info": "Je hebt het einde van de update feed bereikt"
+          },
+          "view_more_updates_button": "Lees alle updates",
+          "errors": {
+            "generic_message": "Er is een fout ontstaan bij het laden van de nieuws feed",
+            "unknown_error": "Een onbekende fout",
+            "feed_unknown": "De opgehaalde feed informatie van de API was ongeldig. (null_err)"
+          }
+        },
+        "available_liveries": {
+          "errors": {
+            "installed_addons_fail": {
+              "title": "Geïnstalleerde liveries niet gevonden.",
+              "error_text": "Geïnstalleerde liveries konden niet opgehaald worden. Heb je de community map verplaatst of verwijderd?",
+              "suggestion1": "Je hebt deze locatie opgegeven: {{path}}. Is dit correct?",
+              "suggestion2": "Probeer de community map aan te passen in instellingen.Try updating your community folder in Settings."
+            }
+          },
+          "progress_notifications": {
+            "begin_install": "liveries installeren...",
+            "install_complete": "{{total}} [[total||livery|liveries]] succesvol geïnstalleerd",
+            "install_failed": "{{fails}} [[fails||livery kon|liveries konden]] niet geïnstalleerd worden. Het team is geinformeerd."
+          },
+          "fab_currently_installing": "Installing {{total}} [[total||livery|liveries]] ({{size}} MB)",
+          "fab_install": "Install {{total}} [[total||livery|liveries]] ({{size}} MB)",
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "wordt gecontroleerd..."
+            },
+            "aircraft_accordion": {
+              "available_count": "{{total}} [[total||livery|liveries]] beschikbaar",
+              "installed_count": "{{total}} geïnstalleerd",
+              "info_fields": {
+                "aircraft_name": {
+                  "title": "Vliegtuig"
+                },
+                "total_livery_count": {
+                  "title": "Liveries beschikbaar",
+                  "value": "{{total}} beschikbaar"
+                },
+                "total_installed_count": {
+                  "title": "Liveries geïnstalleerd",
+                  "value": "{{count}} of {{total}} geïnstalleerd"
+                }
+              },
+              "buttons": {
+                "select_all_btn": "Selecteer alles",
+                "deselect_all_btn": "Deselecteer alles"
+              },
+              "liveries_heading": "Liveries"
+            },
+            "livery_row": {
+              "expand_livery_details_tooltip": "Bekijk livery informatie",
+              "shrink_livery_details_tooltip": "Verberg livery informatie",
+              "info_fields": {
+                "version": {
+                  "title": "Versie",
+                  "tooltip": "Deze tekst representeerd de huidge versie van de beschikbare livery. Als jouw versie hiervan verschilt, is er een update beschikbaar."
+                },
+                "thumbnail": {
+                  "title": "Thumbnail"
+                }
+              }
+            }
+          }
+        },
+        "installed_liveries": {
+          "warning_cannot_remove_multiple_liveries": "Op dit moment kan je niet meerdere liveries tegelijkertijd verwijderen of updaten. Maak je geen zorgen, deze functie komt in een toekomstige update.",
+          "progress_notifications": {
+            "begin_update": "[[total||livery|liveries]] updaten...",
+            "update_complete": "{{total}} [[total||livery update|liveries updates]] successvol geïnstalleerd",
+            "update_failed": "{{fails}} [[fails||livery update kon|liveries updates konden]] niet geïnstalleerd worden. Het team is geinformeerd."
+          },
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "wordt gecontroleerd..."
+            },
+            "aircraft_accordion": {
+              "liveries_heading": "Liveries",
+              "installed_count": "{{total}} geïnstalleerd",
+              "update_count": "{{updates}} [[updates||livery heeft een update|liveries hebben updates]]"
+            },
+            "list_row": {
+              "update": {
+                "button": "Update"
+              },
+              "help": {
+                "tooltip": {
+                  "update": "Update livery",
+                  "delete": "Verwijder livery",
+                  "delete_timer": "Houd {{time}}s vast om te verwijderen"
+                },
+                "snackbar": {
+                  "hold_to_remove": "Om een livery te verwijderen, Klik en hou de verwijder knop vast voor {{time}} seconden"
+                }
+              }
+            }
+          },
+          "notification": {
+            "no_liveries_to_remove": "Je hebt nog geen geïnstalleerde liveries!",
+            "removing_livery": "Verwijder livery {{current}} van {{total}}",
+            "remove_all_success": "{{total}} [[total||livery|liveries]] succesvol verwijderd",
+            "remove_all_failures": "{{errors}} [[errors||livery kon|liveries konden]] niet verwijderd worden",
+            "deletion": {
+              "fail1": "Livery verwijderen mislukt: geen obj gepasseerd",
+              "fail2": "Livery verwijderen mislukt: onbekende locatie",
+              "fail3": "Livery verwijderen mislukt: map niet gevonden",
+              "fail4": "Livery verwijderen mislukt: {{error}}",
+              "fail5": "Livery verwijderen mislukt: onbekende fout",
+              "success": "Livery succesvol verwijderd"
+            },
+            "no_liveries_to_update": "Je hebt nog geen geïnstalleerde liveries!",
+            "update_all_success": "{{total}} [[total||livery update|liveries updates]] successvol geïnstalleerd",
+            "update_all_failures": "{{errors}} [[errors||livery update kon|liveries updates konden]] niet geïnstalleerd worden",
+            "updating_livery": "Livery {{current}} van {{total}} updaten"
+          },
+          "dialog": {
+            "uninstall_all": {
+              "title": "Alle liveries verwijderen?",
+              "message": "Weet je zeker dat je AL JE LIVERIES wil deïnstalleren?",
+              "detail": "Zodra je dit start, kan je het niet stoppen of pauzeren. Om je liveries terug te krijgen, moet je ze opnieuw installeren."
+            },
+            "update_all": {
+              "title": "Alle liveries updaten?",
+              "message": "Weet je zeker dat je AL JE LIVERIES wil updaten?",
+              "detail": "Zodra je dit start, kan je het niet stoppen of pauzeren."
+            }
+          },
+          "button": {
+            "remove_all_liveries": "Verwijder alles",
+            "update_all": "Update alles"
+          },
+          "no_liveries_installed": {
+            "more_info_button": "Meer informatie",
+            "message": "Geen geïnstalleerde liveries gedetecteerd",
+            "info": "We konden geen mega pack liveries in jouw Community map vinden.\n\nAls je liveries met een 'drag en drop' zip hebt geïnstalleerd, zullen zie niet verschijnen. Ze moeten met via de manager geïnstalleerd worden."
+          }
+        },
+        "settings": {
+          "advanced_settings": {
+            "enabled_notification": "Geavanceerde instellingen ingeschakeld",
+            "disabled_notification": "Geavanceerde instellingen uitgeschakeld",
+            "dialog_title": "Geavanceerde instellingen inschakelen?",
+            "dialog_body": "Geavanceerde instellingen inschakelen?",
+            "dialog_detail": "Doe dit alleen op instructie van een ontwikkelaar. Dit kan zorgen voor onbedoelde gevolgen. Je bent gewaarschuwd!"
+          },
+          "footer": {
+            "line1": "{{appName}} — Gemaakt voor de Liveries Mega Pack",
+            "line2": "© {{year}} — Alle rechten voorbehouden — ",
+            "version": "v{{version}}",
+            "source_repo_and_license": "Bekijk de broncode en licentie"
+          },
+          "errors_in_inputs": "Los bovenstaande fout(en) op om op te slaan",
+          "save_settings_changes": "Kies 'Opslaan' om wijzigingen op te slaan",
+          "all_changes_saved": "Alle wijzigingen opgeslagen",
+          "save_button": "Opslaan",
+          "user_settings": {
+            "community_folder": {
+              "name": "Community map",
+              "input_label": "Locatie naar community folder",
+              "browse_button_sr_text": "Blader naar map",
+              "reset_button": "Ongedaan maken",
+              "open_in_explorer": "Open map in explorer",
+              "open_in_explorer_opening": "Openen..."
+            },
+            "locale_selection": {
+              "name": "Taal manager",
+              "label": "Taal"
+            },
+            "cache_clear": {
+              "name": "Caching",
+              "clearing_cache_notification": "Cache verwijderen. Dit kan een paar minuten duren.",
+              "cache_clear_success_notification": "Cache succesvol verwijderd!",
+              "cache_clear_error_notification": "Cache verwijderen mislukt",
+              "purge_cache_button": "Cache verwijderen"
+            },
+            "reset_manager_to_defaults": {
+              "name": "Herstel manager",
+              "detail": "Dit herstelt alle app instellingen en start de manager opnieuw op. Je geïnstalleerde liveries blijven behouden, en worden automatisch weer gedetecteerd.",
+              "reset_btn": "Herstel alle instellingen"
+            }
+          }
+        }
+      }
+    }
+  }
+}
