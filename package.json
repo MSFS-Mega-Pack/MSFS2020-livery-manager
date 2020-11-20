@@ -49,7 +49,7 @@
     "@material-ui/core": "^4.11.0",
     "@sentry/electron": "^2.0.3",
     "@sentry/integrations": "^5.27.4",
-    "adm-zip": "^0.4.16",
+    "adm-zip": "^0.5.0",
     "clsx": "^1.1.1",
     "dayjs": "^1.9.6",
     "del": "^6.0.0",
