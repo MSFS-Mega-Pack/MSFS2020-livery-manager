@@ -69,7 +69,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-hot-loader": "^4.13.0",
-    "react-markdown": "^5.0.2",
+    "react-markdown": "^5.0.3",
     "react-router-dom": "^5.2.0",
     "react-router-transition": "^2.0.0",
     "react-virtuoso": "^0.20.1",
