@@ -58,7 +58,7 @@
         "locale_page": {
           "heading": "Kies je taal",
           "description": "Alle talen zijn door de community vertaald. Fouten in vertalingen kunnen gerapporteerd worden op GitHub.",
-          "help_translate_link": "Help je ook mee de manager te vertalen in jouw taal? Why not help translate the manager into your language?",
+          "help_translate_link": "Help je ook mee de manager te vertalen in jouw taal?",
           "dropdown": {
             "label": "Taal"
           }
@@ -95,7 +95,7 @@
             "content": "Update beschikbaar"
           },
           "installed": {
-            "tooltip": "Om te verwijderen, updaten, of herinstalleren, ga naar de Geïnstalleerde liveries tab.To uninstall, update, or reinstall, head to the Installed Liveries tab",
+            "tooltip": "Om te verwijderen, updaten, of herinstalleren, ga naar de Geïnstalleerde liveries tab",
             "content": "Geïnstalleerd"
           }
         },
@@ -142,7 +142,7 @@
               "title": "Geïnstalleerde liveries niet gevonden.",
               "error_text": "Geïnstalleerde liveries konden niet opgehaald worden. Heb je de community map verplaatst of verwijderd?",
               "suggestion1": "Je hebt deze locatie opgegeven: {{path}}. Is dit correct?",
-              "suggestion2": "Probeer de community map aan te passen in instellingen.Try updating your community folder in Settings."
+              "suggestion2": "Probeer de community map aan te passen in instellingen."
             }
           },
           "progress_notifications": {
