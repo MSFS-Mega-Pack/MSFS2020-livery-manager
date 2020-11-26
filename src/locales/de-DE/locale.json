@@ -1,0 +1,316 @@
+{
+  "info": {
+    "name": "Deutsch",
+    "localeId": "de-DE"
+  },
+  "strings": {
+    "common": {
+      "coming_soon": "Feature kommt bald."
+    },
+    "models": {
+      "article": {
+        "date_format": "ddd D. MMM YYYY, H:mm"
+      }
+    },
+    "helpers": {
+      "validate_fs_directory": {
+        "choose_directory": "Bitte wähle ein Verzeichnis aus",
+        "path_doesnt_exist": "Der ausgewählte Pfad existiert nicht",
+        "invalid_path": "Bitte stelle sicher, dass der Community-Ordner ausgewählt ist"
+      },
+      "show_native_dialog": {
+        "yes_button": "&Ja",
+        "no_button": "&Nein",
+        "cancel_button": "&Abbrechen"
+      },
+      "install_addon": {
+        "progress_notifications": {
+          "downloading_livery": "Livery {{current}} von {{total}} wird heruntergeladen",
+          "extracting_livery": "Livery {{current}} von {{total}} wird entpackt"
+        }
+      },
+      "delete_addon": {
+        "delete_path_fail": "Beim Löschen des Addon-Pfads ist ein Fehler aufgetreten",
+        "delete_path_success": "Das Addon wurde erfolgreich gelöscht",
+        "non_existant": "Der Addon-Pfad existiert nicht"
+      },
+      "get_active_feed": {
+        "fetch_fail": "Beim Laden des aktuellen Feeds über die API ist ein Fehler aufgetreten.",
+        "fetch_fail_article_text": "Fehler beim Laden des Artikels. Sollte der Fehler weiterhin auftreten, [diesen bitte an die Entwickler melden](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      },
+      "get_feed_history": {
+        "fetch_fail": "Beim Laden des aktuellen Feeds über die API ist ein Fehler aufgetreten.",
+        "fetch_fail_article_text": "Fehler beim Laden des Artikels. Sollte der Fehler weiterhin auftreten, [diesen bitte an die Entwickler melden](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      }
+    },
+    "manager": {
+      "splash_screen": {
+        "loading": "Wird geladen..."
+      },
+      "setup": {
+        "back_button": "Zurück",
+        "next_button": "Weiter",
+        "finish_button": "Abschließen",
+        "welcome_page": {
+          "heading": "Willkommen zum {{app_name}}",
+          "description": "Bevor der Liveries Manager verwendet werden kann, musst du zuerst ein paar wenige Dinge einrichten - so stelen wir sicher, dass alles nach Plan verläuft."
+        },
+        "locale_page": {
+          "heading": "Wähle deine Sprache aus",
+          "description": "Alle Sprachen werden von der Community bereitgestellt. Bitte melde Probleme mit der Übersetzung auf GitHub.",
+          "help_translate_link": "Warum nicht dabei unterstützen, den Liveries Manager in deine Sprache zu übersetzen?",
+          "dropdown": {
+            "label": "Sprache"
+          }
+        },
+        "community_directory": {
+          "heading": "Finde deinen Community-Ordner",
+          "description": "Bitte stelle sicher, dass der Pfad auf deinen Community-Ordner verweist. Sollte das nicht der Fall sein, wähle bitte den korrekten Pfad aus.",
+          "text_field": {
+            "label": "Pfad zum Community-Ordner",
+            "browse_button_sr_text": "Durchsuchen..."
+          }
+        },
+        "complete_page": {
+          "heading": "Einrichtung abgeschlossen",
+          "description1": "Du bist bereit, abzuheben!",
+          "description2": "Klicke auf \"Abschließen\", um deine Einstellungen zu bestätigen und den Liveries Manager zu starten."
+        }
+      },
+      "tabs": {
+        "tab_labels": {
+          "update_feed": "Dashboard",
+          "available_liveries": "Verfügbare Liveries",
+          "installed_liveries": "Installierte Liveries",
+          "settings": "Einstellungen"
+        }
+      },
+      "components": {
+        "feed_article": {
+          "authored_by": "Geschrieben von {{author}}"
+        },
+        "badges": {
+          "update_available": {
+            "tooltip": "Wechsle zum Bereich \"Installierte Liveries\", um dieses Livery zu aktualisieren",
+            "content": "Update verfügbar"
+          },
+          "installed": {
+            "tooltip": "Wechsle zum Bereich \"Installierte Liveries\", um dieses Livery zu aktualisieren, deinstallieren, neu zu installieren",
+            "content": "Installiert"
+          }
+        },
+        "refresh_box": {
+          "date_format": "D. MMM, H:mm",
+          "last_refreshed": "Zuletzt aktualisiert:",
+          "last_refreshed_explanation_tooltip": "Zeitpunkt, an welchem zuletzt nach installierten und verfügbaren Liveries geprüft wurde",
+          "refresh_button": {
+            "tooltip": {
+              "default": "Verfügbare Liveries aktualisieren",
+              "rate_limited": "Übertragungsbegrenzung aktiv: Du musst mind. {{interval}} Sekunden zwischen Aktualisierungen warten"
+            },
+            "unknown_time": "unbekannt"
+          }
+        },
+        "error_dialog": {
+          "error": "Fehler",
+          "suggestions": "Vorschlag",
+          "close_dialog_button": "Schließen"
+        },
+        "offline_error": {
+          "title": "Du bist offline",
+          "paragraph1": "Der Liveries Manager benötigt eine Internetverbindung, um alle Funktionen bereit zu stellen.",
+          "paragraph2": "Diese Nachricht verschwindet automatisch, sobald eine Internetverbindung erkannt wird."
+        }
+      },
+      "pages": {
+        "feed": {
+          "error_more_info_button": "Mehr Informationen",
+          "no_more_posts": {
+            "heading": "Das war es schon!",
+            "info": "Du bist am Ende des News-Feeds angekommen"
+          },
+          "view_more_updates_button": "Alle News anzeigen",
+          "errors": {
+            "generic_message": "Beim Laden des News-Feeds ist ein Fehler aufgetreten.",
+            "unknown_error": "Ein unbekannter Fehler ist aufgetreten",
+            "feed_unknown": "Die News-Daten, die von der API geladen wurden, sind ungültig. (null_err)"
+          }
+        },
+        "available_liveries": {
+          "errors": {
+            "installed_addons_fail": {
+              "title": "keine installierten Liveries gefunden",
+              "error_text": "Wir konnten die Liste der installierten Liveries nicht laden. Hast du vielleicht den Community-Ordner verschoben oder gelöscht?",
+              "suggestion1": "Der eingerichtete Pfad ist {{path}}. Ist der Pfad weiterhin korrekt?",
+              "suggestion2": "Du kannst den Pfad zu deinem Community-Ordner im Bereich \"Einstellungen\" ändern."
+            }
+          },
+          "progress_notifications": {
+            "begin_install": "Liveries werden installiert...",
+            "install_complete": "{{total}} [[total||Livery|Liveries]] erfolgreich installiert",
+            "install_failed": "{{fails}} [[fails||Livery|Liveries]] konnte(n) nicht installiert werden. Das Team wurde benachrichtigt."
+          },
+          "fab_currently_installing": "{{total}} [[total||Livery|Liveries]] ({{size}} MB) werden installiert",
+          "fab_install": "{{total}} [[total||Livery|Liveries]] ({{size}} MB) installieren",
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "Wird aktualisiert..."
+            },
+            "aircraft_accordion": {
+              "available_count": "{{total}} [[total||livery|liveries]] available",
+              "installed_count": "{{total}} installed",
+              "info_fields": {
+                "aircraft_name": {
+                  "title": "Flugzeug"
+                },
+                "total_livery_count": {
+                  "title": "Verfübare Liveries",
+                  "value": "{{total}} verfügbar"
+                },
+                "total_installed_count": {
+                  "title": "Installierte Liveries",
+                  "value": "{{count}} von {{total}} installiert"
+                }
+              },
+              "buttons": {
+                "select_all_btn": "Alle auswählen",
+                "deselect_all_btn": "Alle abwählen"
+              },
+              "liveries_heading": "Liveries"
+            },
+            "livery_row": {
+              "expand_livery_details_tooltip": "Informationen zum Livery anzeigen",
+              "shrink_livery_details_tooltip": "Informationen zum Livery ausblenden",
+              "info_fields": {
+                "version": {
+                  "title": "Version",
+                  "tooltip": "Dieser Text repräsentiert die aktuelle verfügbare Version des Livery. Sollte sich deine Version unterscheiden, ist ein Update für dieses Livery verfügbar."
+                },
+                "thumbnail": {
+                  "title": "Vorschau"
+                }
+              }
+            }
+          }
+        },
+        "installed_liveries": {
+          "warning_cannot_remove_multiple_liveries": "Zum aktuellen Zeitpunkt kannst du nicht mehrere Liveries gleichzeitig aktualisieren oder deinstallieren. Aber keine Sorge, dieses Feature kommt bald in einem zukünftigen Update.",
+          "progress_notifications": {
+            "begin_update": "Liveries werden aktualisiert...",
+            "update_complete": "{{total}} [[total||Livery|Liveries]] erfolgreich aktualisiert",
+            "update_failed": "{{fails}} [[fails||Livery|Liveries]] konnte(n) nicht aktualisiert werden. Das Team wurde benachrichtigt."
+          },
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "Wird aktualisiert..."
+            },
+            "aircraft_accordion": {
+              "liveries_heading": "Liveries",
+              "installed_count": "{{total}} installiert",
+              "update_count": "{{updates}} [[updates||Livery kann aktualisiert werden|Liveries können aktualisiert werden]]"
+            },
+            "list_row": {
+              "update": {
+                "button": "Aktualisieren"
+              },
+              "help": {
+                "tooltip": {
+                  "update": "Livery aktualisieren",
+                  "delete": "Livery deinstallieren",
+                  "delete_timer": "Für {{time}} Sekunden gedrückt halten, um das Livery zu deinstallieren"
+                },
+                "snackbar": {
+                  "hold_to_remove": "Um ein Livery zu deinstallieren, klicke auf den Button und halte gedrückt für {{time}} Sekunden"
+                }
+              }
+            }
+          },
+          "notification": {
+            "no_liveries_to_remove": "Du hast noch keine Liveries installiert!",
+            "removing_livery": "Livery {{current}} von {{total}} wird deinstalliert",
+            "remove_all_success": "{{total}} [[total||Livery|Liveries]] erfolgreich deinstalliert",
+            "remove_all_failures": "{{errors}} [[errors||Livery|Liveries]] konnten nicht deinstalliert werden",
+            "deletion": {
+              "fail1": "Livery konnte nicht deinstalliert werden: no obj passed",
+              "fail2": "Livery konnte nicht deinstalliert werden: unknown location",
+              "fail3": "Livery konnte nicht deinstalliert werden: folder not found",
+              "fail4": "Livery konnte nicht deinstalliert werden: {{error}}",
+              "fail5": "Livery konnte nicht deinstalliert werden: unknown error",
+              "success": "Livery erfolgreich deinstalliert"
+            },
+            "no_liveries_to_update": "Du hast noch keine Liveries installiert!",
+            "update_all_success": "{{total}} [[total||Livery|Liveries]] erfolgreich aktualisiert",
+            "update_all_failures": "{{errors}} [[errors||Livery|Liveries]] konnten nicht aktualisiert werden",
+            "updating_livery": "Livery {{current}} von {{total}} wird aktualisiert"
+          },
+          "dialog": {
+            "uninstall_all": {
+              "title": "Alle Liveries deinstallieren?",
+              "message": "Bist du dir sicher, dass du ALLE LIVERIES deinstallieren möchtest?",
+              "detail": "Die Deinstallation kann weder pausiert noch abgebrochen werden. Um deine Liveries zurück zu bekommen, musst du sie erneut installieren."
+            },
+            "update_all": {
+              "title": "Alle Liveries aktualisieren?",
+              "message": "Bist du dir sicher, dass du ALLE LIVERIES aktualisieren möchtest?",
+              "detail": "Die Aktualisierung kann weder pausiert noch abgebrochen werden."
+            }
+          },
+          "button": {
+            "remove_all_liveries": "Alle deinstallieren",
+            "update_all": "Alle aktualisieren"
+          },
+          "no_liveries_installed": {
+            "more_info_button": "Mehr Informationen",
+            "message": "Es wurden keine installieren Liveries gefunden",
+            "info": "We konnen keine Mega-Pack Liveries im ausgewählten Community-Ordner finden.\n\nWenn du Liveries über das Mega-Pack (zip-Datei) installiert hast, tauchen sie hier nicht auf; stattdessen müssen sie über den Liveries Manager installiert werden."
+          }
+        },
+        "settings": {
+          "advanced_settings": {
+            "enabled_notification": "Erweiterte Einstellungen aktiviert",
+            "disabled_notification": "Erweiterte Einstellungen deaktiviert",
+            "dialog_title": "Erweiterte Einstellungen aktivieren?",
+            "dialog_body": "Erweiterte Einstellungen aktivieren?",
+            "dialog_detail": "Fahre nur fort, wenn du von einem Entwickler dazu aufgefordert wurdest. Dies kann unbeabsichtigte Folgen haben. Du wurdest gewarnt!"
+          },
+          "footer": {
+            "line1": "{{appName}} — Entwickelt für das Liveries Mega-Pack",
+            "line2": "© {{year}} — Alle Rechte vorbehalten — ",
+            "version": "v{{version}}",
+            "source_repo_and_license": "Quellcode und Lizenz ansehen"
+          },
+          "errors_in_inputs": "Bitte behebe vor dem Speichern alle Fehler",
+          "save_settings_changes": "Klicke auf \"Speichern\", um alle Änderungen zu übernehmen",
+          "all_changes_saved": "Alle Änderungen gespeichert",
+          "save_button": "Speichern",
+          "user_settings": {
+            "community_folder": {
+              "name": "Community-Ordner",
+              "input_label": "Pfad zum Community-Ordner",
+              "browse_button_sr_text": "Durchsuchen...",
+              "reset_button": "Änderung rückgängig machen",
+              "open_in_explorer": "Öffne Ordner im Explorer",
+              "open_in_explorer_opening": "Ordner wird geöffnet..."
+            },
+            "locale_selection": {
+              "name": "Liveries Manager Sprache",
+              "label": "Sprache"
+            },
+            "cache_clear": {
+              "name": "Caching",
+              "clearing_cache_notification": "Cache wird geleert. Dieser Prozess kann einige Minuten dauern.",
+              "cache_clear_success_notification": "Cache erfolgreich geleert!",
+              "cache_clear_error_notification": "Beim Leeren des Caches ist ein Fehler aufgetreten",
+              "purge_cache_button": "Cache löschen"
+            },
+            "reset_manager_to_defaults": {
+              "name": "Liveries Manager zurücksetzen",
+              "detail": "Dieser Prozess setzt alle Einstellungen zurück und startet die Anwendung neu. Bereits installierte Liveries bleiben erhalten und werden automatisch erkannt.",
+              "reset_btn": "Alle Einstellungen zurücksetzen"
+            }
+          }
+        }
+      }
+    }
+  }
+}
