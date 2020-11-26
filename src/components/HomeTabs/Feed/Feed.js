@@ -23,7 +23,7 @@ export default function Feed(props) {
    */
   const [fullHistory, setFullHistory] = [props.fullHistory, props.setFullHistory];
 
-  if (typeof feed === 'undefined') {
+  if (typeof feed === 'undefined' || fullHistory === false) {
     GetActiveFeed(CurrentLocale)
       .then(f => setFeed(f))
       .catch(() => setFeed(null));
@@ -62,7 +62,7 @@ export default function Feed(props) {
   return (
     <div style={{ flex: '1' }}>
       {fullHistory
-        ? fullHistory.map(a => <Article article={a} key={`${a.date}__${a.title}__${a.author}`} />)
+        ? fullHistory.feed.map(a => <Article article={a} key={`${a.date}__${a.title}__${a.author}`} />)
         : feed.feed.map(a => <Article article={a} key={`${a.date}__${a.title}__${a.author}`} />)}
       <Box display="flex" alignItems="center" flexDirection="column" padding={4} paddingBottom={8}>
         {!feed.isMoreHistoryAvailable || fullHistory ? (
