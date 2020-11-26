@@ -1,0 +1,306 @@
+{
+  "info": {
+    "name": "Swedish",
+    "localeId": "se-SE"
+  },
+  "strings": {
+    "common": {
+      "coming_soon": "Denna funktioner kommer snart."
+    },
+    "models": {
+      "article": {
+        "date_format": "ddd D MMM 'YY, h:mm A"
+      }
+    },
+    "helpers": {
+      "validate_fs_directory": {
+        "choose_directory": "Var god välj en mapp.",
+        "path_doesnt_exist": "Sökvägen du valt existerar inte.",
+        "invalid_path": "Se till att du har valt din Community mapp"
+      },
+      "show_native_dialog": {
+        "yes_button": "&Ja",
+        "no_button": "&Nej",
+        "cancel_button": "&Avbryt"
+      },
+      "install_addon": {
+        "progress_notifications": {
+          "downloading_livery": "Laddar ned livery {{current}} av {{total}}",
+          "extracting_livery": "Extraherar livery {{current}} av {{total}}"
+        }
+      },
+      "delete_addon": {
+        "delete_path_fail": "Fel uppstod vid borttagning av addon sökväg.",
+        "delete_path_success": "Tilläget togs bort!",
+        "non_existant": "Tillägs sökvägen finns ej."
+      },
+      "get_active_feed": {
+        "fetch_fail": "Misslyckades att hämta aktiv data från API.",
+        "fetch_fail_article_text": "Misslyckades att hämta artikeln, om detta fortsätter att uppstå, [rapportera detta till utvecklarna](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      },
+      "get_feed_history": {
+        "fetch_fail": "Misslyckades att hämta aktiv data från API.",
+        "fetch_fail_article_text": "Misslyckades att hämta artikeln, om detta fortsätter att uppstå, [rapportera detta till utvecklarna](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      }
+    },
+    "manager": {
+      "splash_screen": {
+        "loading": "Laddar..."
+      },
+      "setup": {
+        "back_button": "Tillbaks",
+        "next_button": "Nästa",
+        "finish_button": "Klar",
+        "welcome_page": {
+          "heading": "Välkommen till {{app_name}}",
+          "description": "Vi behöver gå igenom några steg innan du kan börja använda livery manager. Detta för att vi vill att du ska ha den bästa upplevelsen och för att se till att allting funkar som det ska."
+        },
+        "locale_page": {
+          "heading": "Välj språk",
+          "description": "Alla språk är gjorda av communityt. Var god rapportera översättnings misstag på GitHub.",
+          "help_translate_link": "Varför inte hjälpa att översätta livery manager till ditt språk?",
+          "dropdown": {
+            "label": "Språk"
+          }
+        },
+        "community_directory": {
+          "heading": "Hitta din addon sökväg",
+          "description": "Var god dubbelkolla så att sökvägen nedan matchar din addon sökväg. Om den inte stämmer, hitta den korrekta sökvägen med Bläddra knappen.",
+          "text_field": {
+            "label": "Addon sökväg",
+            "browse_button_sr_text": "Bläddra efter sökväg."
+          }
+        },
+        "complete_page": {
+          "heading": "Installation Klar!",
+          "description1": "Du är redo att lyfta!",
+          "description2": "Tryck på 'Klar' för att bekräfta dina inställningar och starta livery manager."
+        }
+      },
+      "tabs": {
+        "tab_labels": {
+          "update_feed": "Dashboard",
+          "available_liveries": "Tillgängliga liveries",
+          "installed_liveries": "Installerade liveries",
+          "settings": "Inställningar"
+        }
+      },
+      "components": {
+        "feed_article": {
+          "authored_by": "Skriven av {{author}}"
+        },
+        "badges": {
+          "update_available": {
+            "tooltip": "Gå till 'Installerade Liveries' för att uppdatera denna livery",
+            "content": "Uppdatering tillgänglig"
+          },
+          "installed": {
+            "tooltip": "För att avinstallera, uppdatera eller ominstallera, gå till ' Installerade liveries sektionen.",
+            "content": "Installerad"
+          }
+        },
+        "refresh_box": {
+          "date_format": "D MMM, h:mm A",
+          "last_refreshed": "Senast uppdaterad:",
+          "last_refreshed_explanation_tooltip": "När du senast kollade efter installerade och tillgängliga liveries",
+          "refresh_button": {
+            "tooltip": {
+              "default": "Uppdatera tillgängliga liveries",
+              "rate_limited": "Hastighets begränsing är på: du måste vänta {{interval}}s mellan uppdateringar"
+            },
+            "unknown_time": "okänd"
+          }
+        },
+        "error_dialog": {
+          "error": "Error",
+          "suggestions": "Tips",
+          "close_dialog_button": "Stäng"
+        },
+        "offline_error": {
+          "title": "Du är offline",
+          "paragraph1": "Denna app behöver internet anslutning för att fungera, dubbelkolla din anslutning.",
+          "paragraph2": "Detta meddelande vill automatiskt försvinna när du ansluter dig till internet."
+        }
+      },
+      "pages": {
+        "feed": {
+          "error_more_info_button": "Se mer information",
+          "no_more_posts": {
+            "heading": "Det är allt!",
+            "info": "Du har nått slutet av våra uppdateringar"
+          },
+          "view_more_updates_button": "Läs alla uppdateringar",
+          "errors": {
+            "generic_message": "Ett fel uppstod medans du laddade in nyheterna.",
+            "unknown_error": "Ett okänt fel uppstod",
+            "feed_unknown": "Uppdatering datan hämtad från API var invalid. (null_err)"
+          }
+        },
+        "available_liveries": {
+          "errors": {
+            "installed_addons_fail": {
+              "title": "Kunde inte hitta installerade liveries.",
+              "error_text": "Vi kunde inte hitta listan med installerade liveries, Har du flyttat eller tagit bort din addon sökväg?",
+              "suggestion1": "Sökvägen du angav var {{path}}. Är detta korrekt?",
+              "suggestion2": "Försök att uppdatera din addon sökväg i inställningarna."
+            }
+          },
+          "progress_notifications": {
+            "begin_install": "Installerar liveries...",
+            "install_complete": "Installerat {{total}} [[total||livery|liveries]]",
+            "install_failed": "{{fails}} [[fails||livery|liveries]] misslyckades att installera. Utvecklarna har blivit informerade."
+          },
+          "fab_currently_installing": "Installerar {{total}} [[total||livery|liveries]] ({{size}} MB)",
+          "fab_install": "Installera {{total}} [[total||livery|liveries]] ({{size}} MB)",
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "kollar nu..."
+            },
+            "aircraft_accordion": {
+              "available_count": "{{total}} [[total||livery|liveries]] tillgängliga",
+              "installed_count": "{{total}} installerade",
+              "info_fields": {
+                "aircraft_name": {
+                  "title": "Flygplan"
+                },
+                "total_livery_count": {
+                  "title": "Liveries tillgängliga",
+                  "value": "{{total}} tillgänglig"
+                },
+                "total_installed_count": {
+                  "title": "Liveries installerade",
+                  "value": "{{count}} av {{total}} installerade"
+                }
+              },
+              "buttons": {
+                "select_all_btn": "Välj alla",
+                "deselect_all_btn": "Välj bort alla"
+              },
+              "liveries_heading": "Liveries"
+            },
+            "livery_row": {
+              "expand_livery_details_tooltip": "Visa livery information",
+              "shrink_livery_details_tooltip": "Göm livery information",
+              "info_fields": {
+                "version": {
+                  "title": "Version",
+                  "tooltip": "Denna text representerar den nuvarande versionen av liveryn som är tillgänglig. Om din version inte stämmer med denna, det innebär att du har en uppdatering tillgänglig."
+                },
+                "thumbnail": {
+                  "title": "Thumbnail"
+                }
+              }
+            }
+          }
+        },
+        "installed_liveries": {
+          "warning_cannot_remove_multiple_liveries": "För tillfället, kan du inte ta bort eller uppdatera flertal liveries samtidigt. Oroa dig inte, detta kommer att lösas i en framtida uppdatering.",
+          "progress_notifications": {
+            "begin_update": "Uppdaterar [[total||livery|liveries]]...",
+            "update_complete": "Uppdaterade {{total}} [[total||livery|liveries]]",
+            "update_failed": "{{fails}} [[fails||livery|liveries]] misslyckades att uppdatera. Utvecklarna har blivit informerade."
+          },
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "kollar nu..."
+            },
+            "aircraft_accordion": {
+              "liveries_heading": "Liveries",
+              "installed_count": "{{total}} installerade",
+              "update_count": "{{updates}} [[updates||livery har en uppdatering|liveries har en uppdatering]]"
+            },
+            "list_row": {
+              "update": {
+                "button": "Uppdatera"
+              },
+              "help": {
+                "tooltip": {
+                  "delete": "Ta bort livery",
+                  "delete_timer": "Håll i {{time}}s för att ta bort"
+                },
+                "snackbar": {
+                  "hold_to_remove": "För att ta bort en livery, klicka och håll på ta bort knappen under {{time}}s"
+                }
+              }
+            }
+          },
+          "notification": {
+            "no_liveries_to_remove": "Du har inga installerade liveries",
+            "removing_livery": "Ta bort {{current}} av {{total}}",
+            "remove_all_success": "Tog bort {{total}} [[total||livery|liveries]]",
+            "remove_all_failures": "Misslyckades att ta bort {{errors}} [[errors||livery|liveries]]",
+            "deletion": {
+              "fail1": "Misslyckaeds att ta bort livery: inget obj passerat",
+              "fail2": "Misslyckaeds att ta bort livery: okänd plats",
+              "fail3": "Misslyckaeds att ta bort livery: hitta inte mappen",
+              "fail4": "Misslyckaeds att ta bort livery: {{error}}",
+              "fail5": "Misslyckaeds att ta bort livery: okänt fel",
+              "success": "Lyckades ta bort livery!"
+            }
+          },
+          "dialog": {
+            "uninstall_all": {
+              "title": "Ta bort alla liveries?",
+              "message": "Är du säker på att du vill avinstallera ALLA DINA LIVERIES?",
+              "detail": "När du startat denna process, kan du inte pausa eller avbryta den. För att få tillbaks dina liveries kommer du behöva att ominstallera dom.."
+            }
+          },
+          "button": {
+            "remove_all_liveries": "Ta bot alla",
+            "update_all": "Uppdatera alla"
+          },
+          "no_liveries_installed": {
+            "more_info_button": "Visa mer information",
+            "message": "Inga installerade liveries upptäckta",
+            "info": "Vi kunde inte hitta några mega pack liveries i din addon sökväg.\n\nOm du har installetar liveries genom att drag and droppa deras zip så kommer dom ej att synas här. Dom måste vara installerade genom denna manager."
+          }
+        },
+        "settings": {
+          "advanced_settings": {
+            "enabled_notification": "Aktivera avancerade inställningar",
+            "disabled_notification": "Avaktivera avancerade inställningar",
+            "dialog_title": "Avaktivera avancerade inställningar?",
+            "dialog_body": "Avaktivera avancerade inställningar?",
+            "dialog_detail": "Gör detta endast om du blivit tillsagd av en utvecklare. Detta kan leda till konsekvenser. Detta är en varning!"
+          },
+          "footer": {
+            "line1": "{{appName}} — Skapad för Liveries Mega Pack",
+            "line2": "© {{year}} — All rights reserved — ",
+            "version": "v{{version}}",
+            "source_repo_and_license": "View the source code and license"
+          },
+          "errors_in_inputs": "Var god fixa detta fel innan du sparar",
+          "save_settings_changes": "Tryck på 'Spara' för att spara alla ändringar",
+          "all_changes_saved": "Alla ändringar sparade",
+          "save_button": "Spara",
+          "user_settings": {
+            "community_folder": {
+              "name": "Addon sökväg",
+              "input_label": "Sökvägen till Addon mappen",
+              "browse_button_sr_text": "Bläddra till mappen",
+              "reset_button": "Gör om ändringar",
+              "open_in_explorer": "Öppna mappen",
+              "open_in_explorer_opening": "Öppnar..."
+            },
+            "locale_selection": {
+              "name": "Manager språk",
+              "label": "Språk"
+            },
+            "cache_clear": {
+              "name": "Caching",
+              "clearing_cache_notification": "Rensar cache. Detta kan ta några minuter.",
+              "cache_clear_success_notification": "Rensade cachen!",
+              "cache_clear_error_notification": "Misslyckades med att rensa cachen.",
+              "purge_cache_button": "Rensa cache"
+            },
+            "reset_manager_to_defaults": {
+              "name": "Återställ manager",
+              "detail": "Detta kommer att återställa alla instääkningar och starta om programmet. Du kommer inte att förlora några installerade liveriesmoch alla redan installerade liveries kommer automatiskt att upptäckas igen.",
+              "reset_btn": "Återställ alla inställningar"
+            }
+          }
+        }
+      }
+    }
+  }
+}
