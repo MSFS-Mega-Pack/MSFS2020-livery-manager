@@ -5,6 +5,7 @@ import ArticleClass from '../../../models/Article';
 import { Typography, makeStyles, Divider, Paper, Box } from '@material-ui/core';
 import MarkdownRenderer from '../../MarkdownRenderer';
 import LocaleContext from '../../../locales/LocaleContext';
+import * as dayjs from 'dayjs';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -48,6 +49,10 @@ export default function Article(props) {
   const CurrentLocale = React.useContext(LocaleContext);
   const { article } = props;
 
+  const date = dayjs(article.date)
+    .locale(CurrentLocale ? CurrentLocale.locale : 'en')
+    .format(CurrentLocale ? CurrentLocale.translate('models.article.date_format') : 'ddd D MMM YYYY, h:mm A');
+
   const classes = useStyles();
 
   return (
@@ -58,7 +63,7 @@ export default function Article(props) {
         </Typography>
         <Typography variant="caption" component="h3" gutterBottom color="textSecondary">
           {CurrentLocale.translate('manager.components.feed_article.authored_by', { author: article.author })}{' '}
-          <span className={classes.bullet} /> {article.dateString}
+          <span className={classes.bullet} /> {date}
         </Typography>
         <Divider />
         <article className={classes.article}>

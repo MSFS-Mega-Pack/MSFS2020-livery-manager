@@ -1,5 +1,4 @@
 import ThrowError from '../helpers/ThrowError';
-import dayjs from 'dayjs';
 
 /**
  * Article for use on the update feed on the home page.
@@ -52,19 +51,6 @@ export default class Article {
    */
   get date() {
     return this.#date;
-  }
-
-  /**
-   * Date, formatted nicely as a string
-   *
-   * @type {String}
-   * @readonly
-   * @memberof Article
-   */
-  get dateString() {
-    return dayjs(this.#date).format(
-      this.#CurrentLocale ? this.#CurrentLocale.translate('models.article.date_format') : 'ddd D MMM YYYY, h:mm A'
-    );
   }
 
   /**
