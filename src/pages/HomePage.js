@@ -6,7 +6,6 @@ import FetchAndParseJsonManifest from '../helpers/Manifest/FetchAndParseManifest
 import Constants from '../data/Constants.json';
 import ActiveApiEndpoint from '../data/ActiveApiEndpoint';
 import GetInstalledAddons from '../helpers/AddonInstaller/getInstalledAddons';
-import LocaleContext from '../locales/LocaleContext';
 
 export default function LiveryManager() {
   const [openPage, setOpenPage] = useState('update_feed');
