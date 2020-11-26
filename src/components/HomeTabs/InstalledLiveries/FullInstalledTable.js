@@ -116,7 +116,7 @@ FullInstalledTable.propTypes = {
   SetExpanded: PropTypes.func.isRequired,
   expandedList: PropTypes.arrayOf(PropTypes.string).isRequired,
   fileListing: PropTypes.shape({
-    data: PropTypes.shape({ fileList: PropTypes.arrayOf(CustomPropTypes.Livery) })
+    data: PropTypes.shape({ fileList: PropTypes.arrayOf(CustomPropTypes.Livery) }),
   }),
   RefreshAllData: PropTypes.func.isRequired,
 };
