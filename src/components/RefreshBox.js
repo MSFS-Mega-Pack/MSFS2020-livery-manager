@@ -32,7 +32,7 @@ export default function RefreshBox(props) {
           {typeof lastCheckedTime === 'string'
             ? lastCheckedTime
             : dayjs(lastCheckedTime)
-                .locale(CurrentLocale ? CurrentLocale.locale : 'en')
+                .locale(CurrentLocale.locale)
                 .format(CurrentLocale.translate('manager.components.refresh_box.date_format')) ||
               CurrentLocale.translate('manager.components.refresh_box.unknown_time')}
         </Typography>

@@ -49,9 +49,7 @@ export default function Article(props) {
   const CurrentLocale = React.useContext(LocaleContext);
   const { article } = props;
 
-  const date = dayjs(article.date)
-    .locale(CurrentLocale ? CurrentLocale.locale : 'en')
-    .format(CurrentLocale ? CurrentLocale.translate('models.article.date_format') : 'ddd D MMM YYYY, h:mm A');
+  const date = dayjs(article.date).locale(CurrentLocale.locale).format(CurrentLocale.translate('models.article.date_format'));
 
   const classes = useStyles();
 

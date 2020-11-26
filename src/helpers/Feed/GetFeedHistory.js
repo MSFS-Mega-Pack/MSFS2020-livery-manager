@@ -41,7 +41,6 @@ export default async function GetFeedHistory(CurrentLocale) {
         title: article.title,
         author: article.author,
         content: text || CurrentLocale.translate('helpers.get_feed_history.fetch_fail_article_text'),
-        CurrentLocale,
       });
 
       feedArticles.push(a);
