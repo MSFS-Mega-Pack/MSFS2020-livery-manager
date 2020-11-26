@@ -9,9 +9,7 @@ import GetInstalledAddons from '../helpers/AddonInstaller/getInstalledAddons';
 import LocaleContext from '../locales/LocaleContext';
 
 export default function LiveryManager() {
-  const CurrentLocale = React.useContext(LocaleContext);
-
-  const [openPage, setOpenPage] = useState('dashboard');
+  const [openPage, setOpenPage] = useState('update_feed');
 
   // Feed state
   const [feed, setFeed] = useState(undefined);
@@ -54,8 +52,6 @@ export default function LiveryManager() {
     setOpenPage(newPage);
   }
 
-  const pg = openPage.toLowerCase();
-
   function UpdateFileList(callback) {
     FetchAndParseJsonManifest(`${ActiveApiEndpoint}/${Constants.api.get.cdnFileListing}`)
       .then(d => {
@@ -73,11 +69,11 @@ export default function LiveryManager() {
     <MainPage
       onTabChange={handlePageChange}
       scrollInnerStyle={
-        openPage.toLowerCase() === 'dashboard'
+        openPage === 'update_feed'
           ? {
               WebkitMaskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)',
             }
-          : openPage.toLowerCase() === 'settings'
+          : openPage === 'settings'
           ? {
               paddingBottom: 100,
               WebkitMaskImage: 'linear-gradient(black calc(90% - 81px), transparent calc(100% - 81px), black calc(100% - 81px), black 100%)',
@@ -85,10 +81,10 @@ export default function LiveryManager() {
           : null
       }
     >
-      <div style={{ display: pg !== CurrentLocale.translate('manager.tabs.tab_labels.update_feed').toLowerCase() && 'none' }}>
+      <div style={{ display: openPage !== 'update_feed' }}>
         <Feed feed={feed} setFeed={setFeed} fullHistory={fullHistory} setFullHistory={setFullHistory} />
       </div>
-      <div style={{ display: pg !== CurrentLocale.translate('manager.tabs.tab_labels.available_liveries').toLowerCase() && 'none' }}>
+      <div style={{ display: openPage !== 'available_liveries' }}>
         <AvailableLiveries
           justRefreshed={justRefreshed}
           setJustRefreshed={setJustRefreshed}
@@ -99,7 +95,7 @@ export default function LiveryManager() {
           setInstalledLiveries={setInstalledLiveries}
         />
       </div>
-      <div style={{ display: pg !== CurrentLocale.translate('manager.tabs.tab_labels.installed_liveries').toLowerCase() && 'none' }}>
+      <div style={{ display: openPage !== 'installed_liveries' }}>
         <InstalledLiveries
           justRefreshed={justRefreshed}
           setJustRefreshed={setJustRefreshed}
@@ -109,7 +105,7 @@ export default function LiveryManager() {
           setInstalledLiveries={setInstalledLiveries}
         />
       </div>
-      <div style={{ display: pg !== CurrentLocale.translate('manager.tabs.tab_labels.settings').toLowerCase() && 'none' }}>
+      <div style={{ display: openPage !== 'settings' }}>
         <Settings />
       </div>
     </MainPage>
