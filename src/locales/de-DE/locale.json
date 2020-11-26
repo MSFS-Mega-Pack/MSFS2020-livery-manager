@@ -95,7 +95,7 @@
             "content": "Update verfügbar"
           },
           "installed": {
-            "tooltip": "Wechsle zum Bereich \"Installierte Liveries\", um dieses Livery zu aktualisieren, deinstallieren, neu zu installieren",
+            "tooltip": "Wechsle zum Bereich \"Installierte Liveries\", um dieses Livery zu aktualisieren, deinstallieren, oder neu zu installieren",
             "content": "Installiert"
           }
         },
@@ -157,8 +157,8 @@
               "refreshing_now": "Wird aktualisiert..."
             },
             "aircraft_accordion": {
-              "available_count": "{{total}} [[total||livery|liveries]] available",
-              "installed_count": "{{total}} installed",
+              "available_count": "{{total}} verfügbar",
+              "installed_count": "{{total}} installiert",
               "info_fields": {
                 "aircraft_name": {
                   "title": "Flugzeug"
@@ -207,7 +207,7 @@
             "aircraft_accordion": {
               "liveries_heading": "Liveries",
               "installed_count": "{{total}} installiert",
-              "update_count": "{{updates}} [[updates||Livery kann aktualisiert werden|Liveries können aktualisiert werden]]"
+              "update_count": "{{updates}} [[updates||kann aktualisiert werden|können aktualisiert werden]]"
             },
             "list_row": {
               "update": {
@@ -289,11 +289,11 @@
               "input_label": "Pfad zum Community-Ordner",
               "browse_button_sr_text": "Durchsuchen...",
               "reset_button": "Änderung rückgängig machen",
-              "open_in_explorer": "Öffne Ordner im Explorer",
-              "open_in_explorer_opening": "Ordner wird geöffnet..."
+              "open_in_explorer": "Im Explorer öffnen",
+              "open_in_explorer_opening": "Wird geöffnet..."
             },
             "locale_selection": {
-              "name": "Liveries Manager Sprache",
+              "name": "Sprache",
               "label": "Sprache"
             },
             "cache_clear": {
