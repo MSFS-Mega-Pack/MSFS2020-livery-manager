@@ -80,9 +80,9 @@ LiveryList.propTypes = {
     RefreshInstalledLiveries: PropTypes.func,
   }),
   fileListing: PropTypes.shape({
-    data: {
+    data: PropTypes.shape({
       fileList: PropTypes.arrayOf(CustomPropTypes.Livery),
-    },
+    }),
   }),
   liveryDataFuncs: PropTypes.shape({
     add: PropTypes.func.isRequired,

@@ -31,7 +31,9 @@ export default function RefreshBox(props) {
           </Tooltip>{' '}
           {typeof lastCheckedTime === 'string'
             ? lastCheckedTime
-            : dayjs(lastCheckedTime).format(CurrentLocale.translate('manager.components.refresh_box.date_format')) ||
+            : dayjs(lastCheckedTime)
+                .locale(CurrentLocale.locale)
+                .format(CurrentLocale.translate('manager.components.refresh_box.date_format')) ||
               CurrentLocale.translate('manager.components.refresh_box.unknown_time')}
         </Typography>
         <Box flex={1} />

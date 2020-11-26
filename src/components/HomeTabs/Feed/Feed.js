@@ -24,7 +24,7 @@ export default function Feed(props) {
   const [fullHistory, setFullHistory] = [props.fullHistory, props.setFullHistory];
 
   if (typeof feed === 'undefined') {
-    GetActiveFeed()
+    GetActiveFeed(CurrentLocale)
       .then(f => setFeed(f))
       .catch(() => setFeed(null));
 
@@ -80,7 +80,7 @@ export default function Feed(props) {
               variant="outlined"
               onClick={async () => {
                 setFullHistory(false);
-                const feed = await GetFeedHistory();
+                const feed = await GetFeedHistory(CurrentLocale);
                 setFullHistory(feed);
               }}
               disabled={fullHistory === false}

@@ -40,7 +40,6 @@ export default async function GetActiveFeed(CurrentLocale) {
         title: article.title,
         author: article.author,
         content: text || CurrentLocale.translate('helpers.get_active_feed.fetch_fail_article_text'),
-        CurrentLocale,
       });
 
       feedArticles.push(a);

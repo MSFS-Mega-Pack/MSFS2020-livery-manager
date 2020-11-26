@@ -24,24 +24,30 @@ const useStyles = makeStyles({
 });
 
 export default function MainPage(props) {
-  const CurrentLocale = React.useContext(LocaleContext);
+  const { children, onTabChange, scrollInnerStyle } = props;
+
+  const CurrentLocal = React.useContext(LocaleContext);
 
   const TABS = [
     {
-      label: CurrentLocale.translate('manager.tabs.tab_labels.update_feed'),
+      id: 'update_feed',
+      label: CurrentLocal.translate('manager.tabs.tab_labels.update_feed'),
       icon: <HomeIcon />,
       iconOnly: true,
     },
     {
-      label: CurrentLocale.translate('manager.tabs.tab_labels.available_liveries'),
+      id: 'available_liveries',
+      label: CurrentLocal.translate('manager.tabs.tab_labels.available_liveries'),
       iconOnly: false,
     },
     {
-      label: CurrentLocale.translate('manager.tabs.tab_labels.installed_liveries'),
+      id: 'installed_liveries',
+      label: CurrentLocal.translate('manager.tabs.tab_labels.installed_liveries'),
       iconOnly: false,
     },
     {
-      label: CurrentLocale.translate('manager.tabs.tab_labels.settings'),
+      id: 'settings',
+      label: CurrentLocal.translate('manager.tabs.tab_labels.settings'),
       iconOnly: false,
     },
   ];
@@ -50,10 +56,9 @@ export default function MainPage(props) {
 
   const handleChange = (_, newValue) => {
     setSelectedTab(newValue);
-    onTabChange(TABS[newValue].label);
+    onTabChange(TABS[newValue].id);
   };
 
-  const { children, onTabChange, scrollInnerStyle } = props;
   const classes = useStyles();
 
   return (
