@@ -1,4 +1,4 @@
-import { createMuiTheme, colors, adaptV4Theme } from '@material-ui/core';
+import { createMuiTheme, colors } from '@material-ui/core';
 
 export default createMuiTheme({
   typography: {
