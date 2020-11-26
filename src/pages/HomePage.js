@@ -80,10 +80,10 @@ export default function LiveryManager() {
           : null
       }
     >
-      <div style={{ display: openPage !== 'update_feed' }}>
+      <div style={{ display: openPage !== 'update_feed' && 'none' }}>
         <Feed feed={feed} setFeed={setFeed} fullHistory={fullHistory} setFullHistory={setFullHistory} />
       </div>
-      <div style={{ display: openPage !== 'available_liveries' }}>
+      <div style={{ display: openPage !== 'available_liveries' && 'none' }}>
         <AvailableLiveries
           justRefreshed={justRefreshed}
           setJustRefreshed={setJustRefreshed}
@@ -94,7 +94,7 @@ export default function LiveryManager() {
           setInstalledLiveries={setInstalledLiveries}
         />
       </div>
-      <div style={{ display: openPage !== 'installed_liveries' }}>
+      <div style={{ display: openPage !== 'installed_liveries' && 'none' }}>
         <InstalledLiveries
           justRefreshed={justRefreshed}
           setJustRefreshed={setJustRefreshed}
@@ -104,7 +104,7 @@ export default function LiveryManager() {
           setInstalledLiveries={setInstalledLiveries}
         />
       </div>
-      <div style={{ display: openPage !== 'settings' }}>
+      <div style={{ display: openPage !== 'settings' && 'none' }}>
         <Settings />
       </div>
     </MainPage>
