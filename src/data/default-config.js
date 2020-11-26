@@ -5,4 +5,5 @@ export default {
   [CONFIG_KEYS.settings.package_directory]: null,
   [CONFIG_KEYS.settings.third_party_sources]: [],
   [CONFIG_KEYS.settings.show_advanced_settings]: false,
+  [CONFIG_KEYS.settings.locale]: 'en-GB',
 };
