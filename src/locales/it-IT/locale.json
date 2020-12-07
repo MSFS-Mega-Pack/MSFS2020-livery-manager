@@ -117,74 +117,74 @@
           "close_dialog_button": "Chiudi"
         },
         "offline_error": {
-          "title": "You're offline",
-          "paragraph1": "This app needs an internet connection to function. Double check your network.",
-          "paragraph2": "This message will automatically dismiss when you regain connection."
+          "title": "Sei offline",
+          "paragraph1": "Questa applicazione necessita di una connessione ad internet. Controlla la tua connessione.",
+          "paragraph2": "Questo messaggio si chiuderà da solo quando sarà ristabilita la connessione."
         }
       },
       "pages": {
         "feed": {
-          "error_more_info_button": "View more info",
+          "error_more_info_button": "Mostra più informazioni",
           "no_more_posts": {
-            "heading": "That's all, folks!",
-            "info": "You've reached the end of the update feed"
+            "heading": "Questo è tutto, gente!",
+            "info": "Sei arrivato alla fine della lista di aggiornamenti"
           },
-          "view_more_updates_button": "Read all updates",
+          "view_more_updates_button": "Leggi tutti gli aggiornamenti",
           "errors": {
-            "generic_message": "An error occurred while loading the news feed",
-            "unknown_error": "An unknown error",
-            "feed_unknown": "The Feed data fetched from the API was invalid. (null_err)"
+            "generic_message": "Si è verificato un errore nel caricamento delle notizie",
+            "unknown_error": "Errore sconosciuto",
+            "feed_unknown": "I dati ricevuti dalle API non sono validi. (null_err)"
           }
         },
         "available_liveries": {
           "errors": {
             "installed_addons_fail": {
-              "title": "Couldn't find installed liveries.",
-              "error_text": "We couldn't fetch the list of installed liveries. Have you moved or deleted your community folder?",
-              "suggestion1": "The path you told us is {{path}}. Is this correct?",
-              "suggestion2": "Try updating your community folder in Settings."
+              "title": "Impossibile recuperare le livree installate.",
+              "error_text": "Non riusciamo a recuperare l'elenco delle livree installate. Hai spostato la Community Folder?",
+              "suggestion1": "Il percorso che hai indicato è {{path}}. E' corretto?",
+              "suggestion2": "Prova ad aggiornare la Community Folder dalle impostazioni."
             }
           },
           "progress_notifications": {
-            "begin_install": "Installing liveries...",
-            "install_complete": "Installed {{total}} [[total||livery|liveries]] successfully",
-            "install_failed": "{{fails}} [[fails||livery|liveries]] failed to install. The team has been notified."
+            "begin_install": "Installazione livree...",
+            "install_complete": "{{total}} [[total||livrea|livree]] installate correttamente",
+            "install_failed": "Impossibile installare {{fails}} [[fails||livrea|livree]]. Il team è stato informato dell'accaduto."
           },
-          "fab_currently_installing": "Installing {{total}} [[total||livery|liveries]] ({{size}} MB)",
-          "fab_install": "Install {{total}} [[total||livery|liveries]] ({{size}} MB)",
+          "fab_currently_installing": "Installazione di {{total}} [[total||livrea|livree]] ({{size}} MB)",
+          "fab_install": "Installa {{total}} [[total||livrea|livree]] ({{size}} MB)",
           "components": {
             "refresh_box": {
-              "refreshing_now": "checking now..."
+              "refreshing_now": "controllo in corso..."
             },
             "aircraft_accordion": {
-              "available_count": "{{total}} [[total||livery|liveries]] available",
-              "installed_count": "{{total}} installed",
+              "available_count": "{{total}} [[total||livrea|livree]] disponibili",
+              "installed_count": "{{total}} installate",
               "info_fields": {
                 "aircraft_name": {
-                  "title": "Aircraft"
+                  "title": "Aereo"
                 },
                 "total_livery_count": {
-                  "title": "Liveries available",
-                  "value": "{{total}} available"
+                  "title": "Livree disponibili",
+                  "value": "{{total}} disponibili"
                 },
                 "total_installed_count": {
-                  "title": "Liveries installed",
-                  "value": "{{count}} of {{total}} installed"
+                  "title": "Livree installate",
+                  "value": "{{count}} di {{total}} installate"
                 }
               },
               "buttons": {
-                "select_all_btn": "Select all",
-                "deselect_all_btn": "Deselect all"
+                "select_all_btn": "Seleziona tutte",
+                "deselect_all_btn": "Deseleziona tutte"
               },
-              "liveries_heading": "Liveries"
+              "liveries_heading": "Livree"
             },
             "livery_row": {
-              "expand_livery_details_tooltip": "Show livery info",
-              "shrink_livery_details_tooltip": "Hide livery info",
+              "expand_livery_details_tooltip": "Mostra informazioni livrea",
+              "shrink_livery_details_tooltip": "Nascondi informazioni livrea",
               "info_fields": {
                 "version": {
-                  "title": "Version",
-                  "tooltip": "This text represents the current version of the livery which is available. If your version differs from this, it means a new update is available."
+                  "title": "Versione",
+                  "tooltip": "Questo testo riporta la versione della livrea disponibile. Se la tua versione è diversa, significa che è disponibile un aggiornamento."
                 },
                 "thumbnail": {
                   "title": "Thumbnail"
@@ -194,119 +194,119 @@
           }
         },
         "installed_liveries": {
-          "warning_cannot_remove_multiple_liveries": "At the moment, you can't remove or update multiple liveries at a time. Don't worry because this will be coming in a future update.",
+          "warning_cannot_remove_multiple_liveries": "Al momento, non puoi aggiornare o rimuovere più di una livrea alla volta. Non preoccuparti, potrai farlo con un futuro aggiornamento.",
           "progress_notifications": {
-            "begin_update": "Updating [[total||livery|liveries]]...",
-            "update_complete": "Updated {{total}} [[total||livery|liveries]] successfully",
-            "update_failed": "{{fails}} [[fails||livery|liveries]] failed to update. The team has been notified."
+            "begin_update": "Aggiornamento [[total||livrea|livree]]...",
+            "update_complete": "Aggiornamento di {{total}} [[total||livrea|livree]] completato",
+            "update_failed": "Aggiornamento di {{fails}} [[fails||livrea|livree]] fallito. Il team è stato informato dell'accaduto."
           },
           "components": {
             "refresh_box": {
-              "refreshing_now": "checking now..."
+              "refreshing_now": "controllo in corso..."
             },
             "aircraft_accordion": {
-              "liveries_heading": "Liveries",
-              "installed_count": "{{total}} installed",
-              "update_count": "{{updates}} [[updates||livery has an update|liveries have updates]]"
+              "liveries_heading": "Livree",
+              "installed_count": "{{total}} installate",
+              "update_count": "{{updates}} [[updates||aggiornamento disponibile|aggiornamenti disponibili]]"
             },
             "list_row": {
               "update": {
-                "button": "Update"
+                "button": "Aggiorna"
               },
               "help": {
                 "tooltip": {
-                  "update": "Update livery",
-                  "delete": "Remove livery",
-                  "delete_timer": "Hold for {{time}}s to remove"
+                  "update": "Aggiorna livrea",
+                  "delete": "Rimuovi livree",
+                  "delete_timer": "Attendi {{time}}s per la rimozione"
                 },
                 "snackbar": {
-                  "hold_to_remove": "To remove a livery, click and hold its delete button for {{time}} seconds"
+                  "hold_to_remove": "Per rimuovere una livrea, clicca e tieni premuto il suo pulsante di rimozione per {{time}} secondi"
                 }
               }
             }
           },
           "notification": {
-            "no_liveries_to_remove": "You don't have any installed liveries!",
-            "removing_livery": "Removing livery {{current}} of {{total}}",
-            "remove_all_success": "Successfully removed {{total}} [[total||livery|liveries]]",
-            "remove_all_failures": "Failed to remove {{errors}} [[errors||livery|liveries]]",
+            "no_liveries_to_remove": "Non hai installato nessuna livrea!",
+            "removing_livery": "Rimozione di {{current}} livree su {{total}}",
+            "remove_all_success": "Rimosse {{total}} [[total||livrea|livree]] correttamente",
+            "remove_all_failures": "Impossibile rimuovere {{errors}} [[errors||livrea|livree]]",
             "deletion": {
-              "fail1": "Failed to remove livery: no obj passed",
-              "fail2": "Failed to remove livery: unknown location",
-              "fail3": "Failed to remove livery: folder not found",
-              "fail4": "Failed to remove livery: {{error}}",
-              "fail5": "Failed to remove livery: unknown error",
-              "success": "Successfully removed livery"
+              "fail1": "Errore nella rimozione della livrea: no obj passed",
+              "fail2": "Errore nella rimozione della livrea: unknown location",
+              "fail3": "Errore nella rimozione della livrea: folder not found",
+              "fail4": "Errore nella rimozione della livrea: {{error}}",
+              "fail5": "Errore nella rimozione della livrea: unknown error",
+              "success": "Livrea rimossa correttamente"
             },
-            "no_liveries_to_update": "You don't have any installed liveries!",
-            "update_all_success": "Successfully updated {{total}} [[total||livery|liveries]]",
-            "update_all_failures": "Failed to update {{errors}} [[errors||livery|liveries]]",
-            "updating_livery": "Updating livery {{current}} of {{total}}"
+            "no_liveries_to_update": "Non hai installato nessuna livrea!",
+            "update_all_success": "Aggiornate {{total}} [[total||livrea|livree]] correttamente",
+            "update_all_failures": "Impossibile aggiornare {{errors}} [[errors||livrea|livree]]",
+            "updating_livery": "Aggiornamento di {{current}} livree su {{total}}"
           },
           "dialog": {
             "uninstall_all": {
-              "title": "Remove all liveries?",
-              "message": "Are you sure you want to uninstall ALL YOUR LIVERIES?",
-              "detail": "Once you start this process, you cannot pause or cancel it. To get your liveries back, you need to reinstall them."
+              "title": "Rimuovere tutte le livree?",
+              "message": "Sei sicuro di voler rimuovere TUTTE LE LIVREE?",
+              "detail": "Una volta che avvii questo processo non puoi metterlo in pausa o annullarlo. Se rivorrai le livree dovrai reinstallarle."
             },
             "update_all": {
-              "title": "Update all liveries?",
-              "message": "Are you sure you want to update ALL YOUR LIVERIES?",
-              "detail": "Once you start this process, you cannot pause or cancel it."
+              "title": "Aggiornare tutte le livree?",
+              "message": "Sei sicuro di voler aggioornare TUTTE LE LIVREE?",
+              "detail": "Una volta che avvii questo processo non puoi metterlo in pausa o annullarlo."
             }
           },
           "button": {
-            "remove_all_liveries": "Remove all",
-            "update_all": "Update all"
+            "remove_all_liveries": "Rimuovi tutte",
+            "update_all": "Aggiorna tutte"
           },
           "no_liveries_installed": {
-            "more_info_button": "View more info",
-            "message": "No installed liveries detected",
-            "info": "We couldn't find any mega pack liveries in your selected Community folder.\n\nIf you installed liveries through the mega pack zip, they will not appear here. They must be installed via the manager."
+            "more_info_button": "Mostra più informazioni",
+            "message": "Non è stata trovata nessuna livrea installata",
+            "info": "Non è stato possibile trovare nessuna livrea del mega pack nella Community folder selezionata.\n\nSe hai installato le livree tramite il mega pack zip, non compariranno qui. Devono essere installate tramite il manager."
           }
         },
         "settings": {
           "advanced_settings": {
-            "enabled_notification": "Enabled advanced settings",
-            "disabled_notification": "Disabled advanced settings",
-            "dialog_title": "Enable advanced settings?",
-            "dialog_body": "Enable advanced settings?",
-            "dialog_detail": "Only do this if instructed to by a developer. This may have unintended consequences. You have been warned!"
+            "enabled_notification": "Attiva le impostazioni avanzate",
+            "disabled_notification": "Disattiva le impostazioni avanzate",
+            "dialog_title": "Attivare le impostazioni avanzate?",
+            "dialog_body": "Attivare le impostazioni avanzate?",
+            "dialog_detail": "Fai questo solo se te l'ha detto uno sviluppatore. Potrebbe avere conseguenze inattese. Sei stato avvisato!"
           },
           "footer": {
-            "line1": "{{appName}} — Created for the Liveries Mega Pack",
-            "line2": "© {{year}} — All rights reserved — ",
+            "line1": "{{appName}} — Creato per il Liveries Mega Pack",
+            "line2": "© {{year}} — Tutti i diritti riservati — ",
             "version": "v{{version}}",
-            "source_repo_and_license": "View the source code and license"
+            "source_repo_and_license": "Consulta il sorgente e le licenze"
           },
-          "errors_in_inputs": "Please fix the error(s) above before saving",
-          "save_settings_changes": "Click 'Save' to save changes",
-          "all_changes_saved": "All changes saved",
-          "save_button": "Save",
+          "errors_in_inputs": "Correggi gli errori prima di salvare",
+          "save_settings_changes": "Clicca su  'Salva' per salvare le modifiche",
+          "all_changes_saved": "Modifiche salvate",
+          "save_button": "Salva",
           "user_settings": {
             "community_folder": {
               "name": "Community folder",
-              "input_label": "Path to community folder",
-              "browse_button_sr_text": "Browse to folder",
-              "reset_button": "Undo changes",
-              "open_in_explorer": "Show folder in explorer",
-              "open_in_explorer_opening": "Opening..."
+              "input_label": "Percorso della community folder",
+              "browse_button_sr_text": "Naviga alla folder",
+              "reset_button": "Annulla i cambiamenti",
+              "open_in_explorer": "Mostra la cartella in Esplora Risorse",
+              "open_in_explorer_opening": "Apertura..."
             },
             "locale_selection": {
-              "name": "Manager language",
-              "label": "Language"
+              "name": "Lingua selezionata",
+              "label": "Lingua"
             },
             "cache_clear": {
               "name": "Caching",
-              "clearing_cache_notification": "Clearing cache. This might take a few minutes.",
-              "cache_clear_success_notification": "Cache cleared successfully!",
-              "cache_clear_error_notification": "Failed to clear cache",
-              "purge_cache_button": "Purge cache"
+              "clearing_cache_notification": "Pulizia della cache. Ci vorrà qualche minuto.",
+              "cache_clear_success_notification": "Cache pulita correttamente!",
+              "cache_clear_error_notification": "Errore nella pulizia della cache",
+              "purge_cache_button": "Svuota la cache"
             },
             "reset_manager_to_defaults": {
-              "name": "Reset manager",
-              "detail": "This will reset all app settings and restart the manager. You won't lose any installed liveries, and any liveries that are already installed will be automatically re-detected.",
-              "reset_btn": "Reset all settings"
+              "name": "Resetta il manager",
+              "detail": "Questo resetterà tutte le tue impostazioni e riavvierà il manager. Non perderai le livree installate, ogni livrea inatallata verrà rilevata di nuovo.",
+              "reset_btn": "Resetta tutte le impostazioni"
             }
           }
         }
