@@ -1,2 +1,2 @@
-import 'dayjs/locale/it-it';
+import 'dayjs/locale/it';
 export default from './locale.json';
