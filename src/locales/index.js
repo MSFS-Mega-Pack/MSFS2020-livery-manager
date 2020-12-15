@@ -1,7 +1,7 @@
-export { default as deDE } from './de-DE';
-export { default as enGB } from './en-GB';
-export { default as enUS } from './en-US';
-export { default as seSE } from './se-SE';
-export { default as nlNL } from './nl-NL';
-export { default as zhHans } from './zh-Hans';
-export { default as itIT } from './it-IT';
+export * as deDE from './de-DE';
+export * as enGB from './en-GB';
+export * as enUS from './en-US';
+export * as seSE from './se-SE';
+export * as nlNL from './nl-NL';
+export * as zhHans from './zh-Hans';
+export * as itIT from './it-IT';

@@ -2,7 +2,7 @@ import Config from 'electron-json-config';
 import ConfigKeys from '../data/config-keys.json';
 
 /**
- * @typedef {{ info: { name: string, localeId: string }, strings: object, setLocale: function }} LocaleData
+ * @typedef {{ info: { name: string, localeId: string }, strings: object, setLocale: function, dayJsLocale: any }} LocaleData
  */
 
 /**
@@ -22,9 +22,22 @@ import { GetLocale } from './LocaleHelpers';
  * Call .translate() on this class, passing a dot-notation translation ID to fetch a string.
  */
 export default class Locale {
+  /**
+   * @type {string} The locale ID (e.g. `en-GB`)
+   */
   locale;
+
+  /**
+   * @type {string} The display name of the locale (e.g. `English (United Kingdom)`)
+   */
   name;
+
+  /**
+   * @type {object} The list of strings
+   */
   strings;
+
+  dayJsLocale;
 
   /**
    * en-GB strings used if string isn't found in current translation pack
@@ -96,6 +109,7 @@ export default class Locale {
 
     this._fallbackStrings = GetLocale('en-GB').strings;
     this._setLocale = localeData.setLocale;
+    this.dayJsLocale = localeData.dayJsLocale || GetLocale('en-GB').dayJsLocale;
   }
 }
 

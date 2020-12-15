@@ -7,10 +7,12 @@ import Locale from './Locale';
  * @return {import("./Locale").LocaleData[]}
  */
 export function GetAllLocales() {
+  /** @type {import("./Locale").LocaleData[]} */
   let all = [];
 
   for (const locale in Locales) {
-    all.push(Locales[locale]);
+    console.log(Locales[locale]);
+    all.push({ ...Locales[locale].default, dayJsLocale: Locales[locale].dayJsLocale });
   }
 
   return all;
