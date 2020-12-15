@@ -15,15 +15,29 @@ In this guide, we assume that you already have copy of the repository locally.
    - Make sure to change `enGB` and `en-GB` to the language code used for the folder.
 
 ```js
-export { default as enGB } from './en-GB';
+export * as enGB from './en-GB';
 ```
 
-4. Update your locale's JSON (`src/locales/<folder>/locale.json`) with the name and ID of your language:
+4. Update your locale's `index.js` file to show correct days of the week:
+
+```js
+// See full list of supported dayjs locales here
+// https://github.com/iamkun/dayjs/tree/dev/src/locale
+
+// CHANGE THIS LINE
+export { default as dayJsLocale } from 'dayjs/locale/<locale id>';
+
+// ...
+```
+
+5. Update your locale's JSON (`src/locales/<folder>/locale.json`) with the name and ID of your language:
 
 ```jsonc
 {
   "info": {
-    "name": "Pirate Speak",
+    // <local language name> (<language name in english>)
+    // e.g. "Português (Portuguese)"
+    "name": "Arrr! (Pirate Speak)",
     "localeId": "en-PIRATE"
   },
   "strings": {
@@ -32,7 +46,7 @@ export { default as enGB } from './en-GB';
 }
 ```
 
-5. Start updating strings!
+6. Start updating strings! :tada:
 
 ## Syntax
 
