@@ -1,11 +1,11 @@
 {
   "info": {
-    "name": "简体中文 (Simplified Chinese)",
-    "localeId": "zh-Hans"
+    "name": "简体中文",
+    "localeId": "zh_Hans"
   },
   "strings": {
     "common": {
-      "coming_soon": "敬请期待⋯⋯"
+      "coming_soon": "敬请期待..."
     },
     "models": {
       "article": {
@@ -16,7 +16,7 @@
       "validate_fs_directory": {
         "choose_directory": "请选择文件路径。",
         "path_doesnt_exist": "您设置的路径不存在",
-        "invalid_path": "请确认您正确选择了您的Community文件夹路径（示例：MSFS2020主程序文件夹/Community）"
+        "invalid_path": "请确认您正确选择了您的Community文件夹路径（示例：MSFS2020主程序文件夹/Community)"
       },
       "show_native_dialog": {
         "yes_button": "&是",
@@ -36,16 +36,16 @@
       },
       "get_active_feed": {
         "fetch_fail": "无法从当前API服务器获取数据源。",
-        "fetch_fail_article_text": "无法加载文章。如果该状况持续存在，[请向开发者报告](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new)。\n\n摘要: `fetch` failed in `GetActiveFeed.js`"
+        "fetch_fail_article_text": "无法加载文章。如果该状况持续存在，【请向开发者报告】。(https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\n摘要: `fetch` failed in `GetActiveFeed.js`"
       },
       "get_feed_history": {
         "fetch_fail": "无法从当前API服务器获取数据源。",
-        "fetch_fail_article_text": "无法加载文章。如果该状况持续存在，[请向开发者报告](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new)。\n\n摘要: `fetch` failed in `GetActiveFeed.js`"
+        "fetch_fail_article_text": "无法加载文章。如果该状况持续存在，【请向开发者报告】。(https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\n摘要: `fetch` failed in `GetActiveFeed.js`"
       }
     },
     "manager": {
       "splash_screen": {
-        "loading": "正在加载⋯⋯"
+        "loading": "正在加载..."
       },
       "setup": {
         "back_button": "上一步",
@@ -57,7 +57,7 @@
         },
         "locale_page": {
           "heading": "请选择语言",
-          "description": "所有翻译均由社区成员制作。如果翻译有误，请到GitHub的Errors页发帖报告。",
+          "description": "所有翻译均由社区成员制作。如果翻译有误，请到GitHub的Errors页发帖报告。（译者：Bilibili@空中黑客）",
           "help_translate_link": "点击此处，帮助我们将本程序翻译为您的语言。",
           "dropdown": {
             "label": "语言"
@@ -141,20 +141,20 @@
             "installed_addons_fail": {
               "title": "未找到已安装涂装。",
               "error_text": "无法获取已安装涂装列表。客官，您能带带我重新找找community文件夹吗？",
-              "suggestion1": "客官，您的Community文件夹设置在了{{path}}。 我找对地方了吗？",
+              "suggestion1": "客官，您的Community文件夹设置在了{{path}}. 我找对地方了吗？",
               "suggestion2": "客官，麻烦您在“设置”选项卡里重新给我下community文件夹的位置吧。"
             }
           },
           "progress_notifications": {
-            "begin_install": "正在安装涂装⋯⋯",
+            "begin_install": "正在安装涂装...",
             "install_complete": "成功安装{{total}}个涂装",
             "install_failed": "{{fails}}个涂装安装失败。开发团队已记录信息。"
           },
-          "fab_currently_installing": "正在安装{{total}}个涂装 （{{size}} MB）",
-          "fab_install": "安装{{total}}个涂装 （{{size}} MB）",
+          "fab_currently_installing": "正在安装{{total}}个涂装 ({{size}} MB)",
+          "fab_install": "安装{{total}}个涂装({{size}} MB)",
           "components": {
             "refresh_box": {
-              "refreshing_now": "正在检查⋯⋯"
+              "refreshing_now": "正在检查..."
             },
             "aircraft_accordion": {
               "available_count": "{{total}}个涂装可更新",
@@ -196,13 +196,13 @@
         "installed_liveries": {
           "warning_cannot_remove_multiple_liveries": "当前版本下，您不可以同时删除或更新多个涂装。不过请组织放心，该功能马上将在未来更新上线。",
           "progress_notifications": {
-            "begin_update": "正在更新涂装文件⋯⋯",
+            "begin_update": "正在更新涂装文件...",
             "update_complete": "{{total}}个涂装更新成功",
             "update_failed": "{{fails}}个涂装更新失败。开发团队已记录信息。"
           },
           "components": {
             "refresh_box": {
-              "refreshing_now": "正在检查⋯⋯"
+              "refreshing_now": "正在检查..."
             },
             "aircraft_accordion": {
               "liveries_heading": "已安装涂装",
@@ -290,7 +290,7 @@
               "browse_button_sr_text": "浏览文件夹",
               "reset_button": "撤销更改",
               "open_in_explorer": "在文件资源管理器中显示",
-              "open_in_explorer_opening": "正在打开⋯⋯"
+              "open_in_explorer_opening": "正在打开..."
             },
             "locale_selection": {
               "name": "管理器显示语言",
