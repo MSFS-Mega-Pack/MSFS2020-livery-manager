@@ -1,8 +1,21 @@
-# Translating the Liveries Mega Pack Manager
+# Translating the Liveries Mega Pack Manager <!-- omit in toc -->
 
 Thanks for helping to translate the liveries mega pack manager!
 
 **This project relies on people translating strings correctly. Please don't use Google Translate: only contribute if you're fluent in English and the language you're adding!**
+
+## Contents <!-- omit in toc -->
+
+- [Guide](#guide)
+- [Correctly formatting dates](#correctly-formatting-dates)
+  - [Simple is best: `LLLL` and `L LT`](#simple-is-best-llll-and-l-lt)
+  - ["My language doesn't have a dayjs locale!"](#my-language-doesnt-have-a-dayjs-locale)
+- [Syntax](#syntax)
+  - [Basic strings](#basic-strings)
+  - [Variables](#variables)
+  - [Pluralisation](#pluralisation)
+- [Important notes](#important-notes)
+- [Questions and requests](#questions-and-requests)
 
 ## Guide
 
@@ -47,6 +60,38 @@ export { default as dayJsLocale } from 'dayjs/locale/<locale id>';
 ```
 
 6. Start updating strings! :tada:
+
+## Correctly formatting dates
+
+Assuming you set the dayjs locale for your language correctly (see step 4 above), date formatting should be (almost) complete for you!
+
+**Formatting dates is one of the most important things when translating.** Confusion is easy when languages display dates differently.
+
+For example, in the US, they use `MM/DD/YYYY` whereas in the UK they use `DD/MM/YYYY`. Both countries speak the same language but still use different date formats. Make sure your date formats are written correctly and **in a way people would commonly see them in that language**.
+
+> For example, don't start using `MMM YYYY DD` in English UK: reading "November 2020 31" might make sense, but it's not a date format used in the UK.
+
+### Simple is best: `LLLL` and `L LT`
+
+There is a super simple date format that you can use in all the JSONs and never really have problems, as long as you import the correct dayjs locale: `LLLL`.
+
+`LLLL` tells dayjs to show "the most verbose localised date format". If you look at the table below, there are only subtle differences, and both make sense to US and UK readers, but using the "most correct" option is best.
+
+Another great option is `L LT`. This displays the shortest possible localised date format, and the localised time.
+
+
+| Format | US English                          | UK English                     |
+| ------ | ----------------------------------- | ------------------------------ |
+| `LLLL` | `Thursday, August 16, 2018 8:02 PM` | Thursday, 16 August 2018 20:02 |
+| `L LT` | `08/16/2018 8:02 PM`                | `16/08/2018 20:02`             |
+
+**Have any issues with these date formats?**
+
+### "My language doesn't have a dayjs locale!"
+
+Go make one! Contributing to open source projects like dayjs helps 10s or 100s of thousands of developers!
+
+[Check out how they look](https://github.com/iamkun/dayjs/blob/dev/src/locale/en-gb.js), then [create your own JSON](https://github.com/iamkun/dayjs/new/dev/src/locale) and open a PR!
 
 ## Syntax
 
