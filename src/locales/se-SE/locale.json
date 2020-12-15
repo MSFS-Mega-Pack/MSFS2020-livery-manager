@@ -9,7 +9,7 @@
     },
     "models": {
       "article": {
-        "date_format": "ddd D MMM YYYY, HH:mm"
+        "date_format": "LLLL"
       }
     },
     "helpers": {
@@ -100,7 +100,7 @@
           }
         },
         "refresh_box": {
-          "date_format": "D MMM, h:mm A",
+          "date_format": "LT",
           "last_refreshed": "Senast uppdaterad:",
           "last_refreshed_explanation_tooltip": "När du senast kollade efter installerade och tillgängliga liveries",
           "refresh_button": {

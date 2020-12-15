@@ -9,7 +9,7 @@
     },
     "models": {
       "article": {
-        "date_format": "YYYY年M月D日 ddd, h:mm A"
+        "date_format": "LLLL"
       }
     },
     "helpers": {
@@ -100,7 +100,7 @@
           }
         },
         "refresh_box": {
-          "date_format": "M月D日, h:mm A",
+          "date_format": "LT",
           "last_refreshed": "最近更新时间:",
           "last_refreshed_explanation_tooltip": "你最近一次查看可下载和已安装涂装的时间",
           "refresh_button": {
