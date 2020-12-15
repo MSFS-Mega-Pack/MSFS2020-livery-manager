@@ -1,7 +1,7 @@
 {
   "info": {
-    "name": "简体中文",
-    "localeId": "zh_Hans"
+    "name": "简体中文 (Simplified Chinese)",
+    "localeId": "zh-Hans"
   },
   "strings": {
     "common": {
