@@ -1,0 +1,306 @@
+{
+  "info": {
+    "name": "Français (France)",
+    "localeId": "fr-FR"
+  },
+  "strings": {
+    "common": {
+      "coming_soon": "Fonctionnalité à venir"
+    },
+    "models": {
+      "article": {
+        "date_format": "ddd D MMM 'YY, h:mm A"
+      }
+    },
+    "helpers": {
+      "validate_fs_directory": {
+        "choose_directory": "Veuillez choisir un dossier",
+        "path_doesnt_exist": "Le chemin sélectionné n'existe pas",
+        "invalid_path": "Veuillez vérifier si vous avez sélectionné le dossier Community"
+      },
+      "show_native_dialog": {
+        "yes_button": "&Oui",
+        "no_button": "&Non",
+        "cancel_button": "&Annuler"
+      },
+      "install_addon": {
+        "progress_notifications": {
+          "downloading_livery": "Téléchargement de la livrée {{current}} sur {{total}}",
+          "extracting_livery": "Extraction de la livrée {{current}} sur {{total}}"
+        }
+      },
+      "delete_addon": {
+        "delete_path_fail": "Erreur pendant la suppression du chemin de l'extension",
+        "delete_path_success": "Extension supprimée avec succès !",
+        "non_existant": "Le chemin de l'extension n'existe pas"
+      },
+      "get_active_feed": {
+        "fetch_fail": "Impossible de récupérer les informations depuis l'API.",
+        "fetch_fail_article_text": "Impossible de récupérer l'article. Si le problème persiste, [signalez le aux développeurs](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      },
+      "get_feed_history": {
+        "fetch_fail": "Impossible de récupérer les informations depuis l'API.",
+        "fetch_fail_article_text": "Impossible de récupérer l'article. Si le problème persiste, [signalez le aux développeurs](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      }
+    },
+    "manager": {
+      "splash_screen": {
+        "loading": "Chargement..."
+      },
+      "setup": {
+        "back_button": "Retour",
+        "next_button": "Suivant",
+        "finish_button": "Terminer",
+        "welcome_page": {
+          "heading": "Bienvenue sur {{app_name}}",
+          "description": "Passons à la configuration avant que de pouvoir utiliser le gestionnaire de livrées. Ceci vous permettra de bénéficier de la meilleure expérience et du fonctionnement optimal du gestionnaire."
+        },
+        "locale_page": {
+          "heading": "Choisissez votre langue",
+          "description": "Toutes les langues sont des traductions de la communauté. Veuillez signaler toute erreur de traduction sur GitHub.",
+          "help_translate_link": "Vous souhaitez nous aider à traduire le gestionnaire de livrées dans votre langue ?",
+          "dropdown": {
+            "label": "Langue"
+          }
+        },
+        "community_directory": {
+          "heading": "Sélection du dossier Community",
+          "description": "Veuillez vérifier que le chemin indiqué ci-dessous corresponde à votre dossier Community. Si celà n'est pas le cas, veuillez indiquer le bon dossier en cliquant sur le bouton Parcourir.",
+          "text_field": {
+            "label": "Dossier Community",
+            "browse_button_sr_text": "Parcourir"
+          }
+        },
+        "complete_page": {
+          "heading": "Installation terminée",
+          "description1": "Vous êtes prêt à prendre votre envol !",
+          "description2": "Cliquez sur le bouton Terminer pour confirmer votre configuration et lancer le gestionnaire."
+        }
+      },
+      "tabs": {
+        "tab_labels": {
+          "update_feed": "Tableau de bord",
+          "available_liveries": "Livrées disponibles",
+          "installed_liveries": "Livrées installées",
+          "settings": "Paramètres"
+        }
+      },
+      "components": {
+        "feed_article": {
+          "authored_by": "Créé par {{author}}"
+        },
+        "badges": {
+          "update_available": {
+            "tooltip": "Allez dans l'onglet 'Livrées installées' pour mettre à jour cette livrée",
+            "content": "Mise à jour disponible"
+          },
+          "installed": {
+            "tooltip": "Pour désinstaller, mettre à jour ou réinstaller, allez dans l'onglet 'Livrées Installées'",
+            "content": "Installée"
+          }
+        },
+        "refresh_box": {
+          "date_format": "D MMM, h:mm A",
+          "last_refreshed": "Dernière actualisation :",
+          "last_refreshed_explanation_tooltip": "Dernière vérification des livrées installées et disponibles",
+          "refresh_button": {
+            "tooltip": {
+              "default": "Actualiser la liste des livrées disponibles",
+              "rate_limited": "Veuillez patienter {{interval}} seconde(s) avant d'actualiser à nouveau."
+            },
+            "unknown_time": "inconnu"
+          }
+        },
+        "error_dialog": {
+          "error": "Erreur",
+          "suggestions": "Suggestion",
+          "close_dialog_button": "Fermer"
+        },
+        "offline_error": {
+          "title": "Vous êtes hors-ligne",
+          "paragraph1": "Cette application nécessite une connexion à Internet pour fonctionner. Vérifiez votre connexion.",
+          "paragraph2": "Ce message disparaitra automatiquement lorsque votre connexion à Internet sera rétablie."
+        }
+      },
+      "pages": {
+        "feed": {
+          "error_more_info_button": "Voir plus d'infos",
+          "no_more_posts": {
+            "heading": "Vous avez tout vu !",
+            "info": "Vous avez atteint la fin de ce fil"
+          },
+          "view_more_updates_button": "Lire toutes les infos",
+          "errors": {
+            "generic_message": "Une erreur est survenue pendant le chargement des informations",
+            "unknown_error": "Erreur inconnue",
+            "feed_unknown": "Les informations obtenues via l'API sont incorrectes. (null_err)"
+          }
+        },
+        "available_liveries": {
+          "errors": {
+            "installed_addons_fail": {
+              "title": "Impossible de trouver les livrées installées.",
+              "error_text": "Nous n'avons pas pu retrouver vos livrées installées. Avez-vous déplacé ou supprimé le dossier Community ?",
+              "suggestion1": "Le chemin indiqué dans la configuration est {{path}}. Est-il correct ?",
+              "suggestion2": "Essayez de mettre à jour le chemin vers votre dossier Community dans l'onglet Paramètres."
+            }
+          },
+          "progress_notifications": {
+            "begin_install": "Installations des livrées ...",
+            "install_complete": "{{total}} [[total||livery|liveries]] livrée(s) installée(s) avec succès",
+            "install_failed": "{{fails}} [[fails||livery|liveries]] livrées n'ont pas pu être installés. L'équipe a été notifiée."
+          },
+          "fab_currently_installing": "Installation de {{total}} [[total||livery|liveries]] ({{size}} MB)",
+          "fab_install": "Installation de {{total}} [[total||livery|liveries]] ({{size}} MB)",
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "Recherche en cours ..."
+            },
+            "aircraft_accordion": {
+              "available_count": "{{total}} [[total||livery|liveries]] disponible(s)",
+              "installed_count": "{{total}} installée(s)",
+              "info_fields": {
+                "aircraft_name": {
+                  "title": "Avion"
+                },
+                "total_livery_count": {
+                  "title": "Livrées disponibles",
+                  "value": "{{total}} disponibles"
+                },
+                "total_installed_count": {
+                  "title": "Livrées installées",
+                  "value": "{{count}} of {{total}} installées"
+                }
+              },
+              "buttons": {
+                "select_all_btn": "Sélectionner tout",
+                "deselect_all_btn": "Désélectionner tout"
+              },
+              "liveries_heading": "Livrées"
+            },
+            "livery_row": {
+              "expand_livery_details_tooltip": "Voir les infos sur la livrée",
+              "shrink_livery_details_tooltip": "Cacher les infos sur la livrée",
+              "info_fields": {
+                "version": {
+                  "title": "Version",
+                  "tooltip": "Ceci correspond à la version la plus récente de la livrée. Si votre version diffère, cela signifie qu'une mise à jour est disponible."
+                },
+                "thumbnail": {
+                  "title": "Aperçu"
+                }
+              }
+            }
+          }
+        },
+        "installed_liveries": {
+          "warning_cannot_remove_multiple_liveries": "Pour l'instant, vous ne pouvez enlever ou mettre à jour plusieurs livrées en même temps. Cette fonction sera implémentée dans une prochaine mise à jour.",
+          "progress_notifications": {
+            "begin_update": "Mise à jour de [[total||livery|liveries]]...",
+            "update_complete": "{{total}} [[total||livery|liveries]] mise(s) à jour avec succès",
+            "update_failed": "{{fails}} [[fails||livery|liveries]] mise(s) à jour échouée(s). L'équipe a été notifiée."
+          },
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "Recherche en cours ..."
+            },
+            "aircraft_accordion": {
+              "liveries_heading": "Livrées",
+              "installed_count": "{{total}} installées",
+              "update_count": "{{updates}} [[updates||livery has an update|liveries have updates]]"
+            },
+            "list_row": {
+              "update": {
+                "button": "Mettre à jour"
+              },
+              "help": {
+                "tooltip": {
+                  "delete": "Supprimer la livrée",
+                  "delete_timer": "Maintenir pendant {{time}}s pour supprimer"
+                },
+                "snackbar": {
+                  "hold_to_remove": "Pour supprimer une livrée, cliquez et maintenez le bouton Supprimer pendant {{time}} secondes"
+                }
+              }
+            }
+          },
+          "notification": {
+            "no_liveries_to_remove": "Vous n'avez aucune livrée installée",
+            "removing_livery": "Suppression de la livrée {{current}} sur {{total}}",
+            "remove_all_success": "Suppression de {{total}} [[total||livery|liveries]] avec succès",
+            "remove_all_failures": "Impossible de supprimer {{errors}} [[errors||livery|liveries]]",
+            "deletion": {
+              "fail1": "Impossible de supprimer la livrée : aucun objet transmis",
+              "fail2": "Impossible de supprimer la livrée : chemin inconnu",
+              "fail3": "Impossible de supprimer la livrée : dossier non trouvé",
+              "fail4": "Impossible de supprimer la livrée : {{error}}",
+              "fail5": "Impossible de supprimer la livrée : erreur inconnue",
+              "success": "Suppression réussie"
+            }
+          },
+          "dialog": {
+            "uninstall_all": {
+              "title": "Supprimer toutes les livrées ?",
+              "message": "Êtes-vous sûr de vouloir supprimer TOUTES LES LIVRÉES ?",
+              "detail": "Une fois le processus lancé, vous ne pourrez pas le mettre en pause ou l'annuler. Pour retrouver vos livrées, une nouvelle installation sera nécessaire."
+            }
+          },
+          "button": {
+            "remove_all_liveries": "Supprimer tout",
+            "update_all": "Tout mettre à jour"
+          },
+          "no_liveries_installed": {
+            "more_info_button": "Voir plus d'infos",
+            "message": "Aucune livrée installée",
+            "info": "Nous n'avons pas retrouvé de livrée du megapach dans votre dossier Community.\n\nSi vous avez fait l'installation manuellement, ils n'apparaitront pas ici. L'installation doit se faire via le gestionnaire."
+          }
+        },
+        "settings": {
+          "advanced_settings": {
+            "enabled_notification": "Paramètres avancés activés",
+            "disabled_notification": "Paramètres avancés désactivés",
+            "dialog_title": "Activer les paramètres avancés ?",
+            "dialog_body": "Activer les paramètres avancés ?",
+            "dialog_detail": "Ne faites ceci que si cela est demandé par un développeur. Cela pourrait avoir des conséquences indésirables. Vous avez été prévenus !"
+          },
+          "footer": {
+            "line1": "{{appName}} — Crée pour le Liveries Mega Pack",
+            "line2": "© {{year}} — Tous droits réservés — ",
+            "version": "v{{version}}",
+            "source_repo_and_license": "Consulter le code source et la licence"
+          },
+          "errors_in_inputs": "Veuillez corriger les erreurs avant de sauvegarder",
+          "save_settings_changes": "Appuyez sur 'Sauvegarder' pour enregistrer les modifications",
+          "all_changes_saved": "Toutes les modifications ont été enregistrées",
+          "save_button": "Sauvegarder",
+          "user_settings": {
+            "community_folder": {
+              "name": "Dossier Community",
+              "input_label": "Chemin du dossier Community",
+              "browse_button_sr_text": "Parcourir",
+              "reset_button": "Annuler les modifications",
+              "open_in_explorer": "Voir le dossier dans l'explorateur",
+              "open_in_explorer_opening": "Ouverture ..."
+            },
+            "locale_selection": {
+              "name": "Gestionnaire des langues",
+              "label": "Langues"
+            },
+            "cache_clear": {
+              "name": "Mise en cache",
+              "clearing_cache_notification": "Nettoyage du cache. Cela devrait prendre quelques minutes.",
+              "cache_clear_success_notification": "Cache nettoyé avec succès !",
+              "cache_clear_error_notification": "Impossible de nettoyer le cache",
+              "purge_cache_button": "Purger le cache"
+            },
+            "reset_manager_to_defaults": {
+              "name": "Réinitialiser le gestionnaire",
+              "detail": "Cela réinitialisera tous les réglages et redémarrera le gestionnaire. Vous ne perdrez aucune livrée installée, elles seront toutes automatiquement re-détectées.",
+              "reset_btn": "Réinitialiser les paramètres"
+            }
+          }
+        }
+      }
+    }
+  }
+}
