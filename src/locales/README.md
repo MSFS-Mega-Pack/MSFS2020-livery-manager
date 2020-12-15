@@ -79,7 +79,6 @@ There is a super simple date format that you can use in all the JSONs and never 
 
 Another great option is `L LT`. This displays the shortest possible localised date format, and the localised time.
 
-
 | Format | US English                          | UK English                     |
 | ------ | ----------------------------------- | ------------------------------ |
 | `LLLL` | `Thursday, August 16, 2018 8:02 PM` | Thursday, 16 August 2018 20:02 |
