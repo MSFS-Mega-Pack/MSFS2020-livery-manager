@@ -19,6 +19,7 @@ Changed marked with `[DEV]` are invisible to users, and purely for the benefit o
 
 - [DEV] Fixed issue with custom languages that didn't affect anyone in 0.3.1, but would have from this update (@davwheat and @dominique-mueller) (#182 and #198)
 - [DEV] Fix incorrect prop types (@dominique-mueller) (#198)
+- [DEV] Update dependencies
 
 ### Removed
 

@@ -16,7 +16,7 @@ export default function LiveryList(props) {
       <Virtuoso
         totalCount={liveries.length}
         style={{ height: 375 }}
-        item={i => {
+        itemContent={i => {
           const livery = liveries[i];
 
           const [index, msg] = GetIndexOfLiveryInArray(livery, installedLiveries);
