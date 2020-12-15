@@ -15,6 +15,9 @@ import clsx from 'clsx';
 import LocaleContext from '../../../locales/LocaleContext';
 
 const useStyles = makeStyles(theme => ({
+  expandButton: {
+    padding: 8,
+  },
   expandIcon: {
     transition: 'transform 200ms ease-out',
   },
@@ -38,6 +41,10 @@ const useStyles = makeStyles(theme => ({
       width: '100%',
       objectFit: 'contain',
     },
+  },
+  checkbox: {
+    padding: 0,
+    paddingLeft: 8,
   },
 }));
 
@@ -67,9 +74,10 @@ export default function ListRow(props) {
 
   return (
     <>
-      <ListItem button disableRipple onClick={isInstalled ? null : ToggleCheckbox}>
+      <ListItem dense button disableRipple onClick={isInstalled ? null : ToggleCheckbox}>
         <ListItemIcon>
           <Checkbox
+            className={classes.checkbox}
             disabled={disabled || isInstalled}
             color="primary"
             edge="start"
@@ -87,6 +95,7 @@ export default function ListRow(props) {
           }
         >
           <IconButton
+            className={classes.expandButton}
             centerRipple
             onClick={e => {
               e.stopPropagation();
