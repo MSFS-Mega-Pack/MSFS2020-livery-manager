@@ -1,0 +1,316 @@
+{
+  "info": {
+    "name": "简体中文",
+    "localeId": "zh_Hans"
+  },
+  "strings": {
+    "common": {
+      "coming_soon": "敬请期待..."
+    },
+    "models": {
+      "article": {
+        "date_format": "YYYY年M月D日 ddd, h:mm A"
+      }
+    },
+    "helpers": {
+      "validate_fs_directory": {
+        "choose_directory": "请选择文件路径。",
+        "path_doesnt_exist": "您设置的路径不存在",
+        "invalid_path": "请确认您正确选择了您的Community文件夹路径（示例：MSFS2020主程序文件夹/Community)"
+      },
+      "show_native_dialog": {
+        "yes_button": "&是",
+        "no_button": "&否",
+        "cancel_button": "&取消"
+      },
+      "install_addon": {
+        "progress_notifications": {
+          "downloading_livery": "正在下载涂装 第{{current}}个 共{{total}}个",
+          "extracting_livery": "正在解压涂装 第{{current}}个 共{{total}}个"
+        }
+      },
+      "delete_addon": {
+        "delete_path_fail": "插件删除出现错误",
+        "delete_path_success": "插件删除成功",
+        "non_existant": "插件路径不存在"
+      },
+      "get_active_feed": {
+        "fetch_fail": "无法从当前API服务器获取数据源。",
+        "fetch_fail_article_text": "无法加载文章。如果该状况持续存在，【请向开发者报告】。(https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\n摘要: `fetch` failed in `GetActiveFeed.js`"
+      },
+      "get_feed_history": {
+        "fetch_fail": "无法从当前API服务器获取数据源。",
+        "fetch_fail_article_text": "无法加载文章。如果该状况持续存在，【请向开发者报告】。(https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\n摘要: `fetch` failed in `GetActiveFeed.js`"
+      }
+    },
+    "manager": {
+      "splash_screen": {
+        "loading": "正在加载..."
+      },
+      "setup": {
+        "back_button": "上一步",
+        "next_button": "下一步",
+        "finish_button": "完成",
+        "welcome_page": {
+          "heading": "欢迎使用{{app_name}}",
+          "description": "在您使用本涂装管理器前，我们需要进行一些简单的设置，以保证程序的正常运行，并为您呈现最好的体验。"
+        },
+        "locale_page": {
+          "heading": "请选择语言",
+          "description": "所有翻译均由社区成员制作。如果翻译有误，请到GitHub的Errors页发帖报告。（译者：Bilibili@空中黑客）",
+          "help_translate_link": "点击此处，帮助我们将本程序翻译为您的语言。",
+          "dropdown": {
+            "label": "语言"
+          }
+        },
+        "community_directory": {
+          "heading": "找到你的community文件夹",
+          "description": "请确认下述路径为您游戏对应的community文件夹。如果不是，请点击“浏览文件夹”按钮寻找正确的文件夹位置。",
+          "text_field": {
+            "label": "Community文件夹",
+            "browse_button_sr_text": "浏览文件夹"
+          }
+        },
+        "complete_page": {
+          "heading": "设置完成",
+          "description1": "恭喜，您现在已获准起飞！",
+          "description2": "点击“完成”以保存设置并启动涂装管理器。"
+        }
+      },
+      "tabs": {
+        "tab_labels": {
+          "update_feed": "展柜",
+          "available_liveries": "可下载涂装",
+          "installed_liveries": "已安装涂装",
+          "settings": "设置"
+        }
+      },
+      "components": {
+        "feed_article": {
+          "authored_by": "作者：{{author}}"
+        },
+        "badges": {
+          "update_available": {
+            "tooltip": "您可前往“已安装涂装”页面更新本涂装",
+            "content": "有更新可用"
+          },
+          "installed": {
+            "tooltip": "您可点击“已安装涂装”选项卡来卸载、更新、重新安装涂装。",
+            "content": "已安装"
+          }
+        },
+        "refresh_box": {
+          "date_format": "M月D日, h:mm A",
+          "last_refreshed": "最近更新时间:",
+          "last_refreshed_explanation_tooltip": "你最近一次查看可下载和已安装涂装的时间",
+          "refresh_button": {
+            "tooltip": {
+              "default": "刷新可下载涂装",
+              "rate_limited": "刷新被拒绝: 每次刷新需要等待{{interval}}秒的时间间隔"
+            },
+            "unknown_time": "未知"
+          }
+        },
+        "error_dialog": {
+          "error": "错误",
+          "suggestions": "建议",
+          "close_dialog_button": "关闭"
+        },
+        "offline_error": {
+          "title": "啊哦，您掉线了。",
+          "paragraph1": "本程序需要网络连接才能正常运行。请检查你的网络设置。",
+          "paragraph2": "当你网络连接恢复后，本消息框会自动关闭。"
+        }
+      },
+      "pages": {
+        "feed": {
+          "error_more_info_button": "更多信息",
+          "no_more_posts": {
+            "heading": "您已经看到了我的底线，请好自为之。",
+            "info": "这里是本页面的末尾，请勿盲目蛮干，贯彻落实“八该一反对”原则。"
+          },
+          "view_more_updates_button": "查看所有更新信息",
+          "errors": {
+            "generic_message": "载入新闻动态时发生了错误。",
+            "unknown_error": "未知错误",
+            "feed_unknown": "从API服务器载入的新闻动态信息无效。(null_err)"
+          }
+        },
+        "available_liveries": {
+          "errors": {
+            "installed_addons_fail": {
+              "title": "未找到已安装涂装。",
+              "error_text": "无法获取已安装涂装列表。客官，您能带带我重新找找community文件夹吗？",
+              "suggestion1": "客官，您的Community文件夹设置在了{{path}}. 我找对地方了吗？",
+              "suggestion2": "客官，麻烦您在“设置”选项卡里重新给我下community文件夹的位置吧。"
+            }
+          },
+          "progress_notifications": {
+            "begin_install": "正在安装涂装...",
+            "install_complete": "成功安装{{total}}个涂装",
+            "install_failed": "{{fails}}个涂装安装失败。开发团队已记录信息。"
+          },
+          "fab_currently_installing": "正在安装{{total}}个涂装 ({{size}} MB)",
+          "fab_install": "安装{{total}}个涂装({{size}} MB)",
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "正在检查..."
+            },
+            "aircraft_accordion": {
+              "available_count": "{{total}}个涂装可更新",
+              "installed_count": "{{total}}个涂装已安装",
+              "info_fields": {
+                "aircraft_name": {
+                  "title": "机型"
+                },
+                "total_livery_count": {
+                  "title": "可下载涂装",
+                  "value": "共有{{total}}个可下载"
+                },
+                "total_installed_count": {
+                  "title": "已安装涂装",
+                  "value": "{{count}}个涂装已安装"
+                }
+              },
+              "buttons": {
+                "select_all_btn": "全部选择",
+                "deselect_all_btn": "全部取消选择"
+              },
+              "liveries_heading": "包含涂装"
+            },
+            "livery_row": {
+              "expand_livery_details_tooltip": "显示涂装详情",
+              "shrink_livery_details_tooltip": "隐藏涂装详情",
+              "info_fields": {
+                "version": {
+                  "title": "版本号",
+                  "tooltip": "该序号显示的是当前可下载版本的版本号。如果你已安装的版本号与之不一致，那么说明该涂装有可用更新。"
+                },
+                "thumbnail": {
+                  "title": "预览"
+                }
+              }
+            }
+          }
+        },
+        "installed_liveries": {
+          "warning_cannot_remove_multiple_liveries": "当前版本下，您不可以同时删除或更新多个涂装。不过请组织放心，该功能马上将在未来更新上线。",
+          "progress_notifications": {
+            "begin_update": "正在更新涂装文件...",
+            "update_complete": "{{total}}个涂装更新成功",
+            "update_failed": "{{fails}}个涂装更新失败。开发团队已记录信息。"
+          },
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "正在检查..."
+            },
+            "aircraft_accordion": {
+              "liveries_heading": "已安装涂装",
+              "installed_count": "{{total}}个已安装",
+              "update_count": "{{updates}}个涂装可更新"
+            },
+            "list_row": {
+              "update": {
+                "button": "更新"
+              },
+              "help": {
+                "tooltip": {
+                  "update": "更新涂装",
+                  "delete": "移除涂装",
+                  "delete_timer": "持续按住{{time}}秒以删除"
+                },
+                "snackbar": {
+                  "hold_to_remove": "如需删除涂装，请用鼠标左键按住“移除涂装”至少{{time}}秒以完成删除"
+                }
+              }
+            }
+          },
+          "notification": {
+            "no_liveries_to_remove": "客官，您都没有涂装能让我删的啦！",
+            "removing_livery": "正在移除涂装 第{{current}}个 共{{total}}个",
+            "remove_all_success": "已成功移除{{total}}个涂装",
+            "remove_all_failures": "有{{errors}}个涂装移除失败",
+            "deletion": {
+              "fail1": "涂装移除失败: 没有通过的对象",
+              "fail2": "涂装移除失败: 位置未知",
+              "fail3": "涂装移除失败: 未找到文件夹",
+              "fail4": "涂装移除失败: {{error}}",
+              "fail5": "涂装移除失败: 未知错误",
+              "success": "涂装已成功移除"
+            },
+            "no_liveries_to_update": "客官，您都没有涂装能让我更新的啦！",
+            "update_all_success": "已成功更新{{total}}个涂装",
+            "update_all_failures": "有{{errors}}个涂装更新失败",
+            "updating_livery": "正在更新涂装 第{{current}}个 共{{total}}个"
+          },
+          "dialog": {
+            "uninstall_all": {
+              "title": "确定移除所有涂装？",
+              "message": "请再三确认，您是不是要残忍移除所有已安装涂装？",
+              "detail": "一旦你开始该进程，将无法暂停或取消。你仍然可以重新安装这些涂装。"
+            },
+            "update_all": {
+              "title": "更新所有涂装？",
+              "message": "请确认，你需要在此时此刻，更新所有涂装？",
+              "detail": "一旦你开始该进程，将无法暂停或取消。"
+            }
+          },
+          "button": {
+            "remove_all_liveries": "移除所有涂装",
+            "update_all": "更新所有涂装"
+          },
+          "no_liveries_installed": {
+            "more_info_button": "更多信息",
+            "message": "未检测到任何已安装涂装",
+            "info": "我们未在您选取的Community文件夹找到任何MegaPack的涂装。\n\n如果您安装的是zip压缩包形式的涂装，那么这些涂装不会在此显示。只有通过本管理器安装的涂装会予以显示。"
+          }
+        },
+        "settings": {
+          "advanced_settings": {
+            "enabled_notification": "高级设置已启用",
+            "disabled_notification": "高级设置已禁用",
+            "dialog_title": "启用高级设置？",
+            "dialog_body": "是否启用高级设置？",
+            "dialog_detail": "该设置仅允许在开发者的指导下使用。该操作有可能引发意外后果，不要乱动。勿谓言之不预也！"
+          },
+          "footer": {
+            "line1": "{{appName}} — 专为涂装大集成包（Liveries Mega Pack）打造",
+            "line2": "© {{year}} — 版权所有 — ",
+            "version": "v{{version}}",
+            "source_repo_and_license": "查看源代码和许可信息"
+          },
+          "errors_in_inputs": "请在保存前修正上述出现的错误",
+          "save_settings_changes": "点击'保存'以保存所有更改",
+          "all_changes_saved": "所有更改已保存",
+          "save_button": "保存",
+          "user_settings": {
+            "community_folder": {
+              "name": "Community（社区插件）文件夹",
+              "input_label": "Community文件夹所在路径",
+              "browse_button_sr_text": "浏览文件夹",
+              "reset_button": "撤销更改",
+              "open_in_explorer": "在文件资源管理器中显示",
+              "open_in_explorer_opening": "正在打开..."
+            },
+            "locale_selection": {
+              "name": "管理器显示语言",
+              "label": "语言"
+            },
+            "cache_clear": {
+              "name": "缓存",
+              "clearing_cache_notification": "正在清理缓存。这可能需要几分钟时间。",
+              "cache_clear_success_notification": "缓存清理完成！",
+              "cache_clear_error_notification": "缓存清理失败",
+              "purge_cache_button": "清除缓存数据"
+            },
+            "reset_manager_to_defaults": {
+              "name": "复位管理器",
+              "detail": "该操作将复位所有程序设置并重启管理器。已安装涂装不会丢失，并且会在复位完成后重新被检测到。",
+              "reset_btn": "复位所有设定"
+            }
+          }
+        }
+      }
+    }
+  }
+}
