@@ -63,7 +63,7 @@
     "node-rsa": "^1.1.1",
     "notistack": "^1.0.2",
     "open": "^7.3.0",
-    "overlayscrollbars": "^1.13.0",
+    "overlayscrollbars": "^1.13.1",
     "overlayscrollbars-react": "^0.2.2",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
