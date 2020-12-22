@@ -89,7 +89,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^5.0.1",
     "dotenv": "^8.2.0",
-    "electron": "^11.1.0",
+    "electron": "^11.1.1",
     "electron-devtools-installer": "^3.1.1",
     "electron-installer-windows": "^3.0.0",
     "electron-packager": "^15.2.0",
