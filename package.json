@@ -61,7 +61,7 @@
     "mdi-react": "^7.4.0",
     "node-fetch": "^2.6.1",
     "node-rsa": "^1.1.1",
-    "notistack": "^1.0.2",
+    "notistack": "^1.0.3",
     "open": "^7.3.0",
     "overlayscrollbars": "^1.13.0",
     "overlayscrollbars-react": "^0.2.2",
