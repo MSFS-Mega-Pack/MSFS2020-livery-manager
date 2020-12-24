@@ -3923,10 +3923,10 @@ fontsource-ibm-plex-mono@^3.1.5:
   resolved "https://registry.yarnpkg.com/fontsource-ibm-plex-mono/-/fontsource-ibm-plex-mono-3.1.5.tgz#96b5b5688177b4470acc1ae02e3724da436c8e84"
   integrity sha512-row/cp85U1RP0ZtqqFe9hplFOUxy5Ucn0ZBPsKdp3od+CFJb6p1Cf6fkvc9mC5Ibp3UUPZB0swvZF8HWvXHM9g==
 
-fontsource-poppins@^3.1.5:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/fontsource-poppins/-/fontsource-poppins-3.1.5.tgz#c786d8a3ef4ec51ff3368402903e602466c318e7"
-  integrity sha512-exoI6ojITOrlxaxPhLx2OlKhXgYrdP2G3Fg9Gu42tWiuXrtN0NP/Ib37T5DCQyeZMpVLpJaZxVO6k5KFtnxyFg==
+fontsource-poppins@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/fontsource-poppins/-/fontsource-poppins-4.0.0.tgz#56610d2223ac988a60d5cbd0d789ead5ee6ea11e"
+  integrity sha512-zJdpf8kSFd6AS4o7BokG6g14wv9m+qzIbuthC24/UZCYz78AGkqBeje5axD0aFhOHl2ZJbVmhjyhYBQItxTCnA==
 
 for-in@^1.0.2:
   version "1.0.2"
