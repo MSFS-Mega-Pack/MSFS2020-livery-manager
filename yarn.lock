@@ -3918,10 +3918,10 @@ follow-redirects@^1.0.0:
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.1.tgz#5f69b813376cee4fd0474a3aba835df04ab763b7"
   integrity sha512-SSG5xmZh1mkPGyKzjZP8zLjltIfpW32Y5QpdNJyjcfGxK3qo3NDDkZOZSFiGn1A6SclQxY9GzEwAHQ3dmYRWpg==
 
-fontsource-ibm-plex-mono@^3.1.5:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/fontsource-ibm-plex-mono/-/fontsource-ibm-plex-mono-3.1.5.tgz#96b5b5688177b4470acc1ae02e3724da436c8e84"
-  integrity sha512-row/cp85U1RP0ZtqqFe9hplFOUxy5Ucn0ZBPsKdp3od+CFJb6p1Cf6fkvc9mC5Ibp3UUPZB0swvZF8HWvXHM9g==
+fontsource-ibm-plex-mono@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/fontsource-ibm-plex-mono/-/fontsource-ibm-plex-mono-4.0.0.tgz#71445c2187ef8fa38c62199bcedeb46fc44d24dd"
+  integrity sha512-josF10EEC3wKAq4b57TKODtc3IvEURKOFm1sNQE7Wc030q20huZjPi72W4+BN4TzBXkZGbcbPqlmrVZkCRaqsQ==
 
 fontsource-poppins@^3.1.5:
   version "3.1.5"
