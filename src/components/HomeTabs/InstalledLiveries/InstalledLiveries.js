@@ -179,7 +179,7 @@ export default function InstalledLiveries(props) {
 
       <Box display="flex">
         {installedLiveries.length > 0 && (
-          <Box>
+          <Box display="flex" mb={2} mx="auto" style={{ gap: 8 }}>
             <Button
               onClick={async () => {
                 if (installedLiveries.length <= 0) {
