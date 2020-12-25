@@ -3,8 +3,8 @@ import { hot } from 'react-hot-loader/root';
 import { Route, HashRouter } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 
-import 'fontsource-poppins';
-import 'fontsource-ibm-plex-mono';
+import '@fontsource/poppins';
+import '@fontsource/ibm-plex-mono';
 import './styles/baseline.less';
 
 import { CssBaseline } from '@material-ui/core';
