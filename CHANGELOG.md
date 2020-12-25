@@ -11,18 +11,19 @@ Changed marked with `[DEV]` are invisible to users, and purely for the benefit o
 
 ### Added
 
-- Add Swedish language (thank you [@brezedc](https://github.com/brezedc)!) (#180)
-- Add Dutch language (thank you [@JSSRDRG](https://github.com/JSSRDRG)!) (#188)
-- Add German language (thank you [@dominique-mueller](https://github.com/dominique-mueller)!) (#198)
-- Add Italian language (thank you [@allemattio](https://github.com/allemattio)!) (#215)
-- Add Simplified Chinese language (thank you [@JeremyGolf70](https://github.com/JeremyGolf70)!) (#220)
+- Add Swedish language ([@brezedc](https://github.com/brezedc)) (#180)
+- Add Dutch language ([@JSSRDRG](https://github.com/JSSRDRG)) (#188)
+- Add German language ([@dominique-mueller](https://github.com/dominique-mueller)) (#198)
+- Add Italian language ([@allemattio](https://github.com/allemattio)) (#215)
+- Add Simplified Chinese language ([@JeremyGolf70](https://github.com/JeremyGolf70)) (#220)
 
 ### Changed
 
 - Increase amount of liveries that are shown at once
 - Change how dates display to use localised values from dayjs
-- [DEV] Fixed issue with custom languages that didn't affect anyone in 0.3.1, but would have from this update (@davwheat and @dominique-mueller) (#182 and #198)
-- [DEV] Fix incorrect prop types (@dominique-mueller) (#198)
+- Fix missing spacing for buttons on Installed Liveries tab
+- [DEV] Fixed issue with custom languages that didn't affect anyone in 0.3.1, but would have from this update (@davwheat and [@dominique-mueller](https://github.com/dominique-mueller)) (#182 and #198)
+- [DEV] Fix incorrect prop types ([@dominique-mueller](https://github.com/dominique-mueller)) (#198)
 - [DEV] Update dependencies
 
 ### Removed
