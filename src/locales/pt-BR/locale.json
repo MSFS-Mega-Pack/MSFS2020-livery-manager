@@ -1,0 +1,316 @@
+{
+  "info": {
+    "name": "Português (Brazil)",
+    "localeId": "pt-BR"
+  },
+  "strings": {
+    "common": {
+      "coming_soon": "Novidade em breve."
+    },
+    "models": {
+      "article": {
+        "date_format": "L LT"
+      }
+    },
+    "helpers": {
+      "validate_fs_directory": {
+        "choose_directory": "Por favor escolha o diretório",
+        "path_doesnt_exist": "O diretório que você selecionou não existe",
+        "invalid_path": "Tenha certeza que você selecionou a pasta Community"
+      },
+      "show_native_dialog": {
+        "yes_button": "&Sim",
+        "no_button": "&Não",
+        "cancel_button": "&Cancelar"
+      },
+      "install_addon": {
+        "progress_notifications": {
+          "downloading_livery": "Baixando libré {{current}} de {{total}}",
+          "extracting_livery": "Extraindo libré {{current}} de {{total}}"
+        }
+      },
+      "delete_addon": {
+        "delete_path_fail": "Erro ao deletar diretórios do addon",
+        "delete_path_success": "Addon deletado com sucesso",
+        "non_existant": "Diretório do addon não exite"
+      },
+      "get_active_feed": {
+        "fetch_fail": "Falha ao capturar feed da API.",
+        "fetch_fail_article_text": "Falha ao buscar artigo. Se isso continuar, [reporte para os desenvolvedores](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      },
+      "get_feed_history": {
+        "fetch_fail": "Falha ao buscar feed da API.",
+        "fetch_fail_article_text": "Falha ao buscar artigo. Se isso continuar, [reporte para os desenvolvedores](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      }
+    },
+    "manager": {
+      "splash_screen": {
+        "loading": "Carregando..."
+      },
+      "setup": {
+        "back_button": "Voltar",
+        "next_button": "Próximo",
+        "finish_button": "Finalizar",
+        "welcome_page": {
+          "heading": "Bem-vindo ao {{app_name}}",
+          "description": "Nós precisamos fazer algumas configurações antes que você possa usar o liveries manager, para te dar a melhor experiência e para termos certeza que tudo vai como planejado."
+        },
+        "locale_page": {
+          "heading": "Selecione sua linguagem",
+          "description": "Todas as linguagem são traduções da comunidade. Por favor reporte todos os erros de tradução no GitHub.",
+          "help_translate_link": "Porque não ajudar a traduzir sua língua?",
+          "dropdown": {
+            "label": "Linguagem"
+          }
+        },
+        "community_directory": {
+          "heading": "Procure sua pasta Community",
+          "description": "Por favor veja se o diretório abaixo combina com sua pasta community. Se não, escola o diretório correto no botão procurar.",
+          "text_field": {
+            "label": "Pasta Community",
+            "browse_button_sr_text": "Procurar pela pasta"
+          }
+        },
+        "complete_page": {
+          "heading": "Configuração completa",
+          "description1": "Você está pronto para decolagem!",
+          "description2": "Clique 'Finalizar' para confirmar suas configurações e iniciar o gerenciador."
+        }
+      },
+      "tabs": {
+        "tab_labels": {
+          "update_feed": "Dashboard",
+          "available_liveries": "Librés disponíveis",
+          "installed_liveries": "Librés instaladas",
+          "settings": "Configurações"
+        }
+      },
+      "components": {
+        "feed_article": {
+          "authored_by": "Escrito por {{author}}"
+        },
+        "badges": {
+          "update_available": {
+            "tooltip": "Vá até 'Librés instaladas' para atualizar esta libré",
+            "content": "Atualização disponível"
+          },
+          "installed": {
+            "tooltip": "Para desinstalar, atualizar, ou reinstalar, vá até Librés instaladas",
+            "content": "Instalado"
+          }
+        },
+        "refresh_box": {
+          "date_format": "LT",
+          "last_refreshed": "Ultima vez atualizado:",
+          "last_refreshed_explanation_tooltip": "A última vez que você verificou as librés instaladas e disponiveis",
+          "refresh_button": {
+            "tooltip": {
+              "default": "Atualizar librés disponiveis",
+              "rate_limited": "Limitador de taxa está em efeito: você deve esperar {{interval}}s entre atualizações"
+            },
+            "unknown_time": "desconhecido"
+          }
+        },
+        "error_dialog": {
+          "error": "Erro",
+          "suggestions": "Sugestão",
+          "close_dialog_button": "Fechar"
+        },
+        "offline_error": {
+          "title": "Você está Offline",
+          "paragraph1": "Este app precisa de conexão com a internet para funcionar. Verifique sua conexão.",
+          "paragraph2": "Essa mensagem vai desaparecer automaticamente quando sua conexão retornar."
+        }
+      },
+      "pages": {
+        "feed": {
+          "error_more_info_button": "Veja mais informações",
+          "no_more_posts": {
+            "heading": "Isso é tudo, pessoal!",
+            "info": "Você chegou no fim do feed atualizado"
+          },
+          "view_more_updates_button": "Leia todos os updates",
+          "errors": {
+            "generic_message": "Um erro ocorreu ao carregar o feed de noticias",
+            "unknown_error": "Um erro desconhecido",
+            "feed_unknown": "Os dados de feed obtidos da API eram inválidos. (null_err)"
+          }
+        },
+        "available_liveries": {
+          "errors": {
+            "installed_addons_fail": {
+              "title": "Librés instaladas não encontradas.",
+              "error_text": "Não conseguimos obter a lista de librés instaladas. Você deletou ou moveu sua pasta Community?",
+              "suggestion1": "O diretório que você informou é {{path}}. Isso está correto?",
+              "suggestion2": "Tente atualizar sua pasta Community nas configurações."
+            }
+          },
+          "progress_notifications": {
+            "begin_install": "Instalando librés...",
+            "install_complete": "Instalado {{total}} [[total||libré|librés]] com sucesso",
+            "install_failed": "{{fails}} [[falharam||libré|librés]] falharam  ao instalar. O time foi notificado."
+          },
+          "fab_currently_installing": "Instalando {{total}} [[total||libré|librés]] ({{size}} MB)",
+          "fab_install": "Instalar {{total}} [[total||libré|librés]] ({{size}} MB)",
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "verificando agora..."
+            },
+            "aircraft_accordion": {
+              "available_count": "{{total}} [[total||libré|librés]] disponivel",
+              "installed_count": "{{total}} instalados",
+              "info_fields": {
+                "aircraft_name": {
+                  "title": "Aeronave"
+                },
+                "total_livery_count": {
+                  "title": "Librés disponiveis",
+                  "value": "{{total}} disponivel"
+                },
+                "total_installed_count": {
+                  "title": "Librés instalados",
+                  "value": "{{count}} de {{total}} instalados"
+                }
+              },
+              "buttons": {
+                "select_all_btn": "Selecionar tudo",
+                "deselect_all_btn": "Deselecionar tudo"
+              },
+              "liveries_heading": "Librés"
+            },
+            "livery_row": {
+              "expand_livery_details_tooltip": "Mostrar informações da libré",
+              "shrink_livery_details_tooltip": "Esconder informações da libré",
+              "info_fields": {
+                "version": {
+                  "title": "Versão",
+                  "tooltip": "Este texto representa a versão atual da libré que está disponivel. Se sya versão difere desta, significa que uma nova atualização está disponivel."
+                },
+                "thumbnail": {
+                  "title": "Thumbnail"
+                }
+              }
+            }
+          }
+        },
+        "installed_liveries": {
+          "warning_cannot_remove_multiple_liveries": "No momento, você não pode remover ou atualizar multiplas librés ao mesmo tempo. Não se preocupe por isso está vindo em uma atualização futura.",
+          "progress_notifications": {
+            "begin_update": "Atualizando [[total||libré|librés]]...",
+            "update_complete": "Atualizado {{total}} [[total||libré|librés]] com sucesso",
+            "update_failed": "{{fails}} [[falhou||libré|librés]] falharam ao atualizar. O time foi notificado."
+          },
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "Verificando agora..."
+            },
+            "aircraft_accordion": {
+              "liveries_heading": "Librés",
+              "installed_count": "{{total}} instalado",
+              "update_count": "{{updates}} [[atualizações||libré tem uma atualização|librés tem atualizações]]"
+            },
+            "list_row": {
+              "update": {
+                "button": "Atualizar"
+              },
+              "help": {
+                "tooltip": {
+                  "update": "Atualizar libré",
+                  "delete": "Remover libré",
+                  "delete_timer": "Espere por {{time}}s para remover"
+                },
+                "snackbar": {
+                  "hold_to_remove": "Para remover a libré, clique e segura o butão deletar por {{time}} segundos"
+                }
+              }
+            }
+          },
+          "notification": {
+            "no_liveries_to_remove": "Você não tem nenhuma libré instalada!",
+            "removing_livery": "Removendo libré {{current}} de {{total}}",
+            "remove_all_success": "Removido com sucesso {{total}} [[total||libré|librés]]",
+            "remove_all_failures": "Falhou ao remover {{errors}} [[erros||libré|librés]]",
+            "deletion": {
+              "fail1": "Falhou ao remover libré: nenhum obj passou",
+              "fail2": "Falhou ao remover libré: localizacão desconhecida",
+              "fail3": "Falhou ao remover libré: pasta não encontrada",
+              "fail4": "Falhou ao remover libré: {{error}}",
+              "fail5": "Falhou ao remover libré: erro desconhecido",
+              "success": "Libré removida com sucesso"
+            },
+            "no_liveries_to_update": "Você não tem nenhuma libré instalada!",
+            "update_all_success": "Atualizado com sucesso {{total}} [[total||libré|librés]]",
+            "update_all_failures": "Falhou ao atualizar {{errors}} [[erros||libré|librés]]",
+            "updating_livery": "Atualizando libré {{current}} de {{total}}"
+          },
+          "dialog": {
+            "uninstall_all": {
+              "title": "Remover todas as librés?",
+              "message": "Você tem certeza que quer desinstalar TODAS AS SUAS LIBRÉS?",
+              "detail": "Uma vez que você iniciar este processo, não poderá pausar ou cancelar. Para ter suas librés de volta, você precisará reinstalar."
+            },
+            "update_all": {
+              "title": "Atualizar todas as librés?",
+              "message": "Você tem certeza que quer atualizar TODAS AS SUAS LIBRÉS?",
+              "detail": "Uma vez que você iniciar este processo, não poderá pausar ou cancelar."
+            }
+          },
+          "button": {
+            "remove_all_liveries": "Remover todos",
+            "update_all": "Atualizar todos"
+          },
+          "no_liveries_installed": {
+            "more_info_button": "Ver mais informações",
+            "message": "Detectado librés não instaladas",
+            "info": "Nos não conseguimos achar nenhuma libré no mega pack na sua pasta Community selecionada.\n\nSe você instalou as librés pelo arquivo zip do mega pack, elas não irão aparecer aqui. Elas devem ser instalar pelo gerenciador."
+          }
+        },
+        "settings": {
+          "advanced_settings": {
+            "enabled_notification": "Configurações avançadas ativada",
+            "disabled_notification": "Configurações avançadas desativada",
+            "dialog_title": "Ativar configurações avançadas?",
+            "dialog_body": "Ativar configurações avançadas?",
+            "dialog_detail": "Apenas ative se estiver instruido por um desenvolvedor. Isso pode causar consequenciar desagradaveis. Você foi avisado!"
+          },
+          "footer": {
+            "line1": "{{appName}} — Criado por Liveries Mega Pack",
+            "line2": "© {{year}} — Todos os direitos reservados — ",
+            "version": "v{{version}}",
+            "source_repo_and_license": "Veja o código fonte e a licença"
+          },
+          "errors_in_inputs": "Por favor conserte o erro(s) acima antes de salvar",
+          "save_settings_changes": "Clique 'Salvar' para salvar as alterações",
+          "all_changes_saved": "Todas as alterações foram salvas",
+          "save_button": "Salvar",
+          "user_settings": {
+            "community_folder": {
+              "name": "Pasta Community",
+              "input_label": "Diretório para a pasta community",
+              "browse_button_sr_text": "Procurar pasta",
+              "reset_button": "Desfazer mudanças",
+              "open_in_explorer": "Mostrar pasta no Explorer",
+              "open_in_explorer_opening": "Abrindo..."
+            },
+            "locale_selection": {
+              "name": "Gerenciador de linguagem",
+              "label": "Linguagem"
+            },
+            "cache_clear": {
+              "name": "Caching",
+              "clearing_cache_notification": "Limpando cache. Isso pode tomar alguns minutos.",
+              "cache_clear_success_notification": "Cache limpo com sucesso!",
+              "cache_clear_error_notification": "Falhou ao limpar o cache",
+              "purge_cache_button": "Limpar cache"
+            },
+            "reset_manager_to_defaults": {
+              "name": "Resetar gerenciador",
+              "detail": "Isso vai resetar todas as configurações do app e reiniciar o gerenciador. Você não irá perder nenhuma libré instalada, e toda libré que já foi instalada vai ser automaticamente re-detectada.",
+              "reset_btn": "Resetar todas as configurações"
+            }
+          }
+        }
+      }
+    }
+  }
+}
