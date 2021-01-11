@@ -286,7 +286,7 @@
           "user_settings": {
             "community_folder": {
               "name": "โฟลเดอร์ Community",
-              "input_label": "เส้นทางไฟล์ไปยังโฟลเดอร์ Community,
+              "input_label": "เส้นทางไฟล์ไปยังโฟลเดอร์ Community",
               "browse_button_sr_text": "ค้นหาไปยังโฟลเดอร์ Community",
               "reset_button": "เลิกทำการเปลี่ยนแปลง",
               "open_in_explorer": "แสดงโฟลเดอร์ใน Explorer",
