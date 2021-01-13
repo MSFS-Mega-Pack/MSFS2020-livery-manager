@@ -1,0 +1,306 @@
+{
+  "info": {
+    "name": "Español (España)",
+    "localeId": "es-ES"
+  },
+  "strings": {
+    "common": {
+      "coming_soon": "Próximamente"
+    },
+    "models": {
+      "article": {
+        "date_format": "LLLL"
+      }
+    },
+    "helpers": {
+      "validate_fs_directory": {
+        "choose_directory": "Por favor, elige un directorio",
+        "path_doesnt_exist": "La ruta que has seleccionado no existe",
+        "invalid_path": "Por favor, asegurate que has elegido la carpeta Community"
+      },
+      "show_native_dialog": {
+        "yes_button": "&Si",
+        "no_button": "&No",
+        "cancel_button": "&Cancelar"
+      },
+      "install_addon": {
+        "progress_notifications": {
+          "downloading_livery": "Descargando librea {{current}} de {{total}}",
+          "extracting_livery": "Extrayendo librea {{current}} de {{total}}"
+        }
+      },
+      "delete_addon": {
+        "delete_path_fail": "Error al eliminar la ruta del complemento",
+        "delete_path_success": "Complemento borrado satisfactoriamente",
+        "non_existant": "La ruta del complemento no existe"
+      },
+      "get_active_feed": {
+        "fetch_fail": "No se pudo recuperar la lista actual del API",
+        "fetch_fail_article_text": "Fallo al recuperar el artículo.Si esto continua, [informe a los desarrolladores](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      },
+      "get_feed_history": {
+        "fetch_fail": "No se pudo recuperar la lista actual del API",
+        "fetch_fail_article_text": "Fallo al recuperar el artículo.Si esto continua, [informe a los desarrolladores](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      }
+    },
+    "manager": {
+      "splash_screen": {
+        "loading": "Cargando..."
+      },
+      "setup": {
+        "back_button": "Atrás",
+        "next_button": "Siguiente",
+        "finish_button": "Finalizar",
+        "welcome_page": {
+          "heading": "Bienvenido a  {{app_name}}",
+          "description": "Ahora necesitamos realizar alguna configuración antes de poder usar el gestor de libreas. Esto es para asegurarnos que obtenga la mejor experiencia y que todo funcione perfectamente."
+        },
+        "locale_page": {
+          "heading": "Elige tu idioma",
+          "description": "Todos los idiomas son traducciones de la comunidad. Por favor, informa de los errores en GitHub.",
+          "help_translate_link": "¿Porqué no ayudas a traducir el gestor de libreas a tu idioma?",
+          "dropdown": {
+            "label": "Idioma"
+          }
+        },
+        "community_directory": {
+          "heading": "Encuentra tu carpeta Community",
+          "description": "Verifica que la carpeta coincide con la carpeta Community. Sino es así, busque la carpeta correcta con el boton Buscar",
+          "text_field": {
+            "label": "Carpeta Community",
+            "browse_button_sr_text": "Buscar la carpeta"
+          }
+        },
+        "complete_page": {
+          "heading": "Instalación compelta",
+          "description1": "¡Estamos listos para despegar!",
+          "description2": "Pusal sobre 'Finalizar' para confirmar tu configuración e iniciar el administrador. "
+        }
+      },
+      "tabs": {
+        "tab_labels": {
+          "update_feed": "Dashboard",
+          "available_liveries": "Libreas disponibles",
+          "installed_liveries": "Libreas instaladas",
+          "settings": "Ajustes"
+        }
+      },
+      "components": {
+        "feed_article": {
+          "authored_by": "Escrito por {{author}}"
+        },
+        "badges": {
+          "update_available": {
+            "tooltip": "Ves a 'Libreas instaladas' para actualizarla.",
+            "content": "Actualización disponible"
+          },
+          "installed": {
+            "tooltip": "Para desinstalar, actualizar o reinstalar, ves a la pestaña de Libreas instaladas",
+            "content": "Instaladas"
+          }
+        },
+        "refresh_box": {
+          "date_format": "LT",
+          "last_refreshed": "Última actualización:",
+          "last_refreshed_explanation_tooltip": "Cuando verificó por última vez las libreas instaladas y disponibles",
+          "refresh_button": {
+            "tooltip": {
+              "default": "Actualizar libreas disponibles",
+              "rate_limited": "Los límites de actualización están activados: debes esperar {{interval}}s entre actualizaciones"
+            },
+            "unknown_time": "desconocido"
+          }
+        },
+        "error_dialog": {
+          "error": "Error",
+          "suggestions": "Sugerencias",
+          "close_dialog_button": "Cerrar"
+        },
+        "offline_error": {
+          "title": "Estas desconectado",
+          "paragraph1": "Esta aplicación necesita una conexión a internet para funcionar. Comprueba tu red.",
+          "paragraph2": "Este mensaje desaparecerá automáticamente cuando recuperes la conexión."
+        }
+      },
+      "pages": {
+        "feed": {
+          "error_more_info_button": "Ver más información",
+          "no_more_posts": {
+            "heading": "¡Estos es todo, amigos!",
+            "info": "Has llegado al final de la lista de actualizaciones"
+          },
+          "view_more_updates_button": "Leer todas las actualizaciones",
+          "errors": {
+            "generic_message": "Ocurrió un error mientras cargábamos la lista de noticias",
+            "unknown_error": "Error desconocido",
+            "feed_unknown": "Los datos de la lista obtenidos del API no son válidos. (null_err)"
+          }
+        },
+        "available_liveries": {
+          "errors": {
+            "installed_addons_fail": {
+              "title": "No podemos encontrar libreas instaladas.",
+              "error_text": "No podemos recuperar la lista de las libreas instaladas. ¿Has movido o borrado tu carpeta Community?",
+              "suggestion1": "La ruta que nos dijiste es {{path}}. ¿Es correcto?",
+              "suggestion2": "Prueba a actualizar tu carpeta Community en Ajustes."
+            }
+          },
+          "progress_notifications": {
+            "begin_install": "Instalando libreas...",
+            "install_complete": "Instaladas {{total}} [[total||livery|liveries]] correctamente",
+            "install_failed": "{{fails}} [[fails||livery|liveries]] fallaron al instalar. El equipo ha sido notificado."
+          },
+          "fab_currently_installing": "Instalando {{total}} [[total||livery|liveries]] ({{size}} MB)",
+          "fab_install": "Instalar {{total}} [[total||livery|liveries]] ({{size}} MB)",
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "comprobando ahora..."
+            },
+            "aircraft_accordion": {
+              "available_count": "{{total}} [[total||livery|liveries]] disponibles",
+              "installed_count": "{{total}} instaladas",
+              "info_fields": {
+                "aircraft_name": {
+                  "title": "Avión"
+                },
+                "total_livery_count": {
+                  "title": "Libreas disponibles",
+                  "value": "{{total}} disponibles"
+                },
+                "total_installed_count": {
+                  "title": "Libreas instaladas",
+                  "value": "{{count}} de {{total}} instaladas"
+                }
+              },
+              "buttons": {
+                "select_all_btn": "Seleccionar todas",
+                "deselect_all_btn": "Deseleccionar todas"
+              },
+              "liveries_heading": "Libreas"
+            },
+            "livery_row": {
+              "expand_livery_details_tooltip": "Mostrar información de la librea",
+              "shrink_livery_details_tooltip": "Ocultar información de la librea",
+              "info_fields": {
+                "version": {
+                  "title": "Versión",
+                  "tooltip": "Este texto representa la versión actual de la librea que está disponible. Si su versión difiere de esta, significa que hay una nueva actualización disponible."
+                },
+                "thumbnail": {
+                  "title": "Miniatura"
+                }
+              }
+            }
+          }
+        },
+        "installed_liveries": {
+          "warning_cannot_remove_multiple_liveries": "Por el momento, no puedes eliminar ni actualizar varias libreas a la vez. No te preocupes que vendrá en una próxima actualización.",
+          "progress_notifications": {
+            "begin_update": "Actualizando [[total||livery|liveries]]...",
+            "update_complete": "Actualizadas {{total}} [[total||livery|liveries]] correctamente",
+            "update_failed": "{{fails}} [[fails||livery|liveries]] falló al actualizar. El equipo ha sido notificado."
+          },
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "comprobando ahora..."
+            },
+            "aircraft_accordion": {
+              "liveries_heading": "Libreas",
+              "installed_count": "{{total}} instaladas",
+              "update_count": "{{updates}} [[updates||librea tiene una actualización|libreas tienen una actualización]]"
+            },
+            "list_row": {
+              "update": {
+                "button": "Actualizar"
+              },
+              "help": {
+                "tooltip": {
+                  "delete": "Eliminar librea",
+                  "delete_timer": "Mantener pulsado {{time}}s para eliminar"
+                },
+                "snackbar": {
+                  "hold_to_remove": "Para borrar una librea, pulsa y manten pulsado el boton Borrar durante {{time}}s"
+                }
+              }
+            }
+          },
+          "notification": {
+            "no_liveries_to_remove": "No tienes instaladas libreas",
+            "removing_livery": "Eliminando librea {{current}} de {{total}}",
+            "remove_all_success": "Eliminadas {{total}} [[total||livery|liveries]] correctamente",
+            "remove_all_failures": "Fallo al eliminar {{errors}} [[errors||livery|liveries]]",
+            "deletion": {
+              "fail1": "Fallo al eliminar librea: no se le pasó un objeto",
+              "fail2": "Fallo al eliminar librea: ubicación desconocida",
+              "fail3": "Fallo al eliminar librea: carpeta no encontrada",
+              "fail4": "Fallo al eliminar librea: {{error}}",
+              "fail5": "Fallo al eliminar librea: error desconocido",
+              "success": "Librea eliminada con éxito"
+            }
+          },
+          "dialog": {
+            "uninstall_all": {
+              "title": "¿Borrar todas las libreas?",
+              "message": "¿Estás seguro que quieres desinstalar TODAS TUS LIBREAS?",
+              "detail": "Una vez iniciado este proceso, no podrás pararlo o cancelarlo.Para recuperar tus libreas, deberás reinstalarlas."
+            }
+          },
+          "button": {
+            "remove_all_liveries": "Borrar todo",
+            "update_all": "Actualizar todo"
+          },
+          "no_liveries_installed": {
+            "more_info_button": "Ver mas información",
+            "message": "No se han detectado libreas instaladas",
+            "info": "No pudimos encontrar ninguna librea del mega pack en la carpeta Community.\n\nSi instalaste las libreas arrastrando y soltando, no aparecerán aqui. Deben instalarse mediante el administrador."
+          }
+        },
+        "settings": {
+          "advanced_settings": {
+            "enabled_notification": "Configuración avanzada habilitada",
+            "disabled_notification": "Configuración avanzada deshabilitada",
+            "dialog_title": "¿Habilitar la configuración avanzada?",
+            "dialog_body": "¿Habilitar la configuración avanzada?",
+            "dialog_detail": "Haga esto solo si se lo pide un desarrollador. Puede tener consecuencias no deseadas.¡Estás advertido!"
+          },
+          "footer": {
+            "line1": "{{appName}} — Creado para Liveries Mega Pack",
+            "line2": "© {{year}} — Todos los derechos reservados — ",
+            "version": "v{{version}}",
+            "source_repo_and_license": "Ver el código fuente y licencia"
+          },
+          "errors_in_inputs": "Corrija los errores antes de guardar.",
+          "save_settings_changes": "Pulsa 'Guardar' para guardar los cambios",
+          "all_changes_saved": "Todos los cambios han sido guardados",
+          "save_button": "Guardar",
+          "user_settings": {
+            "community_folder": {
+              "name": "Carpeta Community",
+              "input_label": "Ruta a la carpeta Community",
+              "browse_button_sr_text": "Navegar hasta la carpeta",
+              "reset_button": "Deshacer cambios",
+              "open_in_explorer": "Mostrar carpeta en el explorador",
+              "open_in_explorer_opening": "Abriendo..."
+            },
+            "locale_selection": {
+              "name": "Gestor de idiomas",
+              "label": "Idioma"
+            },
+            "cache_clear": {
+              "name": "Caché",
+              "clearing_cache_notification": "Limpiando caché. Puede llevar unos minutos.",
+              "cache_clear_success_notification": "¡Caché borrada con éxito!",
+              "cache_clear_error_notification": "Fallo al borrar la caché",
+              "purge_cache_button": "Borrar caché"
+            },
+            "reset_manager_to_defaults": {
+              "name": "Restablecer administrador",
+              "detail": "Esto restablecerá todas las configuraciones de la aplicación y reiniciará el administrador. No perderá las libreas instaladas y las libreas que ya estén instaladas se volverán a detectar automáticamente.",
+              "reset_btn": "Restablecer todas las configuraciones"
+            }
+          }
+        }
+      }
+    }
+  }
+}
