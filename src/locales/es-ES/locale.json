@@ -36,11 +36,11 @@
       },
       "get_active_feed": {
         "fetch_fail": "No se pudo recuperar la lista actual del API",
-        "fetch_fail_article_text": "Fallo al recuperar el artículo.Si esto continua, [informe a los desarrolladores](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+        "fetch_fail_article_text": "Fallo al recuperar el artículo.Si esto continúa, [informe a los desarrolladores](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
       },
       "get_feed_history": {
         "fetch_fail": "No se pudo recuperar la lista actual del API",
-        "fetch_fail_article_text": "Fallo al recuperar el artículo.Si esto continua, [informe a los desarrolladores](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+        "fetch_fail_article_text": "Fallo al recuperar el artículo.Si esto continúa, [informe a los desarrolladores](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
       }
     },
     "manager": {
