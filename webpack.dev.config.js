@@ -5,11 +5,7 @@ const { spawn } = require('child_process');
 const PackageJson = require('./package.json');
 
 module.exports = {
-  resolve: {
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-    },
-  },
+  mode: 'development',
   module: {
     rules: [
       {
@@ -36,7 +32,20 @@ module.exports = {
       },
       {
         test: /\.jsx?$/,
-        use: [{ loader: 'babel-loader', query: { compact: false } }],
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            babelrc: false,
+            presets: [['@babel/preset-env', { targets: { browsers: 'last 1 Electron version' } }], '@babel/preset-react'],
+            plugins: [
+              ['@babel/plugin-proposal-class-properties', { loose: true }],
+              '@babel/plugin-proposal-export-default-from',
+              '@babel/plugin-proposal-export-namespace-from',
+            ],
+          },
+        },
       },
       {
         test: /\.(jpe?g|png|gif)$/,
