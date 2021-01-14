@@ -55,8 +55,6 @@ function createMainWindow() {
     minHeight: 700,
     width: 1000,
     height: 750,
-    // maxWidth: 1920,
-    // maxHeight: 1080,
     frame: false,
     darkTheme: true,
     backgroundColor: '#1b1b31',
@@ -65,6 +63,7 @@ function createMainWindow() {
     icon: `${__dirname}/assets/icon.ico`,
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false,
       enableRemoteModule: true,
       webSecurity: false,
       preload: path.join(__dirname, 'src', 'helpers', 'Sentry', 'sentry.js'),
