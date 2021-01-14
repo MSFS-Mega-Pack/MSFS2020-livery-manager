@@ -2,7 +2,9 @@ import React from 'react';
 import { render } from 'react-dom';
 import App from './components/App';
 
-import '@babel/polyfill';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
 import 'overlayscrollbars/css/OverlayScrollbars.css';
 
 import Navigate from './helpers/Navigate';
