@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Changed marked with `[DEV]` are invisible to users, and purely for the benefit of developers.
 
+## [0.4.1] - 2021-01-14
+
+### Added
+
+- Add Spanish language ([@jalbertseg](https://github.com/jalbertseg)) (#262)
+- Add Thai language ([@SquisheeFreshy](https://github.com/SquisheeFreshy)) (#260)
+- Add Brazilian Portuguese language ([@LucasmullerC](https://github.com/LucasmullerC)) (#241)
+
+### Changed
+
+- [DEV] Enable Dev Tools in production
+
+### Removed
+
+_None_
+
+### Meta
+
+_None_
+
 ## [0.4.0] - 2020-12-25
 
 ### Added
