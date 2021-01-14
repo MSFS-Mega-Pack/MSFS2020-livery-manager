@@ -11,7 +11,6 @@ export function GetAllLocales() {
   let all = [];
 
   for (const locale in Locales) {
-    console.log(Locales[locale]);
     all.push({ ...Locales[locale].default, dayJsLocale: Locales[locale].dayJsLocale });
   }
 
