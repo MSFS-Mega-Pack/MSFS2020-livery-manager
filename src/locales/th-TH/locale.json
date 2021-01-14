@@ -1,0 +1,316 @@
+{
+  "info": {
+    "name": "Thai (Thailand)",
+    "localeId": "th-TH"
+  },
+  "strings": {
+    "common": {
+      "coming_soon": "ใช้ได้ในเร็วๆ นี้"
+    },
+    "models": {
+      "article": {
+        "date_format": "LLLL"
+      }
+    },
+    "helpers": {
+      "validate_fs_directory": {
+        "choose_directory": "โปรดเลือกไดเร็กทอรี่",
+        "path_doesnt_exist": "เส้นทางไฟล์ที่คุณเลือกนั้นไม่มีอยู่",
+        "invalid_path": "โปรดตรวจสอบว่าคุณได้เลือกไปที่โฟลเดอร์ Community ของคุณแล้ว"
+      },
+      "show_native_dialog": {
+        "yes_button": "&ใช่",
+        "no_button": "&ไม่",
+        "cancel_button": "&ยกเลิก"
+      },
+      "install_addon": {
+        "progress_notifications": {
+          "downloading_livery": "กำลังติดตั้งลายเครื่องบิน {{current}} จาก {{total}}",
+          "extracting_livery": "กำลังแยกไฟล์ของลายเครื่องบิน {{current}} จาก {{total}}"
+        }
+      },
+      "delete_addon": {
+        "delete_path_fail": "เกิดข้อผิดพลาดขณะกำลังลบเส้นทางไฟล์ของ Addon",
+        "delete_path_success": "Addon ลบเรียบร้อย",
+        "non_existant": "เส้นทางไฟล์ของ Addon นั้นไม่มีอยู่"
+      },
+      "get_active_feed": {
+        "fetch_fail": "ไม่สามารถดึงฟีดปัจจุบันจาก API",
+        "fetch_fail_article_text": "ไม่สามารถดึงบทความได้ ถ้ายังเกิดขึ้นอยู่, [รายงานสิ่งนี้ถึงนักพัฒนา](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      },
+      "get_feed_history": {
+        "fetch_fail": "ไม่สามารถดึงฟีดปัจจุบันจาก API",
+        "fetch_fail_article_text": "ไม่สามารถดึงบทความได้ ถ้ายังเกิดขึ้นอยู่, [รายงานสิ่งนี้ถึงนักพัฒนา]((https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      }
+    },
+    "manager": {
+      "splash_screen": {
+        "loading": "กำลังโหลด..."
+      },
+      "setup": {
+        "back_button": "กลับ",
+        "next_button": "ต่อไป",
+        "finish_button": "เสร็จ",
+        "welcome_page": {
+          "heading": "ยินดีต้อนรับสู่ {{app_name}}",
+          "description": "เราจำเป็นต้องผ่านขั้นตอนการตั้งค่าสั้นๆ ก่อนที่คุณจะสามารถใช้ Liveries Manager เพื่อต้องการให้คุณได้รับประสบการณ์ที่ดีที่สุดและให้แน่ใจว่าทุกอย่างจะเป็นไปตามแผนที่วางไว้"
+        },
+        "locale_page": {
+          "heading": "โปรดเลือกภาษาของคุณ",
+          "description": "ทุกภาษาเป็นการแปลโดยผู้คน โปรดรายงานข้อผิดพลาดในการแปลภาษาที่เกิดขึ้นบน GitHub",
+          "help_translate_link": "ทำไมไม่ช่วยแปล Manager เป็นภาษาของคุณล่ะ?",
+          "dropdown": {
+            "label": "ภาษา"
+          }
+        },
+        "community_directory": {
+          "heading": "หาโฟลเดอร์ Community ของคุณ",
+          "description": "โปรดตรวจสอบว่าไดเร็กทอรี่ดังกล่าวตรงกับโฟลเดอร์ Community ของคุณ ถ้าหากยังไม่เป็นเช่นนั้นให้เลือกโฟลเดอร์ที่ถูกต้อง โดบใช้ปุ่ม 'ค้นหาโฟลเดอร์'",
+          "text_field": {
+            "label": "โฟลเดอร์ Community",
+            "browse_button_sr_text": "ค้นหาโฟลเดอร์"
+          }
+        },
+        "complete_page": {
+          "heading": "การตั้งค่าเสร็จสมบูรณ์",
+          "description1": "คุณพร้อมที่จะบินขึ้นแล้ว!",
+          "description2": "กด 'เสร็จ' เพื่อยืนยันการตั้งค่าของคุณและเปิด Manager"
+        }
+      },
+      "tabs": {
+        "tab_labels": {
+          "update_feed": "แผงควบคุม",
+          "available_liveries": "ลายเครื่องบินที่สามารถใช้ได้",
+          "installed_liveries": "ลายเครื่องบินที่ติดตั้งแล้ว",
+          "settings": "การตั้งค่า"
+        }
+      },
+      "components": {
+        "feed_article": {
+          "authored_by": "เขียนโดย {{author}}"
+        },
+        "badges": {
+          "update_available": {
+            "tooltip": "ไปที่ 'ลายเครื่องบินที่ติดตั้งแล้ว' เพื่ออัปเดตลายเครื่องบินดังกล่าว",
+            "content": "มีการอัปเดตใหม่"
+          },
+          "installed": {
+            "tooltip": "หากต้องการที่จะถอนการติดตั้ง อัปเดต หรือ ลงใหม่ ให้ไปที่แถบลายเครื่องบินที่ติดตั้งแล้ว",
+            "content": "ติดตั้งแล้ว"
+          }
+        },
+        "refresh_box": {
+          "date_format": "LT",
+          "last_refreshed": "รีเฟรชครั้งล่าสุด:",
+          "last_refreshed_explanation_tooltip": "เมื่อคุณตรวจสอบลายเครื่องบินที่ติดตั้งแล้วและสามารถใช้ได้ครั้งล่าสุด",
+          "refresh_button": {
+            "tooltip": {
+              "default": "รีเฟรชลายเครื่องบินที่สามารถใช้ได้",
+              "rate_limited": "Rate limiting is in effect: you must wait {{interval}}s between refreshes"
+            },
+            "unknown_time": "ไม่ทราบ"
+          }
+        },
+        "error_dialog": {
+          "error": "เกิดข้อผิดพลาด",
+          "suggestions": "แนะนำ",
+          "close_dialog_button": "ปิด"
+        },
+        "offline_error": {
+          "title": "คุณออฟไลน์อยู่",
+          "paragraph1": "แอพนี้ต้องการการเชื่อมต่อกับอินเตอร์เน็ต เพื่อให้สามารถใช้งานได้ โปรดตรวจสอบ Network ของคุณอีกครั้ง",
+          "paragraph2": "ข้อความนี้จะปิดโดยอัตโนมัติ เมื่อคุณสามารถเชื่อมต่อได้อีกครั้ง"
+        }
+      },
+      "pages": {
+        "feed": {
+          "error_more_info_button": "ดูข้อมูลเพิ่มเติม",
+          "no_more_posts": {
+            "heading": "นั้นคือทั้งหมด",
+            "info": "คุณถึงจุดสิ้นสุดของฟีดแล้ว"
+          },
+          "view_more_updates_button": "อ่านอัพเดททั้งมด",
+          "errors": {
+            "generic_message": "เกิดข้อผิดพลาดขณะโหลดฟีดข่าว",
+            "unknown_error": "เกิดข้อผิดพลาดที่ีไม่ทราบได้",
+            "feed_unknown": "ข้อมูลของฟีดถูกดึงจาก API นั้นไม่ถูกต้อง (null_err)"
+          }
+        },
+        "available_liveries": {
+          "errors": {
+            "installed_addons_fail": {
+              "title": "ไม่สามารถหาลายเครื่องบินที่ติดตั้งแล้ว",
+              "error_text": "เราไม่สามารถดึงรายการลายเครื่องบินที่ติดตั้งแล้วได้ คุณได้ย้ายหรือลบโฟลเดอร์ Community ของคุณหรือเปล่า?",
+              "suggestion1": "เส้นทางไฟล์ที่คุณให้มาคือ {{path}} มันถูกต้องใช่ไหม?",
+              "suggestion2": "ลองอัปเดต โฟลเดอร์ Community ในการตั้งค่า"
+            }
+          },
+          "progress_notifications": {
+            "begin_install": "กำลังติดตั้งลายเครื่องบิน...",
+            "install_complete": "ติดตั้งแล้ว {{total}} [[total||ลาย|ลาย]] สำเร็จ",
+            "install_failed": "{{fails}} [[fails||ลาย|ลาย]] การติดตั้งล้มเหลว ทีมงานได้รับแจ้งแล้ว."
+          },
+          "fab_currently_installing": "กำลังติดตั้ง {{total}} [[total||ลาย|ลาย]] ({{size}} MB)",
+          "fab_install": "ติดตั้ง {{total}} [[total||ลาย|ลาย]] ({{size}} MB)",
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "กำลังตรวจสอบ..."
+            },
+            "aircraft_accordion": {
+              "available_count": "{{total}} [[total||ลาย|ลาย]] ที่สามารถใช้ได้",
+              "installed_count": "{{total}} ติดตั้งแล้ว",
+              "info_fields": {
+                "aircraft_name": {
+                  "title": "เครื่องบิน"
+                },
+                "total_livery_count": {
+                  "title": "ลายเครื่องบินที่สามารถใช้ได้",
+                  "value": "{{total}} ที่สามารถใช้ได้"
+                },
+                "total_installed_count": {
+                  "title": "ลายเครื่องบินที่ติดตั้งแล้ว",
+                  "value": "{{count}} จาก {{total}} ติดตั้งแล้ว"
+                }
+              },
+              "buttons": {
+                "select_all_btn": "เลือกทั้งหมด",
+                "deselect_all_btn": "ยกเลิกการเลือกทั้งหมด"
+              },
+              "liveries_heading": "ลายเครื่องบิน"
+            },
+            "livery_row": {
+              "expand_livery_details_tooltip": "แสดงข้อมูลของลายเครื่องบิน",
+              "shrink_livery_details_tooltip": "ซ่อนข้อมูลของลายเครื่องบิน",
+              "info_fields": {
+                "version": {
+                  "title": "เวอร์ชั่น",
+                  "tooltip": "ข้อความนี้แสดงถึงเวอร์ชั่นปัจจุบันของลายเครื่องบินที่สามารถใช้ได้ ถ้าเวอร์ชั่นของคุณต่างไปจากนี้ นั้นหมายความว่ามีการอัปเดตใหม่"
+                },
+                "thumbnail": {
+                  "title": "ภาพขนาดย่อ (Thumbnail)"
+                }
+              }
+            }
+          }
+        },
+        "installed_liveries": {
+          "warning_cannot_remove_multiple_liveries": "ขณะนี้ คุณไม่สามารถลบหรืออัปเดตลายเครื่องบินหลายลายได้ในเวลาเดียวกัน อย่ากังวลไปเลย ในเร็วๆนี้ ฟีเจอร์นี้จะถูกเพิ่มเข้ามาในอนาคต",
+          "progress_notifications": {
+            "begin_update": "กำลังอัปเดต [[total||ลาย|ลาย]]...",
+            "update_complete": "อัปเดตแล้ว {{total}} [[total||ลาย|ลาย]] สำเร็จ",
+            "update_failed": "{{fails}} [[fails||ลาย|ลาย]] การอัปเดตล้มเหลว ทีมงานได้รับแจ้งแล้ว."
+          },
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "กำลังตรวจสอบ..."
+            },
+            "aircraft_accordion": {
+              "liveries_heading": "ลายเครื่องบิน",
+              "installed_count": "{{total}} ติดตั้งแล้ว",
+              "update_count": "{{updates}} [[updates||ลายเครื่องบินมีการอัปเดตใหม่|ลายเครื่องบินมีการอัปเดตใหม่]]"
+            },
+            "list_row": {
+              "update": {
+                "button": "อัปเดต"
+              },
+              "help": {
+                "tooltip": {
+                  "update": "อัปเดตลายเครื่องบิน",
+                  "delete": "ลบลายเครื่องบิน",
+                  "delete_timer": "กดค้างไว้ {{time}} เพื่อลบ"
+                },
+                "snackbar": {
+                  "hold_to_remove": "ในการลบลายเครื่องบินให้กด แล้ว กดค้าง (Click & Hold) ไว้เป็นเวลา {{time}} วินาที"
+                }
+              }
+            }
+          },
+          "notification": {
+            "no_liveries_to_remove": "คุณไม่มีลายเครื่องบินที่ติดตั้งไว้แล้วเลย!",
+            "removing_livery": "กำลังลบลายเครื่องบิน {{current}} จาก {{total}}",
+            "remove_all_success": "ลบสำเร็จ {{total}} [[total||ลาย|ลาย]]",
+            "remove_all_failures": "การลบล้มเหลว {{errors}} [[errors||ลาย|ลาย]]",
+            "deletion": {
+              "fail1": "การลบล้มเหลว: no obj passed",
+              "fail2": "การลบล้มเหลว: ไม่ทราบตำแหน่ง (unknown location)",
+              "fail3": "การลบล้มเหลว: ไม่พบโฟลเดอร์ (folder not found)",
+              "fail4": "การลบล้มเหลว: {{error}}",
+              "fail5": "การลบล้มเหลว: เกิดข้อผิดพลาดที่ีไม่ทราบได้",
+              "success": "ลบลายเครื่องบินสำเร็จ"
+            },
+            "no_liveries_to_update": "คุณไม่มีลายเครื่องบินที่ติดตั้งไว้แล้วเลย!",
+            "update_all_success": "อัปเดตสำเร็จ {{total}} [[total||ลาย|ลาย]]",
+            "update_all_failures": "การอัปเดตล้มเหลว {{errors}} [[errors||ลาย|ลาย]]",
+            "updating_livery": "กำลังอัปเดตลายเครื่องบิน {{current}} of {{total}}"
+          },
+          "dialog": {
+            "uninstall_all": {
+              "title": "ลบลายเครื่องบินทั้งหมด?",
+              "message": "คุณแน่ใจนะว่าต้องการที่จะลบลายเครื่องบินทั้งหมดของคุณ?",
+              "detail": "เมื่อคุณเริ่มกระบวนการนี้ คุณจะไม่สามารถหยุดหรือยกเลิกได้ ในการที่จะเอาลายเครื่องบินของคุณกลับมา คุณจะต้องลงใหม่"
+            },
+            "update_all": {
+              "title": "อัปเดตลายเครื่องบินทั้งหมด?",
+              "message": "คุณแน่ใจนะว่าต้องการที่จะอัปเดตลายเครื่องบินทั้งหมดของคุณ?",
+              "detail": "เมื่อคุณเริ่มกระบวนการนี้ คุณจะไม่สามารถหยุดหรือยกเลิกได้"
+            }
+          },
+          "button": {
+            "remove_all_liveries": "ลบลายเครื่องบินทั้งหมด",
+            "update_all": "อัปเดตลายเครื่องบินทั้งหมด"
+          },
+          "no_liveries_installed": {
+            "more_info_button": "ดูข้อมูลเพิ่มเติม",
+            "message": "ไม่พบลายเครื่องบินที่ติดตั้งแล้ว",
+            "info": "เราไม่สามารถหาลายเครื่องบิน mega pack ในโฟลเดอร์ Community ที่่คุณได้เลือกไว้ ถ้าคุณติดตั้งลายเครื่องบินโดยใช้ mega pack zip มันจะไม่ปรากฎอยู่ใน Manager ถ้าคุณต้องการให้มันปรากฏใน Manager คุณต้องติดตั้งผ่าน Manager ด้วย"
+          }
+        },
+        "settings": {
+          "advanced_settings": {
+            "enabled_notification": "เปิดใช้งานการตั้งค่าขั้นสูง",
+            "disabled_notification": "ปิดใช้งานการตั้งค่าขั้นสูง",
+            "dialog_title": "เปิดใช้งานการตั้งค่าขั้นสูง?",
+            "dialog_body": "เปิดใช้งานการตั้งค่าขั้นสูง?",
+            "dialog_detail": "ทำได้เฉพาะเมื่อได้รับคำแนะนำจากนักพัฒนา ซึ่งอาจส่งผลที่ไม่ได้ตั้งใจได้ คุณได้รับคำเตือนแล้ว!"
+          },
+          "footer": {
+            "line1": "{{appName}} — สร้างสำหรับ Liveries Mega Pack",
+            "line2": "© {{year}} — สงวนลิขสิทธิ์ — ",
+            "version": "v{{version}}",
+            "source_repo_and_license": "ดู source code และใบอนุญาต"
+          },
+          "errors_in_inputs": "โปรดแก้ข้อผิดพลาดดังกล่าวก่อนบันทึก",
+          "save_settings_changes": "กด 'บันทึก' เพื่อบันทึกการเปลี่ยนแปลง",
+          "all_changes_saved": "บันทึกการเปลี่ยนแปลงทั้งหมดแล้ว",
+          "save_button": "บันทึก",
+          "user_settings": {
+            "community_folder": {
+              "name": "โฟลเดอร์ Community",
+              "input_label": "เส้นทางไฟล์ไปยังโฟลเดอร์ Community",
+              "browse_button_sr_text": "ค้นหาไปยังโฟลเดอร์ Community",
+              "reset_button": "เลิกทำการเปลี่ยนแปลง",
+              "open_in_explorer": "แสดงโฟลเดอร์ใน Explorer",
+              "open_in_explorer_opening": "กำลังเปิด..."
+            },
+            "locale_selection": {
+              "name": "ภาษาของ Manager",
+              "label": "ภาษา"
+            },
+            "cache_clear": {
+              "name": "Caching",
+              "clearing_cache_notification": "กำลังล้างแคช การดำเนินการนี้อาจจะใช้เวลาสักครู่",
+              "cache_clear_success_notification": "แคชล้างสำเร็จ!",
+              "cache_clear_error_notification": "การล้างแคชล้มเหลว",
+              "purge_cache_button": "ล้างแคช"
+            },
+            "reset_manager_to_defaults": {
+              "name": "รีเซ็ต Manager",
+              "detail": "การดำเนินการนี้จะรีเซ็ตการตั้งค่าของแอปทั้งหมดและรีสตาร์ท Manager โดยคุณจะไม่สูญเสียลายเครื่องบินที่ติดตั้งไว้แล้วและลายเครื่องบินที่ติดตั้งไว้แล้วจะถูกตรวจพบใหม่โดยอัตโนมัติ",
+              "reset_btn": "รีเซ็ตการตั้งค่าทั้งหมด"
+            }
+          }
+        }
+      }
+    }
+  }
+}
