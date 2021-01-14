@@ -7,11 +7,6 @@ const Sentry = require('@sentry/electron');
 
 app.commandLine.appendSwitch('disable-http-cache');
 
-//! TEMPORARY FIX FOR CORS NOT BEING DISABLED
-//! Remove this when Electron merges and publishes new release with #25463
-// https://github.com/electron/electron/pull/25463
-app.commandLine.appendSwitch('disable-features', 'OutOfBlinkCors');
-
 /** @type {BrowserWindow} */
 let mainWindow;
 
