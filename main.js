@@ -109,9 +109,6 @@ function createMainWindow() {
 
     // Open devtools if dev
     if (isDev) {
-      const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
-
-      installExtension(REACT_DEVELOPER_TOOLS).catch(err => console.log('Error loading React DevTools: ', err));
       mainWindow.webContents.openDevTools();
     }
   });

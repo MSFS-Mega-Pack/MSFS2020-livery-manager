@@ -1,5 +1,4 @@
 import React from 'react';
-import { hot } from 'react-hot-loader/root';
 import { Route, HashRouter } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 
@@ -68,4 +67,4 @@ function App() {
   );
 }
 
-export default hot(App);
+export default App;
