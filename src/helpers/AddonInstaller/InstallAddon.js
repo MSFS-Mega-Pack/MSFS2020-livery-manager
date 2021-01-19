@@ -79,7 +79,9 @@ export default async function InstallAddon(PlaneObject, index, total, CurrentLoc
           console.log(`Error`);
           try {
             ThrowError('E008', `${err} URL: ${downloadURL}`);
-          } catch (e) {}
+          } catch (e) {
+            console.log(e);
+          }
           reject(err);
         })
         .on('progress', e => {
@@ -108,7 +110,9 @@ export default async function InstallAddon(PlaneObject, index, total, CurrentLoc
                 if (installType === 'fresh') {
                   try {
                     addLiveryInstallAnalytic(PlaneObject.displayName);
-                  } catch (e) {}
+                  } catch (e) {
+                    console.log(e);
+                  }
                 }
 
                 resolve();
