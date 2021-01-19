@@ -51,7 +51,7 @@
     "@sentry/integrations": "^5.29.2",
     "adm-zip": "^0.5.1",
     "clsx": "^1.1.1",
-    "dayjs": "^1.9.7",
+    "dayjs": "^1.10.3",
     "del": "^6.0.0",
     "electron-json-config": "^1.5.3",
     "electron-react-titlebar": "^0.8.2",
