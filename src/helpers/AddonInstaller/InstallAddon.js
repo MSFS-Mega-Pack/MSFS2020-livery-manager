@@ -68,63 +68,71 @@ export default async function InstallAddon(PlaneObject, index, total, CurrentLoc
   }
 
   await new Promise((resolve, reject) => {
-    console.log(`Making stream`);
-    const stream = fs.createWriteStream(zipPath);
+    try {
+      console.log(`Making stream`);
+      const stream = fs.createWriteStream(zipPath);
 
-    console.log(`Starting DL`);
-    progress(request(downloadURL), { throttle: 100 })
-      .pipe(stream)
-      .on('error', async err => {
-        console.log(`Error`);
-        ThrowError('E008', `${err} URL: ${downloadURL}`);
-        reject(err);
-      })
-      .on('progress', e => {
-        console.log(e.percent);
-      })
-      .on('finish', async () => {
-        console.log(`Finished downloading: ${zipName}`);
-        updateProgress(
-          CurrentLocale.translate('helpers.install_addon.progress_notifications.extracting_livery', {
-            current: `${index + 1}`,
-            total: `${total}`,
-          })
-        );
+      console.log(`Starting DL`);
+      progress(request(downloadURL), { throttle: 100 })
+        .pipe(stream)
+        .on('error', async err => {
+          console.log(`Error`);
+          try {
+            ThrowError('E008', `${err} URL: ${downloadURL}`);
+          } catch (e) {}
+          reject(err);
+        })
+        .on('progress', e => {
+          console.log(e.percent);
+        })
+        .on('finish', async () => {
+          console.log(`Finished downloading: ${zipName}`);
+          updateProgress(
+            CurrentLocale.translate('helpers.install_addon.progress_notifications.extracting_livery', {
+              current: `${index + 1}`,
+              total: `${total}`,
+            })
+          );
 
-        const zip = new admzip(zipPath);
+          const zip = new admzip(zipPath);
 
-        console.log(`Created folder \n${extractDir}`);
-        try {
-          zip.extractAllToAsync(`${extractDir}`, /*overwrite*/ true, () => {
-            try {
-              fs.unlinkSync(zipPath);
-              fs.writeFileSync(Path.join(extractDir, Constants.modLockFileName), JSON.stringify(PlaneObject, null, 2));
-              console.log(`Installed: ${zipName}`);
+          console.log(`Created folder \n${extractDir}`);
+          try {
+            zip.extractAllToAsync(`${extractDir}`, /*overwrite*/ true, () => {
+              try {
+                fs.unlinkSync(zipPath);
+                fs.writeFileSync(Path.join(extractDir, Constants.modLockFileName), JSON.stringify(PlaneObject, null, 2));
+                console.log(`Installed: ${zipName}`);
 
-              // Add analytic for this installed livery
-              if (installType === 'fresh') {
-                addLiveryInstallAnalytic(PlaneObject.displayName);
+                // Add analytic for this installed livery
+                if (installType === 'fresh') {
+                  try {
+                    addLiveryInstallAnalytic(PlaneObject.displayName);
+                  } catch (e) {}
+                }
+
+                resolve();
+              } catch (err) {
+                fs.unlinkSync(zipPath);
+                Sentry.captureException(`LiveryInstaller: ${zipName}, error: ${err}`, {
+                  tags: {
+                    file: `${zipName} | ${PlaneObject.checkSum}`,
+                  },
+                });
+                reject(`LiveryInstaller: ${zipName}, error: ${err}`);
               }
-
-              resolve();
-            } catch (err) {
-              fs.unlinkSync(zipPath);
-              Sentry.captureException(`LiveryInstaller: ${zipName}, error: ${err}`, {
-                tags: {
-                  file: `${zipName} | ${PlaneObject.checkSum}`,
-                },
-              });
-              reject(`LiveryInstaller: ${zipName}, error: ${err}`);
-            }
-          });
-        } catch (error) {
-          Sentry.captureException(`LiveryInstaller: ${zipName}, error: ${error}`, {
-            tags: {
-              file: `${zipName} | ${PlaneObject.checkSum}`,
-            },
-          });
-          reject(`LiveryInstaller: ${zipName}, error: ${error}`);
-        }
-      });
+            });
+          } catch (error) {
+            Sentry.captureException(`LiveryInstaller: ${zipName}, error: ${error}`, {
+              tags: {
+                file: `${zipName} | ${PlaneObject.checkSum}`,
+              },
+            });
+            reject(`LiveryInstaller: ${zipName}, error: ${error}`);
+          }
+        });
+    } catch (e) {
+      reject(`LiveryInstaller: ${zipName}, error: ${e}`);
+    }
   });
 }
