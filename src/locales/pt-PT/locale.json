@@ -1,0 +1,316 @@
+{
+  "info": {
+    "name": "Português (Portuguese)",
+    "localeId": "pt-PT"
+  },
+  "strings": {
+    "common": {
+      "coming_soon": "Funcionalidade disponível em breve."
+    },
+    "models": {
+      "article": {
+        "date_format": "LLLL"
+      }
+    },
+    "helpers": {
+      "validate_fs_directory": {
+        "choose_directory": "Escolha um directório",
+        "path_doesnt_exist": "O caminho que seleccionou não existe",
+        "invalid_path": "Verifique que seleccionou correctamente o directório Community"
+      },
+      "show_native_dialog": {
+        "yes_button": "&Sim",
+        "no_button": "&Não",
+        "cancel_button": "&Cancelar"
+      },
+      "install_addon": {
+        "progress_notifications": {
+          "downloading_livery": "A descarregar pintura {{current}} de {{total}}",
+          "extracting_livery": "A extrair pintura {{current}} de {{total}}"
+        }
+      },
+      "delete_addon": {
+        "delete_path_fail": "Erro ao apagar o caminho para o addon",
+        "delete_path_success": "Addon apagado com sucesso",
+        "non_existant": "Caminho para o addon não existia"
+      },
+      "get_active_feed": {
+        "fetch_fail": "Falha ao obter feed da API.",
+        "fetch_fail_article_text": "Falha ao obter artigo. Se o erro persistir, [reporte à equipa de desenvolvimento](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` falhou em `GetActiveFeed.js`"
+      },
+      "get_feed_history": {
+        "fetch_fail": "Falha ao obter feed da API.",
+        "fetch_fail_article_text": "Falha ao obter artigo. Se o erro persistir, [reporte à equipa de desenvolvimento](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` falhou em `GetActiveFeed.js`"
+      }
+    },
+    "manager": {
+      "splash_screen": {
+        "loading": "A carregar..."
+      },
+      "setup": {
+        "back_button": "Voltar",
+        "next_button": "Próximo",
+        "finish_button": "Finalizar",
+        "welcome_page": {
+          "heading": "Benvido a {{app_name}}",
+          "description": "É necessário executar alguns passos de configuração antes de poder utilizar o Liveries Manager, de modo a podermos oferecer-lhe a melhor experiência e garantir que tudo corre como planeado."
+        },
+        "locale_page": {
+          "heading": "Escolha o seu idioma",
+          "description": "Todos os idiomas são resultado de traduções feitas pela comunidade. Reporte erros de tradução no GitHub.",
+          "help_translate_link": "Porque não ajudar a traduzir a aplicação para o seu idioma?",
+          "dropdown": {
+            "label": "Idioma"
+          }
+        },
+        "community_directory": {
+          "heading": "Procure o seu directório Community",
+          "description": "Por favor, garanta que o directório abaixo corresponde ao directório Community. Caso não corresponda, escolha o directório correcto através do botão 'Procurar directório'.",
+          "text_field": {
+            "label": "Directório Community",
+            "browse_button_sr_text": "Procurar directório"
+          }
+        },
+        "complete_page": {
+          "heading": "Configuração completa",
+          "description1": "Tudo pronto para levantar vôo!",
+          "description2": "Carregue em 'Finalizar' para confirmar as suas configurações e lançar a aplicação."
+        }
+      },
+      "tabs": {
+        "tab_labels": {
+          "update_feed": "Dashboard",
+          "available_liveries": "Pinturas disponíveis",
+          "installed_liveries": "Pinturas instaladas",
+          "settings": "Configurações"
+        }
+      },
+      "components": {
+        "feed_article": {
+          "authored_by": "Escrito por {{author}}"
+        },
+        "badges": {
+          "update_available": {
+            "tooltip": "Vá a 'Pinturas instaladas' para actualizar esta pintura",
+            "content": "Actualização disponível"
+          },
+          "installed": {
+            "tooltip": "Para desinstalar, actualizar ou reinstalar, vá à tab 'Pintiras instaladas'",
+            "content": "Instalado"
+          }
+        },
+        "refresh_box": {
+          "date_format": "LT",
+          "last_refreshed": "Última actualização da lista:",
+          "last_refreshed_explanation_tooltip": "Última vez que verificou por pinturas instaladas e disponíveis",
+          "refresh_button": {
+            "tooltip": {
+              "default": "Actualizar lista de pinturas disponíveis",
+              "rate_limited": "Demasiados pedidos de actualização: deve esperar {{interval}}s entre pedidos de actualização da lista"
+            },
+            "unknown_time": "desconhecido"
+          }
+        },
+        "error_dialog": {
+          "error": "Erro",
+          "suggestions": "Sugestão",
+          "close_dialog_button": "Fechar"
+        },
+        "offline_error": {
+          "title": "Você está offline",
+          "paragraph1": "Esta aplicação necessita de uma ligação à internet para funcionar. Verifique a sua rede.",
+          "paragraph2": "Esta mensagem irá desaparecer automaticamente quando a ligação for restabelecida."
+        }
+      },
+      "pages": {
+        "feed": {
+          "error_more_info_button": "Ver mais informação",
+          "no_more_posts": {
+            "heading": "É tudo, amigos!",
+            "info": "Você atingiu o final do feed de actualizações"
+          },
+          "view_more_updates_button": "Leia todos os updates",
+          "errors": {
+            "generic_message": "Ocorreu um erro ao ler o feed de notícias",
+            "unknown_error": "Erro desconhecido",
+            "feed_unknown": "Os dados de feed obtidos da API são inválidos. (null_err)"
+          }
+        },
+        "available_liveries": {
+          "errors": {
+            "installed_addons_fail": {
+              "title": "Não foi possível encontrar pinturas instaladas.",
+              "error_text": "Não conseguimos obter a lista de pinturas instaladas. Moveu ou eliminou a pasta Community?",
+              "suggestion1": "O directório que nos indicou é {{path}}. Está correcto?",
+              "suggestion2": "Tente actualizar o seu directório Community nas configurações."
+            }
+          },
+          "progress_notifications": {
+            "begin_install": "A instalar pinturas...",
+            "install_complete": "Instaladas {{total}} [[total||pintura|pinturas]] com sucesso",
+            "install_failed": "{{fails}} [[falhas||pintura|pinturas]] falharam a instalação. A equipa de desenvolvimento foi informada."
+          },
+          "fab_currently_installing": "A instalar {{total}} [[total||pintura|pinturas]] ({{size}} MB)",
+          "fab_install": "Instalação {{total}} [[total||pintura|pinturas]] ({{size}} MB)",
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "A verificar..."
+            },
+            "aircraft_accordion": {
+              "available_count": "{{total}} [[total||pintura|pinturas]] disponíveis",
+              "installed_count": "{{total}} instalados",
+              "info_fields": {
+                "aircraft_name": {
+                  "title": "Avião"
+                },
+                "total_livery_count": {
+                  "title": "Pinturas disponíveis",
+                  "value": "{{total}} disponíveis"
+                },
+                "total_installed_count": {
+                  "title": "Pinturas instaladas",
+                  "value": "{{count}} de {{total}} instaladas"
+                }
+              },
+              "buttons": {
+                "select_all_btn": "Seleccionar todas",
+                "deselect_all_btn": "Remover selecção de todas"
+              },
+              "liveries_heading": "Pinturas"
+            },
+            "livery_row": {
+              "expand_livery_details_tooltip": "Mostra informação da pintura",
+              "shrink_livery_details_tooltip": "Esconder informação da pintura",
+              "info_fields": {
+                "version": {
+                  "title": "Versão",
+                  "tooltip": "Este texto representa a versão actual da pintura que está disponível. Se a sua versão é diferente, significa que uma nova actualização está disponível."
+                },
+                "thumbnail": {
+                  "title": "Miniatura"
+                }
+              }
+            }
+          }
+        },
+        "installed_liveries": {
+          "warning_cannot_remove_multiple_liveries": "De momento, não pode remover ou actualizar várias pinturas em simultâneo. Esta funcionalidade será disponibilizado numa versão futura.",
+          "progress_notifications": {
+            "begin_update": "A actualizar [[total||pintura|pinturas]]...",
+            "update_complete": "Actualizou {{total}} [[total||pintura|pinturas]] com sucesso",
+            "update_failed": "{{fails}} [[falhas||pintura|pinturas]] falhou a actualização. A equipa de desenvolvimento foi informada."
+          },
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "checking now..."
+            },
+            "aircraft_accordion": {
+              "liveries_heading": "Pinturas",
+              "installed_count": "{{total}} installed",
+              "update_count": "{{updates}} [[updates||livery has an update|liveries have updates]]"
+            },
+            "list_row": {
+              "update": {
+                "button": "Actualizar"
+              },
+              "help": {
+                "tooltip": {
+                  "update": "Actualizar pintura",
+                  "delete": "Remover pintura",
+                  "delete_timer": "Pressione durante {{time}}s para remover"
+                },
+                "snackbar": {
+                  "hold_to_remove": "Para remover uma pintura, clique e mantenha pressionado o botão remover durante {{time}} segundos"
+                }
+              }
+            }
+          },
+          "notification": {
+            "no_liveries_to_remove": "Você não tem nenhuma pintura instalada!",
+            "removing_livery": "A remover pintura {{current}} de {{total}}",
+            "remove_all_success": "Falha ao remover {{total}} [[total||pintura|pinturas]]",
+            "remove_all_failures": "Falha ao remover {{errors}} [[erros||pintura|pinturas]]",
+            "deletion": {
+              "fail1": "Falha ao remover pintura: no obj passed",
+              "fail2": "Falha ao remover pintura: unknown location",
+              "fail3": "Falha ao remover pintura: folder not found",
+              "fail4": "Falha ao remover pintura: {{error}}",
+              "fail5": "Falha ao remover pintura: unknown error",
+              "success": "Pintura removida com sucesso"
+            },
+            "no_liveries_to_update": "Você não tem nenhuma pintura instalada!",
+            "update_all_success": "Successfully updated {{total}} [[total||pintura|pinturas]]",
+            "update_all_failures": "Falha ao actualizar {{errors}} [[errors||pintura|pinturas]]",
+            "updating_livery": "A actualizar pintura {{current}} de {{total}}"
+          },
+          "dialog": {
+            "uninstall_all": {
+              "title": "Remover todas as pinturas?",
+              "message": "Tem a cereteza que pretende remover TODAS AS PINTURAS?",
+              "detail": "Assim que o processo iniciar, não pode pausar ou cancelar. Para obter de novo as pinturas, é necessário voltar a instalar as mesmas."
+            },
+            "update_all": {
+              "title": "Actualizar todas as pinturas?",
+              "message": "Tem a cereteza que pretende actualizar TODAS AS PINTURAS?",
+              "detail": "Assim que o processo iniciar, não pode pausar ou cancelar."
+            }
+          },
+          "button": {
+            "remove_all_liveries": "Remover tudo",
+            "update_all": "Actualizar tudo"
+          },
+          "no_liveries_installed": {
+            "more_info_button": "Ver mais informação",
+            "message": "Não foram detectadas pinturas instaladas",
+            "info": "Não foi possível encontrar pinturas no seu directório Community.\n\nSe instalou pinturas através do zip mega pack, elas não serão listadas aqui. Deverão ser instaladas pela aplicação."
+          }
+        },
+        "settings": {
+          "advanced_settings": {
+            "enabled_notification": "Activar configurações avançadas",
+            "disabled_notification": "Desactivar configurações avançadas",
+            "dialog_title": "Activar configurações avançadas?",
+            "dialog_body": "Activar configurações avançadas?",
+            "dialog_detail": "Active apenas se sugerido por um developer. Esta acção pode ter consequências inesperadas. Considere isto um aviso!"
+          },
+          "footer": {
+            "line1": "{{appName}} — Criado para o Liveries Mega Pack",
+            "line2": "© {{year}} — Todos os direitos reservados — ",
+            "version": "v{{version}}",
+            "source_repo_and_license": "Ver o código fonte e licença"
+          },
+          "errors_in_inputs": "Por favor, corriga os erro(s) antes de guardar as alterações",
+          "save_settings_changes": "Carregue 'Guardar' para guardar as alterações",
+          "all_changes_saved": "Todas as alterações foram guardadas",
+          "save_button": "Guardar",
+          "user_settings": {
+            "community_folder": {
+              "name": "Pasta Community",
+              "input_label": "Directório para a pasta Community",
+              "browse_button_sr_text": "Navegar para o directório",
+              "reset_button": "Desfazer alterações",
+              "open_in_explorer": "Mostrar directório no Explorer",
+              "open_in_explorer_opening": "A abrir..."
+            },
+            "locale_selection": {
+              "name": "Idioma da aplicação",
+              "label": "Idioma"
+            },
+            "cache_clear": {
+              "name": "Caching",
+              "clearing_cache_notification": "A apagar cache. Esta operação pode demorar alguns minutos.",
+              "cache_clear_success_notification": "Cache apagado com sucesso!",
+              "cache_clear_error_notification": "Falha ao apagar a cache",
+              "purge_cache_button": "Remover cache"
+            },
+            "reset_manager_to_defaults": {
+              "name": "Fazer reset à aplicação",
+              "detail": "As configurações padrão vão ser restauradas e a aplicação será reiniciada. Não irá perder as pinturas instaladas, e qualquer pintura já instalada será automaticamente detectada.",
+              "reset_btn": "Fazer reset às configurações"
+            }
+          }
+        }
+      }
+    }
+  }
+}
