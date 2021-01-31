@@ -7,4 +7,4 @@ export * as zhHans from './zh-Hans';
 export * as zhHant from './zh-Hant';
 export * as itIT from './it-IT';
 export * as ptBR from './pt-BR';
-export * as ptBR from './pt-PT';
+export * as ptPT from './pt-PT';
