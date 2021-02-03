@@ -976,10 +976,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/ibm-plex-mono/-/ibm-plex-mono-4.0.1.tgz#176b755f5baddd671e44ac071d58836874768074"
   integrity sha512-1tIlq+Cl3/4dJmh+7E+gI7wQEO5/xRnzbRC4AT6pnoL5RqeZNUTMECgk2zWGEpY/vTkKw+UYflTciZz5KU0uJQ==
 
-"@fontsource/poppins@^4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@fontsource/poppins/-/poppins-4.0.1.tgz#c81d4b544b14dccc752d2e687d1e3ceec71779ca"
-  integrity sha512-25MwQJYwm/EW+eEIZocQxMKrFcBZAGw0I6uv7qa5DiRZr71jZyZwjem60QUddEFrzSu433p8q9OXzyERXyCViw==
+"@fontsource/poppins@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/poppins/-/poppins-4.1.0.tgz#dc250fd1865f92bc2406d38c8cdbc0018e9c0df1"
+  integrity sha512-SMvh6J28hegBXFc+oC4dBiFcwnT3NiNo+3s+rzEfHUDewk33TpnqWnf+Phg+bYCdIu77sMQJk2pGN2Q8iiUVjw==
 
 "@hot-loader/react-dom@^16.14.0":
   version "16.14.0"

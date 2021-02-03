@@ -57,7 +57,7 @@
     "electron-react-titlebar": "^0.8.2",
     "electron-squirrel-startup": "^1.0.0",
     "@fontsource/ibm-plex-mono": "^4.0.1",
-    "@fontsource/poppins": "^4.0.1",
+    "@fontsource/poppins": "^4.1.0",
     "mdi-react": "^7.4.0",
     "node-fetch": "^2.6.1",
     "node-rsa": "^1.1.1",
