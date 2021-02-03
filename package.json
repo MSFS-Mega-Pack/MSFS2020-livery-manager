@@ -1,7 +1,7 @@
 {
   "name": "fs2020-livery-manager",
   "productName": "Liveries Mega Pack Manager",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A simple, extensible livery manager for Microsoft Flight Simulator",
   "license": "SEE LICENSE IN LICENSE.md",
   "author": {
