@@ -53,7 +53,7 @@
         "finish_button": "Terminer",
         "welcome_page": {
           "heading": "Bienvenue sur {{app_name}}",
-          "description": "Passons à la configuration avant que de pouvoir utiliser le gestionnaire de livrées. Ceci vous permettra de bénéficier de la meilleure expérience et du fonctionnement optimal du gestionnaire."
+          "description": "Passons à la configuration avant que de pouvoir utiliser le gestionnaire de livrées. Ceci vous permettra de bénéficier d'une meilleure expérience et d'un fonctionnement optimal du gestionnaire."
         },
         "locale_page": {
           "heading": "Choisissez votre langue",
@@ -65,7 +65,7 @@
         },
         "community_directory": {
           "heading": "Sélection du dossier Community",
-          "description": "Veuillez vérifier que le chemin indiqué ci-dessous corresponde à votre dossier Community. Si celà n'est pas le cas, veuillez indiquer le bon dossier en cliquant sur le bouton Parcourir.",
+          "description": "Veuillez vérifier que le chemin indiqué ci-dessous corresponde à votre dossier Community. Si tel n'est pas le cas, veuillez indiquer le bon dossier en cliquant sur le bouton Parcourir.",
           "text_field": {
             "label": "Dossier Community",
             "browse_button_sr_text": "Parcourir"
@@ -225,7 +225,7 @@
             }
           },
           "notification": {
-            "no_liveries_to_remove": "Vous n'avez aucune livrée installée",
+            "no_liveries_to_remove": "Il n'y a aucune livrée à supprimer",
             "removing_livery": "Suppression de la livrée {{current}} sur {{total}}",
             "remove_all_success": "Suppression de {{total}} [[total||livery|liveries]] avec succès",
             "remove_all_failures": "Impossible de supprimer {{errors}} [[errors||livery|liveries]]",
@@ -252,7 +252,7 @@
           "no_liveries_installed": {
             "more_info_button": "Voir plus d'infos",
             "message": "Aucune livrée installée",
-            "info": "Nous n'avons pas retrouvé de livrée du megapach dans votre dossier Community.\n\nSi vous avez fait l'installation manuellement, ils n'apparaitront pas ici. L'installation doit se faire via le gestionnaire."
+            "info": "Nous n'avons pas retrouvé de livrée du Mega Pak dans votre dossier Community.\n\nSi vous avez fait l'installation manuellement, elles n'apparaitront pas ici. L'installation doit se faire via le gestionnaire."
           }
         },
         "settings": {
