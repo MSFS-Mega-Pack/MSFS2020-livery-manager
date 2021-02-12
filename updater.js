@@ -8,7 +8,7 @@ const request = require('request');
 // The current version of your app.
 const APP_VERSION = require('./package.json').version;
 const APP_NAME = require('./package.json').name;
-let UPDATE_URL = `https://api.liveriesmegapack.com/v1/get/update`;
+let UPDATE_URL = `https://api.projectmegapack.com/v1/get/update`;
 
 async function checkForUpdates(window) {
   let json;

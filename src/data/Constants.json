@@ -2,9 +2,9 @@
   "appName": "fs2020-livery-manager",
   "urls": {
     "managerRepo": "https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager",
-    "apiEndpoint": "https://api.liveriesmegapack.com",
+    "apiEndpoint": "https://api.projectmegapack.com",
     "devApiEndpoint": "http://localhost:2678",
-    "cdnEndpoint": "https://manager-cdn.liveriesmegapack.com",
+    "cdnEndpoint": "https://manager-cdn.projectmegapack.com",
     "sentryDSN": "https://ac6e425a093744a0a72e061986c2f138@o252778.ingest.sentry.io/5431856"
   },
   "dirs": {
