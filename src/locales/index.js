@@ -4,5 +4,6 @@ export * as enUS from './en-US';
 export * as seSE from './se-SE';
 export * as nlNL from './nl-NL';
 export * as zhHans from './zh-Hans';
+export * as zhHant from './zh-Hant';
 export * as itIT from './it-IT';
 export * as ptBR from './pt-BR';
