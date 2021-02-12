@@ -121,14 +121,18 @@ export default function InstalledLiveries(props) {
 
     for (const item of installedLiveries) {
       if (!m.has(item.airplane)) {
-        m.set(item.airplane, true);
+        if (!item || !item.airplane) {
+          // 
+        } else {
+          m.set(item.airplane, true);
 
-        let thumb = `${fileListing.data.cdnBaseUrl}/img/${item.airplane}/thumbnail.JPG`;
+          let thumb = `${fileListing.data.cdnBaseUrl}/img/${item.airplane}/thumbnail.JPG`;
 
-        allAircraft.push({
-          name: item.airplane.toLowerCase(),
-          thumbnails: [thumb, NoImage],
-        });
+          allAircraft.push({
+            name: item.airplane.toLowerCase(),
+            thumbnails: [thumb, NoImage],
+          });
+        }
       }
     }
   }
