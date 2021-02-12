@@ -1306,17 +1306,17 @@
   dependencies:
     "@types/node" "*"
 
-"@virtuoso.dev/react-urx@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@virtuoso.dev/react-urx/-/react-urx-0.2.3.tgz#b336adcfaadf7526f568f0bb2482f28e5fe81e40"
-  integrity sha512-8U8Vjebv/Itkc2tXvLVystMXimsTAHaDSauqzy1xrSDvWybdWxkRmTOjykK8gYUfLVIDNuC2NHXOBSocNcAx8w==
+"@virtuoso.dev/react-urx@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@virtuoso.dev/react-urx/-/react-urx-0.2.4.tgz#68013bccc994f2756b76066d850ebc4fcebeffc6"
+  integrity sha512-rHUyHPGnra61i6kTCrAizB6qEcA4hbrnOtWgBw8sMotPcfKyE6FZHX06WE73An9g+YAI3ykWyXFr8EWyY0q3NA==
   dependencies:
-    "@virtuoso.dev/urx" "^0.2.3"
+    "@virtuoso.dev/urx" "^0.2.4"
 
-"@virtuoso.dev/urx@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@virtuoso.dev/urx/-/urx-0.2.3.tgz#31b8a09cceb76567115ecbdad5355d0c9e44c23c"
-  integrity sha512-GrsPotsF4I9ZSmdGsy1Uv5qdsiOdbYYWbE0WGeTfWnB1BGS2ANSeprAROZFv9FEW+ZKTYbqGWCzrY8CdfJxn4Q==
+"@virtuoso.dev/urx@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@virtuoso.dev/urx/-/urx-0.2.4.tgz#0b74705fd41f13f55d5de274445ef7987406be61"
+  integrity sha512-93W+fGrK/eAddih/qJFXpUhMo4rLpu8qDmhWKOHqVhiUUzBNvkVqv8c+0z1OiEjxsBlP0XW46YGdBIJKcAjNzA==
 
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
@@ -6805,13 +6805,13 @@ react-virtualized@^9.7.6:
     prop-types "^15.7.2"
     react-lifecycles-compat "^3.0.4"
 
-react-virtuoso@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/react-virtuoso/-/react-virtuoso-1.2.6.tgz#2b8ff905449d474558397508054eba8ecda383bc"
-  integrity sha512-l9Y2435wexB1LMVn2jwmYpx//xVB4OxrljxJqPcPseL3ooee4ioSu6hpiOk3rrPq1p0v0gMmfQ5L7S5l38TCmQ==
+react-virtuoso@^1.5.6:
+  version "1.5.6"
+  resolved "https://registry.yarnpkg.com/react-virtuoso/-/react-virtuoso-1.5.6.tgz#ad455201079984ef624bdca4a4ebeaefc589d975"
+  integrity sha512-yoTFwdHH7qtaJq9RBi9PAJvcqzjkijPoGN2Yt3C6/bf36fvce3KrdqWYt5bWLBKVGL5KHHP3XTmjpJCZLN7iUQ==
   dependencies:
-    "@virtuoso.dev/react-urx" "^0.2.3"
-    "@virtuoso.dev/urx" "^0.2.3"
+    "@virtuoso.dev/react-urx" "^0.2.4"
+    "@virtuoso.dev/urx" "^0.2.4"
     react-app-polyfill "^1.0.6"
     resize-observer-polyfill "^1.5.1"
 
