@@ -926,10 +926,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/ibm-plex-mono@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@fontsource/ibm-plex-mono/-/ibm-plex-mono-4.1.0.tgz#66ddfce25f07e1d1c16a8c45e54245a09aa5e6c4"
-  integrity sha512-Tgbgnqm1afgQ57fRMCcCSrcKwCI8mXJV9dYxtuxyAiFu5bTZypuBsOS2C28gCrrpWTqNdImy169mEfXYQgeF3g==
+"@fontsource/ibm-plex-mono@^4.2.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/ibm-plex-mono/-/ibm-plex-mono-4.2.1.tgz#db3ed8fd3490363a87352903503d6c1c6b840376"
+  integrity sha512-D+v2+dt141X47g4R/DlYFl1C3tADbd/xKCz4JXjbxvJcb5VhNkyIdwTPAnDlBKHqRpZCnGVPscnTACNPbVNRmQ==
 
 "@fontsource/poppins@^4.1.0":
   version "4.1.0"

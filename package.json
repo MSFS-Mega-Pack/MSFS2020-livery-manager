@@ -44,7 +44,7 @@
     "eslint:fix": "yarn eslint --fix"
   },
   "dependencies": {
-    "@fontsource/ibm-plex-mono": "^4.1.0",
+    "@fontsource/ibm-plex-mono": "^4.2.1",
     "@fontsource/poppins": "^4.1.0",
     "@material-ui/core": "^4.11.2",
     "@sentry/electron": "^2.1.0",
