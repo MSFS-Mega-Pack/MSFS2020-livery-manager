@@ -92,6 +92,9 @@ module.exports = {
         })
       : console.log('WARNING: NOT UPLOADING SOURCE MAPS TO SENTRY!\n\nMISSING API KEY!') && false,
   ].filter(Boolean),
+  output: {
+    publicPath: '',
+  },
   stats: {
     colors: true,
     children: false,
