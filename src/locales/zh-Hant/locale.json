@@ -1,0 +1,316 @@
+{
+  "info": {
+    "name": "簡體中文 (Simplified Chinese)",
+    "localeId": "zh-Hant"
+  },
+  "strings": {
+    "common": {
+      "coming_soon": "敬請期待..."
+    },
+    "models": {
+      "article": {
+        "date_format": "LLLL"
+      }
+    },
+    "helpers": {
+      "validate_fs_directory": {
+        "choose_directory": "請選擇文件路徑。",
+        "path_doesnt_exist": "您設置的路徑不存在",
+        "invalid_path": "請確認您正確選擇了您的Community資料夾路徑（示例：MSFS2020主程序資料夾/Community)"
+      },
+      "show_native_dialog": {
+        "yes_button": "&是",
+        "no_button": "&否",
+        "cancel_button": "&取消"
+      },
+      "install_addon": {
+        "progress_notifications": {
+          "downloading_livery": "正在下載塗裝 第{{current}}個 共{{total}}個",
+          "extracting_livery": "正在解壓塗裝 第{{current}}個 共{{total}}個"
+        }
+      },
+      "delete_addon": {
+        "delete_path_fail": "外掛程式刪除出現錯誤",
+        "delete_path_success": "外掛程式刪除成功",
+        "non_existant": "外掛程式路徑不存在"
+      },
+      "get_active_feed": {
+        "fetch_fail": "無法從當前API伺服器獲取資料來源。",
+        "fetch_fail_article_text": "無法載入文章。如果該狀況持續存在，【請向開發者報告】。(https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\n摘要: `fetch` failed in `GetActiveFeed.js`"
+      },
+      "get_feed_history": {
+        "fetch_fail": "無法從當前API伺服器獲取資料來源。",
+        "fetch_fail_article_text": "無法載入文章。如果該狀況持續存在，【請向開發者報告】。(https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\n摘要: `fetch` failed in `GetActiveFeed.js`"
+      }
+    },
+    "manager": {
+      "splash_screen": {
+        "loading": "正在載入..."
+      },
+      "setup": {
+        "back_button": "上一步",
+        "next_button": "下一步",
+        "finish_button": "完成",
+        "welcome_page": {
+          "heading": "歡迎使用{{app_name}}",
+          "description": "在您使用本塗裝管理器前，我們需要進行一些簡單的設置，以保證程式的正常運行，並為您呈現最好的體驗。"
+        },
+        "locale_page": {
+          "heading": "請選擇語言",
+          "description": "所有翻譯均由社區成員製作。如果翻譯有誤，請到GitHub的Errors頁發帖報告。",
+          "help_translate_link": "點擊此處，協助我們將本程式翻譯為閣下的語言。",
+          "dropdown": {
+            "label": "語言"
+          }
+        },
+        "community_directory": {
+          "heading": "找到你的community資料夾",
+          "description": "請確認下述路徑為您遊戲對應的community資料夾。如果不是，請點擊“流覽資料夾”按鈕尋找正確的資料夾位置。",
+          "text_field": {
+            "label": "Community資料夾",
+            "browse_button_sr_text": "流覽資料夾"
+          }
+        },
+        "complete_page": {
+          "heading": "設置完成",
+          "description1": "恭喜，您現在已經可以起飛了！",
+          "description2": "點擊“完成”以保存設置並啟動塗裝管理器。"
+        }
+      },
+      "tabs": {
+        "tab_labels": {
+          "update_feed": "展臺",
+          "available_liveries": "可下載塗裝",
+          "installed_liveries": "已安裝塗裝",
+          "settings": "設置"
+        }
+      },
+      "components": {
+        "feed_article": {
+          "authored_by": "撰寫：{{author}}"
+        },
+        "badges": {
+          "update_available": {
+            "tooltip": "您可前往“已安裝塗裝”頁面更新本塗裝",
+            "content": "有更新可用"
+          },
+          "installed": {
+            "tooltip": "您可點擊“已安裝塗裝”選項卡來卸載、更新、重新安裝塗裝。",
+            "content": "已安裝"
+          }
+        },
+        "refresh_box": {
+          "date_format": "LT",
+          "last_refreshed": "最近更新時間:",
+          "last_refreshed_explanation_tooltip": "你最近一次查看可下載和已安裝塗裝的時間",
+          "refresh_button": {
+            "tooltip": {
+              "default": "刷新可下載塗裝",
+              "rate_limited": "刷新被拒絕: 每次刷新需要等待{{interval}}秒的時間間隔"
+            },
+            "unknown_time": "未知"
+          }
+        },
+        "error_dialog": {
+          "error": "錯誤",
+          "suggestions": "建議",
+          "close_dialog_button": "關閉"
+        },
+        "offline_error": {
+          "title": "抱歉，您的網路已斷開。",
+          "paragraph1": "本程式需要網路連接才能正常運行。請檢查你的網路設置。",
+          "paragraph2": "當你網路連接恢復後，本訊息方塊會自動關閉。"
+        }
+      },
+      "pages": {
+        "feed": {
+          "error_more_info_button": "更多資訊",
+          "no_more_posts": {
+            "heading": "下面沒有了。(THE END)",
+            "info": "已經到底了，挖不下去了。"
+          },
+          "view_more_updates_button": "查看所有更新資訊",
+          "errors": {
+            "generic_message": "載入新聞動態時發生了錯誤。",
+            "unknown_error": "未知錯誤",
+            "feed_unknown": "從API伺服器載入的新聞動態資訊無效。(null_err)"
+          }
+        },
+        "available_liveries": {
+          "errors": {
+            "installed_addons_fail": {
+              "title": "未找到已安裝塗裝。",
+              "error_text": "無法獲取已安裝塗裝列表。請重新定位community資料夾路徑，確認未被移動或刪除。",
+              "suggestion1": "您的Community資料夾設置在了{{path}}. 是否正確？",
+              "suggestion2": "請在“設置”選項卡裡更新community資料夾路徑。"
+            }
+          },
+          "progress_notifications": {
+            "begin_install": "正在安裝塗裝...",
+            "install_complete": "成功安裝{{total}}個塗裝",
+            "install_failed": "{{fails}}個塗裝安裝失敗。開發團隊已記錄訊息。"
+          },
+          "fab_currently_installing": "正在安裝{{total}}個塗裝 ({{size}} MB)",
+          "fab_install": "安裝{{total}}個塗裝({{size}} MB)",
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "正在檢查..."
+            },
+            "aircraft_accordion": {
+              "available_count": "{{total}}個塗裝可更新",
+              "installed_count": "{{total}}個塗裝已安裝",
+              "info_fields": {
+                "aircraft_name": {
+                  "title": "機型"
+                },
+                "total_livery_count": {
+                  "title": "可下載塗裝",
+                  "value": "共有{{total}}個可下載"
+                },
+                "total_installed_count": {
+                  "title": "已安裝塗裝",
+                  "value": "{{count}}個塗裝已安裝"
+                }
+              },
+              "buttons": {
+                "select_all_btn": "全部選擇",
+                "deselect_all_btn": "全部取消選擇"
+              },
+              "liveries_heading": "包含塗裝"
+            },
+            "livery_row": {
+              "expand_livery_details_tooltip": "顯示塗裝詳情",
+              "shrink_livery_details_tooltip": "隱藏塗裝詳情",
+              "info_fields": {
+                "version": {
+                  "title": "版本號",
+                  "tooltip": "該序號顯示的是當前可下載版本的版本號。如果你已安裝的版本號與之不一致，那麼說明該塗裝有可用更新。"
+                },
+                "thumbnail": {
+                  "title": "預覽"
+                }
+              }
+            }
+          }
+        },
+        "installed_liveries": {
+          "warning_cannot_remove_multiple_liveries": "當前版本下，您不可以同時刪除或更新多個塗裝。不用擔心，該功能馬上將在未來更新上線。",
+          "progress_notifications": {
+            "begin_update": "正在更新塗裝檔...",
+            "update_complete": "{{total}}個塗裝更新成功",
+            "update_failed": "{{fails}}個塗裝更新失敗。開發團隊已記錄資訊。"
+          },
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "正在檢查..."
+            },
+            "aircraft_accordion": {
+              "liveries_heading": "已安裝塗裝",
+              "installed_count": "{{total}}個已安裝",
+              "update_count": "{{updates}}個塗裝可更新"
+            },
+            "list_row": {
+              "update": {
+                "button": "更新"
+              },
+              "help": {
+                "tooltip": {
+                  "update": "更新塗裝",
+                  "delete": "移除塗裝",
+                  "delete_timer": "持續按住{{time}}秒以刪除"
+                },
+                "snackbar": {
+                  "hold_to_remove": "如需刪除塗裝，請用滑鼠左鍵按住“移除塗裝”至少{{time}}秒以完成刪除"
+                }
+              }
+            }
+          },
+          "notification": {
+            "no_liveries_to_remove": "未發現任何已安裝塗裝。",
+            "removing_livery": "正在移除塗裝 第{{current}}個 共{{total}}個",
+            "remove_all_success": "已成功移除{{total}}個塗裝",
+            "remove_all_failures": "有{{errors}}個塗裝移除失敗",
+            "deletion": {
+              "fail1": "塗裝移除失敗: 沒有通過的物件",
+              "fail2": "塗裝移除失敗: 位置未知",
+              "fail3": "塗裝移除失敗: 未找到資料夾",
+              "fail4": "塗裝移除失敗: {{error}}",
+              "fail5": "塗裝移除失敗: 未知錯誤",
+              "success": "塗裝已成功移除"
+            },
+            "no_liveries_to_update": "未發現任何已安裝塗裝可更新。",
+            "update_all_success": "已成功更新{{total}}個塗裝",
+            "update_all_failures": "有{{errors}}個塗裝更新失敗",
+            "updating_livery": "正在更新塗裝 第{{current}}個 共{{total}}個"
+          },
+          "dialog": {
+            "uninstall_all": {
+              "title": "確定移除所有塗裝？",
+              "message": "請再三確認，您是不是要殘忍移除所有已安裝塗裝？",
+              "detail": "一旦你開始該進程，將無法暫停或取消。你仍然可以重新安裝這些塗裝。"
+            },
+            "update_all": {
+              "title": "更新所有塗裝？",
+              "message": "請確認，你需要在此時此刻，更新所有塗裝？",
+              "detail": "一旦你開始該進程，將無法暫停或取消。"
+            }
+          },
+          "button": {
+            "remove_all_liveries": "移除所有塗裝",
+            "update_all": "更新所有塗裝"
+          },
+          "no_liveries_installed": {
+            "more_info_button": "更多資訊",
+            "message": "未檢測到任何已安裝塗裝",
+            "info": "我們未在您選取的Community資料夾找到任何MegaPack的塗裝。\n\n如果您安裝的是zip壓縮包形式的塗裝，那麼這些塗裝不會在此顯示。只有通過本管理器安裝的塗裝會予以顯示。"
+          }
+        },
+        "settings": {
+          "advanced_settings": {
+            "enabled_notification": "高級設置已啟用",
+            "disabled_notification": "高級設置已禁用",
+            "dialog_title": "啟用高級設置？",
+            "dialog_body": "是否啟用高級設置？",
+            "dialog_detail": "該設置僅允許在開發者的指導下使用。該操作有可能引發意外後果，不要亂動。勿謂言之不預也！"
+          },
+          "footer": {
+            "line1": "{{appName}} — 專為塗裝大集成包（Liveries Mega Pack）打造",
+            "line2": "© {{year}} — 版權所有 — ",
+            "version": "v{{version}}",
+            "source_repo_and_license": "查看原始程式碼和許可資訊"
+          },
+          "errors_in_inputs": "請在保存前修正上述出現的錯誤",
+          "save_settings_changes": "點擊'保存'以保存所有更改",
+          "all_changes_saved": "所有更改已保存",
+          "save_button": "保存",
+          "user_settings": {
+            "community_folder": {
+              "name": "Community（社區外掛程式）資料夾",
+              "input_label": "Community資料夾所在路徑",
+              "browse_button_sr_text": "流覽資料夾",
+              "reset_button": "撤銷更改",
+              "open_in_explorer": "在檔資源管理器中顯示",
+              "open_in_explorer_opening": "正在打開..."
+            },
+            "locale_selection": {
+              "name": "管理器顯示語言",
+              "label": "語言"
+            },
+            "cache_clear": {
+              "name": "緩存",
+              "clearing_cache_notification": "正在清理緩存。這可能需要幾分鐘時間。",
+              "cache_clear_success_notification": "緩存清理完成！",
+              "cache_clear_error_notification": "緩存清理失敗",
+              "purge_cache_button": "清除緩存資料"
+            },
+            "reset_manager_to_defaults": {
+              "name": "復位管理器",
+              "detail": "該操作將重定所有程式設置並重啟管理器。已安裝塗裝不會丟失，並且會在復位完成後重新被檢測到。",
+              "reset_btn": "復位所有設定"
+            }
+          }
+        }
+      }
+    }
+  }
+}
