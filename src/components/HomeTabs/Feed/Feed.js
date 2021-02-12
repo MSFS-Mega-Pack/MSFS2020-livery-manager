@@ -19,7 +19,7 @@ export default function Feed(props) {
   const [feed, setFeed] = [props.feed, props.setFeed];
 
   /**
-   * @type {[FeedClass, Function]}
+   * @type {[FeedClass | boolean, Function]}
    */
   const [fullHistory, setFullHistory] = [props.fullHistory, props.setFullHistory];
 
@@ -83,13 +83,13 @@ export default function Feed(props) {
                 const feed = await GetFeedHistory(CurrentLocale);
                 setFullHistory(feed);
               }}
-              disabled={fullHistory === false}
+              // disabled={fullHistory === false}
             >
               {CurrentLocale.translate('manager.pages.feed.view_more_updates_button')}
             </Button>
-            {fullHistory === false && (
+            {/* {fullHistory === false && (
               <CircularProgress size={24} style={{ top: '50%', left: '50%', position: 'absolute', marginTop: -12, marginLeft: -12 }} />
-            )}
+            )} */}
           </div>
         )}
       </Box>

@@ -121,8 +121,8 @@ export default function InstalledLiveries(props) {
 
     for (const item of installedLiveries) {
       if (!m.has(item.airplane)) {
-        if (!item || !item.airplane) {
-          //
+        if (!item.airplane) {
+          // For some reason the data is invalid
         } else {
           m.set(item.airplane, true);
 
