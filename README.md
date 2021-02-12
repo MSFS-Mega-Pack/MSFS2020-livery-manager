@@ -1,12 +1,12 @@
-# Project Mega Pack Manager
+# Liveries Mega Pack Manager
 
 A simple to use livery manager for Flight Simulator 2020.
 
-[Join the Official Project Mega Pack Discord server](https://discord.gg/megapack)
+[Join the Official Liveries Mega Pack Discord server](https://discord.gg/megapack)
 
 [![DeepScan grade](https://deepscan.io/api/teams/10690/projects/13519/branches/230735/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=10690&pid=13519&bid=230735) [![](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/workflows/Smoketest/badge.svg)](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/actions/)
 
-- [Project Mega Pack Manager](#project-mega-pack-manager)
+- [Liveries Mega Pack Manager](#liveries-mega-pack-manager)
   - [Usage](#usage)
     - [Installing liveries](#installing-liveries)
   - [Support](#support)
@@ -20,8 +20,8 @@ A simple to use livery manager for Flight Simulator 2020.
 
 ## Usage
 
-1. Join the Official Project Mega Pack Discord server: https://discord.gg/megapack
-2. Download the latest manager release: https://projectmegapack.com/manager
+1. Join the Official Liveries Mega Pack Discord server: https://discord.gg/megapack
+2. Download the latest manager release: https://liveriesmegapack.com/manager
 3. Follow the instructions to complete the setup.
 
 ### Installing liveries
@@ -35,7 +35,7 @@ A simple to use livery manager for Flight Simulator 2020.
 
 **Please do not submit support queries on GitHub.**
 
-If you open an issue with a support query about using the manager, it will be closed. Please submit these support requests via the [Project Mega Pack Discord server](https://discord.gg/megapack).
+If you open an issue with a support query about using the manager, it will be closed. Please submit these support requests via the [Liveries Mega Pack Discord server](https://discord.gg/megapack).
 
 We do allow support queries about contributing to the manager on GitHub, as well as bug reports and feature requests.
 
@@ -43,7 +43,7 @@ We do allow support queries about contributing to the manager on GitHub, as well
 
 ### "I want to report a problem with a livery!"
 
-Please report any issues regarding liveries to the Project Mega Pack Discord. The liveries are not produced by us, so we cannot fix any issues with them.
+Please report any issues regarding liveries to the Mega Pack Discord. The liveries are not produced by us, so we cannot fix any issues with them.
 
 ### "A livery is failing to install in the manager!"
 
