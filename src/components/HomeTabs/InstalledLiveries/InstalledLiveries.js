@@ -122,7 +122,7 @@ export default function InstalledLiveries(props) {
     for (const item of installedLiveries) {
       if (!m.has(item.airplane)) {
         if (!item || !item.airplane) {
-          // 
+          //
         } else {
           m.set(item.airplane, true);
 
