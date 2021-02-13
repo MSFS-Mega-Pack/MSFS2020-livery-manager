@@ -44,6 +44,15 @@
       }
     },
     "manager": {
+      "error_boundary": {
+        "main_app": {
+          "heading": "An error occurred",
+          "description": "An error occurred while loading the manager. This error has been reported to the app developers.",
+          "suggestions": "Try restarting the manager. If that doesn't work, click the button below to reset your manager settings.",
+          "developer_info": "Developer information",
+          "restart": "Restart"
+        }
+      },
       "splash_screen": {
         "loading": "Loading..."
       },
