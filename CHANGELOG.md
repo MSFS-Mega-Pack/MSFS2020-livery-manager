@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Changed marked with `[DEV]` are invisible to users, and purely for the benefit of developers.
 
+## [0.4.5] - 2021-02-13
+
+### Added
+
+- Add error page which shows if an unrecoverable error occurs
+
+### Changed
+
+- Fix bug where the manager wouldn't auto-create your community in the correct location
+- Fix bug where update/remove all buttons would show under Installed Liveries even if an invalid community folder was provided
+
+### Removed
+
+_None_
+
+### Meta
+
+_None_
+
 ## [0.4.4] - 2021-02-13
 
 ### Added
