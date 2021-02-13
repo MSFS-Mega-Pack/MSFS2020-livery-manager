@@ -22,6 +22,7 @@ import 'electron-react-titlebar/assets/style.css';
 
 import { SnackbarProvider } from 'notistack';
 import { LocaleProvider } from '../locales/LocaleContext';
+import MainAppErrorBoundary from './ErrorBoundaries/MainAppErrorBoundary';
 
 const useStyles = makeStyles({
   titlebar: {
@@ -50,15 +51,18 @@ function App() {
           <ThemeProvider theme={Theme}>
             <SnackbarProvider maxSnack={5}>
               <CssBaseline />
-              <HashRouter hashType="slash">
-                <AnimatedSwitch atEnter={{ opacity: 0 }} atLeave={{ opacity: 0 }} atActive={{ opacity: 1 }} className="switch-wrapper">
-                  {Routes.map(route => (
-                    <Route key={route.path} path={route.path}>
-                      {route.component}
-                    </Route>
-                  ))}
-                </AnimatedSwitch>
-              </HashRouter>
+
+              <MainAppErrorBoundary>
+                <HashRouter hashType="slash">
+                  <AnimatedSwitch atEnter={{ opacity: 0 }} atLeave={{ opacity: 0 }} atActive={{ opacity: 1 }} className="switch-wrapper">
+                    {Routes.map(route => (
+                      <Route key={route.path} path={route.path}>
+                        {route.component}
+                      </Route>
+                    ))}
+                  </AnimatedSwitch>
+                </HashRouter>
+              </MainAppErrorBoundary>
             </SnackbarProvider>
           </ThemeProvider>
         </LocaleProvider>
