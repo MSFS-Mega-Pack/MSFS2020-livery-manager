@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Changed marked with `[DEV]` are invisible to users, and purely for the benefit of developers.
 
+## [0.4.4] - 2021-02-13
+
+### Added
+
+- **Actually** add Spanish language (oops!) ([@jalbertseg](https://github.com/jalbertseg)) (#275)
+- Add Portuguese language ([@zephirus](https://github.com/zephirus)) (#285)
+- Add Traditional Chinese language ([@JeremyGolf70](https://github.com/JeremyGolf70)) (#228)
+
+### Changed
+
+- Improve French translation ([@Dites33](https://github.com/Dites33)) (#299)
+- Update project dependencies
+- Fix rare blank manager bug where community folder is removed after being set
+- Fix incorrect Italian language display name
+
+### Removed
+
+_None_
+
+### Meta
+
+_None_
+
 ## [0.4.1] - 2021-01-14
 
 ### Added
