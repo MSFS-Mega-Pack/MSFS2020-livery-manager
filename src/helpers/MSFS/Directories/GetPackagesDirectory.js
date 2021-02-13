@@ -38,7 +38,7 @@ export default async function GetPackagesDirectory() {
       installPath += '\\Community';
       installPath = Path.normalize(installPath);
       try {
-        fs.existsSync(installPath) || fs.mkdirSync(installPath);
+        fs.existsSync(installPath) || fs.mkdirSync(installPath, { recursive: true });
       } catch (error) {
         console.log(error);
       }
