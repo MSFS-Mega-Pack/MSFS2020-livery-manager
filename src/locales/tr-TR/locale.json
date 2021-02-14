@@ -1,0 +1,325 @@
+{
+  "info": {
+    "name": "Türkçe (Turkish)",
+    "localeId": "tr-TR"
+  },
+  "strings": {
+    "common": {
+      "coming_soon": "Çok Yakında"
+    },
+    "models": {
+      "article": {
+        "date_format": "LLLL"
+      }
+    },
+    "helpers": {
+      "validate_fs_directory": {
+        "choose_directory": "Lütfen bir dizin seçin",
+        "path_doesnt_exist": "Seçtiğiniz dizin bulunmuyor!",
+        "invalid_path": "Lütfen Community klasörünü seçtiğinizden emin olun!"
+      },
+      "show_native_dialog": {
+        "yes_button": "&Evet",
+        "no_button": "&Hayır",
+        "cancel_button": "&Vazgeç"
+      },
+      "install_addon": {
+        "progress_notifications": {
+          "downloading_livery": "{{total}}'de {{current}} livery indiriliyor...",
+          "extracting_livery": "{{total}}'de {{current}} livery çıkartılıyor..."
+        }
+      },
+      "delete_addon": {
+        "delete_path_fail": "Eklenti dizini silinirken hata oluştu!",
+        "delete_path_success": "Eklenti başarıyla silindi",
+        "non_existant": "Eklenti dizini bulunamadı!"
+      },
+      "get_active_feed": {
+        "fetch_fail": "API'den mevcut özet akışı alınamadı!",
+        "fetch_fail_article_text": "Makale alınamadı. Eğer devam ederse, [lütfen geliştiricilere bildirin](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      },
+      "get_feed_history": {
+        "fetch_fail": "API'den mevcut özet akışı alınamadı!",
+        "fetch_fail_article_text": "Makale alınamadı. Eğer devam ederse, [lütfen geliştiricilere bildirin](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      }
+    },
+    "manager": {
+      "error_boundary": {
+        "main_app": {
+          "heading": "Bir hata oluştu!",
+          "description": "Livery Manager yüklenirken bir hata oluştu. Hata geliştiricilere raporlandı",
+          "suggestions": "Livery Manager'i yeniden başlatmayı deneyin. Eğer düzelmezse, yönetici ayarlarını sıfırlamak için aşağıdaki butona tıklayın",
+          "developer_info": "Geliştirici bilgileri",
+          "restart": "Restart"
+        }
+      },
+      "splash_screen": {
+        "loading": "Yükleniyor..."
+      },
+      "setup": {
+        "back_button": "Geri",
+        "next_button": "İleri",
+        "finish_button": "Bitir",
+        "welcome_page": {
+          "heading": "{{app_name}}'a Hoş Geldiniz",
+          "description": "Size en iyi deneyimi yaşatabilmek ve her şeyin düzgün olduğundan emin olmak için bir kaç kurulum aşamasından geçmemiz gerekiyor"
+        },
+        "locale_page": {
+          "heading": "Dilinizi seçin",
+          "description": "Tüm diller topluluk çevirileridir. Lütfen çeviri hatalarını GütHub üzerinden bildirin.",
+          "help_translate_link": "Livery Manager'i kendi diline çevirmek için yardım etmeye ne dersin?",
+          "dropdown": {
+            "label": "Dil"
+          }
+        },
+        "community_directory": {
+          "heading": "Community klasörünü bul",
+          "description": "Lütfen aşağıdaki dizinin Community klasörü ile eşleştiğini kontrol et. Eşleşmiyorsa, Göz At butonu ile doğru klasörü seç.",
+          "text_field": {
+            "label": "Community klasörü",
+            "browse_button_sr_text": "Klasöre göz at"
+          }
+        },
+        "complete_page": {
+          "heading": "Kurulumu tamamla",
+          "description1": "Kalkış için hazırsın!",
+          "description2": "Ayarlarınızı onaylamak ve Livery Manager'i başlatmak için 'Bitir'e tıklayın"
+        }
+      },
+      "tabs": {
+        "tab_labels": {
+          "update_feed": "Arayüz",
+          "available_liveries": "Kullanılabilir Liveryler",
+          "installed_liveries": "Yüklenmiş Liveryler",
+          "settings": "Ayarlar"
+        }
+      },
+      "components": {
+        "feed_article": {
+          "authored_by": "{{author}} tarafından yazıldı."
+        },
+        "badges": {
+          "update_available": {
+            "tooltip": "Livery'i güncellemek için 'Yüklenmiş Liveryler' sekmesine gidin",
+            "content": "Güncelleme mevcut"
+          },
+          "installed": {
+            "tooltip": "Kaldırmak, güncellemek veya yeniden yüklemek için Yüklenmiş Liveryler sekmesine gidin",
+            "content": "Yüklendi"
+          }
+        },
+        "refresh_box": {
+          "date_format": "LT",
+          "last_refreshed": "Son Yenileme:",
+          "last_refreshed_explanation_tooltip": "Yüklenmiş ve Kullanılabilir Liveryleri son kontrol etme zamanı",
+          "refresh_button": {
+            "tooltip": {
+              "default": "Kullanılabilir Liveryleri yenile",
+              "rate_limited": "Hız sınırlaması: Tekrar yenilemek için {{interval}}s beklemelisin!"
+            },
+            "unknown_time": "bilinmeyen"
+          }
+        },
+        "error_dialog": {
+          "error": "Hata",
+          "suggestions": "Öneri",
+          "close_dialog_button": "Kapat"
+        },
+        "offline_error": {
+          "title": "Çevrim dışısın",
+          "paragraph1": "Bu uygulamanın çalışması için internet bağlantısına ihtiyacı vardır. Lütfen bağlantınızı kontrol edin.",
+          "paragraph2": "Bağlantı sağlandığında bu mesaj otomatik olarak kapanacaktır."
+        }
+      },
+      "pages": {
+        "feed": {
+          "error_more_info_button": "Daha Fazla",
+          "no_more_posts": {
+            "heading": "Hepsi bu kadar, millet!",
+            "info": "Güncelleme akışının sonuna ulaştın"
+          },
+          "view_more_updates_button": "Tüm güncellemeleri oku",
+          "errors": {
+            "generic_message": "Haber kaynağı yüklenirken bir hata oluştu",
+            "unknown_error": "Bilinmeyen bir hata",
+            "feed_unknown": "API'den alınan Özet Akışı verileri geçersiz! (null_err)"
+          }
+        },
+        "available_liveries": {
+          "errors": {
+            "installed_addons_fail": {
+              "title": "Yüklü livery bulunamadı",
+              "error_text": "Yüklü liverylerin listesini alamadık. Community klasörünü taşıdınız veya sildiniz mi?",
+              "suggestion1": "Bize söylediğin dizin: {{path}}. Doğru mu?",
+              "suggestion2": "Ayarlar sekmesinde Community klasörünüzün dizinini güncellemeyi deneyin"
+            }
+          },
+          "progress_notifications": {
+            "begin_install": "Liveryler yükleniyor...",
+            "install_complete": "{{total}} [[total||livery|livery]] başarıyla yüklendi",
+            "install_failed": "{{fails}} [[fails||livery|livery]] yüklenirken başarısız oldu. Geliştiricilere bilgi verildi."
+          },
+          "fab_currently_installing": "{{total}} [[total||livery|livery]] yükleniyor ({{size}} MB)",
+          "fab_install": "{{total}} [[total||livery|livery]] yükle ({{size}} MB)",
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "Kontrol ediliyor..."
+            },
+            "aircraft_accordion": {
+              "available_count": "{{total}} [[total||livery|livery]] kullanılabilir",
+              "installed_count": "{{total}} yüklendi",
+              "info_fields": {
+                "aircraft_name": {
+                  "title": "Uçak"
+                },
+                "total_livery_count": {
+                  "title": "Livery kullanılabilir",
+                  "value": "{{total}} kullanılabilir"
+                },
+                "total_installed_count": {
+                  "title": "Livery yüklendi",
+                  "value": "{{total}}'de {{count}} yüklendi"
+                }
+              },
+              "buttons": {
+                "select_all_btn": "Tümünü seç",
+                "deselect_all_btn": "Tüm seçimleri kaldır"
+              },
+              "liveries_heading": "Liveryler"
+            },
+            "livery_row": {
+              "expand_livery_details_tooltip": "Livery bilgisini göster",
+              "shrink_livery_details_tooltip": "Livery bilgisini gizle",
+              "info_fields": {
+                "version": {
+                  "title": "Sürüm",
+                  "tooltip": "Bu metin, mevcut olan liverynin geçerli sürümünü temsil eder. Sürümünüz bundan farklıysa, yeni bir güncelleştirmenin kullanılabilir olduğu anlamına gelir"
+                },
+                "thumbnail": {
+                  "title": "Önizleme"
+                }
+              }
+            }
+          }
+        },
+        "installed_liveries": {
+          "warning_cannot_remove_multiple_liveries": "Şu anda aynı anda birden çok livery'i kaldıramaz veya güncelleyemezsin. Fakat endişelenme, önümüzdeki güncellemelerde bu özelliği getirmiş olacağız.",
+          "progress_notifications": {
+            "begin_update": "[[total||livery|livery]] güncelleniyor...",
+            "update_complete": "{{total}} [[total||livery|livery]] başarıyla güncellendi",
+            "update_failed": "{{fails}} [[fails||livery|livery]] güncellenirken başarısız oldu. Geliştiricilere bilgi verildi."
+          },
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "Kontrol ediliyor..."
+            },
+            "aircraft_accordion": {
+              "liveries_heading": "Liveryler",
+              "installed_count": "{{total}} yüklendi",
+              "update_count": "{{updates}} [[updates||livery güncellemesi mevcut|livery güncellemesi mevcut]]"
+            },
+            "list_row": {
+              "update": {
+                "button": "Güncelle"
+              },
+              "help": {
+                "tooltip": {
+                  "update": "Livery'i güncelle",
+                  "delete": "Livery'i kaldır",
+                  "delete_timer": "Kaldırmak için {{time}}s basılı tut"
+                },
+                "snackbar": {
+                  "hold_to_remove": "Bir livery'i kaldırmak için, kaldır butonuna tıklayın ve {{time}} saniye basılı tutun"
+                }
+              }
+            }
+          },
+          "notification": {
+            "no_liveries_to_remove": "Yüklü livery yok!",
+            "removing_livery": "{{total}}'de {{current}} livery kaldırılıyor",
+            "remove_all_success": "{{total}} [[total||livery|livery]] başarıyla kaldırıldı",
+            "remove_all_failures": "{{errors}} [[errors||livery|livery]] kaldırma başarısız oldu",
+            "deletion": {
+              "fail1": "Livery kaldırma başarısız: hiçbir nesne geçmedi",
+              "fail2": "Livery kaldırma başarısız: bilinmeyen konum",
+              "fail3": "Livery kaldırma başarısız: klasör bulunamadı",
+              "fail4": "Livery kaldırma başarısız: {{error}}",
+              "fail5": "Livery kaldırma başarısız: bilinmeyen hata",
+              "success": "Livery başarıyla kaldırıldı"
+            },
+            "no_liveries_to_update": "Yüklü livery yok!",
+            "update_all_success": "{{total}} [[total||livery|livery]] başarıyla güncellendi",
+            "update_all_failures": "{{errors}} [[errors||livery|livery]] güncellemesi başarısız oldu",
+            "updating_livery": "{{total}}'de {{current}} livery güncelleniyor"
+          },
+          "dialog": {
+            "uninstall_all": {
+              "title": "Tüm liveryleri kaldır",
+              "message": "Tüm liveryleri kaldırmak istediğine emin misin?",
+              "detail": "Bu işlem başladığında, durduramaz veya iptal edemezsin. Liverylerini geri almak için tekrar yüklemen gerekir."
+            },
+            "update_all": {
+              "title": "Tüm liveryleri güncelle",
+              "message": "Tüm liveryleri güncellemek istediğine emin misin??",
+              "detail": "Bu işlem başladığında, durduramaz veya iptal edemezsin."
+            }
+          },
+          "button": {
+            "remove_all_liveries": "Tümünü kaldır",
+            "update_all": "Tümünü güncelle"
+          },
+          "no_liveries_installed": {
+            "more_info_button": "Daha Fazla",
+            "message": "Yüklü livery bulunamadı",
+            "info": "Seçtiğin Community klasöründe herhangi bir mega pack liverysi bulamadık.\n\nEğer mega pack'i zip üzerinden yüklediysen onları burada göremezsin. Görmek için Livery Manager aracılığıyla yüklemelisin."
+          }
+        },
+        "settings": {
+          "advanced_settings": {
+            "enabled_notification": "Gelişmiş ayarlar etkinleştirildi",
+            "disabled_notification": "Gelişmiş ayarlar devre dışı",
+            "dialog_title": "Gelişimiş ayarlar etkinleştirilsin mi?",
+            "dialog_body": "Gelişimiş ayarlar etkinleştirilsin mi?",
+            "dialog_detail": "Bunu yalnızca bir geliştirici sizden istediğinde yapın. Bunun istenmeyen sonuçları olabilir. Emin misin?"
+          },
+          "footer": {
+            "line1": "{{appName}} — Liveries Mega Pack tarafından oluşturuldu",
+            "line2": "© {{year}} — Tüm hakları saklıdır — ",
+            "version": "v{{version}}",
+            "source_repo_and_license": "Kaynak kodlarını ve lisansı gör"
+          },
+          "errors_in_inputs": "Lütfen kaydetmeden önce yukarıdaki hata(ları) düzeltin.",
+          "save_settings_changes": "Değişiklikleri kaydetmek için 'Kaydet'e tıkla",
+          "all_changes_saved": "Tüm değişiklikler kaydedildi",
+          "save_button": "Kaydet",
+          "user_settings": {
+            "community_folder": {
+              "name": "Community klasörü",
+              "input_label": "Community klasörü dizini",
+              "browse_button_sr_text": "Klasöre Göz At",
+              "reset_button": "Değişiklikleri geri al",
+              "open_in_explorer": "Klasörde göster",
+              "open_in_explorer_opening": "Açılıyor..."
+            },
+            "locale_selection": {
+              "name": "Livery Manager Dili",
+              "label": "Dil"
+            },
+            "cache_clear": {
+              "name": "Önbelleğe alınıyor",
+              "clearing_cache_notification": "Önbellek temizleniyor. Bu, birkaç dakika sürebilir.",
+              "cache_clear_success_notification": "Önbellek başarıyla temizlendi!",
+              "cache_clear_error_notification": "Önbellek temizlenirken başarısız oldu!",
+              "purge_cache_button": "Önbelleği Temizle"
+            },
+            "reset_manager_to_defaults": {
+              "name": "Livery Manager'i sıfırla",
+              "detail": "Bu, tüm uygulama ayarlarını sıfırlayacak ve Livery Manager'i yeniden başlatacak. Herhangi bir livery silinmeyecek. Yüklü liveryler otomatik olarak tespit edilecek.",
+              "reset_btn": "Tüm ayarları sıfırla"
+            }
+          }
+        }
+      }
+    }
+  }
+}
