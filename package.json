@@ -47,7 +47,7 @@
     "@fontsource/ibm-plex-mono": "^4.2.1",
     "@fontsource/poppins": "^4.2.1",
     "@material-ui/core": "^4.11.3",
-    "@sentry/electron": "^2.2.0",
+    "@sentry/electron": "^2.3.0",
     "@sentry/integrations": "^6.1.0",
     "adm-zip": "^0.5.2",
     "clsx": "^1.1.1",
