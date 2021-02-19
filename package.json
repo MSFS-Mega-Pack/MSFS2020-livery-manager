@@ -76,7 +76,7 @@
     "request-progress": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.16",
+    "@babel/core": "^7.12.17",
     "@babel/eslint-parser": "^7.12.16",
     "@babel/plugin-proposal-class-properties": "^7.12.13",
     "@babel/plugin-proposal-export-default-from": "^7.12.13",
