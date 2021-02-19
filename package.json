@@ -51,7 +51,7 @@
     "@sentry/integrations": "^6.1.0",
     "adm-zip": "^0.5.2",
     "clsx": "^1.1.1",
-    "core-js": "^3.8.3",
+    "core-js": "^3.9.0",
     "dayjs": "^1.10.4",
     "del": "^6.0.0",
     "electron-json-config": "^1.5.3",
