@@ -15,6 +15,7 @@ Changed marked with `[DEV]` are invisible to users, and purely for the benefit o
 
 ### Changed
 
+- Use Project Mega Pack branding guidelines for manager
 - Use new logo
 
 ### Removed

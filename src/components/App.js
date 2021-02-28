@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, HashRouter } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 
-import '@fontsource/poppins';
+import '@fontsource/roboto';
 import '@fontsource/ibm-plex-mono';
 import './styles/baseline.less';
 
@@ -15,7 +15,6 @@ import ConfigKeys from '../data/config-keys.json';
 
 import Theme from '../data/Theme';
 import Routes from '../data/Routes';
-import PackageJson from '../../package.json';
 
 import ProjectMegaPackLogo from '../images/pmp-logo/icon-light.png';
 import 'electron-react-titlebar/assets/style.css';
@@ -26,7 +25,7 @@ import MainAppErrorBoundary from './ErrorBoundaries/MainAppErrorBoundary';
 
 const useStyles = makeStyles({
   titlebar: {
-    fontFamily: 'Poppins',
+    fontFamily: 'Roboto',
     lineHeight: '27px',
     color: 'white',
     zIndex: 99999999999,
@@ -43,8 +42,8 @@ function App() {
 
   return (
     <>
-      <TitleBar icon={planeIcon}>
-        <p className={classes.titlebar}>{PackageJson.productName}</p>
+      <TitleBar icon={ProjectMegaPackLogo}>
+        <p className={classes.titlebar}>Project Mega Pack Manager</p>
       </TitleBar>
       <main>
         <LocaleProvider locale={language} setLocale={setLanguage}>
