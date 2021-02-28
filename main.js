@@ -60,7 +60,7 @@ function createMainWindow() {
     backgroundColor: '#1b1b31',
     titleBarStyle: 'hidden',
     show: false,
-    icon: `${__dirname}/assets/icon.ico`,
+    icon: `${__dirname}/assets/pmpIcon.ico`,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,

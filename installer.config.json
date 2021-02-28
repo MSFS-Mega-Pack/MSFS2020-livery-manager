@@ -1,7 +1,7 @@
 {
   "src": "publish/Liveries Mega Pack Manager-win32-x64/",
   "dest": "publish/win-setup/",
-  "icon": "assets/icon.ico",
+  "icon": "assets/pmpIcon.ico",
   "authors": ["David Wheatley"],
   "exe": "Liveries Mega Pack Manager.exe",
   "productName": "Liveries Mega Pack Manager",

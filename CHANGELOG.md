@@ -15,6 +15,8 @@ Changed marked with `[DEV]` are invisible to users, and purely for the benefit o
 
 ### Changed
 
+- Use new logo
+
 ### Removed
 
 ### Meta

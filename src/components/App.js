@@ -17,7 +17,7 @@ import Theme from '../data/Theme';
 import Routes from '../data/Routes';
 import PackageJson from '../../package.json';
 
-import planeIcon from '../images/plane-takeoff.png';
+import ProjectMegaPackLogo from '../images/pmp-logo/icon-light.png';
 import 'electron-react-titlebar/assets/style.css';
 
 import { SnackbarProvider } from 'notistack';
