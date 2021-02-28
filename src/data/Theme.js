@@ -2,7 +2,7 @@ import { createMuiTheme, colors } from '@material-ui/core';
 
 export default createMuiTheme({
   typography: {
-    fontFamily: 'Poppins',
+    fontFamily: 'Roboto',
     fontSize: 18,
     htmlFontSize: 18,
     allVariants: {
