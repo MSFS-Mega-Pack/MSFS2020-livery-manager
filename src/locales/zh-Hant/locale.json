@@ -1,6 +1,6 @@
 {
   "info": {
-    "name": "簡體中文 (Traditional Chinese)",
+    "name": "繁體中文 (Traditional Chinese)",
     "localeId": "zh-Hant"
   },
   "strings": {
@@ -271,7 +271,7 @@
             "disabled_notification": "高級設置已禁用",
             "dialog_title": "啟用高級設置？",
             "dialog_body": "是否啟用高級設置？",
-            "dialog_detail": "該設置僅允許在開發者的指導下使用。該操作有可能引發意外後果，不要亂動。勿謂言之不預也！"
+            "dialog_detail": "該設置僅允許在開發者的指導下使用。該操作有可能引發意外後果，不要亂動。特此警告，後果自負！"
           },
           "footer": {
             "line1": "{{appName}} — 專為塗裝大集成包（Liveries Mega Pack）打造",
