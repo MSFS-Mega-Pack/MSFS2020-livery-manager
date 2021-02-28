@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Changed marked with `[DEV]` are invisible to users, and purely for the benefit of developers.
 
+## [1.0.0] - YYYY-MM-DD
+
+### Added
+
+- Add Turkish language (#302)
+
+### Changed
+
+### Removed
+
+### Meta
+
 ## [0.4.5] - 2021-02-13
 
 ### Added
