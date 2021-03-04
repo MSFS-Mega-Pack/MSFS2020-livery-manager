@@ -7,7 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Changed marked with `[DEV]` are invisible to users, and purely for the benefit of developers.
 
-## [1.0.0] - YYYY-MM-DD
+## [0.4.7] - 2021-03-05
+
+### Added
+
+- Add Polish language ([@IncredibleQuark](https://github.com/IncredibleQuark))
+
+### Changed
+
+_None_
+
+### Removed
+
+_None_
+
+### Meta
+
+_None_
+
+## [0.4.6] - YYYY-MM-DD
 
 ### Added
 
