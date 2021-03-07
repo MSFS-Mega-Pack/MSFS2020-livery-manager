@@ -1,0 +1,325 @@
+{
+  "info": {
+    "name": "Polski (Poland)",
+    "localeId": "pl-PL"
+  },
+  "strings": {
+    "common": {
+      "coming_soon": "Funkcjonalność dostępna wkrótce."
+    },
+    "models": {
+      "article": {
+        "date_format": "LLL"
+      }
+    },
+    "helpers": {
+      "validate_fs_directory": {
+        "choose_directory": "Wybierz folder",
+        "path_doesnt_exist": "Wybrana ścieżka do folderu nie istnieje",
+        "invalid_path": "Proszę upewnij się, że wybrałeś folder 'community'"
+      },
+      "show_native_dialog": {
+        "yes_button": "&Tak",
+        "no_button": "&Nie",
+        "cancel_button": "&Anuluj"
+      },
+      "install_addon": {
+        "progress_notifications": {
+          "downloading_livery": "Pobieranie malowania {{current}} z {{total}}",
+          "extracting_livery": "Wypakowywanie malowania {{current}} z {{total}}"
+        }
+      },
+      "delete_addon": {
+        "delete_path_fail": "Błąd podczas usuwania ścieżki dodatku",
+        "delete_path_success": "Dodatek usunięty pomyślnie",
+        "non_existant": "Ścieżka do dodatku nie istnieje"
+      },
+      "get_active_feed": {
+        "fetch_fail": "Nie udało się pobrać danych z API.",
+        "fetch_fail_article_text": "Nie udało się pobrać artykułu. Jeśli błąd się powtarza, [zgłoś to programistom](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      },
+      "get_feed_history": {
+        "fetch_fail": "Nie udało się pobrać danych z API.",
+        "fetch_fail_article_text": "Nie udało się pobrać artykułu. Jeśli błąd się powtarza, [zgłoś to programistom](https://github.com/MSFS-Mega-Pack/MSFS2020-livery-manager/issues/new).\n\nInfo: `fetch` failed in `GetActiveFeed.js`"
+      }
+    },
+    "manager": {
+      "error_boundary": {
+        "main_app": {
+          "heading": "Wystąpił błąd",
+          "description": "Wystąpił błąd podczas ładowania aplikacji. Błąd został zgłoszony twórcom aplikacji.",
+          "suggestions": "Spróbuj zrestartować aplikację. Jeśli to nie pomaga, kliknij przycisk, aby zresetować ustawienia do domyślnych.",
+          "developer_info": "Informacje dla programistów",
+          "restart": "Restart"
+        }
+      },
+      "splash_screen": {
+        "loading": "Ładowanie..."
+      },
+      "setup": {
+        "back_button": "Wstecz",
+        "next_button": "Dalej",
+        "finish_button": "Zakończ",
+        "welcome_page": {
+          "heading": "Witamy w {{app_name}}",
+          "description": "Musimy przejść przez kilka krótkich kroków konfiguracyjnych zanim zaczniesz korzystać z aplikacji, abyś miał jak najlepsze wrażenia z korzystania z niej oraz aby się upewnić, że wszystko będzie działać poprawnie."
+        },
+        "locale_page": {
+          "heading": "Wybierz swój język",
+          "description": "Wszystkie tłumaczenia są sporządzone przez społeczność. Proszę zgłaszać wszelkie błędy tłumaczeń przez portal Github.",
+          "help_translate_link": "A może chcesz przetłumaczyć aplikację na język który znasz?",
+          "dropdown": {
+            "label": "Język"
+          }
+        },
+        "community_directory": {
+          "heading": "Znajdź swój folder 'community'",
+          "description": "Proszę upewnij się, że folder poniżej wskazuje na folder 'community'. Jeśli nie, wyszukaj poprawny folder klikając na ikonkę lupy.",
+          "text_field": {
+            "label": "Folder community",
+            "browse_button_sr_text": "Wyszukaj folderu"
+          }
+        },
+        "complete_page": {
+          "heading": "Instalacja zakończona",
+          "description1": "Gotowy do odlotu!",
+          "description2": "Kliknij 'Zakończ', aby zatwierdzić ustawienia i uruchomić aplikację."
+        }
+      },
+      "tabs": {
+        "tab_labels": {
+          "update_feed": "Dashboard",
+          "available_liveries": "Dostępne malowania",
+          "installed_liveries": "Zainstalowane malowania",
+          "settings": "Ustawienia"
+        }
+      },
+      "components": {
+        "feed_article": {
+          "authored_by": "Opublikowane przez {{author}}"
+        },
+        "badges": {
+          "update_available": {
+            "tooltip": "Idź do 'Zainstalowane malowania', aby zaktualizować to malowanie",
+            "content": "Aktualizacja dostępna"
+          },
+          "installed": {
+            "tooltip": "Aby odinstalować, zaktualizować lub zainstalować ponownie przejdź do zakładki 'Zainstalowane malowania'",
+            "content": "Zainstalowano"
+          }
+        },
+        "refresh_box": {
+          "date_format": "LT",
+          "last_refreshed": "Ostatnio odświeżono: ",
+          "last_refreshed_explanation_tooltip": "Godzina, o której ostatnio sprawdzono dostępność zainstalowanych i dostępnych malowań",
+          "refresh_button": {
+            "tooltip": {
+              "default": "Odśwież dostępne malowania",
+              "rate_limited": "Osiągnięto limit zapytań: musisz odczekać {{interval}}s do następnego odświeżenia"
+            },
+            "unknown_time": "nieznany"
+          }
+        },
+        "error_dialog": {
+          "error": "Błąd",
+          "suggestions": "Sugestia",
+          "close_dialog_button": "Zamknij"
+        },
+        "offline_error": {
+          "title": "Brak połączenia",
+          "paragraph1": "Ta aplikacja wymaga połączenia z internetem, aby funkcjonować prawidłowo. Sprawdż ponownie swoje połączenie z internetem.",
+          "paragraph2": "Ta wiadomość zniknie automatycznie, gdy odzyskasz połączenie z internetem."
+        }
+      },
+      "pages": {
+        "feed": {
+          "error_more_info_button": "Wyświetl więcej informacji",
+          "no_more_posts": {
+            "heading": "To już wszystko!",
+            "info": "Dotarłeś do końca wiadomości z aktualizacjami"
+          },
+          "view_more_updates_button": "Załaduj więcej aktualizacji",
+          "errors": {
+            "generic_message": "Wystąpił błąd podczas ładowania wiadomości",
+            "unknown_error": "Nieznany błąd",
+            "feed_unknown": "Dane pobrane z API są nieprawidłowe. (null_err)"
+          }
+        },
+        "available_liveries": {
+          "errors": {
+            "installed_addons_fail": {
+              "title": "Nie udało się znaleźć zainstalowanych malowań.",
+              "error_text": "Nie udało się pobrać listy zainstalowanych malowań. Przeniosłeś lub usunąłeś swój folder 'community'?",
+              "suggestion1": "Ścieżka, którą podałeś to {{path}}. Czy jest prawidłowa?",
+              "suggestion2": "Spróbuj zaktualizować swój folder 'community' w ustawieniach."
+            }
+          },
+          "progress_notifications": {
+            "begin_install": "Instalowanie malowań...",
+            "install_complete": "Zainstalowano {{total}} [[total||malowanie|malowań]] pomyślnie",
+            "install_failed": "{{fails}} [[fails||malowania|malowań]] nie udało się zainstalować. Zespół developerski został powiadomiony."
+          },
+          "fab_currently_installing": "Instaluję {{total}} [[total||malowanie|malowań]] ({{size}} MB)",
+          "fab_install": "Zainstaluj {{total}} [[total||malowanie|malowań]] ({{size}} MB)",
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "sprawdzam..."
+            },
+            "aircraft_accordion": {
+              "available_count": "{{total}} [[total||malowanie|malowań]] dostępnych",
+              "installed_count": "{{total}} zainstalowanych",
+              "info_fields": {
+                "aircraft_name": {
+                  "title": "Samolot"
+                },
+                "total_livery_count": {
+                  "title": "Malowania dostępne",
+                  "value": "{{total}} dostępnych"
+                },
+                "total_installed_count": {
+                  "title": "Malowania zainstalowane",
+                  "value": "{{count}} z {{total}} zainstalowanych"
+                }
+              },
+              "buttons": {
+                "select_all_btn": "Wybierz wszystko",
+                "deselect_all_btn": "Odznacz wszystko"
+              },
+              "liveries_heading": "Malowania"
+            },
+            "livery_row": {
+              "expand_livery_details_tooltip": "Pokaż informacje o malowaniu",
+              "shrink_livery_details_tooltip": "Schowaj informacje o malowaniu",
+              "info_fields": {
+                "version": {
+                  "title": "Wersja",
+                  "tooltip": "Ten tekst wskazuje na obecną wersję malowania, która jest dostępna. Jeśli Twoja wersja się od niej różni, oznacza to, że nowa aktualizacja jest dostępna."
+                },
+                "thumbnail": {
+                  "title": "Miniaturka"
+                }
+              }
+            }
+          }
+        },
+        "installed_liveries": {
+          "warning_cannot_remove_multiple_liveries": "W tej chwili nie możesz jednocześnie usunąć lub zaktualizować wielu malowań. Nie przejmuj się, zmienimy to w przyszłej aktualizacji.",
+          "progress_notifications": {
+            "begin_update": "Aktualizowanie [[total||malowanie|malowań]]...",
+            "update_complete": "Zaktualizowano {{total}} [[total||malowanie|malowań]] pomyślnie",
+            "update_failed": "{{fails}} [[fails||malowania|malowań]] nie udało się zaktualizować. Zespół developerski został powiadomiony."
+          },
+          "components": {
+            "refresh_box": {
+              "refreshing_now": "sprawdzanie..."
+            },
+            "aircraft_accordion": {
+              "liveries_heading": "Malowania",
+              "installed_count": "{{total}} zainstalowano",
+              "update_count": "{{updates}} [[updates||malowanie ma aktualizację|malowań ma aktualizacje]]"
+            },
+            "list_row": {
+              "update": {
+                "button": "Aktualizuj"
+              },
+              "help": {
+                "tooltip": {
+                  "update": "Aktualizuj malowanie",
+                  "delete": "Usuń malowanie",
+                  "delete_timer": "Przytrzymaj przez {{time}}s, aby usunąć"
+                },
+                "snackbar": {
+                  "hold_to_remove": "W celu usunięcia malowania kliknij i przytrzymaj przycisk 'usuń' przez {{time}} sekund"
+                }
+              }
+            }
+          },
+          "notification": {
+            "no_liveries_to_remove": "Nie masz żadnych zainstalowanych malowań!",
+            "removing_livery": "Usuwanie malowania {{current}} z {{total}}",
+            "remove_all_success": "Pomyślnie usunięto {{total}} [[total||malowanie|malowań]]",
+            "remove_all_failures": "Nie udało się usunąć {{errors}} [[errors||malowania|malowań]]",
+            "deletion": {
+              "fail1": "Nie udało się usunąć malowania: no obj passed",
+              "fail2": "Nie udało się usunąć malowania: unknown location",
+              "fail3": "Nie udało się usunąć malowania: folder not found",
+              "fail4": "Nie udało się usunąć malowania: {{error}}",
+              "fail5": "Nie udało się usunąć malowania: unknown error",
+              "success": "Malowanie usunięte pomyślnie"
+            },
+            "no_liveries_to_update": "Nie masz żadnych zainstalowanych malowań!",
+            "update_all_success": "Pomyślnie zaktualizowano {{total}} [[total||malowanie|malowań]]",
+            "update_all_failures": "Nie udało się zaktualizować {{errors}} [[errors||malowania|malowań]]",
+            "updating_livery": "Aktualizuję malowanie {{current}} z {{total}}"
+          },
+          "dialog": {
+            "uninstall_all": {
+              "title": "Usunąć wszystkie malowania?",
+              "message": "Czy jesteś pewny, że chcesz usunąć WSZYSTKIE MALOWANIA?",
+              "detail": "Gdy zaczniesz ten proces, nie możesz go wstrzymać lub anulować. Aby odzyskać swoje malowania będziesz musiał zainstalować je ponownie."
+            },
+            "update_all": {
+              "title": "Zaktualizować wszystkie malowania?",
+              "message": "Czy jesteś pewny, że chcesz zaktualizować WSZYSTKIE SWOJE MALOWANIA?",
+              "detail": "Gdy zaczniesz ten proces, nie możesz go wstrzymać lub anulować."
+            }
+          },
+          "button": {
+            "remove_all_liveries": "Usuń wszystko",
+            "update_all": "Aktualizuj wszystko"
+          },
+          "no_liveries_installed": {
+            "more_info_button": "Wyświetl więcej informacji",
+            "message": "Nie wykryto zainstalowanych malowań",
+            "info": "Nie mogliśmy znaleźć żadnych malowań w wybranym folderze 'community'. Jeśli instalowałeś je przez paczkę .zip nie pojawią się tutaj. Muszą zostać zainstalowane przez aplikację."
+          }
+        },
+        "settings": {
+          "advanced_settings": {
+            "enabled_notification": "Włączono ustawienia zaawansowane",
+            "disabled_notification": "Wyłączono ustawienia zaawansowane",
+            "dialog_title": "Włączyć ustawienia zaawansowane?",
+            "dialog_body": "Włączyć ustawienia zaawansowane?",
+            "dialog_detail": "Zrób to tylko jeśli zostałeś poinstruowany przez twórcę. Może się to wiązać z niechcianymi konsekwencjami. Zostałeś ostrzeżony!"
+          },
+          "footer": {
+            "line1": "{{appName}} — Stworzone dla Liveries Mega Pack",
+            "line2": "© {{year}} — Wszelkie prawa zastrzeżone — ",
+            "version": "v{{version}}",
+            "source_repo_and_license": "Zobacz kod źródłowy oraz licencję"
+          },
+          "errors_in_inputs": "Proszę popraw błąd(błędy) powyżej przed zapisem",
+          "save_settings_changes": "Kliknij 'Zapisz', aby zapisać zmiany",
+          "all_changes_saved": "Wszystkie zmiany zapisane",
+          "save_button": "Zapisz",
+          "user_settings": {
+            "community_folder": {
+              "name": "Folder community",
+              "input_label": "Ścieżka do folderu community",
+              "browse_button_sr_text": "Wyszukaj folderu",
+              "reset_button": "Cofnij zmiany",
+              "open_in_explorer": "Pokaż folder w eksploratorze",
+              "open_in_explorer_opening": "Otwieranie..."
+            },
+            "locale_selection": {
+              "name": "Język aplikacji",
+              "label": "Język"
+            },
+            "cache_clear": {
+              "name": "Zapisywanie pamięci podręcznej",
+              "clearing_cache_notification": "Czyszczenie pamięci podręcznej. To może zająć kilka minut.",
+              "cache_clear_success_notification": "Pamięć podręczna wyczyszczona pomyślnie!",
+              "cache_clear_error_notification": "Nie udało się wyczyścici pamięci podręcznej",
+              "purge_cache_button": "Wyczyść pamięć podręczną"
+            },
+            "reset_manager_to_defaults": {
+              "name": "Zresetuj aplikację",
+              "detail": "To zresetuje wszystkie ustawienia oraz zrestartuje aplikację. Nie stracisz żadnych zainstalowanych malowań i wszystkie malowania, które były zainstalowane zostaną ponownie wykryte.",
+              "reset_btn": "Zresetuj wszystkie ustawienia"
+            }
+          }
+        }
+      }
+    }
+  }
+}

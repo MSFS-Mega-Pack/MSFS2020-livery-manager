@@ -6,6 +6,7 @@ export * as nlNL from './nl-NL';
 export * as zhHans from './zh-Hans';
 export * as zhHant from './zh-Hant';
 export * as itIT from './it-IT';
+export * as plPL from './pl-PL';
 export * as ptBR from './pt-BR';
 export * as ptPT from './pt-PT';
 export * as esES from './es-ES';
