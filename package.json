@@ -61,7 +61,7 @@
     "node-fetch": "^2.6.1",
     "node-rsa": "^1.1.1",
     "notistack": "^1.0.5",
-    "open": "^7.4.2",
+    "open": "^8.0.9",
     "overlayscrollbars": "^1.13.1",
     "overlayscrollbars-react": "^0.2.2",
     "prop-types": "^15.7.2",
