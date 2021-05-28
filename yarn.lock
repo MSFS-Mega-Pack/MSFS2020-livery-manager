@@ -952,10 +952,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/ibm-plex-mono/-/ibm-plex-mono-4.2.1.tgz#db3ed8fd3490363a87352903503d6c1c6b840376"
   integrity sha512-D+v2+dt141X47g4R/DlYFl1C3tADbd/xKCz4JXjbxvJcb5VhNkyIdwTPAnDlBKHqRpZCnGVPscnTACNPbVNRmQ==
 
-"@fontsource/poppins@^4.2.1":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@fontsource/poppins/-/poppins-4.2.1.tgz#9580bb87ee54daaa67d05887e25a73b2ac239420"
-  integrity sha512-seL9/EdeaGOTMMfSQJ7epZSvWSqUcqzDGUcEPGgTAtcEANmlUkIj0R4WwDDusXvOkUlsm9G1Mar86JHOM+74EQ==
+"@fontsource/poppins@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/poppins/-/poppins-4.4.0.tgz#8871af188e382149729bd4ea1a462674c8c1998c"
+  integrity sha512-BxcponyUNYGyuDJZElIWR15Gs+T5oPEBW/SBnIvIaTpXPx7mJWqGnwNB9gWwpnplfWSSz/eVRRx5XmokoKcaDw==
 
 "@malept/cross-spawn-promise@^1.0.0":
   version "1.1.1"
