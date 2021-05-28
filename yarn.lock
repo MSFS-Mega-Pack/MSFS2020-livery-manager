@@ -947,10 +947,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/ibm-plex-mono@^4.2.1":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@fontsource/ibm-plex-mono/-/ibm-plex-mono-4.2.1.tgz#db3ed8fd3490363a87352903503d6c1c6b840376"
-  integrity sha512-D+v2+dt141X47g4R/DlYFl1C3tADbd/xKCz4JXjbxvJcb5VhNkyIdwTPAnDlBKHqRpZCnGVPscnTACNPbVNRmQ==
+"@fontsource/ibm-plex-mono@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/ibm-plex-mono/-/ibm-plex-mono-4.4.0.tgz#14914531b066d2201ba815dc8c9703927274a1b7"
+  integrity sha512-u+slM44mUB9lkeCPrQiybC1m53uUIGKvPwm6Sju2Mr9tQ5Wu3+mB1dB+Mi6Qj4sG6aEJ2xKHw/gP1N60/rJfvA==
 
 "@fontsource/poppins@^4.2.1":
   version "4.2.1"
