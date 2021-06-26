@@ -161,7 +161,7 @@ export default function AvailableLiveries(props) {
               persist: true,
             });
 
-            let failures = [];
+            let failures = 0;
 
             for (let i = 0; i < selectedLiveries.length; i++) {
               console.log(`Start install ${i}`);
@@ -182,7 +182,7 @@ export default function AvailableLiveries(props) {
                   'fresh'
                 );
               } catch (e) {
-                failures.push(i);
+                failures++;
                 console.log('failed!');
                 console.log(e);
               }
@@ -202,10 +202,10 @@ export default function AvailableLiveries(props) {
               }),
               { variant: 'success', persist: false }
             );
-            failures.length > 0 &&
+            failures > 0 &&
               enqueueSnackbar(
                 CurrentLocale.translate('manager.pages.available_liveries.progress_notifications.install_failed', {
-                  fails: failures.length,
+                  fails: failures,
                 }),
                 { variant: 'error' }
               );
