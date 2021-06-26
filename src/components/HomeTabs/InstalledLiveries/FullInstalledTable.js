@@ -25,19 +25,37 @@ export default function FullInstalledTable(props) {
   // if there are no aircraft...
   if (!liveries || liveries.length === 0 || !allAircraft || allAircraft.length === 0) {
     return (
-      <div style={{ position: 'absolute', left: '50%', top: '50%', width: 'max-content', transform: 'translate(-50%,-50%)' }}>
+      <div
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          width: 'max-content',
+          transform: 'translate(-50%,-50%)',
+        }}
+      >
         <Typography variant="h5" component="p">
-          {CurrentLocale.translate('manager.pages.installed_liveries.no_liveries_installed.message')}
-        </Typography>
-        <Typography variant="caption" component="p" style={{ position: 'absolute', bottom: -24, right: 0, cursor: 'pointer' }}>
+          {' '}
+          {CurrentLocale.translate('manager.pages.installed_liveries.no_liveries_installed.message')}{' '}
+        </Typography>{' '}
+        <Typography
+          variant="caption"
+          component="p"
+          style={{
+            position: 'absolute',
+            bottom: -24,
+            right: 0,
+            cursor: 'pointer',
+          }}
+        >
           <Link
             onClick={() => {
               alert(CurrentLocale.translate('manager.pages.installed_liveries.no_liveries_installed.info'));
             }}
           >
-            {CurrentLocale.translate('manager.pages.installed_liveries.no_liveries_installed.more_info_button')}
-          </Link>
-        </Typography>
+            {CurrentLocale.translate('manager.pages.installed_liveries.no_liveries_installed.more_info_button')}{' '}
+          </Link>{' '}
+        </Typography>{' '}
       </div>
     );
   }
@@ -53,6 +71,7 @@ export default function FullInstalledTable(props) {
 
   return (
     <Box>
+      {' '}
       {allAircraft.map(ac => {
         return (
           <AircraftAccordion
@@ -74,10 +93,14 @@ export default function FullInstalledTable(props) {
             installedLiveries={liveries
               .filter(o => o.airplane.toLowerCase() === ac.name.toLowerCase())
               .sort((a, b) => (a.name > b.name ? 1 : a.name < b.name ? -1 : 0))}
-            fileListing={{ data: { fileList: fileListing.data.fileList.filter(f => f.airplane.toLowerCase() === ac.name.toLowerCase()) } }}
+            fileListing={{
+              data: {
+                fileList: fileListing.data.fileList.filter(f => f.airplane.toLowerCase() === ac.name.toLowerCase()),
+              },
+            }}
           />
         );
-      })}
+      })}{' '}
     </Box>
   );
 }
@@ -116,7 +139,9 @@ FullInstalledTable.propTypes = {
   SetExpanded: PropTypes.func.isRequired,
   expandedList: PropTypes.arrayOf(PropTypes.string).isRequired,
   fileListing: PropTypes.shape({
-    data: PropTypes.shape({ fileList: PropTypes.arrayOf(CustomPropTypes.Livery) }),
+    data: PropTypes.shape({
+      fileList: PropTypes.arrayOf(CustomPropTypes.Livery),
+    }),
   }),
   RefreshAllData: PropTypes.func.isRequired,
 };

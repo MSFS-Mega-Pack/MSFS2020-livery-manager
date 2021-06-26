@@ -94,38 +94,48 @@ export default function AircraftAccordion(props) {
       onChange={(e, isExpanded) => {
         setExpanded(isExpanded);
       }}
-      TransitionProps={{ unmountOnExit: true }}
+      TransitionProps={{
+        unmountOnExit: true,
+      }}
     >
       <AccordionSummary expandIcon={<ExpandIcon />}>
-        <Typography className={classes.heading}>{PlaneNameTable[aircraft.name] || aircraft.name}</Typography>
+        <Typography className={classes.heading}> {PlaneNameTable[aircraft.name] || aircraft.name} </Typography>{' '}
         <Typography className={classes.secondaryHeading}>
+          {' '}
           {CurrentLocale.translate('manager.pages.installed_liveries.components.aircraft_accordion.installed_count', {
             total: liveriesForThisAircraft.length,
-          })}
-        </Typography>
+          })}{' '}
+        </Typography>{' '}
         <Typography className={classes.secondaryHeading}>
+          {' '}
           {CurrentLocale.translate('manager.pages.installed_liveries.components.aircraft_accordion.update_count', {
             updates: liveriesWithUpdatesAvailable.length,
-          })}
-        </Typography>
-      </AccordionSummary>
+          })}{' '}
+        </Typography>{' '}
+      </AccordionSummary>{' '}
       <AccordionDetails className={classes.accordion}>
         <Box>
           <Typography variant="h6" gutterBottom>
-            {CurrentLocale.translate('manager.pages.installed_liveries.components.aircraft_accordion.liveries_heading')}
-          </Typography>
+            {' '}
+            {CurrentLocale.translate('manager.pages.installed_liveries.components.aircraft_accordion.liveries_heading')}{' '}
+          </Typography>{' '}
           <LiveryList
             installedLiveries={installedLiveries}
             liveryData={liveryData}
             fileListing={fileListing}
-            liveryDataFuncs={{ add: AddLiveryToData, remove: RemoveLiveryFromData }}
+            liveryDataFuncs={{
+              add: AddLiveryToData,
+              remove: RemoveLiveryFromData,
+            }}
             RefreshAllData={RefreshAllData}
             deleteLivery={async livery => {
               console.log('start deletion');
 
               if (!livery) {
                 // No livery object passed
-                enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notification.deletion.fail1'), { variant: 'error' });
+                enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notification.deletion.fail1'), {
+                  variant: 'error',
+                });
                 return;
               }
 
@@ -135,7 +145,9 @@ export default function AircraftAccordion(props) {
 
               if (!livery.installLocation) {
                 // No install location passed
-                enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notification.deletion.fail2'), { variant: 'error' });
+                enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notification.deletion.fail2'), {
+                  variant: 'error',
+                });
                 RemoveLiveryFromData('deleting', livery);
                 return;
               }
@@ -146,7 +158,9 @@ export default function AircraftAccordion(props) {
 
               if (!fs.existsSync(liveryPath)) {
                 // Install path doesn't exist
-                enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notification.deletion.fail3'), { variant: 'error' });
+                enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notification.deletion.fail3'), {
+                  variant: 'error',
+                });
                 RemoveLiveryFromData('deleting', livery);
                 return;
               }
@@ -163,8 +177,12 @@ export default function AircraftAccordion(props) {
                 if (result[0] === false) {
                   // Other error
                   enqueueSnackbar(
-                    CurrentLocale.translate('manager.pages.installed_liveries.notification.deletion.fail4', { error: result[1] }),
-                    { variant: 'error' }
+                    CurrentLocale.translate('manager.pages.installed_liveries.notification.deletion.fail4', {
+                      error: result[1],
+                    }),
+                    {
+                      variant: 'error',
+                    }
                   );
                   RemoveLiveryFromData('deleting', livery);
                   console.error(result[1]);
@@ -175,15 +193,17 @@ export default function AircraftAccordion(props) {
                 }
               } catch (err) {
                 // Other error
-                enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notification.deletion.fail5'), { variant: 'error' });
+                enqueueSnackbar(CurrentLocale.translate('manager.pages.installed_liveries.notification.deletion.fail5'), {
+                  variant: 'error',
+                });
                 RemoveLiveryFromData('deleting', livery);
                 console.error(err);
                 return;
               }
             }}
-          />
-        </Box>
-      </AccordionDetails>
+          />{' '}
+        </Box>{' '}
+      </AccordionDetails>{' '}
     </Accordion>
   );
 }
@@ -221,7 +241,9 @@ AircraftAccordion.propTypes = {
   expanded: PropTypes.bool.isRequired,
   setExpanded: PropTypes.func.isRequired,
   fileListing: PropTypes.shape({
-    data: PropTypes.shape({ fileList: PropTypes.arrayOf(CustomPropTypes.Livery) }),
+    data: PropTypes.shape({
+      fileList: PropTypes.arrayOf(CustomPropTypes.Livery),
+    }),
   }),
   RefreshAllData: PropTypes.func.isRequired,
 };
