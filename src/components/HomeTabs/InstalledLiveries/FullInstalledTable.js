@@ -9,17 +9,8 @@ import PlaneNameTable from '../../../data/PlaneNameTable.json';
 import LocaleContext from '../../../locales/LocaleContext';
 
 export default function FullInstalledTable(props) {
-  const {
-    liveries,
-    allAircraft,
-    liveryData,
-    AddLiveryToData,
-    RemoveLiveryFromData,
-    expandedList,
-    SetExpanded,
-    fileListing,
-    RefreshAllData,
-  } = props;
+  const { liveries, allAircraft, liveryData, AddLiveryToData, RemoveLiveryFromData, expandedList, SetExpanded, fileListing, RefreshAllData } =
+    props;
   const CurrentLocale = React.useContext(LocaleContext);
 
   // if there are no aircraft...
