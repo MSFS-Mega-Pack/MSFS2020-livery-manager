@@ -219,7 +219,7 @@ export default function ListRow(props) {
                 <CircularProgress
                   className={classes.deleteButtonProgress}
                   size={48}
-                  variant={beingDeleted ? 'indeterminate' : 'static'}
+                  variant={beingDeleted ? 'indeterminate' : 'determinate'}
                   value={((HoldToRemoveTime - (timeRemaining <= 0 ? 0 : timeRemaining)) / HoldToRemoveTime) * 100}
                 />
                 <BinIcon

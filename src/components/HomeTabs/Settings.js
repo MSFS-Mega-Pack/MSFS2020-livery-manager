@@ -33,9 +33,9 @@ import packageJson from '../../../package.json';
 import AdvancedSettingsToggleImage from '../../images/manager_text_advanced_settings.png';
 
 import { useSnackbar } from 'notistack';
-import Config from 'electron-json-config';
 import LocaleContext from '../../locales/LocaleContext';
 import { GetAllLocales } from '../../locales/LocaleHelpers';
+import getConfigInstance from '../../helpers/getConfigInstance';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -132,7 +132,7 @@ export default function Settings() {
     function toggleAdvanced(e) {
       if (e.detail === 5) {
         if (IsAdvancedUser()) {
-          Config.set(CONFIG_KEYS.settings.show_advanced_settings, false);
+          getConfigInstance().set(CONFIG_KEYS.settings.show_advanced_settings, false);
           enqueueSnackbar(CurrentLocale.translate('manager.pages.settings.advanced_settings.disabled_notification'), {
             variant: 'info',
           });
@@ -146,7 +146,7 @@ export default function Settings() {
           );
 
           if (d === 0) {
-            Config.set(CONFIG_KEYS.settings.show_advanced_settings, true);
+            getConfigInstance().set(CONFIG_KEYS.settings.show_advanced_settings, true);
             enqueueSnackbar(CurrentLocale.translate('manager.pages.settings.advanced_settings.enabled_notification'), {
               variant: 'warning',
             });
@@ -174,7 +174,7 @@ export default function Settings() {
 
     if (isValid) {
       setError(null);
-      if (d[0] !== Config.get(CONFIG_KEYS.settings.package_directory)) {
+      if (d[0] !== getConfigInstance().get(CONFIG_KEYS.settings.package_directory)) {
         setSaveButtonEnabled(true);
       }
     } else {
@@ -213,13 +213,13 @@ export default function Settings() {
             inputRef={PackagesDirTB}
             variant="filled"
             label={CurrentLocale.translate('manager.pages.settings.user_settings.community_folder.input_label')}
-            defaultValue={Config.get(CONFIG_KEYS.settings.package_directory)}
+            defaultValue={getConfigInstance().get(CONFIG_KEYS.settings.package_directory)}
             onChange={e => {
               const [isValid, errorMsg] = ValidateFSDirectory(e.currentTarget.value, CurrentLocale);
 
               if (isValid) {
                 setError(null);
-                if (e.currentTarget.value !== Config.get(CONFIG_KEYS.settings.package_directory)) {
+                if (e.currentTarget.value !== getConfigInstance().get(CONFIG_KEYS.settings.package_directory)) {
                   setSaveButtonEnabled(true);
                 }
               } else {
@@ -233,7 +233,7 @@ export default function Settings() {
             color="textSecondary"
             className={classes.resetLink}
             onClick={() => {
-              PackagesDirTB.current.value = Config.get(CONFIG_KEYS.settings.package_directory);
+              PackagesDirTB.current.value = getConfigInstance().get(CONFIG_KEYS.settings.package_directory);
 
               const [isValid, errorMsg] = ValidateFSDirectory(PackagesDirTB.current.value, CurrentLocale);
 
@@ -258,7 +258,7 @@ export default function Settings() {
                 target.innerText = CurrentLocale.translate('manager.pages.settings.user_settings.community_folder.open_in_explorer');
               }, 2500);
 
-              ElectronRemote.shell.showItemInFolder(Config.get(CONFIG_KEYS.settings.package_directory));
+              ElectronRemote.shell.showItemInFolder(getConfigInstance().get(CONFIG_KEYS.settings.package_directory));
             }}
           >
             {CurrentLocale.translate('manager.pages.settings.user_settings.community_folder.open_in_explorer')}
@@ -396,7 +396,7 @@ export default function Settings() {
             onClick={() => {
               setSaveButtonEnabled(false);
 
-              Config.setBulk({
+              getConfigInstance().setBulk({
                 [CONFIG_KEYS.settings.package_directory]: PackagesDirTB.current.value,
               });
             }}

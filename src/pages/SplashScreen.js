@@ -4,19 +4,19 @@ import { Box, CircularProgress, Typography, makeStyles } from '@material-ui/core
 
 import Navigate from '../helpers/Navigate';
 
-import Config from 'electron-json-config';
 import ConfigKeys from '../data/config-keys.json';
 import defaultConfig from '../data/default-config';
 import LocaleContext from '../locales/LocaleContext';
+import getConfigInstance from '../helpers/getConfigInstance';
 
 const useStyles = makeStyles(theme => ({ loadingHeading: { marginTop: theme.spacing(3) } }));
 
 function CheckConfig() {
-  const CurrentKeys = Config.keys();
+  const CurrentKeys = getConfigInstance().keys();
 
   Object.keys(defaultConfig).forEach(key => {
     if (!CurrentKeys.includes(key)) {
-      Config.set(key, defaultConfig[key]);
+      getConfigInstance().set(key, defaultConfig[key]);
     }
   });
 }
@@ -27,7 +27,7 @@ export default function SplashScreen() {
 
   const styles = useStyles();
 
-  if (Config.get(ConfigKeys.state.setup_completed, false)) {
+  if (getConfigInstance().get(ConfigKeys.state.setup_completed, false)) {
     console.log('Setup complete');
     setTimeout(() => {
       Navigate('/home');

@@ -1262,6 +1262,20 @@
     prop-types "^15.7.2"
     react-is "^16.8.0 || ^17.0.0"
 
+"@msfs/electron-json-config@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@msfs/electron-json-config/-/electron-json-config-1.0.0.tgz#7a1eee1a1530e10a8cf6e18db0e2c4afc8ac4321"
+  integrity sha512-JACJWFhYwJQL0BbJ/wmJWqYHNcAr+IRHWxPMbQTPf8C2stN/dosbenXzixvmF1N3NR4HWZeFlcpo7rx+JJ+R4g==
+
+"@msfs/electron-react-titlebar@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@msfs/electron-react-titlebar/-/electron-react-titlebar-1.0.0.tgz#063b5dd51f881a7f7fff0b087985658904e3f361"
+  integrity sha512-Y2I2ufuq9bgxvYucJYTfZ7cdNomYB4KLOEuICeTtLHufo+SqGwsCytLPQBNabg6HcSSe1cGCq5D4YjGBzs8S2Q==
+  dependencies:
+    classnames "^2.3.1"
+    lodash "^4.17.21"
+    react-virtualized "^9.22.3"
+
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.4.tgz#d4b3549a5db5de2683e0c1071ab4f140904bbf69"
@@ -2295,10 +2309,10 @@ chromium-pickle-js@^0.2.0:
   resolved "https://registry.yarnpkg.com/chromium-pickle-js/-/chromium-pickle-js-0.2.0.tgz#04a106672c18b085ab774d983dfa3ea138f22205"
   integrity sha1-BKEGZywYsIWrd02YPfo+oTjyIgU=
 
-classnames@^2.2.6:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
-  integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
+classnames@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
+  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
 
 clean-css@^4.2.3:
   version "4.2.3"
@@ -2937,11 +2951,6 @@ electron-installer-windows@^3.0.0:
     which "^2.0.2"
     yargs "^15.1.0"
 
-electron-json-config@^1.5.3:
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/electron-json-config/-/electron-json-config-1.5.3.tgz#92a878b608673412a822325b594d7005945b3a85"
-  integrity sha512-+nRzmoe9xlRZLABInTzSYPH5X1Z5bzHMoIPEMGvNGUGjHEBCoAR4n+iHYdC0vVOJjupJ4MpNLbtpo+vgCKN91A==
-
 electron-notarize@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/electron-notarize/-/electron-notarize-1.1.1.tgz#3ed274b36158c1beb1dbef14e7faf5927e028629"
@@ -2986,15 +2995,6 @@ electron-packager@^15.4.0:
     semver "^7.1.3"
     yargs-parser "^20.0.0"
 
-electron-react-titlebar@^0.8.2:
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/electron-react-titlebar/-/electron-react-titlebar-0.8.2.tgz#0dce6c43c7f02930ce484fc1722b09d323593940"
-  integrity sha512-Bbkaryi6JmtSuq8hAM+RNxlPhmQdE/7bdEsBasTtS+tbHHPsX0p4ilxVxKlFt23geV8kQaSq7qoZr30ixW8jtw==
-  dependencies:
-    classnames "^2.2.6"
-    lodash "^4.17.15"
-    react-virtualized "^9.7.6"
-
 electron-squirrel-startup@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/electron-squirrel-startup/-/electron-squirrel-startup-1.0.0.tgz#19b4e55933fa0ef8f556784b9c660f772546a0b8"
@@ -3012,10 +3012,10 @@ electron-to-chromium@^1.3.846:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.848.tgz#94cc196e496f33c0d71cd98561448f10018584cc"
   integrity sha512-wchRyBcdcmibioggdO7CbMT5QQ4lXlN/g7Mkpf1K2zINidnqij6EVu94UIZ+h5nB2S9XD4bykqFv9LonAWLFyw==
 
-electron@^13.4.0:
-  version "13.4.0"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-13.4.0.tgz#f9f9e518d8c6bf23bfa8b69580447eea3ca0f880"
-  integrity sha512-KJGWS2qa0xZXIMPMDUNkRVO8/JxRd4+M0ejYYOzu2LIQ5ijecPzNuNR9nvDkml9XyyRBzu975FkhJcwD17ietQ==
+electron@^14.0.1:
+  version "14.0.1"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-14.0.1.tgz#967da47895a77a9af8a7938e9266cd4a75ab24c4"
+  integrity sha512-1XILvfE5mQEBz5L/QeNfcwC3PxAIjwMyA3GR8Naw5C0IKAnHl3lAdjczbtGX8nqbcEpOAVo+4TMSpcPD3zxe8Q==
   dependencies:
     "@electron/get" "^1.0.1"
     "@types/node" "^14.6.2"
@@ -5989,7 +5989,7 @@ react-transition-group@^4.4.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react-virtualized@^9.7.6:
+react-virtualized@^9.22.3:
   version "9.22.3"
   resolved "https://registry.yarnpkg.com/react-virtualized/-/react-virtualized-9.22.3.tgz#f430f16beb0a42db420dbd4d340403c0de334421"
   integrity sha512-MKovKMxWTcwPSxE1kK1HcheQTWfuCxAuBoSTf2gwyMM21NdX/PXUhnoP8Uc5dRKd+nKm8v41R36OellhdCpkrw==

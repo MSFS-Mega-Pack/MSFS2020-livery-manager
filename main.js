@@ -98,6 +98,8 @@ function createMainWindow() {
     open(url);
   });
 
+  require('@electron/remote/main').enable(mainWindow.webContents);
+
   mainWindow.menuBarVisible = false;
   mainWindow.loadURL(indexPath);
 

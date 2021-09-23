@@ -10,7 +10,6 @@ import { CssBaseline } from '@material-ui/core';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import { TitleBar } from 'electron-react-titlebar';
 
-import Config from 'electron-json-config';
 import ConfigKeys from '../data/config-keys.json';
 
 import Theme from '../data/Theme';
@@ -23,6 +22,7 @@ import 'electron-react-titlebar/assets/style.css';
 import { SnackbarProvider } from 'notistack';
 import { LocaleProvider } from '../locales/LocaleContext';
 import MainAppErrorBoundary from './ErrorBoundaries/MainAppErrorBoundary';
+import getConfigInstance from '../helpers/getConfigInstance';
 
 const useStyles = makeStyles({
   titlebar: {
@@ -39,7 +39,7 @@ const useStyles = makeStyles({
 
 function App() {
   const classes = useStyles();
-  const [language, setLanguage] = React.useState(Config.get(ConfigKeys.settings.locale, 'en-GB'));
+  const [language, setLanguage] = React.useState(getConfigInstance().get(ConfigKeys.settings.locale, 'en-GB'));
 
   return (
     <>

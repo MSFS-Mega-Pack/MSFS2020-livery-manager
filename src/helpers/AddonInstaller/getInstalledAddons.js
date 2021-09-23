@@ -1,11 +1,11 @@
 import { readdirSync, existsSync, lstatSync, readFileSync } from 'fs';
 import Path from 'path';
 
-import Config from 'electron-json-config';
 import ConfigKeys from '../../data/config-keys.json';
 import Constants from '../../data/Constants.json';
 
 import AsyncForEach from '../AsyncForEach';
+import getConfigInstance from '../getConfigInstance';
 import ThrowError from '../ThrowError';
 
 /**
@@ -42,7 +42,7 @@ export default async function GetInstalledAddons() {
     integrations: [new RewriteFrames()],
   });
   let installedAddons = [];
-  const Directory = Path.normalize(Config.get(ConfigKeys.settings.package_directory));
+  const Directory = Path.normalize(getConfigInstance().get(ConfigKeys.settings.package_directory));
 
   if (!existsSync(Directory)) return ThrowError('E101', `Community path does not exist:\n${Directory}`);
 

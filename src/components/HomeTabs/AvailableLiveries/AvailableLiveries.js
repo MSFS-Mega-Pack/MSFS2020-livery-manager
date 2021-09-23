@@ -21,8 +21,8 @@ import NoImage from '../../../images/no-image-available.png';
 
 // support libraries
 import { useSnackbar } from 'notistack';
-import Config from 'electron-json-config';
 import LocaleContext from '../../../locales/LocaleContext';
+import getConfigInstance from '../../../helpers/getConfigInstance';
 
 export default function AvailableLiveries(props) {
   const CurrentLocale = React.useContext(LocaleContext);
@@ -130,7 +130,7 @@ export default function AvailableLiveries(props) {
           }
           suggestions={[
             CurrentLocale.translate('manager.pages.available_liveries.errors.installed_addons_fail.suggestion1', {
-              path: Config.get(ConfigKeys.settings.package_directory),
+              path: getConfigInstance().get(ConfigKeys.settings.package_directory),
             }),
             CurrentLocale.translate('manager.pages.available_liveries.errors.installed_addons_fail.suggestion2'),
           ]}

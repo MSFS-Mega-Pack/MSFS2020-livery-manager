@@ -9,10 +9,10 @@ import 'overlayscrollbars/css/OverlayScrollbars.css';
 
 import Navigate from './helpers/Navigate';
 import Routes from './data/Routes';
-import Config from 'electron-json-config';
 import IsDev from './data/IsDev';
-import defaultConfig from './data/default-config';
 import GetInstalledAddons from './helpers/AddonInstaller/getInstalledAddons';
+import ResetConfig from './helpers/ResetConfig';
+import getConfigInstance from './helpers/getConfigInstance';
 
 // Since we are using HtmlWebpackPlugin WITHOUT a template, we should create our own root node in the body element before rendering into it
 let root = document.createElement('div');
@@ -28,10 +28,7 @@ if (IsDev) InitialiseDeveloperFunctions();
 function InitialiseDeveloperFunctions() {
   window.__navigate = Navigate;
   window.__routes = Routes;
-  window.__config = Config;
-  window.__resetConfig = () => {
-    Config.purge();
-    Config.setBulk(defaultConfig);
-  };
+  window.__config = getConfigInstance();
+  window.__resetConfig = ResetConfig;
   window.__getInstalledAddons = GetInstalledAddons;
 }

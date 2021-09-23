@@ -5,13 +5,13 @@ import * as ElectronRemote from '@electron/remote';
 import admzip from 'adm-zip';
 import request from 'request';
 import progress from 'request-progress';
-import Config from 'electron-json-config';
 
 import ThrowError from '../ThrowError';
 import addLiveryInstallAnalytic from './addLiveryInstallAnalytic';
 
 import Constants from '../../data/Constants.json';
 import ConfigKeys from '../../data/config-keys.json';
+import getConfigInstance from '../getConfigInstance';
 /**
  * Download and install an addon
  *
@@ -23,7 +23,7 @@ import ConfigKeys from '../../data/config-keys.json';
  * @param {"fresh"|"update"} installType Type of install (update, fresh install, etc)
  */
 export default async function InstallAddon(PlaneObject, index, total, CurrentLocale, updateProgress, installType) {
-  const Directory = Config.get(ConfigKeys.settings.package_directory);
+  const Directory = getConfigInstance().get(ConfigKeys.settings.package_directory);
   const downloadURL = `${Constants.urls.cdnEndpoint}/${PlaneObject.fileName}?hash=${PlaneObject.checkSum}`;
   const zipName = PlaneObject.fileName.substr(PlaneObject.fileName.lastIndexOf('/') + 1);
   const tempPath = Path.join(ElectronRemote.app.getPath('temp'), Constants.appName, Constants.dirs.downloadCache);

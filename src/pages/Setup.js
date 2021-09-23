@@ -23,12 +23,11 @@ import FolderSearchOutlineIcon from 'mdi-react/FolderSearchOutlineIcon';
 
 import Navigate from '../helpers/Navigate';
 
-import Electron from 'electron';
-import Config from 'electron-json-config';
 import ConfigKeys from '../data/config-keys.json';
 import PackageJson from '../../package.json';
 import LocaleContext from '../locales/LocaleContext';
 import { GetAllLocales } from '../locales/LocaleHelpers';
+import getConfigInstance from '../helpers/getConfigInstance';
 
 export default function Setup() {
   const [page, setPage] = useState(1);
@@ -81,7 +80,7 @@ export default function Setup() {
             if (page !== Pages.length) {
               setPage(page + 1);
             } else {
-              Config.setBulk({
+              getConfigInstance().setBulk({
                 [ConfigKeys.state.setup_completed]: true,
                 [ConfigKeys.settings.package_directory]: data.packageDir,
               });

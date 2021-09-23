@@ -1,6 +1,6 @@
-import { createMuiTheme, colors } from '@material-ui/core';
+import { createTheme, colors } from '@material-ui/core';
 
-export default createMuiTheme({
+export default createTheme({
   typography: {
     fontFamily: 'Poppins',
     fontSize: 18,

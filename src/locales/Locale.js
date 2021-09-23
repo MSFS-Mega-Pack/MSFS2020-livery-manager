@@ -1,5 +1,5 @@
-import Config from 'electron-json-config';
 import ConfigKeys from '../data/config-keys.json';
+import getConfigInstance from '../helpers/getConfigInstance';
 
 /**
  * @typedef {{ info: { name: string, localeId: string }, strings: object, setLocale: function, dayJsLocale: any }} LocaleData
@@ -93,7 +93,7 @@ export default class Locale {
   }
 
   updateLocale(newLocaleId) {
-    Config.set(ConfigKeys.settings.locale, newLocaleId);
+    getConfigInstance().set(ConfigKeys.settings.locale, newLocaleId);
     this._setLocale(newLocaleId);
   }
 
