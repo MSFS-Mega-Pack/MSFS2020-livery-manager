@@ -1,4 +1,4 @@
-import Electron from 'electron';
+import * as ElectronRemote from '@electron/remote';
 
 /**
  * Show a native Windows dialog.
@@ -23,7 +23,7 @@ export default function ShowNativeDialog(CurrentLocale, message, title, detail =
         CurrentLocale.translate('helpers.show_native_dialog.cancel_button'),
       ];
 
-  return Electron.remote.dialog.showMessageBoxSync(Electron.remote.getCurrentWindow(), {
+  return ElectronRemote.dialog.showMessageBoxSync(ElectronRemote.getCurrentWindow(), {
     accessibleTitle: title,
     type: type,
     buttons: b,

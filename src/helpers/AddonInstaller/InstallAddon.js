@@ -1,6 +1,6 @@
 import { default as fs, promises as fsPromises } from 'fs';
 import Path from 'path';
-import { remote } from 'electron';
+import * as ElectronRemote from '@electron/remote';
 
 import admzip from 'adm-zip';
 import request from 'request';
@@ -26,7 +26,7 @@ export default async function InstallAddon(PlaneObject, index, total, CurrentLoc
   const Directory = Config.get(ConfigKeys.settings.package_directory);
   const downloadURL = `${Constants.urls.cdnEndpoint}/${PlaneObject.fileName}?hash=${PlaneObject.checkSum}`;
   const zipName = PlaneObject.fileName.substr(PlaneObject.fileName.lastIndexOf('/') + 1);
-  const tempPath = Path.join(remote.app.getPath('temp'), Constants.appName, Constants.dirs.downloadCache);
+  const tempPath = Path.join(ElectronRemote.app.getPath('temp'), Constants.appName, Constants.dirs.downloadCache);
   const zipPath = Path.join(tempPath, zipName);
   const extractDir = Path.join(Directory, `${zipName.split('.zip')[0]}`);
   const Sentry = require('@sentry/electron');

@@ -16,6 +16,8 @@ if (process.env.NODE_ENV && process.env.NODE_ENV === 'development') {
   isDev = true;
 }
 
+require('@electron/remote/main').initialize();
+
 if (!isDev) {
   if (require('electron-squirrel-startup')) {
     app.quit();

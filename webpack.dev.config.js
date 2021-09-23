@@ -67,13 +67,17 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     hot: true,
-    contentBase: path.resolve(__dirname, 'dist'),
-    stats: {
-      colors: true,
-      chunks: false,
-      children: false,
+    static: {
+      directory: path.resolve(__dirname, 'dist'),
     },
-    before() {
+    devMiddleware: {
+      stats: {
+        colors: true,
+        chunks: false,
+        children: false,
+      },
+    },
+    onBeforeSetupMiddleware() {
       spawn('electron', ['.'], {
         shell: true,
         env: process.env,

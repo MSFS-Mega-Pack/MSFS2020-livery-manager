@@ -5,7 +5,7 @@ import LocaleContext from '../../locales/LocaleContext';
 import { Button, Typography } from '@material-ui/core';
 import ErrorIcon from 'mdi-react/ErrorOutlineIcon';
 
-import { remote as ElectronRemote } from 'electron';
+import * as ElectronRemote from '@electron/remote';
 import { withStyles } from '@material-ui/styles';
 import { withSnackbar } from 'notistack';
 import ResetConfig from '../../helpers/ResetConfig';

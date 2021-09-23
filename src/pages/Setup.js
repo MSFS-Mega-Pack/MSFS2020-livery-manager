@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { GetPackagesDirectory, ValidateFSDirectory } from '../helpers/MSFS/Directories';
 import { AllRoutes } from '../data/Routes';
+import * as ElectronRemote from '@electron/remote';
 
 import {
   Typography,
@@ -155,7 +156,7 @@ function SimInstallDirectoryPage({ data, setData }) {
   const errorMsg = ValidateFSDirectory(data.packageDir, CurrentLocale)[1];
 
   function openBrowseDialog() {
-    const d = Electron.remote.dialog.showOpenDialogSync(null, { properties: ['openDirectory'] });
+    const d = ElectronRemote.dialog.showOpenDialogSync(null, { properties: ['openDirectory'] });
 
     if (typeof d === 'undefined') {
       // Dialog cancelled

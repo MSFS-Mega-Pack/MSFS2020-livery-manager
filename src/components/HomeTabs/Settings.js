@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useReducer } from 'react';
-import { remote as ElectronRemote } from 'electron';
+import * as ElectronRemote from '@electron/remote';
 
 import {
   Paper,
