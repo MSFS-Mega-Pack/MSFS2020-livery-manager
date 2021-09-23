@@ -8,7 +8,7 @@ import './styles/baseline.less';
 
 import { CssBaseline } from '@material-ui/core';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
-import { TitleBar } from 'electron-react-titlebar';
+import { TitleBar } from '@msfs/electron-react-titlebar';
 
 import ConfigKeys from '../data/config-keys.json';
 
@@ -17,7 +17,7 @@ import Routes from '../data/Routes';
 import PackageJson from '../../package.json';
 
 import planeIcon from '../images/plane-takeoff.png';
-import 'electron-react-titlebar/assets/style.css';
+import '@msfs/electron-react-titlebar/assets/style.css';
 
 import { SnackbarProvider } from 'notistack';
 import { LocaleProvider } from '../locales/LocaleContext';
