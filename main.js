@@ -6,6 +6,7 @@ const { checkForUpdates } = require('./updater');
 const Sentry = require('@sentry/electron');
 
 app.commandLine.appendSwitch('disable-http-cache');
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 /** @type {BrowserWindow} */
 let mainWindow;
