@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Changed marked with `[DEV]` are invisible to users, and purely for the benefit of developers.
 
+## [0.4.7] - 2022-01-09
+
+### Added
+
+- Fix bug where the downloadprocess halts in process unpacking if the livery is not existing but the process downloads the errorpage as zip file.
+
+### Changed
+
+_None_
+
+### Removed
+
+_None_
+
+### Meta
+
+_None_
+
 ## [0.4.6] - 2021-03-07
 
 ### Added
