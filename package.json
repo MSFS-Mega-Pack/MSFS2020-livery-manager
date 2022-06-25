@@ -59,7 +59,7 @@
     "@msfs/electron-react-titlebar": "^1.0.0",
     "electron-squirrel-startup": "^1.0.0",
     "mdi-react": "^7.5.0",
-    "node-fetch": "^2.6.5",
+    "node-fetch": "^2.6.7",
     "node-rsa": "^1.1.1",
     "notistack": "^1.0.10",
     "open": "^7.4.2",
