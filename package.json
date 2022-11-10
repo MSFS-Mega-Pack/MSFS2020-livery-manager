@@ -90,7 +90,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^5.2.7",
     "dotenv": "^8.6.0",
-    "electron": "^14.0.1",
+    "electron": "^18.3.7",
     "electron-installer-windows": "^3.0.0",
     "electron-packager": "^15.4.0",
     "eslint": "^7.32.0",
